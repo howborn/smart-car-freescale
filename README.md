@@ -18,7 +18,7 @@ PCB 即为控制电路，分为 [主板](https://github.com/fan-haobai/smart-car
 
 ![3D预览图](https://github.com/fan-haobai/smart-car-freescale/blob/master/solidworkds.png)
 
-通过 SolidWorks 制作三维模型，并生成 3D 预览效果。可以分为 [车架](https://github.com/fan-haobai/smart-car-freescale/blob/master/3D/车架部分.png)、[PCB]() 部分，该部分源文件为 SolidWorks 文件。
+通过 SolidWorks 制作三维模型，并生成 3D 预览效果。可以分为 [车架](https://github.com/fan-haobai/smart-car-freescale/blob/master/3D/车架部分.png)、[PCB](https://github.com/fan-haobai/smart-car-freescale/blob/master/3D/PCB.png) 部分，该部分源文件为 SolidWorks 文件。
 
 ## [论文](https://github.com/fan-haobai/smart-car-freescale/tree/master/paper)
 
