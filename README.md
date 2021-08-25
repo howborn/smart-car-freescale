@@ -10,7 +10,7 @@
 
 * [实验室调试视频](https://v.youku.com/v_show/id_XODE0NTg2NzY4.html)
 * [校内赛](https://v.youku.com/v_show/id_XOTI0NzM1NDM2.html)
-* [华北预赛](https://v.youku.com/v_show/id_XODUxOTU1OTY0.html)
+* [华北赛](https://v.youku.com/v_show/id_XODUxOTUyNjk2.html)
 
 ## [源码](https://github.com/fan-haobai/smart-car-freescale/blob/master/src)
 
