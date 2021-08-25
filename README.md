@@ -6,6 +6,12 @@
 
 该作品系统架构为 K60 处理器+ MT9V034 CMOS 摄像头，通过图像识别和 PID 速度控制，实现智能车自动导航功能。更多相关信息，见 [天翊的个人空间](http://www.znczz.com/home.php?mod=space&uid=125200&do=album&id=1777)。
 
+## 自动行驶视频
+
+* [实验室调试视频](https://v.youku.com/v_show/id_XODE0NTg2NzY4.html)
+* [校内赛](https://v.youku.com/v_show/id_XOTI0NzM1NDM2.html)
+* [华北预赛](https://v.youku.com/v_show/id_XODUxOTU1OTY0.html)
+
 ## [源码](https://github.com/fan-haobai/smart-car-freescale/blob/master/src)
 
 此部分主要包括 [K60 初始化和调度](https://github.com/fan-haobai/smart-car-freescale/blob/master/src/project/Init.c)、[MT9V034 图像采集](https://github.com/fan-haobai/smart-car-freescale/blob/master/src/project/MT9V034.c)、[图像分析](https://github.com/fan-haobai/smart-car-freescale/blob/master/src/project/Analyze.c)、[Flash](https://github.com/fan-haobai/smart-car-freescale/blob/master/src/project/Flash.c)、[可视化界面（Gui）](https://github.com/fan-haobai/smart-car-freescale/blob/master/src/project/Gui.c)、[PID 自动控制](https://github.com/fan-haobai/smart-car-freescale/blob/master/src/project/Control.c) 部分。
