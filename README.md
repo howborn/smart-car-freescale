@@ -4,7 +4,7 @@
 
 ![预览图](https://github.com/fan-haobai/smart-car-freescale/blob/master/三维模型预览.png)
 
-该作品系统架构为 K60 处理器+ MT9V034 CMOS 摄像头，通过图像识别和 PID 速度控制，实现智能车自动导航功能。更多相关信息，见 [天翊的个人空间](http://www.znczz.com/home.php?mod=space&uid=125200&do=album&id=1777)。
+该作品系统架构为 K60 处理器+ MT9V034 CMOS 摄像头，通过图像识别和 PID 速度控制，实现智能车自动导航功能。
 
 ## 自动行驶视频
 
