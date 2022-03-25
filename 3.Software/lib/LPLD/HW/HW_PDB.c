@@ -2,45 +2,45 @@
  * @file HW_PDB.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief PDBµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief PDBåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "HW_PDB.h"
 
-//ÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñº¯ÊýÊý×é
+//ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡å‡½æ•°æ•°ç»„
 PDB_ISR_CALLBACK PDB_ISR[1];
 PDB_ISR_CALLBACK PDB_SE_ISR[1];
 
-//PDBÊ±ÖÓÔ¤·ÖÆµÏµÊý³ËÊý
+//PDBæ—¶é’Ÿé¢„åˆ†é¢‘ç³»æ•°ä¹˜æ•°
 const uint8 pdb_sc_mults[4] = {1, 10, 20, 40};
 
 
 /*
  * LPLD_PDB_Init
- * PDBxÄ£¿éÍ¨ÓÃ³õÊ¼»¯º¯Êý£¬³õÊ¼»¯PDBx¼ÆÊýÆ÷ÖÜÆÚ¡¢¹¤×÷Ä£Ê½¡¢´¥·¢Ô´¡¢ÖÐ¶ÏµÈÅäÖÃ
+ * PDBxæ¨¡å—é€šç”¨åˆå§‹åŒ–å‡½æ•°ï¼Œåˆå§‹åŒ–PDBxè®¡æ•°å™¨å‘¨æœŸã€å·¥ä½œæ¨¡å¼ã€è§¦å‘æºã€ä¸­æ–­ç­‰é…ç½®
  * 
- * ²ÎÊý:
- *    pdb_init_struct--PDBx³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûPDB_InitTypeDef
+ * å‚æ•°:
+ *    pdb_init_struct--PDBxåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§PDB_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_PDB_Init(PDB_InitTypeDef pdb_init_struct)
 {
@@ -57,21 +57,21 @@ uint8 LPLD_PDB_Init(PDB_InitTypeDef pdb_init_struct)
   uint32 mod;
   float32 temp;
   
-  //²ÎÊý¼ì²é
-  ASSERT( loadmode <= LOADMODE_3 );       //¼ÓÔØÄ£Ê½Ñ¡Ôñ
-  ASSERT( trriger <= TRIGGER_SOFTWARE );  //´¥·¢ÊäÈëÔ´Ñ¡Ôñ
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( loadmode <= LOADMODE_3 );       //åŠ è½½æ¨¡å¼é€‰æ‹©
+  ASSERT( trriger <= TRIGGER_SOFTWARE );  //è§¦å‘è¾“å…¥æºé€‰æ‹©
   
 /*
  *************************************************
-  ¡¾LPLD×¢½â¡¿PDB¹Ø¼üÏµÊý
-  prescaler(×ÜÏßÊ±ÖÓÔ¤·ÖÆµÏµÊý): 2^n(n:0~7)
-  mult(prescalerµÄ±¶Êý): 1¡¢10¡¢20¡¢40
-  mod(¼ÆÊýÆ÷Ä£Êý£¬Ó°Ïì¼ÆÊýÆ÷ÖÜÆÚ): 0~0xFFFF
-  ¼ÆÊýÆ÷ÖÜÆÚ = (prescaler*mult*mod)/bus_clk
+  ã€LPLDæ³¨è§£ã€‘PDBå…³é”®ç³»æ•°
+  prescaler(æ€»çº¿æ—¶é’Ÿé¢„åˆ†é¢‘ç³»æ•°): 2^n(n:0~7)
+  mult(prescalerçš„å€æ•°): 1ã€10ã€20ã€40
+  mod(è®¡æ•°å™¨æ¨¡æ•°ï¼Œå½±å“è®¡æ•°å™¨å‘¨æœŸ): 0~0xFFFF
+  è®¡æ•°å™¨å‘¨æœŸ = (prescaler*mult*mod)/bus_clk
  *************************************************
  */
   
-  //¸ù¾ÝÆÚÍûµÄ¼ÆÊýÆ÷ÖÜÆÚ×Ô¶¯Éè¶¨prescaler¡¢multºÍmodµÄÖµ
+  //æ ¹æ®æœŸæœ›çš„è®¡æ•°å™¨å‘¨æœŸè‡ªåŠ¨è®¾å®šprescalerã€multå’Œmodçš„å€¼
   for(uint8 i=0; i<4; i++)
   {
     mult = i;
@@ -85,30 +85,30 @@ uint8 LPLD_PDB_Init(PDB_InitTypeDef pdb_init_struct)
     if(mod <= 0xFFFFu)
       break;
     else if(i == 3)
-      return 0;         //PDB¼ÆÊýÖÜÆÚÉèÖÃµÄ¹ýÐ¡£¬¼ÆËã´íÎó
+      return 0;         //PDBè®¡æ•°å‘¨æœŸè®¾ç½®çš„è¿‡å°ï¼Œè®¡ç®—é”™è¯¯
   }
   
-  //Ê¹ÄÜPDBÊ±ÖÓ
+  //ä½¿èƒ½PDBæ—¶é’Ÿ
   SIM->SCGC6 |= SIM_SCGC6_PDB_MASK;
   
-  //³õÊ¼»¯SC¼Ä´æÆ÷
+  //åˆå§‹åŒ–SCå¯„å­˜å™¨
   PDB0->SC = 0x00;
-  //Ê¹ÄÜPDB
+  //ä½¿èƒ½PDB
   PDB0->SC |= PDB_SC_PDBEN_MASK;
   PDB0->SC |= PDB_SC_MULT(mult);
   PDB0->SC |= PDB_SC_PRESCALER(prescaler);
-  //ÅäÖÃMOD¡¢IDLY¡¢CHnDLYm¡¢INTxºÍPOyDLY¼Ä´æÆ÷µÄ¼ÓÔØÄ£Ê½
+  //é…ç½®MODã€IDLYã€CHnDLYmã€INTxå’ŒPOyDLYå¯„å­˜å™¨çš„åŠ è½½æ¨¡å¼
   PDB0->SC |= PDB_SC_LDMOD(loadmode); 
-  //ÅäÖÃ´¥·¢ÊäÈëÔ´
+  //é…ç½®è§¦å‘è¾“å…¥æº
   PDB0->SC |= PDB_SC_TRGSEL(trriger);
   
-  //ÊÇ·ñÊ¹ÄÜÁ¬ÐøÄ£Ê½
+  //æ˜¯å¦ä½¿èƒ½è¿žç»­æ¨¡å¼
   if(pdb_init_struct.PDB_ContinuousModeEnable == TRUE)
     PDB0->SC |= PDB_SC_CONT_MASK;
   else
     PDB0->SC &= ~(PDB_SC_CONT_MASK);
   
-  //ÊÇ·ñÊ¹ÄÜDMA
+  //æ˜¯å¦ä½¿èƒ½DMA
   if(pdb_init_struct.PDB_DmaEnable == TRUE)
     PDB0->SC |= PDB_SC_DMAEN_MASK;
   else
@@ -117,7 +117,7 @@ uint8 LPLD_PDB_Init(PDB_InitTypeDef pdb_init_struct)
   if(pdb_init_struct.PDB_Isr != NULL)
   {
     PDB_ISR[0] = pdb_init_struct.PDB_Isr;
-    //ÊÇ·ñÊ¹ÄÜPDBÖÐ¶Ï
+    //æ˜¯å¦ä½¿èƒ½PDBä¸­æ–­
     if(pdb_init_struct.PDB_IntEnable == TRUE)
       PDB0->SC |= PDB_SC_PDBIE_MASK;
     else
@@ -127,21 +127,21 @@ uint8 LPLD_PDB_Init(PDB_InitTypeDef pdb_init_struct)
   if(pdb_init_struct.PDB_SeqErrIsr != NULL)
   {
     PDB_SE_ISR[0] = pdb_init_struct.PDB_SeqErrIsr;
-    //ÊÇ·ñÊ¹ÄÜPDBÐòÁÐ´íÎóÖÐ¶Ï
+    //æ˜¯å¦ä½¿èƒ½PDBåºåˆ—é”™è¯¯ä¸­æ–­
     if(pdb_init_struct.PDB_SeqErrIntEnable == TRUE)
       PDB0->SC |= PDB_SC_PDBEIE_MASK;
     else
       PDB0->SC &= ~(PDB_SC_PDBEIE_MASK);
   }
   
-  //ÉèÖÃPDBÖÐ¶ÏÑÓÊ±Ê±¼ä
+  //è®¾ç½®PDBä¸­æ–­å»¶æ—¶æ—¶é—´
   if( delayus <= us )
   {
     temp = (float32)mod/(float32)us;
     PDB0->IDLY = (uint32)(delayus*temp);
   }
   
-  //¼ÓÔØÖµ
+  //åŠ è½½å€¼
   PDB0->SC |= PDB_SC_LDOK_MASK;
   
   return 1;
@@ -149,13 +149,13 @@ uint8 LPLD_PDB_Init(PDB_InitTypeDef pdb_init_struct)
 
 /*
  * LPLD_PDB_Deinit
- * PDBxÄ£¿é·´³õÊ¼»¯º¯Êý£¬½ûÓÃPDBxËùÓÐ¹¦ÄÜ
+ * PDBxæ¨¡å—ååˆå§‹åŒ–å‡½æ•°ï¼Œç¦ç”¨PDBxæ‰€æœ‰åŠŸèƒ½
  * 
- * ²ÎÊý:
- *    ÎÞ
+ * å‚æ•°:
+ *    æ— 
  *
- * Êä³ö:
- *    ÎÞ
+ * è¾“å‡º:
+ *    æ— 
  */
 void LPLD_PDB_Deinit(void)
 {
@@ -168,7 +168,7 @@ void LPLD_PDB_Deinit(void)
   
   PDB0->SC = 0;
   
-  //½ûÓÃPDBÊ±ÖÓ
+  //ç¦ç”¨PDBæ—¶é’Ÿ
   SIM->SCGC6 &= ~(SIM_SCGC6_PDB_MASK);
   
   disable_irq(PDB0_IRQn);
@@ -177,27 +177,27 @@ void LPLD_PDB_Deinit(void)
 
 /*
  * LPLD_PDB_AdcTriggerCfg
- * PDBx´¥·¢ADCxÄ£¿éÅäÖÃº¯Êý
+ * PDBxè§¦å‘ADCxæ¨¡å—é…ç½®å‡½æ•°
  * 
- * ²ÎÊý:
- *    adcx--ADCxÄ£¿éºÅ
+ * å‚æ•°:
+ *    adcx--ADCxæ¨¡å—å·
  *      |__ADC0          --ADC0
  *      |__ADC1          --ADC1
- *    cfg--ADCxÔ¤´¥·¢¹¦ÄÜÅäÖÃ£¬¿É¶à¸öÖµºÏ²¢ÅäÖÃ(eg. cfg=PRETRIG_EN_A|PRETRIG_DLY_A;)
- *      ADCx A×éÅäÖÃ
- *      |__PRETRIG_EN_A  --Ê¹ÄÜADCxµÄA×éÔ¤´¥·¢¹¦ÄÜ
- *      |__PRETRIG_DLY_A --Ê¹ÄÜADCxµÄA×éÑÓÊ±Êä³öÔ¤´¥·¢¹¦ÄÜ
- *      |__PRETRIG_BB_A  --Ê¹ÄÜADCxµÄA×é¡°Back to Back¡±Ä£Ê½
- *      ADCx B×éÅäÖÃ
- *      |__PRETRIG_EN_B  --Ê¹ÄÜADCxµÄB×éÔ¤´¥·¢¹¦ÄÜ
- *      |__PRETRIG_DLY_B --Ê¹ÄÜADCxµÄB×éÑÓÊ±Êä³öÔ¤´¥·¢¹¦ÄÜ
- *      |__PRETRIG_BB_B  --Ê¹ÄÜADCxµÄB×é¡°Back to Back¡±Ä£Ê½
- *    delay--ADCx A»òB×éµÄÑÓÊ±Êä³öÔ¤´¥·¢Ê±¼ä£¬µ¥Î»us
+ *    cfg--ADCxé¢„è§¦å‘åŠŸèƒ½é…ç½®ï¼Œå¯å¤šä¸ªå€¼åˆå¹¶é…ç½®(eg. cfg=PRETRIG_EN_A|PRETRIG_DLY_A;)
+ *      ADCx Aç»„é…ç½®
+ *      |__PRETRIG_EN_A  --ä½¿èƒ½ADCxçš„Aç»„é¢„è§¦å‘åŠŸèƒ½
+ *      |__PRETRIG_DLY_A --ä½¿èƒ½ADCxçš„Aç»„å»¶æ—¶è¾“å‡ºé¢„è§¦å‘åŠŸèƒ½
+ *      |__PRETRIG_BB_A  --ä½¿èƒ½ADCxçš„Aç»„â€œBack to Backâ€æ¨¡å¼
+ *      ADCx Bç»„é…ç½®
+ *      |__PRETRIG_EN_B  --ä½¿èƒ½ADCxçš„Bç»„é¢„è§¦å‘åŠŸèƒ½
+ *      |__PRETRIG_DLY_B --ä½¿èƒ½ADCxçš„Bç»„å»¶æ—¶è¾“å‡ºé¢„è§¦å‘åŠŸèƒ½
+ *      |__PRETRIG_BB_B  --ä½¿èƒ½ADCxçš„Bç»„â€œBack to Backâ€æ¨¡å¼
+ *    delay--ADCx Aæˆ–Bç»„çš„å»¶æ—¶è¾“å‡ºé¢„è§¦å‘æ—¶é—´ï¼Œå•ä½us
  *      |__0~0xFFFF      --0~4095us
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_PDB_AdcTriggerCfg(ADC_Type *adcx, uint32 cfg, uint16 delay)
 {
@@ -228,31 +228,31 @@ uint8 LPLD_PDB_AdcTriggerCfg(ADC_Type *adcx, uint32 cfg, uint16 delay)
   prescaler = 1<<((PDB0->SC & PDB_SC_PRESCALER_MASK) >> PDB_SC_PRESCALER_SHIFT);
   mult = pdb_sc_mults[(PDB0->SC & PDB_SC_MULT_MASK) >> PDB_SC_MULT_SHIFT];
   
-  PDB0->CH[n].C1 |= cfg;        //¸ù¾Ý²ÎÊýÅäÖÃBBÄ£Ê½¡¢Ñ¡ÔñÔ¤´¥·¢Êä³ö¡¢Ê¹ÄÜÔ¤´¥·¢
-  PDB0->CH[n].DLY[m] = (bus_clk * delay)/(prescaler * mult);    //ÅäÖÃADCnµÄm×éÔ¤´¥·¢ÑÓÊ±Öµ
+  PDB0->CH[n].C1 |= cfg;        //æ ¹æ®å‚æ•°é…ç½®BBæ¨¡å¼ã€é€‰æ‹©é¢„è§¦å‘è¾“å‡ºã€ä½¿èƒ½é¢„è§¦å‘
+  PDB0->CH[n].DLY[m] = (bus_clk * delay)/(prescaler * mult);    //é…ç½®ADCnçš„mç»„é¢„è§¦å‘å»¶æ—¶å€¼
   
-  PDB0->SC |= PDB_SC_LDOK_MASK; //¼ÓÔØÖµ
+  PDB0->SC |= PDB_SC_LDOK_MASK; //åŠ è½½å€¼
   
   return 1;
 }
 
 /*
  * LPLD_PDB_DacTriggerCfg
- * PDBx´¥·¢DACxÄ£¿éÅäÖÃº¯Êý
+ * PDBxè§¦å‘DACxæ¨¡å—é…ç½®å‡½æ•°
  * 
- * ²ÎÊý:
- *    dacx--DACxÄ£¿éºÅ
+ * å‚æ•°:
+ *    dacx--DACxæ¨¡å—å·
  *      |__DAC0          --DAC0
  *      |__DAC1          --DAC1
- *    cfg--DACx´¥·¢¹¦ÄÜÅäÖÃ
- *      |__EXT_TRIG_EN   --Ê¹ÄÜÍâ²¿´¥·¢
- *      |__EINT_TRIG_EN  --Ê¹ÄÜÄÚ²¿¼ä¸ô´¥·¢
- *    int_delay--DACx¼ä¸ô´¥·¢Ê±¼ä£¬µ¥Î»us
+ *    cfg--DACxè§¦å‘åŠŸèƒ½é…ç½®
+ *      |__EXT_TRIG_EN   --ä½¿èƒ½å¤–éƒ¨è§¦å‘
+ *      |__EINT_TRIG_EN  --ä½¿èƒ½å†…éƒ¨é—´éš”è§¦å‘
+ *    int_delay--DACxé—´éš”è§¦å‘æ—¶é—´ï¼Œå•ä½us
  *      |__0~0xFFFF      --0~4095us
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_PDB_DacTriggerCfg(DAC_Type *dacx, uint32 cfg, uint16 int_delay)
 {
@@ -270,54 +270,54 @@ uint8 LPLD_PDB_DacTriggerCfg(DAC_Type *dacx, uint32 cfg, uint16 int_delay)
   prescaler = 1<<((PDB0->SC & PDB_SC_PRESCALER_MASK) >> PDB_SC_PRESCALER_SHIFT);
   mult = pdb_sc_mults[(PDB0->SC & PDB_SC_MULT_MASK) >> PDB_SC_MULT_SHIFT];
   
-  PDB0->DAC[n].INTC |= cfg;     //ÅäÖÃÊ¹ÄÜÍâ²¿´¥·¢»òÕßÄÚ²¿¼ä¸ô´¥·¢
-  PDB0->DAC[n].INT = (bus_clk * int_delay)/(prescaler * mult);    //ÅäÖÃDACnµÄ¼ä¸ô´¥·¢Ê±¼ä
+  PDB0->DAC[n].INTC |= cfg;     //é…ç½®ä½¿èƒ½å¤–éƒ¨è§¦å‘æˆ–è€…å†…éƒ¨é—´éš”è§¦å‘
+  PDB0->DAC[n].INT = (bus_clk * int_delay)/(prescaler * mult);    //é…ç½®DACnçš„é—´éš”è§¦å‘æ—¶é—´
   
-  PDB0->SC |= PDB_SC_LDOK_MASK; //¼ÓÔØÖµ
+  PDB0->SC |= PDB_SC_LDOK_MASK; //åŠ è½½å€¼
   
   return 1;
 }
 
 /*
- * PDBÖÐ¶Ï´¦Àíº¯Êý
- * ÓëÆô¶¯ÎÄ¼þstartup_K60.sÖÐµÄÖÐ¶ÏÏòÁ¿±í¹ØÁª
- * ÓÃ»§ÎÞÐèÐÞ¸Ä£¬³ÌÐò×Ô¶¯½øÈë¶ÔÓ¦Í¨µÀÖÐ¶Ïº¯Êý
+ * PDBä¸­æ–­å¤„ç†å‡½æ•°
+ * ä¸Žå¯åŠ¨æ–‡ä»¶startup_K60.sä¸­çš„ä¸­æ–­å‘é‡è¡¨å…³è”
+ * ç”¨æˆ·æ— éœ€ä¿®æ”¹ï¼Œç¨‹åºè‡ªåŠ¨è¿›å…¥å¯¹åº”é€šé“ä¸­æ–­å‡½æ•°
  */
 void PDB_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //ÊÇ·ñÎªPDBÖÐ¶Ï
+  //æ˜¯å¦ä¸ºPDBä¸­æ–­
   if((PDB0->SC & PDB_SC_PDBIF_MASK) && (PDB0->SC & PDB_SC_PDBIE_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     PDB_ISR[0]();  
-    //Çå³ýÖÐ¶Ï±êÖ¾Î»  
+    //æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½  
     PDB0->SC &= ~PDB_SC_PDBIF_MASK;
   }
   
-  //ÊÇ·ñÎªPDBÐòÁÐ´íÎóÖÐ¶Ï CH0
+  //æ˜¯å¦ä¸ºPDBåºåˆ—é”™è¯¯ä¸­æ–­ CH0
   if((PDB0->CH[0].S & PDB_S_ERR(1)) && (PDB0->SC & PDB_SC_PDBEIE_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     PDB_SE_ISR[0]();  
     PDB0->CH[0].S |= PDB_S_ERR(1);
   }
   
-  //ÊÇ·ñÎªPDBÐòÁÐ´íÎóÖÐ¶Ï CH1
+  //æ˜¯å¦ä¸ºPDBåºåˆ—é”™è¯¯ä¸­æ–­ CH1
   if((PDB0->CH[1].S & PDB_S_ERR(2)) && (PDB0->SC & PDB_SC_PDBEIE_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     PDB_SE_ISR[0]();  
     PDB0->CH[1].S |= PDB_S_ERR(2);
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }

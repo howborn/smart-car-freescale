@@ -2,41 +2,41 @@
  * @file HW_RTC.c
  * @version 3.01[By LPLD]
  * @date 2013-10-4
- * @brief RTCµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief RTCåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "HW_RTC.h"
 
-//ÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñº¯Êý
+//ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡å‡½æ•°
 RTC_ISR_CALLBACK RTC_ISR[3];
 
 /*
  * LPLD_RTC_Init
- * RTCÍ¨ÓÃ³õÊ¼»¯º¯Êý,ÔÚ¸Ãº¯ÊýÐèÒªÉèÖÃRTCÃë¼ÆÊýÆ÷£¬Èç¹ûÐèÒª±¨¾¯¹¦ÄÜ
- * ÐèÒªÊ¹ÄÜ±¨¾¯ÖÐ¶Ï£¬²¢ÉèÖÃ±¨¾¯¼Ä´æÆ÷
+ * RTCé€šç”¨åˆå§‹åŒ–å‡½æ•°,åœ¨è¯¥å‡½æ•°éœ€è¦è®¾ç½®RTCç§’è®¡æ•°å™¨ï¼Œå¦‚æžœéœ€è¦æŠ¥è­¦åŠŸèƒ½
+ * éœ€è¦ä½¿èƒ½æŠ¥è­¦ä¸­æ–­ï¼Œå¹¶è®¾ç½®æŠ¥è­¦å¯„å­˜å™¨
  * 
- * ²ÎÊý:
- *    rtc_init_structure--RTC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûRTC_InitTypeDef
+ * å‚æ•°:
+ *    rtc_init_structure--RTCåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§RTC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_RTC_Init(RTC_InitTypeDef rtc_init_structure)
 {
@@ -48,23 +48,23 @@ uint8 LPLD_RTC_Init(RTC_InitTypeDef rtc_init_structure)
   RTC_ISR_CALLBACK alarm_isr_func = rtc_init_structure.RTC_AlarmIsr;
 
   SIM->SCGC6 |= SIM_SCGC6_RTC_MASK;
-  //¸´Î»ËùÓÐRTC¼Ä´æÆ÷ ³ýÁËSWRÎ» RTC_WARºÍRTC_RAR¼Ä´æÆ÷
-  //ÔÚVBAT PORÉèÖÃÖ®ºó,ÓÃÈí¼þÇå³ýSWR
-  //¸´Î»RTC¼Ä´æÆ÷
+  //å¤ä½æ‰€æœ‰RTCå¯„å­˜å™¨ é™¤äº†SWRä½ RTC_WARå’ŒRTC_RARå¯„å­˜å™¨
+  //åœ¨VBAT PORè®¾ç½®ä¹‹åŽ,ç”¨è½¯ä»¶æ¸…é™¤SWR
+  //å¤ä½RTCå¯„å­˜å™¨
   RTC->CR  = RTC_CR_SWR_MASK; 
-  //Çå³ýRTC¸´Î»±êÖ¾  
+  //æ¸…é™¤RTCå¤ä½æ ‡å¿—  
   RTC->CR  &= ~RTC_CR_SWR_MASK;  
-  //Ê¹ÄÜRTC 32.768 kHzRTCÊ±ÖÓÔ´
-  //Ê¹ÄÜÖ®ºóÒªÑÓÊ±Ò»¶ÎÊ±¼äµÈ´ý
-  //µÈ´ýÊ±ÖÓÎÈ¶¨ºóÔÚÅäÖÃRTCÊ±ÖÓ¼ÆÊýÆ÷
+  //ä½¿èƒ½RTC 32.768 kHzRTCæ—¶é’Ÿæº
+  //ä½¿èƒ½ä¹‹åŽè¦å»¶æ—¶ä¸€æ®µæ—¶é—´ç­‰å¾…
+  //ç­‰å¾…æ—¶é’Ÿç¨³å®šåŽåœ¨é…ç½®RTCæ—¶é’Ÿè®¡æ•°å™¨
   RTC->CR |= RTC_CR_OSCE_MASK;
   
-  //µÈ´ý32.768Ê±ÖÓÆðÕñ
+  //ç­‰å¾…32.768æ—¶é’Ÿèµ·æŒ¯
   for(delay = 0;delay < 0x600000 ;delay++);
   
   if(rtc_init_structure.RTC_InvalidIntEnable == TRUE)
   { 
-    RTC->IER |= (RTC_INT_INVALID & 0x07);//¿ªÆôRTCÎÞÐ§Êý¾ÝÖÐ¶Ï
+    RTC->IER |= (RTC_INT_INVALID & 0x07);//å¼€å¯RTCæ— æ•ˆæ•°æ®ä¸­æ–­
     RTC_ISR[0] = invalid_isr_func;
   }
   else
@@ -74,7 +74,7 @@ uint8 LPLD_RTC_Init(RTC_InitTypeDef rtc_init_structure)
 
   if(rtc_init_structure.RTC_OverflowIntEnable == TRUE)
   { 
-    RTC->IER |= (RTC_INT_OVERFLOW & 0x07);//¿ªÆôRTC¼ÆÊýÆ÷Òç³öÖÐ¶Ï
+    RTC->IER |= (RTC_INT_OVERFLOW & 0x07);//å¼€å¯RTCè®¡æ•°å™¨æº¢å‡ºä¸­æ–­
     RTC_ISR[1] = overflow_isr_func;
   }
   else
@@ -84,7 +84,7 @@ uint8 LPLD_RTC_Init(RTC_InitTypeDef rtc_init_structure)
 
   if(rtc_init_structure.RTC_AlarmIntEnable == TRUE)
   {   
-    RTC->IER |= (RTC_INT_ALARM & 0x07);//¿ªÆôRTC±¨¾¯ÖÐ¶Ï
+    RTC->IER |= (RTC_INT_ALARM & 0x07);//å¼€å¯RTCæŠ¥è­¦ä¸­æ–­
     RTC_ISR[2] = alarm_isr_func;
   }
   else
@@ -92,16 +92,16 @@ uint8 LPLD_RTC_Init(RTC_InitTypeDef rtc_init_structure)
     RTC->IER &= ~RTC_INT_ALARM;
   }
 
-  //ÉèÖÃÊ±ÖÓ²¹³¥¼Ä´æÆ÷
+  //è®¾ç½®æ—¶é’Ÿè¡¥å¿å¯„å­˜å™¨
   RTC->TCR = RTC_TCR_CIR(0) | RTC_TCR_TCR(0);
   
-  //ÅäÖÃÃë¼ÆÊýÆ÷
+  //é…ç½®ç§’è®¡æ•°å™¨
   RTC->TSR = seconds;
     
-  //ÅäÖÃ±¨¾¯¼Ä´æÆ÷
+  //é…ç½®æŠ¥è­¦å¯„å­˜å™¨
   RTC->TAR = alarm_time;
   
-  //Ê¹ÄÜÃë¼ÆÊýÆ÷
+  //ä½¿èƒ½ç§’è®¡æ•°å™¨
   RTC->SR |= RTC_SR_TCE_MASK;
   
   return 1;
@@ -109,34 +109,34 @@ uint8 LPLD_RTC_Init(RTC_InitTypeDef rtc_init_structure)
 
 /*
  * LPLD_RTC_Deinit
- * RTC·´³õÊ¼»¯º¯Êý£¬¹Ø±ÕRTCx²¢½ûÖ¹RTCÖÐ¶Ï
+ * RTCååˆå§‹åŒ–å‡½æ•°ï¼Œå…³é—­RTCxå¹¶ç¦æ­¢RTCä¸­æ–­
  * 
- * ²ÎÊý:
- *    ÎÞ
+ * å‚æ•°:
+ *    æ— 
  *
- * Êä³ö:
- *    ÎÞ
+ * è¾“å‡º:
+ *    æ— 
  */
 void LPLD_RTC_Deinit(void)
 {
-  //½ûÖ¹RTCÄ£¿éÖÐ¶Ï
+  //ç¦æ­¢RTCæ¨¡å—ä¸­æ–­
   disable_irq(RTC_IRQn);
-  //¹Ø±ÕRTC
+  //å…³é—­RTC
   RTC->SR &= (~RTC_SR_TCE_MASK);
-  //¹Ø±ÕRTC×ÜÏßÊ±ÖÓ
+  //å…³é—­RTCæ€»çº¿æ—¶é’Ÿ
   SIM->SCGC6 |= SIM_SCGC6_RTC_MASK;  
 }
 
 /*
  * LPLD_RTC_IsRunning
- * ÅÐ¶ÏRTCÊÇ·ñÔËÐÐº¯Êý
+ * åˆ¤æ–­RTCæ˜¯å¦è¿è¡Œå‡½æ•°
  * 
- * ²ÎÊý:
- *    ÎÞ
+ * å‚æ•°:
+ *    æ— 
  *
- * Êä³ö:
- *    1£¬RTC¼ÆÊýÆ÷ÕýÔÚÔËÐÐ
- *    0£¬RTC¼ÆÊýÆ÷ÒÔ¸´Î»
+ * è¾“å‡º:
+ *    1ï¼ŒRTCè®¡æ•°å™¨æ­£åœ¨è¿è¡Œ
+ *    0ï¼ŒRTCè®¡æ•°å™¨ä»¥å¤ä½
  */
 uint8 LPLD_RTC_IsRunning(void)
 {
@@ -155,43 +155,43 @@ uint8 LPLD_RTC_IsRunning(void)
 }
 
 /*
- * RTCÖÐ¶Ï´¦Àíº¯Êý
- * ÓëÆô¶¯ÎÄ¼þstartup_K60.sÖÐµÄÖÐ¶ÏÏòÁ¿±í¹ØÁª
- * ÓÃ»§ÎÞÐèÐÞ¸Ä£¬³ÌÐò×Ô¶¯½øÈë¶ÔÓ¦Í¨µÀÖÐ¶Ïº¯Êý
+ * RTCä¸­æ–­å¤„ç†å‡½æ•°
+ * ä¸Žå¯åŠ¨æ–‡ä»¶startup_K60.sä¸­çš„ä¸­æ–­å‘é‡è¡¨å…³è”
+ * ç”¨æˆ·æ— éœ€ä¿®æ”¹ï¼Œç¨‹åºè‡ªåŠ¨è¿›å…¥å¯¹åº”é€šé“ä¸­æ–­å‡½æ•°
  */
 void RTC_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
   if((RTC->SR & RTC_SR_TIF_MASK)== 0x01)
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     RTC_ISR[0](); 
-    //Çå³ýÖÐ¶Ï±êÖ¾Î»
+    //æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½
     RTC->SR |= RTC_SR_TIF_MASK;
     
   }	
   else if((RTC->SR & RTC_SR_TOF_MASK) == 0x02)
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     RTC_ISR[1]();  
-    //Çå³ýÖÐ¶Ï±êÖ¾Î»
+    //æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½
     RTC->SR |= RTC_SR_TOF_MASK;
   }	 	
   else if((RTC->SR & RTC_SR_TAF_MASK) == 0x04)
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     RTC_ISR[2]();  
-    //Çå³ýÖÐ¶Ï±êÖ¾Î»
+    //æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½
     RTC->SR |= RTC_SR_TAF_MASK;
   }	
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }

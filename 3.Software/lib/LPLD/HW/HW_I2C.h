@@ -2,152 +2,152 @@
  * @file HW_I2C.h
  * @version 3.02[By LPLD]
  * @date 2013-11-22
- * @brief I2Cµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief I2Cåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_I2C_H__
 #define __HW_I2C_H__
 /********************************************************************/
-//I2CÄ£¿éÖÐ¶Ï»Øµ÷º¯ÊýÀàÐÍ
+//I2Cæ¨¡å—ä¸­æ–­å›žè°ƒå‡½æ•°ç±»åž‹
 typedef void (*I2C_ISR_CALLBACK)(void);  
-//¶¨ÒåACK 
+//å®šä¹‰ACK 
 #define I2C_ACK_OFF                     (0)
 #define I2C_ACK_ON                      (1)
-//¶¨ÒåÖ÷»ú¶ÁÐ´Ä£Ê½ 
+//å®šä¹‰ä¸»æœºè¯»å†™æ¨¡å¼ 
 #define I2C_MWSR                        (0x00)  
 #define I2C_MRSW                        (0x01)  
 
 typedef struct 
 {
   /*
-    ÃèÊö£º
-      Ñ¡ÔñI2Cx
-    È¡Öµ£º
-      I2C0 -- I2CÍ¨µÀ0
-      I2C1 -- I2CÍ¨µÀ1
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é€‰æ‹©I2Cx
+    å–å€¼ï¼š
+      I2C0 -- I2Cé€šé“0
+      I2C1 -- I2Cé€šé“1
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   I2C_Type *I2C_I2Cx;
   
   /*
-    ÃèÊö£º
-      ²éÑ¯I2CÊ±ÐòÅäÖÃ±íÖÐµÄICRµÄÈ¡Öµ£¬½ø¶øÅäÖÃSCL×ÜÏßÆµÂÊI2C_SCL_BusSpeed¡¢SDA Hold Time¡¢
-      SCL hold start time¡¢SCL hold stop time.
-      I2C baud rate = bus speed (Hz)/(mul ¡Á SCL divider)
-      SDA hold time = bus period (s) ¡Á mul ¡Á SDA hold value
-      SCL start hold time = bus period (s) ¡Á mul ¡Á SCL start hold value
-      SCL stop hold time = bus period (s) ¡Á mul ¡Á SCL stop hold value
-      ×¢£º
-      1¡¢ÆäÖÐmul = 1£¬SCL divider¡¢SDA hold value¡¢SCL start hold value¡¢SCL stop hold value
-      ¿ÉÒÔÍ¨¹ý²éÕÒI2CÊ±ÐòÅäÖÃ±í»ñµÃ,I2CÊ±ÐòÉèÖÃ±íÔÚ±¾ÎÄ¼þ½áÎ²´¦.
-      2¡¢bus speed£¨Hz£©ÊÇµ¥Æ¬»úµÄÍâÉè×ÜÏßÆµÂÊ£¬¿ÉÒÔÍ¨¹ýK60_card.hÖÐµÄBUS_CLK_MHZºê¶¨Òå½øÐÐÉè¶¨.
-      3¡¢bus period £¨s£©= 1/bus speed£¨Hz£©.
-      4¡¢SCL×ÜÏßÆµÂÊ×î´ó400Khz.
-    È¡Öµ£º
-      ÔÚI2CÊ±ÐòÅäÖÃ±íÖÐ»ñµÃICRµÄÖµ
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      æŸ¥è¯¢I2Cæ—¶åºé…ç½®è¡¨ä¸­çš„ICRçš„å–å€¼ï¼Œè¿›è€Œé…ç½®SCLæ€»çº¿é¢‘çŽ‡I2C_SCL_BusSpeedã€SDA Hold Timeã€
+      SCL hold start timeã€SCL hold stop time.
+      I2C baud rate = bus speed (Hz)/(mul Ã— SCL divider)
+      SDA hold time = bus period (s) Ã— mul Ã— SDA hold value
+      SCL start hold time = bus period (s) Ã— mul Ã— SCL start hold value
+      SCL stop hold time = bus period (s) Ã— mul Ã— SCL stop hold value
+      æ³¨ï¼š
+      1ã€å…¶ä¸­mul = 1ï¼ŒSCL dividerã€SDA hold valueã€SCL start hold valueã€SCL stop hold value
+      å¯ä»¥é€šè¿‡æŸ¥æ‰¾I2Cæ—¶åºé…ç½®è¡¨èŽ·å¾—,I2Cæ—¶åºè®¾ç½®è¡¨åœ¨æœ¬æ–‡ä»¶ç»“å°¾å¤„.
+      2ã€bus speedï¼ˆHzï¼‰æ˜¯å•ç‰‡æœºçš„å¤–è®¾æ€»çº¿é¢‘çŽ‡ï¼Œå¯ä»¥é€šè¿‡K60_card.hä¸­çš„BUS_CLK_MHZå®å®šä¹‰è¿›è¡Œè®¾å®š.
+      3ã€bus period ï¼ˆsï¼‰= 1/bus speedï¼ˆHzï¼‰.
+      4ã€SCLæ€»çº¿é¢‘çŽ‡æœ€å¤§400Khz.
+    å–å€¼ï¼š
+      åœ¨I2Cæ—¶åºé…ç½®è¡¨ä¸­èŽ·å¾—ICRçš„å€¼
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint8   I2C_ICR;
   
   /*
-    ÃèÊö£º
-      Ê¹ÄÜI2CÖÐ¶Ï
-    È¡Öµ£º
-      TRUE -Ê¹ÄÜ
-      FALSE -½ûÓÃ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏÖµFALSE
+    æè¿°ï¼š
+      ä½¿èƒ½I2Cä¸­æ–­
+    å–å€¼ï¼š
+      TRUE -ä½¿èƒ½
+      FALSE -ç¦ç”¨
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤å€¼FALSE
   */
   boolean I2C_IntEnable;
   
   /*
-    ÃèÊö£º
-      SCLÒý½Å£¬Ã¿¸öIICx¶ÔÓ¦²»Í¬µÄPin
-    È¡Öµ£º
-      I2C0 -*PTB2¡¢PTB0¡¢PTD8
-      I2C1 -*PTC10¡¢PTE1
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢Ä¬ÈÏÖµÎª´ø*µÄÒý½Å
+    æè¿°ï¼š
+      SCLå¼•è„šï¼Œæ¯ä¸ªIICxå¯¹åº”ä¸åŒçš„Pin
+    å–å€¼ï¼š
+      I2C0 -*PTB2ã€PTB0ã€PTD8
+      I2C1 -*PTC10ã€PTE1
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€é»˜è®¤å€¼ä¸ºå¸¦*çš„å¼•è„š
   */
   PortPinsEnum_Type I2C_SclPin;
   
   /*
-    ÃèÊö£º
-      SDAÒý½Å£¬Ã¿¸öIICx¶ÔÓ¦²»Í¬µÄPin
-    È¡Öµ£º
-      I2C0 -*PTB3¡¢PTB1¡¢PTD9
-      I2C1 -*PTC11¡¢PTE0
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢Ä¬ÈÏÖµÎª´ø*µÄÒý½Å
+    æè¿°ï¼š
+      SDAå¼•è„šï¼Œæ¯ä¸ªIICxå¯¹åº”ä¸åŒçš„Pin
+    å–å€¼ï¼š
+      I2C0 -*PTB3ã€PTB1ã€PTD9
+      I2C1 -*PTC11ã€PTE0
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€é»˜è®¤å€¼ä¸ºå¸¦*çš„å¼•è„š
   */
   PortPinsEnum_Type I2C_SdaPin;
   
   /*
-    ÃèÊö£º
-      SCL¡¢SDAÒý½ÅÊÇ·ñÊ¹ÄÜ¿ªÂ©Ä£Ê½
-    È¡Öµ£º
-      TRUE-Ê¹ÄÜ
-      FALSE-½ûÓÃ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢Ä¬ÈÏÖµÎªFALSE
+    æè¿°ï¼š
+      SCLã€SDAå¼•è„šæ˜¯å¦ä½¿èƒ½å¼€æ¼æ¨¡å¼
+    å–å€¼ï¼š
+      TRUE-ä½¿èƒ½
+      FALSE-ç¦ç”¨
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€é»˜è®¤å€¼ä¸ºFALSE
   */
   boolean I2C_OpenDrainEnable;
   
   /*
-    ÃèÊö£º
-      I2CÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢ÈçÎ´³õÊ¼»¯Ôò²»»á´¥·¢ÖÐ¶Ï
+    æè¿°ï¼š
+      I2Cä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€å¦‚æœªåˆå§‹åŒ–åˆ™ä¸ä¼šè§¦å‘ä¸­æ–­
   */
   I2C_ISR_CALLBACK I2C_Isr;
 
 }I2C_InitTypeDef;
 
-//³õÊ¼»¯I2CxÍ¨µÀ¡¢SCL×ÜÏßÆµÂÊ£¬SDA¡¢SCLÒý½Å£¬ÅäÖÃÖÐ¶Ï
+//åˆå§‹åŒ–I2Cxé€šé“ã€SCLæ€»çº¿é¢‘çŽ‡ï¼ŒSDAã€SCLå¼•è„šï¼Œé…ç½®ä¸­æ–­
 uint8 LPLD_I2C_Init(I2C_InitTypeDef);
-//I2Cx·´³õÊ¼»¯º¯Êý£¬¹Ø±ÕI2CxÖÐ¶Ï£¬½ûÓÃI2Cx
+//I2Cxååˆå§‹åŒ–å‡½æ•°ï¼Œå…³é—­I2Cxä¸­æ–­ï¼Œç¦ç”¨I2Cx
 uint8 LPLD_I2C_Deinit(I2C_InitTypeDef);
-//I2CxÖÐ¶ÏÊ¹ÄÜº¯Êý
+//I2Cxä¸­æ–­ä½¿èƒ½å‡½æ•°
 void LPLD_I2C_EnableIrq(I2C_InitTypeDef);
-//I2CxÖÐ¶Ï½ûÖ¹º¯Êý
+//I2Cxä¸­æ–­ç¦æ­¢å‡½æ•°
 void LPLD_I2C_DisableIrq(I2C_InitTypeDef);
-//I2Cx²úÉú¿ªÊ¼ÐÅºÅº¯Êý
+//I2Cxäº§ç”Ÿå¼€å§‹ä¿¡å·å‡½æ•°
 void LPLD_I2C_Start(I2C_Type *);
-//I2Cx²úÉúÍ£Ö¹ÐÅºÅº¯Êý
+//I2Cxäº§ç”Ÿåœæ­¢ä¿¡å·å‡½æ•°
 void LPLD_I2C_Stop(I2C_Type *);
-//I2CxµÈ´ýACKÐÅºÅº¯Êý
+//I2Cxç­‰å¾…ACKä¿¡å·å‡½æ•°
 void LPLD_I2C_WaitAck(I2C_Type *, uint8);
-//I2CxÔÙ´Î²úÉú¿ªÊ¼ÐÅºÅº¯Êý
+//I2Cxå†æ¬¡äº§ç”Ÿå¼€å§‹ä¿¡å·å‡½æ•°
 void LPLD_I2C_ReStart(I2C_Type *);
-//I2Cx·¢ËÍÒ»¸ö×Ö½Úº¯Êý
+//I2Cxå‘é€ä¸€ä¸ªå­—èŠ‚å‡½æ•°
 void LPLD_I2C_WriteByte(I2C_Type *, uint8);
-//I2Cx¶ÁÈ¡Ò»¸ö×Ö½Úº¯Êý
+//I2Cxè¯»å–ä¸€ä¸ªå­—èŠ‚å‡½æ•°
 uint8 LPLD_I2C_ReadByte(I2C_Type *);
-//I2CxÖ÷»ú¶ÁÐ´Ä£Ê½ÅäÖÃº¯Êý
+//I2Cxä¸»æœºè¯»å†™æ¨¡å¼é…ç½®å‡½æ•°
 void LPLD_I2C_SetMasterWR(I2C_Type *, uint8);
-//I2C¿ªÊ¼´«Êäº¯Êý£¬ÐèÒªÉèÖÃÍâÎ§Éè±¸µØÖ·ºÍ¶ÁÐ´Ä£Ê½
+//I2Cå¼€å§‹ä¼ è¾“å‡½æ•°ï¼Œéœ€è¦è®¾ç½®å¤–å›´è®¾å¤‡åœ°å€å’Œè¯»å†™æ¨¡å¼
 void LPLD_I2C_StartTrans(I2C_Type *, uint8, uint8);
 
 /*
-I2CÊ±ÐòÅäÖÃ±í£¬Ñ¡È¡ICRµÄÖµ¼´¿ÉÉèÖÃSCl divider£¬SDA Hold value£¬SCL Hold(Start¡¢stop)Value  
+I2Cæ—¶åºé…ç½®è¡¨ï¼Œé€‰å–ICRçš„å€¼å³å¯è®¾ç½®SCl dividerï¼ŒSDA Hold valueï¼ŒSCL Hold(Startã€stop)Value  
 By LPLD
 __________________________________________________________________________________________
 ICR  | SCL    |SDA Hold|SCL Hold |SCL Hold   ||  ICR  | SCL     |SDA Hold |SCL Hold |SCL Hold 

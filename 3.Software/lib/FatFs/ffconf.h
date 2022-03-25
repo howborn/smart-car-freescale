@@ -18,15 +18,15 @@
 /* When _FS_TINY is set to 1, FatFs uses the sector buffer in the file system
 /  object instead of the sector buffer in the individual file object for file
 /  data transfer. This reduces memory consumption 512 bytes each file object. */
-// ÎÄ¼şÏµÍ³Îª±ê×¼µÄ»¹ÊÇÎ¢ĞÍµÄ£¬Ä¬ÈÏÎª±ê×¼µÄ(0)£»
+// æ–‡ä»¶ç³»ç»Ÿä¸ºæ ‡å‡†çš„è¿˜æ˜¯å¾®å‹çš„ï¼Œé»˜è®¤ä¸ºæ ‡å‡†çš„(0)ï¼›
 
 #define _FS_READONLY    0   /* 0:Read/Write or 1:Read only */
-// ÎÄ¼şÏµÍ³ÊÇ·ñÎªÖ»¶Á£¬Ä¬ÈÏÎª¿É¶ÁĞ´(0)£¬ÈôÖ»¶ÁÔòf_write¡¢f_sync¡¢ f_unlink¡¢
-// f_mkdir¡¢f_chmod¡¢f_rename¡¢f_truncateºÍf_getfree²»¿ÉÓÃ£»
+// æ–‡ä»¶ç³»ç»Ÿæ˜¯å¦ä¸ºåªè¯»ï¼Œé»˜è®¤ä¸ºå¯è¯»å†™(0)ï¼Œè‹¥åªè¯»åˆ™f_writeã€f_syncã€ f_unlinkã€
+// f_mkdirã€f_chmodã€f_renameã€f_truncateå’Œf_getfreeä¸å¯ç”¨ï¼›
 
 
 #define _FS_MINIMIZE    0   /* 0 to 3 */
-//²Ã¼ôÎÄ¼şÏµÍ³µÄ¹¦ÄÜ£¬Ä¬ÈÏÎªÈ«²¿¹¦ÄÜ(0)£¬ÈôÎª1¡¢2Ôò»áÒÆ³ı´ó²¿·ÖÁ´½Ó¡¢Ä¿Â¼µÈ¹¦ÄÜ£»
+//è£å‰ªæ–‡ä»¶ç³»ç»Ÿçš„åŠŸèƒ½ï¼Œé»˜è®¤ä¸ºå…¨éƒ¨åŠŸèƒ½(0)ï¼Œè‹¥ä¸º1ã€2åˆ™ä¼šç§»é™¤å¤§éƒ¨åˆ†é“¾æ¥ã€ç›®å½•ç­‰åŠŸèƒ½ï¼›
 /* The _FS_MINIMIZE option defines minimization level to remove some functions.
 /
 /   0: Full function.
@@ -38,22 +38,22 @@
 
 #define _USE_STRFUNC    2   /* 0:Disable or 1-2:Enable */
 /* To enable string functions, set _USE_STRFUNC to 1 or 2. */
-//ÊÇ·ñÔÊĞí×Ö·û´®²Ù×÷£¬Ä¬ÈÏÎª²»ÔÊĞí(0)£¬Õâ¸ö¿´¸öÈËĞèÇó£¬Ò»°ãÇé¿öÏÂÉèÖÃÎª1¼´¿É£¬
-//Èç¹û¹¤×÷ÔÚwindowsÏÂ£¬Îª±£Ö¤ÎÄ¼ş¼æÈİĞÔ(Èç»»ĞĞ·û¡¯\n¡¯ºÍ»Ø³µ·û¡¯\r¡¯)½¨Òé½«´ËÏîÉèÖÃÎª2£»
+//æ˜¯å¦å…è®¸å­—ç¬¦ä¸²æ“ä½œï¼Œé»˜è®¤ä¸ºä¸å…è®¸(0)ï¼Œè¿™ä¸ªçœ‹ä¸ªäººéœ€æ±‚ï¼Œä¸€èˆ¬æƒ…å†µä¸‹è®¾ç½®ä¸º1å³å¯ï¼Œ
+//å¦‚æœå·¥ä½œåœ¨windowsä¸‹ï¼Œä¸ºä¿è¯æ–‡ä»¶å…¼å®¹æ€§(å¦‚æ¢è¡Œç¬¦â€™\nâ€™å’Œå›è½¦ç¬¦â€™\râ€™)å»ºè®®å°†æ­¤é¡¹è®¾ç½®ä¸º2ï¼›
 
 #define _USE_MKFS       0   /* 0:Disable or 1:Enable */
 /* To enable f_mkfs function, set _USE_MKFS to 1 and set _FS_READONLY to 0 */
-//ÊÇ·ñÔÊĞíÊ¹ÓÃf_mkfsº¯Êı£¬Ä¬ÈÏÎª0£¬ÓÃÓÚ´´½¨ÎÄ¼ş¼Ğ£¬½¨Òé¿ªÆô£»
+//æ˜¯å¦å…è®¸ä½¿ç”¨f_mkfså‡½æ•°ï¼Œé»˜è®¤ä¸º0ï¼Œç”¨äºåˆ›å»ºæ–‡ä»¶å¤¹ï¼Œå»ºè®®å¼€å¯ï¼›
 
 #define _USE_FORWARD    0   /* 0:Disable or 1:Enable */
 /* To enable f_forward function, set _USE_FORWARD to 1 and set _FS_TINY to 1. */
-//ÓÃÓÚÔÊĞíf_forwardº¯Êı£¬Ö»ÓĞ¿ªÆôtinyÎÄ¼şÏµÍ³Ê±²ÅÓÃµ½£¬¸Ãº¯ÊıÓÃÓÚ½«¶ÁĞ´µÄÊı¾İÁ¢¼´
-//×ª´æµ½Êı¾İÁ÷ÖĞ£¬ÒÔ½ÚÊ¡RAM¿Õ¼ä£»
+//ç”¨äºå…è®¸f_forwardå‡½æ•°ï¼Œåªæœ‰å¼€å¯tinyæ–‡ä»¶ç³»ç»Ÿæ—¶æ‰ç”¨åˆ°ï¼Œè¯¥å‡½æ•°ç”¨äºå°†è¯»å†™çš„æ•°æ®ç«‹å³
+//è½¬å­˜åˆ°æ•°æ®æµä¸­ï¼Œä»¥èŠ‚çœRAMç©ºé—´ï¼›
 
 
 #define _USE_FASTSEEK   0   /* 0:Disable or 1:Enable */
 /* To enable fast seek feature, set _USE_FASTSEEK to 1. */
-//ÊÇ·ñ¿ªÆô¿ìËÙË÷Òı£¬Ä¬ÈÏÎª0£¬¿ªÆôºó£¬»áÊ¹ÓÃFIL½á¹¹ÌåÖĞµÄcltblÔªËØÀ´¼Ó¿ìËÑË÷£»
+//æ˜¯å¦å¼€å¯å¿«é€Ÿç´¢å¼•ï¼Œé»˜è®¤ä¸º0ï¼Œå¼€å¯åï¼Œä¼šä½¿ç”¨FILç»“æ„ä½“ä¸­çš„cltblå…ƒç´ æ¥åŠ å¿«æœç´¢ï¼›
 
 
 
@@ -62,17 +62,17 @@
 /----------------------------------------------------------------------------*/
 
 #define _CODE_PAGE  936
-//Ö¸¶¨Ä¿±êÏµÍ³Ê¹ÓÃµÄOEM´úÂëÒ³£¬Ä¬ÈÏÎªÈÕÓï(932)£¬¸ÄÎª936¼òÌåÖĞÎÄ£»
-//OEMÊÇÊ²Ã´ÒâË¼ÄØ£¿ÔÚOS±àÂëÖĞ£¬unicodeÊÇÒ»ÖÖË«×Ö½Ú×Ö·û±àÂë£¬ÎŞÂÛÖĞÎÄ»¹ÊÇÓ¢ÎÄ£¬
-//»òÕßÆäËûÓïÑÔÍ³Ò»µ½2¸ö×Ö½Ú£¬ËüÓëÏÖÓĞµÄÈÎºÎ±àÂë£¨ASCII£¬GBµÈ£©¶¼²»¼æÈİ¡£
-//WindowsNT(2000)µÄÄÚºË¼´Ê¹ÓÃ¸Ã±àÂë£¬ËùÓĞÊı¾İ½øÈëÄÚºËÇ°×ª»»³ÉUNICODE£¬
-//ÍË³öÄÚºËºóÔÚ×ª»»³É°æ±¾Ïà¹ØµÄ±àÂë£¨Í¨³£³ÆÎªOEM£¬ÔÚ¼òÌåÖĞÎÄ°æÏÂ¼´ÎªGB)£»
+//æŒ‡å®šç›®æ ‡ç³»ç»Ÿä½¿ç”¨çš„OEMä»£ç é¡µï¼Œé»˜è®¤ä¸ºæ—¥è¯­(932)ï¼Œæ”¹ä¸º936ç®€ä½“ä¸­æ–‡ï¼›
+//OEMæ˜¯ä»€ä¹ˆæ„æ€å‘¢ï¼Ÿåœ¨OSç¼–ç ä¸­ï¼Œunicodeæ˜¯ä¸€ç§åŒå­—èŠ‚å­—ç¬¦ç¼–ç ï¼Œæ— è®ºä¸­æ–‡è¿˜æ˜¯è‹±æ–‡ï¼Œ
+//æˆ–è€…å…¶ä»–è¯­è¨€ç»Ÿä¸€åˆ°2ä¸ªå­—èŠ‚ï¼Œå®ƒä¸ç°æœ‰çš„ä»»ä½•ç¼–ç ï¼ˆASCIIï¼ŒGBç­‰ï¼‰éƒ½ä¸å…¼å®¹ã€‚
+//WindowsNT(2000)çš„å†…æ ¸å³ä½¿ç”¨è¯¥ç¼–ç ï¼Œæ‰€æœ‰æ•°æ®è¿›å…¥å†…æ ¸å‰è½¬æ¢æˆUNICODEï¼Œ
+//é€€å‡ºå†…æ ¸ååœ¨è½¬æ¢æˆç‰ˆæœ¬ç›¸å…³çš„ç¼–ç ï¼ˆé€šå¸¸ç§°ä¸ºOEMï¼Œåœ¨ç®€ä½“ä¸­æ–‡ç‰ˆä¸‹å³ä¸ºGB)ï¼›
 
 /* The _CODE_PAGE specifies the OEM code page to be used on the target system.
 /  Incorrect setting of the code page can cause a file open failure.
 /
 /   932  - Japanese Shift-JIS (DBCS, OEM, Windows)
-/   936  - Simplified Chinese GBK (DBCS, OEM, Windows)   ¼òÌåÖĞÎÄ
+/   936  - Simplified Chinese GBK (DBCS, OEM, Windows)   ç®€ä½“ä¸­æ–‡
 /   949  - Korean (DBCS, OEM, Windows)
 /   950  - Traditional Chinese Big5 (DBCS, OEM, Windows)
 /   1250 - Central Europe (Windows)
@@ -100,7 +100,7 @@
 */
 
 
-#define _USE_LFN    0       /* 0 to 3 */  //LFN £ºLong File Name ³¤Ãû×Ö
+#define _USE_LFN    0       /* 0 to 3 */  //LFN ï¼šLong File Name é•¿åå­—
 #define _MAX_LFN    255     /* Maximum LFN length to handle (12 to 255) */
 /* The _USE_LFN option switches the LFN support.
 /
@@ -121,7 +121,7 @@
 
 
 #define _FS_RPATH       0   /* 0 to 2 */
-//ÊÇ·ñÔÊĞíÏà¶ÔÂ·¾¶£¬ÈÃÎÒÑ¡Ôñ¾Í²»¿ªÆô£¬·ñÔòÂß¼­±äµÃ¸´ÔÓ²»Ëµ£¬´úÂëÁ¿Ò²±ä¶àÁËÒ»Ğ©£»
+//æ˜¯å¦å…è®¸ç›¸å¯¹è·¯å¾„ï¼Œè®©æˆ‘é€‰æ‹©å°±ä¸å¼€å¯ï¼Œå¦åˆ™é€»è¾‘å˜å¾—å¤æ‚ä¸è¯´ï¼Œä»£ç é‡ä¹Ÿå˜å¤šäº†ä¸€äº›ï¼›
 /* The _FS_RPATH option configures relative path feature.
 /
 /   0: Disable relative path feature and remove related functions.
@@ -137,12 +137,12 @@
 /----------------------------------------------------------------------------*/
 
 #define _VOLUMES    1
-//´ÅÅÌ(flash)Âß¼­¾íÊı£¬Ä¬ÈÏÎª1£¬²»½¨ÒéĞŞ¸Ä£»
+//ç£ç›˜(flash)é€»è¾‘å·æ•°ï¼Œé»˜è®¤ä¸º1ï¼Œä¸å»ºè®®ä¿®æ”¹ï¼›
 /* Number of volumes (logical drives) to be used. */
 
 
 #define _MAX_SS     512     /* 512, 1024, 2048 or 4096 */
-// ÉÈÇø´óĞ¡£¬Ä¬ÈÏ512Byte£¬×î´ó¿ÉÉèÖÃ4096Byte£»
+// æ‰‡åŒºå¤§å°ï¼Œé»˜è®¤512Byteï¼Œæœ€å¤§å¯è®¾ç½®4096Byteï¼›
 /* Maximum sector size to be handled.
 /  Always set 512 for memory card and hard disk but a larger value may be
 /  required for on-board flash memory, floppy disk and optical disk.
@@ -151,14 +151,14 @@
 
 
 #define _MULTI_PARTITION    0   /* 0:Single partition, 1/2:Enable multiple partition */
-//·ÖÇøÑ¡Ïî£¬Ä¬ÈÏÎª0£¬¼´Ò»¸ö·ÖÇø£¬ÈôÏëÒª¶à·ÖÇø¿É×ÔĞĞÉèÖÃ£»
+//åˆ†åŒºé€‰é¡¹ï¼Œé»˜è®¤ä¸º0ï¼Œå³ä¸€ä¸ªåˆ†åŒºï¼Œè‹¥æƒ³è¦å¤šåˆ†åŒºå¯è‡ªè¡Œè®¾ç½®ï¼›
 /* When set to 0, each volume is bound to the same physical drive number and
 / it can mount only first primaly partition. When it is set to 1, each volume
 / is tied to the partitions listed in VolToPart[]. */
 
 
 #define _USE_ERASE  0   /* 0:Disable or 1:Enable */
-//ÊÇ·ñÔÊĞíÉÈÇø²Á³ı£¬Ä¬ÈÏÎª0£¬Èô¿ªÆôÔòÒªÔÚdisk_ioctlº¯ÊıÖĞÌí¼Ó²Á³ıÃüÁî´úÂë£»
+//æ˜¯å¦å…è®¸æ‰‡åŒºæ“¦é™¤ï¼Œé»˜è®¤ä¸º0ï¼Œè‹¥å¼€å¯åˆ™è¦åœ¨disk_ioctlå‡½æ•°ä¸­æ·»åŠ æ“¦é™¤å‘½ä»¤ä»£ç ï¼›
 /* To enable sector erase feature, set _USE_ERASE to 1. CTRL_ERASE_SECTOR command
 /  should be added to the disk_ioctl functio. */
 
@@ -169,8 +169,8 @@
 /----------------------------------------------------------------------------*/
 
 #define _WORD_ACCESS    0   /* 0 or 1 */
-//Êı¾İµİ½ø¸ñÊ½£¬Ä¬ÈÏÎª0£¬¼´ÒÔ×Ö½ÚÎªµ¥Î»µİ½ø£¬¼æÈİĞÔ¸üÇ¿£¬
-//ÈôÄãµÄÏµÍ³×îĞÂµ¥Î»Îª×Ö(2Byte)£¬Ôò¿ÉÉèÎª1£»
+//æ•°æ®é€’è¿›æ ¼å¼ï¼Œé»˜è®¤ä¸º0ï¼Œå³ä»¥å­—èŠ‚ä¸ºå•ä½é€’è¿›ï¼Œå…¼å®¹æ€§æ›´å¼ºï¼Œ
+//è‹¥ä½ çš„ç³»ç»Ÿæœ€æ–°å•ä½ä¸ºå­—(2Byte)ï¼Œåˆ™å¯è®¾ä¸º1ï¼›
 /* Set 0 first and it is always compatible with all platforms. The _WORD_ACCESS
 /  option defines which access method is used to the word data on the FAT volume.
 /
@@ -190,11 +190,11 @@
 #define _FS_REENTRANT   0       /* 0:Disable or 1:Enable */
 #define _FS_TIMEOUT     1000    /* Timeout period in unit of time ticks */
 #define _SYNC_t         HANDLE  /* O/S dependent type of sync object. e.g. HANDLE, OS_EVENT*, ID and etc.. */
-//ÕâÈı¸öÑ¡ÏîÓëÎÄ¼şÏµÍ³ÊÇ·ñÔÊĞíÖØÈëÓĞ¹Ø£¬ËµÖ±°×µã£¬¾ÍÊÇÄÜ·ñ±»¶àÏß³ÌÍ¬Ê±·ÃÎÊ£¬
-//ÏñRTOSÖĞ£¬Ò»°ã½¨Òé¿ªÆô£¬_SYNC_t¿É¶¨ÒåÎª¶ÔÓ¦OSÖĞµÄ²Ù×÷¶ÔÏó£¬windowsÏÂÎªHANDLE£¬
-//uCosÖĞÎªOS_EVENT£¬vxWorksÖĞÎªSEMAPHORE¡£ÁíÍâ£¬¿ªÆôºó»¹ĞèÒªÌí¼Óff_req_grant¡¢
-//ff_rel_grantºÍff_del_syncobjÈı¸öº¯Êı£¬Êµ¼ÊÉÏÊµÏÖµÄ¹¦ÄÜ¾ÍÊÇÉêÇë»¥³âÁ¿¡¢
-//ÊÍ·Å»¥³âÁ¿ºÍÉ¾³ı»¥³âÁ¿µÄÒâË¼£¬¿ÉÒÔ¶¨ÒåOS·â×°¼´¿É£»
+//è¿™ä¸‰ä¸ªé€‰é¡¹ä¸æ–‡ä»¶ç³»ç»Ÿæ˜¯å¦å…è®¸é‡å…¥æœ‰å…³ï¼Œè¯´ç›´ç™½ç‚¹ï¼Œå°±æ˜¯èƒ½å¦è¢«å¤šçº¿ç¨‹åŒæ—¶è®¿é—®ï¼Œ
+//åƒRTOSä¸­ï¼Œä¸€èˆ¬å»ºè®®å¼€å¯ï¼Œ_SYNC_tå¯å®šä¹‰ä¸ºå¯¹åº”OSä¸­çš„æ“ä½œå¯¹è±¡ï¼Œwindowsä¸‹ä¸ºHANDLEï¼Œ
+//uCosä¸­ä¸ºOS_EVENTï¼ŒvxWorksä¸­ä¸ºSEMAPHOREã€‚å¦å¤–ï¼Œå¼€å¯åè¿˜éœ€è¦æ·»åŠ ff_req_grantã€
+//ff_rel_grantå’Œff_del_syncobjä¸‰ä¸ªå‡½æ•°ï¼Œå®é™…ä¸Šå®ç°çš„åŠŸèƒ½å°±æ˜¯ç”³è¯·äº’æ–¥é‡ã€
+//é‡Šæ”¾äº’æ–¥é‡å’Œåˆ é™¤äº’æ–¥é‡çš„æ„æ€ï¼Œå¯ä»¥å®šä¹‰OSå°è£…å³å¯ï¼›
 
 /* The _FS_REENTRANT option switches the reentrancy (thread safe) of the FatFs module.
 /
@@ -207,6 +207,6 @@
 #define _FS_SHARE   0   /* 0:Disable or >=1:Enable */
 /* To enable file shareing feature, set _FS_SHARE to 1 or greater. The value
    defines how many files can be opened simultaneously. */
-// ºÍÉÏÃæµÄÀàËÆ£¬±íÊ¾ÎÄ¼şÏµÍ³×î´óÔÊĞíÍ¬Ê±´ò¿ª¶àÉÙÎÄ¼ş£¬Ä¬ÈÏÎª0£¬¼´Ö»ÄÜ´ò¿ªÒ»¸ö¡£
+// å’Œä¸Šé¢çš„ç±»ä¼¼ï¼Œè¡¨ç¤ºæ–‡ä»¶ç³»ç»Ÿæœ€å¤§å…è®¸åŒæ—¶æ‰“å¼€å¤šå°‘æ–‡ä»¶ï¼Œé»˜è®¤ä¸º0ï¼Œå³åªèƒ½æ‰“å¼€ä¸€ä¸ªã€‚
 
 #endif /* _FFCONFIG */

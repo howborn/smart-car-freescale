@@ -2,27 +2,27 @@
  * @file TIMESTAMP.h
  * @version 3.01[By LPLD]
  * @date 2013-10-29
- * @brief TIMESTAMPÊ±¼ä´Á¹¦ÄÜ¶¨Òå
+ * @brief TIMESTAMPæ—¶é—´æˆ³åŠŸèƒ½å®šä¹‰
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_TIMESTAMP_H__
 #define __HW_TIMESTAMP_H__
 
-//¶¨ÒåÊ±¼äºê¶¨Òå
+//å®šä¹‰æ—¶é—´å®å®šä¹‰
 #define IBM_YEAR_START (1970)
 #define IBM_YEAR_END   (2099)
 #define LEAPYEAR_CONVERTTO_SECONEDS    (31622400)
@@ -34,9 +34,9 @@
 #define AVERAGEYEAR_DAYS   (365)
 #define LEAPYEAR_FEBRUARY_DAYS      (29)
 #define AVERAGEYEAR_FEBRUARY_DAYS   (28)
-//ÅÐ¶ÏÆ½ÄêºÍÈòÄêºê¶¨Òå
+//åˆ¤æ–­å¹³å¹´å’Œé—°å¹´å®å®šä¹‰
 #define IS_LEAPYEAR(YEAR) (YEAR % 4 ? FALSE : YEAR % 100 ? TRUE : YEAR % 400 ? FALSE : TRUE )
-//»ñµÃ±àÒëÆ÷Ê±ÖÓ
+//èŽ·å¾—ç¼–è¯‘å™¨æ—¶é’Ÿ
 #define GET_COMPILE_YEAR  ((__DATE__[7] - '0')*1000+\
                           (__DATE__[8] - '0')*100+\
                           (__DATE__[9] - '0')*10+\
@@ -45,7 +45,7 @@
 #define GET_COMPILE_HOUR ((__TIME__[0] - '0')*10 + (__TIME__[1] - '0'))
 #define GET_COMPILE_MINUTE ((__TIME__[3] - '0')*10 + (__TIME__[4] - '0'))
 #define GET_COMPILE_SECOND ((__TIME__[6] - '0')*10 + (__TIME__[7] - '0'))
-//Ã¶¾ÙÔÂ·Ý
+//æžšä¸¾æœˆä»½
 typedef enum 
 {  
   JANUARY,
@@ -61,7 +61,7 @@ typedef enum
   NOVOMBER,
   DECEMBER
 }Month_TypeEnum;
-//Ê±¼ä½á¹¹Ìå
+//æ—¶é—´ç»“æž„ä½“
 typedef struct 
 {
   uint8 hour;
@@ -72,12 +72,12 @@ typedef struct
   uint8 month; 
   uint16 year;     
 }TimeStamp_FormatTypeDef;
-//½«Ê±¼ä½á¹¹Ìå×ª»»ÎªÃë
+//å°†æ—¶é—´ç»“æž„ä½“è½¬æ¢ä¸ºç§’
 uint32 LPLD_DateTimeToTimeStamp(TimeStamp_FormatTypeDef*);
-//½«Ãë×ª»»ÎªÊ±¼ä½á¹¹Ìå
+//å°†ç§’è½¬æ¢ä¸ºæ—¶é—´ç»“æž„ä½“
 uint8 LPLD_TimeStampToDateTime(uint32 ,TimeStamp_FormatTypeDef*);
-//»ñµÃÖÜÊý½á¹¹Ìå
+//èŽ·å¾—å‘¨æ•°ç»“æž„ä½“
 uint8 LPLD_GetWeek(TimeStamp_FormatTypeDef*);
-//¸ù¾Ý±àÒëÆ÷Ê±ÖÓ³õÊ¼»¯TimeStamp_FormatTypeDef½á¹¹Ìå
+//æ ¹æ®ç¼–è¯‘å™¨æ—¶é’Ÿåˆå§‹åŒ–TimeStamp_FormatTypeDefç»“æž„ä½“
 void LPLD_AutoInitTimeStamp(TimeStamp_FormatTypeDef *);
 #endif

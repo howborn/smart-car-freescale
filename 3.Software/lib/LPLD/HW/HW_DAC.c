@@ -2,27 +2,27 @@
  * @file HW_DAC.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief DACµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief DACåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "HW_DAC.h"
 
-//ÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñº¯ÊýÊý×é
+//ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡å‡½æ•°æ•°ç»„
 DAC_ISR_CALLBACK DAC_RDPTBOT_ISR[2];
 DAC_ISR_CALLBACK DAC_RDPTTOP_ISR[2];
 DAC_ISR_CALLBACK DAC_WATERMK_ISR[2];
@@ -30,15 +30,15 @@ DAC_ISR_CALLBACK DAC_WATERMK_ISR[2];
 
 /*
  * LPLD_DAC_Init
- * DAC³õÊ¼»¯º¯Êý£¬Ê¹ÄÜDAC¸÷Ïî¹¦ÄÜ
+ * DACåˆå§‹åŒ–å‡½æ•°ï¼Œä½¿èƒ½DACå„é¡¹åŠŸèƒ½
  * 
- * ²ÎÊý:
- *    dac_init_struct--DAC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûDAC_InitTypeDef
+ * å‚æ•°:
+ *    dac_init_struct--DACåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§DAC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_DAC_Init(DAC_InitTypeDef dac_init_struct)
 {
@@ -53,67 +53,67 @@ uint8 LPLD_DAC_Init(DAC_InitTypeDef dac_init_struct)
   
   upper = (upper==NULL?1:upper);
     
-  //²ÎÊý¼ì²é
-  ASSERT( work_mode <= BUFFER_MODE_ONETIMESCAN );  //ÅÐ¶ÏÄ£Ê½Ñ¡Ôñ
-  ASSERT( watermark <= WATERMARK_4WORDS );      //ÅÐ¶Ï»º³åÇøË®Ó¡Ñ¡Ôñ
-  ASSERT( upper <= 16);         //ÅÐ¶Ï»º³åÇøÉÏÏÞÊýÖµ
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( work_mode <= BUFFER_MODE_ONETIMESCAN );  //åˆ¤æ–­æ¨¡å¼é€‰æ‹©
+  ASSERT( watermark <= WATERMARK_4WORDS );      //åˆ¤æ–­ç¼“å†²åŒºæ°´å°é€‰æ‹©
+  ASSERT( upper <= 16);         //åˆ¤æ–­ç¼“å†²åŒºä¸Šé™æ•°å€¼
     
-  //ÅäÖÃDACÊ±ÖÓ
+  //é…ç½®DACæ—¶é’Ÿ
   if(dacx == DAC0)
   {
     x = 0;
-    SIM->SCGC2 |= SIM_SCGC2_DAC0_MASK;   //¿ªÆôDAC0Ê±ÖÓ
+    SIM->SCGC2 |= SIM_SCGC2_DAC0_MASK;   //å¼€å¯DAC0æ—¶é’Ÿ
   }
   else if(dacx == DAC1)
   {
     x = 1;
-    SIM->SCGC2 |= SIM_SCGC2_DAC1_MASK;   //¿ªÆôDAC1Ê±ÖÓ
+    SIM->SCGC2 |= SIM_SCGC2_DAC1_MASK;   //å¼€å¯DAC1æ—¶é’Ÿ
   }
   else 
   {
     return 0;
   }
   
-  //ÅäÖÃC2¼Ä´æÆ÷
-  dacx->C2 = DAC_C2_DACBFUP(upper - 1);     //ÅäÖÃ»º³åÇøÉÏÏÞÊýÖµ
+  //é…ç½®C2å¯„å­˜å™¨
+  dacx->C2 = DAC_C2_DACBFUP(upper - 1);     //é…ç½®ç¼“å†²åŒºä¸Šé™æ•°å€¼
   
-  //ÅäÖÃC1¼Ä´æÆ÷
+  //é…ç½®C1å¯„å­˜å™¨
   dacx->C1 = 0;
   if(dac_init_struct.DAC_BufferEnable == TRUE)
   {
-    dacx->C1 |= DAC_C1_DACBFEN_MASK;    //Ê¹ÄÜ»º³åÇø 
+    dacx->C1 |= DAC_C1_DACBFEN_MASK;    //ä½¿èƒ½ç¼“å†²åŒº 
   }
-  dacx->C1 |= DAC_C1_DACBFMD(work_mode);        //»º³åÇø¹¤×÷Ä£Ê½ÅäÖÃ
-  dacx->C1 |= DAC_C1_DACBFWM(watermark);        //»º³åÇøË®Ó¡Ñ¡ÔñÅäÖÃ
+  dacx->C1 |= DAC_C1_DACBFMD(work_mode);        //ç¼“å†²åŒºå·¥ä½œæ¨¡å¼é…ç½®
+  dacx->C1 |= DAC_C1_DACBFWM(watermark);        //ç¼“å†²åŒºæ°´å°é€‰æ‹©é…ç½®
   if(dac_init_struct.DAC_DmaEnable == TRUE)
   {
-    dacx->C1 |= DAC_C1_DMAEN_MASK;      //Ê¹ÄÜDMA
+    dacx->C1 |= DAC_C1_DMAEN_MASK;      //ä½¿èƒ½DMA
   }
   
-  //ÅäÖÃC0¼Ä´æÆ÷
+  //é…ç½®C0å¯„å­˜å™¨
   dacx->C0 = 0;
   if(dac_init_struct.DAC_ReadPointerBottomIntEnable == TRUE && rdptbot_isr != NULL)
   {
-    dacx->C0 |= DAC_C0_DACBBIEN_MASK;   //Ê¹ÄÜ»º³åÇøµ×²¿ÖÐ¶Ï
+    dacx->C0 |= DAC_C0_DACBBIEN_MASK;   //ä½¿èƒ½ç¼“å†²åŒºåº•éƒ¨ä¸­æ–­
     DAC_RDPTBOT_ISR[x] = rdptbot_isr;
   }
   if(dac_init_struct.DAC_ReadPointerTopIntEnable == TRUE && rdpttop_isr != NULL)
   {
-    dacx->C0 |= DAC_C0_DACBTIEN_MASK;   //Ê¹ÄÜ»º³åÇø¶¥²¿ÖÐ¶Ï
+    dacx->C0 |= DAC_C0_DACBTIEN_MASK;   //ä½¿èƒ½ç¼“å†²åŒºé¡¶éƒ¨ä¸­æ–­
     DAC_RDPTTOP_ISR[x] = rdpttop_isr;
   }
   if(dac_init_struct.DAC_BufferWatermarkIntEnable == TRUE && watermk_isr != NULL)
   {
-    dacx->C0 |= DAC_C0_DACBWIEN_MASK;   //Ê¹ÄÜ»º³åÇøË®Ó¡ÖÐ¶Ï
+    dacx->C0 |= DAC_C0_DACBWIEN_MASK;   //ä½¿èƒ½ç¼“å†²åŒºæ°´å°ä¸­æ–­
     DAC_WATERMK_ISR[x] = watermk_isr;
   }
   if(dac_init_struct.DAC_SoftTrgEnable == TRUE)
   {
-    dacx->C0 |= DAC_C0_DACTRGSEL_MASK;  //Ê¹ÄÜÈí¼þ´¥·¢»º³åÇø
+    dacx->C0 |= DAC_C0_DACTRGSEL_MASK;  //ä½¿èƒ½è½¯ä»¶è§¦å‘ç¼“å†²åŒº
   }
-  dacx->C0 |= DAC_C0_DACRFS_MASK;       //Ê¹ÄÜDACREF_2(VDDA)Îª²Î¿¼µçÑ¹
+  dacx->C0 |= DAC_C0_DACRFS_MASK;       //ä½¿èƒ½DACREF_2(VDDA)ä¸ºå‚è€ƒç”µåŽ‹
   
-  //Ê¹ÄÜDACÄ£¿é£¬¿É±à³Ì²Î¿¼·¢ÉúÆ÷¿ªÊ¼¹¤×÷
+  //ä½¿èƒ½DACæ¨¡å—ï¼Œå¯ç¼–ç¨‹å‚è€ƒå‘ç”Ÿå™¨å¼€å§‹å·¥ä½œ
   dacx->C0 |= DAC_C0_DACEN_MASK;
   
   return 1;
@@ -121,25 +121,25 @@ uint8 LPLD_DAC_Init(DAC_InitTypeDef dac_init_struct)
 
 /*
  * LPLD_DAC_Deinit
- * DAC·´³õÊ¼»¯º¯Êý£¬½ûÓÃDACÄ£¿é
+ * DACååˆå§‹åŒ–å‡½æ•°ï¼Œç¦ç”¨DACæ¨¡å—
  * 
- * ²ÎÊý:
- *    dac_init_struct--DAC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûDAC_InitTypeDef
+ * å‚æ•°:
+ *    dac_init_struct--DACåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§DAC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_DAC_Deinit(DAC_InitTypeDef dac_init_struct)
 {
   uint8 x;
   DAC_Type *dacx = dac_init_struct.DAC_Dacx;
 
-  //¹Ø±ÕDACÄ£¿é
+  //å…³é—­DACæ¨¡å—
   dacx->C0 &= ~(DAC_C0_DACEN_MASK);
   
-  //¹Ø±ÕDACÊ±ÖÓ
+  //å…³é—­DACæ—¶é’Ÿ
   if(dacx == DAC0)
   {
     x = 0;
@@ -162,15 +162,15 @@ uint8 LPLD_DAC_Deinit(DAC_InitTypeDef dac_init_struct)
 
 /*
  * LPLD_DAC_EnableIrq
- * Ê¹ÄÜDACxÖÐ¶Ï
+ * ä½¿èƒ½DACxä¸­æ–­
  * 
- * ²ÎÊý:
- *    dac_init_struct--DAC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûDAC_InitTypeDef
+ * å‚æ•°:
+ *    dac_init_struct--DACåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§DAC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_DAC_EnableIrq(DAC_InitTypeDef dac_init_struct)
 {
@@ -191,15 +191,15 @@ uint8 LPLD_DAC_EnableIrq(DAC_InitTypeDef dac_init_struct)
 
 /*
  * LPLD_DAC_DisableIrq
- * ½ûÓÃDACxÖÐ¶Ï
+ * ç¦ç”¨DACxä¸­æ–­
  * 
- * ²ÎÊý:
- *    dac_init_struct--DAC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûDAC_InitTypeDef
+ * å‚æ•°:
+ *    dac_init_struct--DACåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§DAC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_DAC_DisableIrq(DAC_InitTypeDef dac_init_struct)
 {
@@ -220,24 +220,24 @@ uint8 LPLD_DAC_DisableIrq(DAC_InitTypeDef dac_init_struct)
 
 /*
  * LPLD_DAC_SetBufferDataN
- * ÉèÖÃDAC»º´æÇøµ¥¸öÊý¾Ýn
+ * è®¾ç½®DACç¼“å­˜åŒºå•ä¸ªæ•°æ®n
  * 
- * ²ÎÊý:
- *    dacx--DACxÄ£¿éºÅ
+ * å‚æ•°:
+ *    dacx--DACxæ¨¡å—å·
  *      |__DAC0          --DAC0
  *      |__DAC1          --DAC1
- *    data--»º³åÇøÊä³öÊý¾Ý
- *      |__0~4095        --12Î»Êý¾Ý
- *    num--Ö¸¶¨»º³åÇøÎ»ÖÃ
- *      |__1~16          --»º³åÇøµÚ1ÖÁ16¸ö×Ö
+ *    data--ç¼“å†²åŒºè¾“å‡ºæ•°æ®
+ *      |__0~4095        --12ä½æ•°æ®
+ *    num--æŒ‡å®šç¼“å†²åŒºä½ç½®
+ *      |__1~16          --ç¼“å†²åŒºç¬¬1è‡³16ä¸ªå­—
  *
- * Êä³ö:
- *    ÎÞ
+ * è¾“å‡º:
+ *    æ— 
  */
 void LPLD_DAC_SetBufferDataN(DAC_Type *dacx, uint16 data, uint8 num)
 {
-  //²ÎÊý¼ì²é
-  ASSERT( (num <= 16)&&(num > 0) );  //ÅÐ¶ÏÊý¾ÝÐòºÅ
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( (num <= 16)&&(num > 0) );  //åˆ¤æ–­æ•°æ®åºå·
 
   dacx->DAT[num-1].DATL = data & 0x0FF;
   dacx->DAT[num-1].DATH = (data & 0xF00)>>8;
@@ -245,24 +245,24 @@ void LPLD_DAC_SetBufferDataN(DAC_Type *dacx, uint16 data, uint8 num)
 
 /*
  * LPLD_DAC_SetBufferData
- * ÉèÖÃDAC»º´æÇøËùÓÐÊý¾Ý
+ * è®¾ç½®DACç¼“å­˜åŒºæ‰€æœ‰æ•°æ®
  * 
- * ²ÎÊý:
- *    dacx--DACxÄ£¿éºÅ
+ * å‚æ•°:
+ *    dacx--DACxæ¨¡å—å·
  *      |__DAC0          --DAC0
  *      |__DAC1          --DAC1
- *    *data--»º³åÇøÊä³öÊý¾ÝÊý×éÖ¸Õë
- *      |__*0~4095       --12Î»Êý¾ÝÊý×é
- *    len--Êý¾ÝÊý×é³¤¶È
- *      |__1~16          --³¤¶ÈÎª1~16
+ *    *data--ç¼“å†²åŒºè¾“å‡ºæ•°æ®æ•°ç»„æŒ‡é’ˆ
+ *      |__*0~4095       --12ä½æ•°æ®æ•°ç»„
+ *    len--æ•°æ®æ•°ç»„é•¿åº¦
+ *      |__1~16          --é•¿åº¦ä¸º1~16
  *
- * Êä³ö:
- *    ÎÞ
+ * è¾“å‡º:
+ *    æ— 
  */
 void LPLD_DAC_SetBufferData(DAC_Type *dacx, uint16 *data, uint8 len)
 {
-  //²ÎÊý¼ì²é
-  ASSERT( (len <= 16)&&(len > 0) );  //ÅÐ¶ÏÊý¾Ý³¤¶È
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( (len <= 16)&&(len > 0) );  //åˆ¤æ–­æ•°æ®é•¿åº¦
   
   for(uint8 i=0; i < len; i++)
   {
@@ -273,15 +273,15 @@ void LPLD_DAC_SetBufferData(DAC_Type *dacx, uint16 *data, uint8 len)
 
 /*
  * LPLD_DAC_SoftwareTrigger
- * Èí¼þ´¥·¢DAC»º³åÇø¹¤×÷
+ * è½¯ä»¶è§¦å‘DACç¼“å†²åŒºå·¥ä½œ
  * 
- * ²ÎÊý:
- *    dacx--DACxÄ£¿éºÅ
+ * å‚æ•°:
+ *    dacx--DACxæ¨¡å—å·
  *      |__DAC0          --DAC0
  *      |__DAC1          --DAC1
  *
- * Êä³ö:
- *    ÎÞ
+ * è¾“å‡º:
+ *    æ— 
  */
 void LPLD_DAC_SoftwareTrigger(DAC_Type *dacx)
 {
@@ -289,44 +289,44 @@ void LPLD_DAC_SoftwareTrigger(DAC_Type *dacx)
 }
 
 /*
- * DAC0--DAC1ÖÐ¶Ï´¦Àíº¯Êý
- * ÓëÆô¶¯ÎÄ¼þstartup_K60.sÖÐµÄÖÐ¶ÏÏòÁ¿±í¹ØÁª
- * ÓÃ»§ÎÞÐèÐÞ¸Ä£¬³ÌÐò×Ô¶¯½øÈë¶ÔÓ¦Í¨µÀÖÐ¶Ïº¯Êý
+ * DAC0--DAC1ä¸­æ–­å¤„ç†å‡½æ•°
+ * ä¸Žå¯åŠ¨æ–‡ä»¶startup_K60.sä¸­çš„ä¸­æ–­å‘é‡è¡¨å…³è”
+ * ç”¨æˆ·æ— éœ€ä¿®æ”¹ï¼Œç¨‹åºè‡ªåŠ¨è¿›å…¥å¯¹åº”é€šé“ä¸­æ–­å‡½æ•°
  */
 
 void DAC0_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //ÊÇ·ñÎªÖ¸Õëµ×²¿ÖÐ¶Ï
+  //æ˜¯å¦ä¸ºæŒ‡é’ˆåº•éƒ¨ä¸­æ–­
   if((DAC0->SR & DAC_SR_DACBFRPBF_MASK) && (DAC0->C0 & DAC_C0_DACBBIEN_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     DAC_RDPTBOT_ISR[0]();  
     DAC0->SR &= ~(DAC_SR_DACBFRPBF_MASK);
   }
-  //ÊÇ·ñÎªÖ¸Õë¶¥²¿ÖÐ¶Ï
+  //æ˜¯å¦ä¸ºæŒ‡é’ˆé¡¶éƒ¨ä¸­æ–­
   if((DAC0->SR & DAC_SR_DACBFRPTF_MASK) && (DAC0->C0 & DAC_C0_DACBTIEN_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     DAC_RDPTTOP_ISR[0]();  
     DAC0->SR &= ~(DAC_SR_DACBFRPTF_MASK);
   }
-  //ÊÇ·ñÎªË®Ó¡ÖÐ¶Ï
+  //æ˜¯å¦ä¸ºæ°´å°ä¸­æ–­
   if((DAC0->SR & DAC_SR_DACBFWMF_MASK) && (DAC0->C0 & DAC_C0_DACBWIEN_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     DAC_WATERMK_ISR[0]();  
     DAC0->SR &= ~(DAC_SR_DACBFWMF_MASK);
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }
 
@@ -334,34 +334,34 @@ void DAC1_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //ÊÇ·ñÎªÖ¸Õëµ×²¿ÖÐ¶Ï
+  //æ˜¯å¦ä¸ºæŒ‡é’ˆåº•éƒ¨ä¸­æ–­
   if((DAC1->SR & DAC_SR_DACBFRPBF_MASK) && (DAC1->C0 & DAC_C0_DACBBIEN_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     DAC_RDPTBOT_ISR[1]();  
     DAC1->SR &= ~(DAC_SR_DACBFRPBF_MASK);
   }
-  //ÊÇ·ñÎªÖ¸Õë¶¥²¿ÖÐ¶Ï
+  //æ˜¯å¦ä¸ºæŒ‡é’ˆé¡¶éƒ¨ä¸­æ–­
   if((DAC1->SR & DAC_SR_DACBFRPTF_MASK) && (DAC1->C0 & DAC_C0_DACBTIEN_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     DAC_RDPTTOP_ISR[1]();  
     DAC1->SR &= ~(DAC_SR_DACBFRPTF_MASK);
   }
-  //ÊÇ·ñÎªË®Ó¡ÖÐ¶Ï
+  //æ˜¯å¦ä¸ºæ°´å°ä¸­æ–­
   if((DAC1->SR & DAC_SR_DACBFWMF_MASK) && (DAC1->C0 & DAC_C0_DACBWIEN_MASK))
   {
-    //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+    //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
     DAC_WATERMK_ISR[1]();  
     DAC1->SR &= ~(DAC_SR_DACBFWMF_MASK);
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }

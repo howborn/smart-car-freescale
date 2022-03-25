@@ -2,41 +2,41 @@
  * @file HW_GPIO.c
  * @version 3.03[By LPLD]
  * @date 2014-2-10
- * @brief GPIO�ײ�ģ����غ���
+ * @brief GPIO底层模块相关函数
  *
- * ���Ľ���:�������޸�
+ * 更改建议:不建议修改
  *
- * ��Ȩ����:�����������µ��Ӽ������޹�˾
+ * 版权所有:北京拉普兰德电子技术有限公司
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ����������������[LPLD]������ά������������ʹ���߿���Դ���롣
- * �����߿���������ʹ�û��Դ���롣�����μ�����ע��Ӧ���Ա�����
- * ���ø��Ļ�ɾ��ԭ��Ȩ���������������ο����߿��Լ�ע���ΰ�Ȩ�����ߡ�
- * ��Ӧ�����ش�Э��Ļ����ϣ�����Դ���롢���ó��۴��뱾����
- * �������²���������ʹ�ñ��������������κ��¹ʡ��������λ���ز���Ӱ�졣
- * ����������������͡�˵��������ľ���ԭ�������ܡ�ʵ�ַ�����
- * ������������[LPLD]��Ȩ�������߲��ý�������������ҵ��Ʒ��
+ * 本代码由拉普兰德[LPLD]开发并维护，并向所有使用者开放源代码。
+ * 开发者可以随意修使用或改源代码。但本段及以上注释应予以保留。
+ * 不得更改或删除原版权所有者姓名，二次开发者可以加注二次版权所有者。
+ * 但应在遵守此协议的基础上，开放源代码、不得出售代码本身。
+ * 拉普兰德不负责由于使用本代码所带来的任何事故、法律责任或相关不良影响。
+ * 拉普兰德无义务解释、说明本代码的具体原理、功能、实现方法。
+ * 除非拉普兰德[LPLD]授权，开发者不得将本代码用于商业产品。
  */
 #include "common.h"
 #include "HW_GPIO.h"
 
 
-//�û��Զ����жϷ���������
+//用户自定义中断服务函数数组
 GPIO_ISR_CALLBACK GPIO_ISR[5];
 
 /*
  * LPLD_GPIO_Init
- * GPIOͨ�ó�ʼ������
+ * GPIO通用初始化函数
  * 
- * ����:
- *    gpio_init_structure--GPIO��ʼ���ṹ�壬
- *                        ���嶨���GPIO_InitTypeDef
+ * 参数:
+ *    gpio_init_structure--GPIO初始化结构体，
+ *                        具体定义见GPIO_InitTypeDef
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_GPIO_Init(GPIO_InitTypeDef gpio_init_structure)
 {
@@ -49,10 +49,10 @@ uint8 LPLD_GPIO_Init(GPIO_InitTypeDef gpio_init_structure)
   uint8 output = gpio_init_structure.GPIO_Output;
   GPIO_ISR_CALLBACK isr_func = gpio_init_structure.GPIO_Isr;
   
-  //�������
-  ASSERT( ptx <= PTE);                  //�ж϶˿�
-  ASSERT( dir <= 1 );                   //�жϷ���
-  ASSERT( output <= 1 );                //�ж������ƽ״̬
+  //参数检查
+  ASSERT( ptx <= PTE);                  //判断端口
+  ASSERT( dir <= 1 );                   //判断方向
+  ASSERT( output <= 1 );                //判断输出电平状态
   
   if(ptx == PTA)
   {
@@ -82,11 +82,11 @@ uint8 LPLD_GPIO_Init(GPIO_InitTypeDef gpio_init_structure)
   else
     return 0;
   
-  //������������
+  //输入或输出设置
   if(dir==DIR_OUTPUT)
   {
     ptx->PDDR |= pins;
-    //���ó�ʼ���
+    //设置初始输出
     if(output==OUTPUT_H)
     {
       ptx->PSOR = pins; 
@@ -101,7 +101,7 @@ uint8 LPLD_GPIO_Init(GPIO_InitTypeDef gpio_init_structure)
     ptx->PDDR &= ~(pins);
   }
   
-  //������ѡ���ŵĿ��ƼĴ���
+  //配置所选引脚的控制寄存器
   for(uint8 i=0; i<32; i++)
   {
     if(pins&(1ul<<i))
@@ -118,15 +118,15 @@ uint8 LPLD_GPIO_Init(GPIO_InitTypeDef gpio_init_structure)
 
 /*
  * LPLD_GPIO_EnableIrq
- * ʹ��GPIO�ⲿ�ж�
+ * 使能GPIO外部中断
  * 
- * ����:
- *    gpio_init_structure--GPIO��ʼ���ṹ�壬
- *                        ���嶨���GPIO_InitTypeDef
+ * 参数:
+ *    gpio_init_structure--GPIO初始化结构体，
+ *                        具体定义见GPIO_InitTypeDef
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  *
  */
 uint8 LPLD_GPIO_EnableIrq(GPIO_InitTypeDef gpio_init_structure)
@@ -134,8 +134,8 @@ uint8 LPLD_GPIO_EnableIrq(GPIO_InitTypeDef gpio_init_structure)
   uint8 i;
   GPIO_Type *ptx = gpio_init_structure.GPIO_PTx;
   
-  //�������
-  ASSERT( ptx <= PTE);                  //�ж϶˿�
+  //参数检查
+  ASSERT( ptx <= PTE);                  //判断端口
   
   if(ptx == PTA)
     i = 0;
@@ -155,15 +155,15 @@ uint8 LPLD_GPIO_EnableIrq(GPIO_InitTypeDef gpio_init_structure)
 
 /*
  * LPLD_GPIO_DisableIrq
- * ����GPIO�ⲿ�ж�
+ * 禁用GPIO外部中断
  * 
- * ����:
- *    gpio_init_structure--GPIO��ʼ���ṹ�壬
- *                        ���嶨���GPIO_InitTypeDef
+ * 参数:
+ *    gpio_init_structure--GPIO初始化结构体，
+ *                        具体定义见GPIO_InitTypeDef
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  *
  */
 uint8 LPLD_GPIO_DisableIrq(GPIO_InitTypeDef gpio_init_structure)
@@ -171,8 +171,8 @@ uint8 LPLD_GPIO_DisableIrq(GPIO_InitTypeDef gpio_init_structure)
   uint8 i;
   GPIO_Type *ptx = gpio_init_structure.GPIO_PTx;
   
-  //�������
-  ASSERT( ptx <= PTE);                  //�ж϶˿�
+  //参数检查
+  ASSERT( ptx <= PTE);                  //判断端口
   
   if(ptx == PTA)
     i = 0;
@@ -192,19 +192,19 @@ uint8 LPLD_GPIO_DisableIrq(GPIO_InitTypeDef gpio_init_structure)
 
 /*
  * LPLD_GPIO_Ouptut
- * ����GPIO�˿�0~31λ�����
+ * 设置GPIO端口0~31位的输出
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    data32--�������
- *      |__0x00000000~0xFFFFFFFF--�͵��ߴ���GPIO�ڵĵ�0~31λ����
+ *    data32--输出数据
+ *      |__0x00000000~0xFFFFFFFF--低到高代表GPIO口的第0~31位数据
  *
- * ���:
+ * 输出:
  *
  */
 __INLINE void LPLD_GPIO_Output(GPIO_Type *ptx, uint32 data32)
@@ -214,22 +214,22 @@ __INLINE void LPLD_GPIO_Output(GPIO_Type *ptx, uint32 data32)
 
 /*
  * LPLD_GPIO_Ouptut_b
- * ����GPIO�˿�һλ�����
+ * 设置GPIO端口一位的输出
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    lsb_num--�˿�����λ�����
- *      |__0~31       --GPIO�ڵĵ�0~31λ
- *    data1--�������
- *      |__0          --����͵�ƽ
- *      |__1          --����ߵ�ƽ
+ *    lsb_num--端口引脚位数编号
+ *      |__0~31       --GPIO口的第0~31位
+ *    data1--输出数据
+ *      |__0          --输出低电平
+ *      |__1          --输出高电平
  *
- * ���:
+ * 输出:
  *
  */
 __INLINE void LPLD_GPIO_Output_b(GPIO_Type *ptx, uint32 lsb_num, uint8 data1)
@@ -239,21 +239,21 @@ __INLINE void LPLD_GPIO_Output_b(GPIO_Type *ptx, uint32 lsb_num, uint8 data1)
 
 /*
  * LPLD_GPIO_Ouptut_8b
- * ����GPIO�˿�8λ�����
+ * 设置GPIO端口8位的输出
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    lsb_num--����8���˿����ŵ����λ�����
- *      |__0~24       --GPIO�ڵĵ�0~24λ
- *    data8--�������
- *      |__0x00~0xFF--����GPIO�������8λ����
+ *    lsb_num--代表8个端口引脚的最低位数编号
+ *      |__0~24       --GPIO口的第0~24位
+ *    data8--输出数据
+ *      |__0x00~0xFF--代表GPIO口输出的8位数据
  *
- * ���:
+ * 输出:
  *
  */
 __INLINE void LPLD_GPIO_Output_8b(GPIO_Type *ptx, uint8 lsb_num, uint8 data8)
@@ -263,19 +263,19 @@ __INLINE void LPLD_GPIO_Output_8b(GPIO_Type *ptx, uint8 lsb_num, uint8 data8)
 
 /*
  * LPLD_GPIO_Toggle
- * ����GPIO�˿�0~31�ĵ�ƽ��ת
+ * 设置GPIO端口0~31的电平翻转
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    data32--��ת����
- *      |__0x00000000~0xFFFFFFFF--�͵��ߴ���GPIO�ڵĵ�0~31λ�ķ�ת��1Ϊ��ת��0Ϊ���ֲ��䡣
+ *    data32--翻转数据
+ *      |__0x00000000~0xFFFFFFFF--低到高代表GPIO口的第0~31位的翻转，1为反转，0为保持不变。
  *
- * ���:
+ * 输出:
  *
  */
 __INLINE void LPLD_GPIO_Toggle(GPIO_Type *ptx, uint32 data32)
@@ -285,19 +285,19 @@ __INLINE void LPLD_GPIO_Toggle(GPIO_Type *ptx, uint32 data32)
 
 /*
  * LPLD_GPIO_Toggle_b
- * ����GPIO�˿�һλ�ķ�ת
+ * 设置GPIO端口一位的翻转
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    lsb_num--�˿�����λ�����
- *      |__0~31       --GPIO�ڵĵ�0~31λ
+ *    lsb_num--端口引脚位数编号
+ *      |__0~31       --GPIO口的第0~31位
  *
- * ���:
+ * 输出:
  *
  */
 __INLINE void LPLD_GPIO_Toggle_b(GPIO_Type *ptx, uint8 lsb_num)
@@ -307,21 +307,21 @@ __INLINE void LPLD_GPIO_Toggle_b(GPIO_Type *ptx, uint8 lsb_num)
 
 /*
  * LPLD_GPIO_Toggle_8b
- * ����GPIO�˿�8λ�ķ�ת
+ * 设置GPIO端口8位的翻转
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    lsb_num--����8���˿����ŵ����λ�����
- *      |__0~24       --GPIO�ڵĵ�0~24λ
- *    data8--�������
- *      |__0x00~0xFF--����GPIO�������8λ����
+ *    lsb_num--代表8个端口引脚的最低位数编号
+ *      |__0~24       --GPIO口的第0~24位
+ *    data8--输出数据
+ *      |__0x00~0xFF--代表GPIO口输出的8位数据
  *
- * ���:
+ * 输出:
  *
  */
 __INLINE void LPLD_GPIO_Toggle_8b(GPIO_Type *ptx, uint8 lsb_num, uint8 data8)
@@ -331,18 +331,18 @@ __INLINE void LPLD_GPIO_Toggle_8b(GPIO_Type *ptx, uint8 lsb_num, uint8 data8)
 
 /*
  * LPLD_GPIO_Input
- * ȡ��GPIO��0~31λ������
+ * 取得GPIO口0~31位的数据
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
  *
- * ���:
- *    ָ��GPIO�ڵ�32λ����
+ * 输出:
+ *    指定GPIO口的32位输入
  *
  */
 __INLINE uint32 LPLD_GPIO_Input(GPIO_Type *ptx)
@@ -352,20 +352,20 @@ __INLINE uint32 LPLD_GPIO_Input(GPIO_Type *ptx)
 
 /*
  * LPLD_GPIO_Input_b
- * ȡ��GPIO��ĳһλ������
+ * 取得GPIO口某一位的数据
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    lsb_num--�˿�����λ�����
- *      |__0~31       --GPIO�ڵĵ�0~31λ
+ *    lsb_num--端口引脚位数编号
+ *      |__0~31       --GPIO口的第0~31位
  *
- * ���:
- *    ָ��GPIO�ڵ�ָ��λ���ĵ�ƽ
+ * 输出:
+ *    指定GPIO口的指定位数的电平
  *
  */
 __INLINE uint8 LPLD_GPIO_Input_b(GPIO_Type *ptx, uint8 lsb_num)
@@ -375,20 +375,20 @@ __INLINE uint8 LPLD_GPIO_Input_b(GPIO_Type *ptx, uint8 lsb_num)
 
 /*
  * LPLD_GPIO_Input_8b
- * ȡ��GPIO�˿�8λ���ݵ�����
+ * 取得GPIO端口8位数据的输入
  * 
- * ����:
- *    ptx--�˿ں�
+ * 参数:
+ *    ptx--端口号
  *      |__PTA        --Port A
  *      |__PTB        --Port B
  *      |__PTC        --Port C
  *      |__PTD        --Port D
  *      |__PTE        --Port E
- *    lsb_num--����8���˿����ŵ����λ�����
- *      |__0~24       --GPIO�ڵĵ�0~24λ
+ *    lsb_num--代表8个端口引脚的最低位数编号
+ *      |__0~24       --GPIO口的第0~24位
  *
- * ���:
- *    ָ��GPIO�ڵ�8λ���ݵĵ�ƽ
+ * 输出:
+ *    指定GPIO口的8位数据的电平
  *
  */
 __INLINE uint8 LPLD_GPIO_Input_8b(GPIO_Type *ptx, uint8 lsb_num)
@@ -397,25 +397,25 @@ __INLINE uint8 LPLD_GPIO_Input_8b(GPIO_Type *ptx, uint8 lsb_num)
 }
 
 /*
- * PORTA--PORTE�жϴ�������
- * �������ļ�startup_K60.s�е��ж�����������
- * �û������޸ģ������Զ������Ӧͨ���жϺ���
+ * PORTA--PORTE中断处理函数
+ * 与启动文件startup_K60.s中的中断向量表关联
+ * 用户无需修改，程序自动进入对应通道中断函数
  */
 void PORTA_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   GPIO_ISR[0](); 
   PORTA->ISFR =0xFFFFFFFF;
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }//           ;87:  PORT A interrupt
 
@@ -423,17 +423,17 @@ void PORTB_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   GPIO_ISR[1](); 
   PORTB->ISFR =0xFFFFFFFF;
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }//           ;88:  PORT B interrupt
 
@@ -441,17 +441,17 @@ void PORTC_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   GPIO_ISR[2](); 
   PORTC->ISFR =0xFFFFFFFF;
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }//           ;89:  PORT C interrupt
 
@@ -459,17 +459,17 @@ void PORTD_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   GPIO_ISR[3](); 
   PORTD->ISFR =0xFFFFFFFF;
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }//           ;90:  PORT D interrupt
 
@@ -477,16 +477,16 @@ void PORTE_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   GPIO_ISR[4](); 
   PORTE->ISFR =0xFFFFFFFF;
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }//           ;91:  PORT E interrupt

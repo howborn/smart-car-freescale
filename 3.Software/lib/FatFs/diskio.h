@@ -1,17 +1,17 @@
 /*!
  *     COPYRIGHT NOTICE
- *     Copyright (c) 2013,Ò°»ğ¿Æ¼¼
+ *     Copyright (c) 2013,é‡ç«ç§‘æŠ€
  *     All rights reserved.
- *     ¼¼ÊõÌÖÂÛ£ºÒ°»ğ³õÑ§ÂÛÌ³ http://www.chuxue123.com
+ *     æŠ€æœ¯è®¨è®ºï¼šé‡ç«åˆå­¦è®ºå› http://www.chuxue123.com
  *
- *     ³ı×¢Ã÷³ö´¦Íâ£¬ÒÔÏÂËùÓĞÄÚÈİ°æÈ¨¾ùÊôÒ°»ğ¿Æ¼¼ËùÓĞ£¬Î´¾­ÔÊĞí£¬²»µÃÓÃÓÚÉÌÒµÓÃÍ¾£¬
- *     ĞŞ¸ÄÄÚÈİÊ±±ØĞë±£ÁôÒ°»ğ¿Æ¼¼µÄ°æÈ¨ÉùÃ÷¡£
+ *     é™¤æ³¨æ˜å‡ºå¤„å¤–ï¼Œä»¥ä¸‹æ‰€æœ‰å†…å®¹ç‰ˆæƒå‡å±é‡ç«ç§‘æŠ€æ‰€æœ‰ï¼Œæœªç»å…è®¸ï¼Œä¸å¾—ç”¨äºå•†ä¸šç”¨é€”ï¼Œ
+ *     ä¿®æ”¹å†…å®¹æ—¶å¿…é¡»ä¿ç•™é‡ç«ç§‘æŠ€çš„ç‰ˆæƒå£°æ˜ã€‚
  *
- *     ±¾Çı¶¯ÓÉbrtos´úÂëÌáÈ¡²¢ĞŞ¸Ä¶ø³É:http://code.google.com/p/brtos/downloads/detail?name=BRTOS%201.66%20Kinetis%20-%20SD%20card%20-%20BMP%2024%20bit.rar&can=2&q=
+ *     æœ¬é©±åŠ¨ç”±brtosä»£ç æå–å¹¶ä¿®æ”¹è€Œæˆ:http://code.google.com/p/brtos/downloads/detail?name=BRTOS%201.66%20Kinetis%20-%20SD%20card%20-%20BMP%2024%20bit.rar&can=2&q=
  *
  * @file       diskio.h
- * @brief      FATFS µ×²ã½Ó¿ÚÊµÏÖº¯Êı
- * @author     Ò°»ğ¿Æ¼¼ & gustavo(brtos×÷Õß)
+ * @brief      FATFS åº•å±‚æ¥å£å®ç°å‡½æ•°
+ * @author     é‡ç«ç§‘æŠ€ & gustavo(brtosä½œè€…)
  * @version    v5.0
  * @date       2013-09-19
  */
@@ -34,26 +34,26 @@ typedef uint8   DSTATUS;
 /* Results of Disk Functions */
 typedef enum
 {
-    RES_OK = 0,                 /* 0: ³É¹¦      */
-    RES_ERROR,                  /* 1: R/W ´íÎó  */
-    RES_WRPRT,                  /* 2: Ğ´±£»¤    */
-    RES_NOTRDY,                 /* 3: Î´¾ÍĞ÷    */
-    RES_PARERR                  /* 4: ²ÎÊıÎŞĞ§  */
+    RES_OK = 0,                 /* 0: æˆåŠŸ      */
+    RES_ERROR,                  /* 1: R/W é”™è¯¯  */
+    RES_WRPRT,                  /* 2: å†™ä¿æŠ¤    */
+    RES_NOTRDY,                 /* 3: æœªå°±ç»ª    */
+    RES_PARERR                  /* 4: å‚æ•°æ— æ•ˆ  */
 } DRESULT;
 
 
 /* Disk Status Bits (DSTATUS) */
-#define STA_NOINIT      0x01    /* ´ÅÅÌÎ´³õÊ¼»¯ 1±íÊ¾Î´³õÊ¼»¯£¬0±íÊ¾ÒÑ³õÊ¼»¯   */
-#define STA_NODISK      0x02    /* ´ÅÅÌÎ´²åÈë    */
-#define STA_PROTECT     0x04    /* Ğ´±£»¤        */
+#define STA_NOINIT      0x01    /* ç£ç›˜æœªåˆå§‹åŒ– 1è¡¨ç¤ºæœªåˆå§‹åŒ–ï¼Œ0è¡¨ç¤ºå·²åˆå§‹åŒ–   */
+#define STA_NODISK      0x02    /* ç£ç›˜æœªæ’å…¥    */
+#define STA_PROTECT     0x04    /* å†™ä¿æŠ¤        */
 
 
 /* Generic command (defined for FatFs) */
-#define CTRL_SYNC           0   /* ³åË¢´ÅÅÌ»º³å */
-#define GET_SECTOR_COUNT    1   /* »ñÈ¡´ÅÅÌ´óĞ¡ */
-#define GET_SECTOR_SIZE     2   /* »ñÈ¡ÉÈÇø´óĞ¡ (for multiple sector size (_MAX_SS >= 1024)) */
-#define GET_BLOCK_SIZE      3   /* »ñÈ¡¿é´óĞ¡ (for only f_mkfs()) */
-#define CTRL_ERASE_SECTOR   4   /* Ç¿ÖÆÉ¾³ıÒ»¸öÉÈÇø (for only _USE_ERASE) */
+#define CTRL_SYNC           0   /* å†²åˆ·ç£ç›˜ç¼“å†² */
+#define GET_SECTOR_COUNT    1   /* è·å–ç£ç›˜å¤§å° */
+#define GET_SECTOR_SIZE     2   /* è·å–æ‰‡åŒºå¤§å° (for multiple sector size (_MAX_SS >= 1024)) */
+#define GET_BLOCK_SIZE      3   /* è·å–å—å¤§å° (for only f_mkfs()) */
+#define CTRL_ERASE_SECTOR   4   /* å¼ºåˆ¶åˆ é™¤ä¸€ä¸ªæ‰‡åŒº (for only _USE_ERASE) */
 
 /* Generic command */
 #define CTRL_POWER          5   /* Get/Set power status */
@@ -76,15 +76,15 @@ typedef enum
 #define NAND_FORMAT         30  /* Create physical format */
 
 
-/*--------------ÒÆÖ²Ê±ĞèÒª±àĞ´µÄ¼¸¸öµ×²ãº¯Êı--------------*/
-extern DSTATUS disk_initialize (uint8);                          //³õÊ¼»¯´ÅÅÌ£¨Ö»Ö§³Ö´ÅÅÌ0£©
-extern DSTATUS disk_status (uint8);                              //·µ»Ø´ÅÅÌ×´Ì¬
-extern DRESULT disk_read (uint8, uint8 *, uint32, uint8);           //¶Á´ÅÅÌÉÈÇø
-extern DRESULT disk_ioctl (uint8, uint8, void *);                 //´ÅÅÌ¿ØÖÆ
-extern uint32   get_fattime (void);                              //»ñÈ¡µ±Ç°Ê±¼ä
+/*--------------ç§»æ¤æ—¶éœ€è¦ç¼–å†™çš„å‡ ä¸ªåº•å±‚å‡½æ•°--------------*/
+extern DSTATUS disk_initialize (uint8);                          //åˆå§‹åŒ–ç£ç›˜ï¼ˆåªæ”¯æŒç£ç›˜0ï¼‰
+extern DSTATUS disk_status (uint8);                              //è¿”å›ç£ç›˜çŠ¶æ€
+extern DRESULT disk_read (uint8, uint8 *, uint32, uint8);           //è¯»ç£ç›˜æ‰‡åŒº
+extern DRESULT disk_ioctl (uint8, uint8, void *);                 //ç£ç›˜æ§åˆ¶
+extern uint32   get_fattime (void);                              //è·å–å½“å‰æ—¶é—´
 
 #if _READONLY == 0
-DRESULT disk_write (uint8, const uint8 *, uint32, uint8);           //Ğ´´ÅÅÌÉÈÇø
+DRESULT disk_write (uint8, const uint8 *, uint32, uint8);           //å†™ç£ç›˜æ‰‡åŒº
 #endif
 
 

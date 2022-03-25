@@ -354,7 +354,7 @@ void  OSTaskStatHook (void)
 *                        pointer (SP) is required to be 8-byte aligned on entry to a conforming function. In 
 *                        practice this requirement is met if:
 *
-*                           (1) At each call site, the current size of the calling function’s stack frame is a multiple of 8 bytes.
+*                           (1) At each call site, the current size of the calling functions stack frame is a multiple of 8 bytes.
 *                               This places an obligation on compilers and assembly language programmers.
 *
 *                           (2) SP is a multiple of 8 when control first enters a program.
@@ -373,7 +373,7 @@ void  OSTaskStatHook (void)
 * 
 *                     " This requirement extends to operating systems and run-time code for all architecture versions 
 *                       prior to ARMV7 and to the A, R and M architecture profiles thereafter. Special considerations 
-*                       associated with ARMV7M are discussed in §2.3.3"
+*                       associated with ARMV7M are discussed in 2.3.3"
 * 
 *                     (1) Even if the SP 8-byte aligment is not a requirement for the ARMv7M profile, the stack is aligned
 *                         to 8-byte boundaries to support legacy execution enviroments.

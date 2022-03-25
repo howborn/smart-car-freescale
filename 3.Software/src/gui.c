@@ -1,42 +1,42 @@
 /**
- * --------------»ùÓÚ"À­ÆÕÀ¼µÂK60µ×²ã¿â"µÄ¹¤³Ì£¨Smart_Car£©-----------------
+ * --------------åŸºäº"æ‹‰æ™®å…°å¾·K60åº•å±‚åº“"çš„å·¥ç¨‹ï¼ˆSmart_Carï¼‰-----------------
  * @file Gui.c
  * @version 0.0
  * @date 2015-2-7
- * @brief ¹ØÓÚ¸Ã¹¤³ÌµÄÃèÊö
+ * @brief å…³äºè¯¥å·¥ç¨‹çš„æè¿°
  *
- * °æÈ¨ËùÓĞ:±±»ªº½Ìì¹¤ÒµÑ§Ôº µÚÊ®½ì·ÉË¼¿¨¶û  ÉãÏñÍ·2¶Ó 
- * Ó²¼şÆ½Ì¨:  MK60FX512
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—åèˆªå¤©å·¥ä¸šå­¦é™¢ ç¬¬åå±Šé£æ€å¡å°”  æ‘„åƒå¤´2é˜Ÿ 
+ * ç¡¬ä»¶å¹³å°:  MK60FX512
  * 
  */
 #include "common.h"
 #include "global.h"
-#include "TFT.h"
+#include "tft.h"
 #include "analyze.h" 
 #include "control.h"
 
-uint8 Key_Value = 0;                  //°´¼üÖµ
-uint8 Page_Value = 1;                   //ÏÔÊ¾Ò³
-uint8 Which_Number_2 = 0;              //µÚ¶şÒ³ËùÒª²Ù×÷µÄÄ¿±ê
-uint8 Which_Number_3 = 0;              //µÚÈıÒ³ËùÒª²Ù×÷µÄÄ¿±ê
-uint8 Ok_Time = 0;                    //°´È·¶¨¼ü´ÎÊı
-int16 Which_Row = End_Column-1;        //Í¼ÏñÖĞµÄÖ¸¶¨ĞĞ
+uint8 Key_Value = 0;                  //æŒ‰é”®å€¼
+uint8 Page_Value = 1;                   //æ˜¾ç¤ºé¡µ
+uint8 Which_Number_2 = 0;              //ç¬¬äºŒé¡µæ‰€è¦æ“ä½œçš„ç›®æ ‡
+uint8 Which_Number_3 = 0;              //ç¬¬ä¸‰é¡µæ‰€è¦æ“ä½œçš„ç›®æ ‡
+uint8 Ok_Time = 0;                    //æŒ‰ç¡®å®šé”®æ¬¡æ•°
+int16 Which_Row = End_Column-1;        //å›¾åƒä¸­çš„æŒ‡å®šè¡Œ
 
 void GUI_Init()
 {
   TFT_Init();
-  TFT_ClearScreen(COLOR_White);                                  //ÇåÆÁ
+  TFT_ClearScreen(COLOR_White);                                  //æ¸…å±
 }
 /*
- * ÏÔÊ¾µÚÒ»Ò³
+ * æ˜¾ç¤ºç¬¬ä¸€é¡µ
  * 
- * Í¼ÏñºÍÈüµÀ»ù±¾ĞÅÏ¢ÏÔÊ¾
+ * å›¾åƒå’Œèµ›é“åŸºæœ¬ä¿¡æ¯æ˜¾ç¤º
  */
 void GUI_ShowPage1(uint8 image[][H])
 {
-  TFT_DrawU8Gray(0,0,H-28-1,End_Column-1,image);                       //ÏÔÊ¾²É¼¯µÄÍ¼Ïñ   
+  TFT_DrawU8Gray(0,0,H-28-1,End_Column-1,image);                       //æ˜¾ç¤ºé‡‡é›†çš„å›¾åƒ   
   
-  TFT_FillBackground(0,End_Column,159,128,COLOR_White);                        //ÇåÆÁÖ¸¶¨ÇøÓò 
+  TFT_FillBackground(0,End_Column,159,128,COLOR_White);                        //æ¸…å±æŒ‡å®šåŒºåŸŸ 
   
   TFT_ShowString(80,120,"C_L",COLOR_Blue,COLOR_White);
   TFT_ShowNum(95,120,Center_Line,COLOR_Black,COLOR_White); 
@@ -45,14 +45,14 @@ void GUI_ShowPage1(uint8 image[][H])
   TFT_ShowString(0,120,"W_P",COLOR_Blue,COLOR_White);
   TFT_ShowNum(15,120,Which_pic,COLOR_Black,COLOR_White); 
   
-  TFT_DrawLine(0,Which_Row,159,Which_Row,COLOR_Blue);              //ÉãÏñÍ·ÏÔÊ¾ÉÏ±ß½ç*/
-  TFT_DrawLine(80,End_Column-6,80,End_Column-1,COLOR_Magenta);       //ÆÁÄ»ÖĞĞÄ
-  TFT_DrawLine(80,Start_Column,80,Start_Column+5,COLOR_Magenta);     //ÆÁÄ»ÖĞĞÄ  
+  TFT_DrawLine(0,Which_Row,159,Which_Row,COLOR_Blue);              //æ‘„åƒå¤´æ˜¾ç¤ºä¸Šè¾¹ç•Œ*/
+  TFT_DrawLine(80,End_Column-6,80,End_Column-1,COLOR_Magenta);       //å±å¹•ä¸­å¿ƒ
+  TFT_DrawLine(80,Start_Column,80,Start_Column+5,COLOR_Magenta);     //å±å¹•ä¸­å¿ƒ  
 }
 /*
- * ÏÔÊ¾µÚ¶şÒ³
+ * æ˜¾ç¤ºç¬¬äºŒé¡µ
  * 
- * ×ªÏò¿ØÖÆµÄ²ÎÊıÉè¶¨ºÍ×´Ì¬¼à²â
+ * è½¬å‘æ§åˆ¶çš„å‚æ•°è®¾å®šå’ŒçŠ¶æ€ç›‘æµ‹
  */
 static void GUI_ShowPage2()
 {
@@ -72,14 +72,14 @@ static void GUI_ShowPage2()
   TFT_ShowString(10,30,"D_C",COLOR_Magenta,COLOR_White);
   TFT_ShowNum(35,30,D_Pwm_Center,COLOR_Red,COLOR_White);
   
-  //×´Ì¬²ÎÊıÏÔÊ¾
+  //çŠ¶æ€å‚æ•°æ˜¾ç¤º
   TFT_ShowString(10,75,"Kp",COLOR_Blue,COLOR_White);
   TFT_ShowNum(35,75,D_Kp,COLOR_Black,COLOR_White); 
   
   TFT_ShowString(65,75,"PWM",COLOR_Blue,COLOR_White);
   TFT_ShowNum(90,75,D_PWM,COLOR_Black,COLOR_White);   
   
-  //²Ëµ¥Ö¸Ê¾
+  //èœå•æŒ‡ç¤º
   switch(Which_Number_2)
   {
   case 1:
@@ -98,9 +98,9 @@ static void GUI_ShowPage2()
   }
 }
 /*
- * ÏÔÊ¾µÚÈıÒ³
+ * æ˜¾ç¤ºç¬¬ä¸‰é¡µ
  * 
- * ËÙ¶È¿ØÖÆµÄ²ÎÊıÉè¶¨ºÍ×´Ì¬¼à²â
+ * é€Ÿåº¦æ§åˆ¶çš„å‚æ•°è®¾å®šå’ŒçŠ¶æ€ç›‘æµ‹
  */
 static void GUI_ShowPage3()
 {
@@ -144,7 +144,7 @@ static void GUI_ShowPage3()
   TFT_ShowString(85,70,"S_b",COLOR_Magenta,COLOR_White);
   TFT_ShowNum(110,70,S_b,COLOR_Red,COLOR_White);
   
-  //×´Ì¬²ÎÊıÏÔÊ¾
+  //çŠ¶æ€å‚æ•°æ˜¾ç¤º
   TFT_ShowString(10,90,"Speed",COLOR_Blue,COLOR_White);
   TFT_ShowNum(40,90,Speed,COLOR_Black,COLOR_White);
  
@@ -160,7 +160,7 @@ static void GUI_ShowPage3()
   TFT_ShowString(60,100,"S_R_S",COLOR_Blue,COLOR_White);
   TFT_ShowNum(90,100,Set_R_Speed,COLOR_Black,COLOR_White); 
   
-  //²Ëµ¥Ö¸Ê¾
+  //èœå•æŒ‡ç¤º
   switch(Which_Number_3)
   {
   case 1:
@@ -203,9 +203,9 @@ static void GUI_ShowPage3()
   }
 }
 /*
- * ²Ëµ¥
+ * èœå•
  * 
- * Éè¶¨²ÎÊı
+ * è®¾å®šå‚æ•°
  */
 void GUI_Menu(uint8 image[][H])
 {
@@ -216,14 +216,14 @@ void GUI_Menu(uint8 image[][H])
      if(Page_Value > 3)
        Page_Value = 1;
    }
-   if(Page_Value == 1)                     //µÚÒ»Î»±¡Âë¿ª¹Ø--»»ÏÔÊ¾Ò³
+   if(Page_Value == 1)                     //ç¬¬ä¸€ä½è–„ç å¼€å…³--æ¢æ˜¾ç¤ºé¡µ
    {
-     if(PTA7_I == 0)                       //ÊµÊ±ÏÔÊ¾Ö¸¶¨ĞĞµÄÊı¾İ
+     if(PTA7_I == 0)                       //å®æ—¶æ˜¾ç¤ºæŒ‡å®šè¡Œçš„æ•°æ®
      {
        if(Which_Row > 0)
           Which_Row -= 1;
      }
-     if(PTE28_I == 0)                       //ÊµÊ±ÏÔÊ¾Ö¸¶¨ĞĞµÄÊı¾İ
+     if(PTE28_I == 0)                       //å®æ—¶æ˜¾ç¤ºæŒ‡å®šè¡Œçš„æ•°æ®
      {
        if(Which_Row < 120)
           Which_Row += 1;
@@ -246,7 +246,7 @@ void GUI_Menu(uint8 image[][H])
      }
      GUI_ShowPage1(image);   
    }
-  else if(Page_Value == 2)              //ÏÔÊ¾µÚ2Ò³£¬×ªÏò¿ØÖÆĞÅÏ¢
+  else if(Page_Value == 2)              //æ˜¾ç¤ºç¬¬2é¡µï¼Œè½¬å‘æ§åˆ¶ä¿¡æ¯
   {
     if(PTA12_I == 0)
     {
@@ -254,13 +254,13 @@ void GUI_Menu(uint8 image[][H])
       if(Ok_Time > 1)
         Ok_Time = 0;
     }
-    if(PTA7_I == 0  && Ok_Time == 0)    //¡û ¡ú
+    if(PTA7_I == 0  && Ok_Time == 0)    //â† â†’
     {
       Which_Number_2++;
       if(Which_Number_2 > 4)
         Which_Number_2 = 1;
     }
-    if(PTA13_I == 0 && Ok_Time == 1)   //¡ü 
+    if(PTA13_I == 0 && Ok_Time == 1)   //â†‘ 
     {
       switch(Which_Number_2)
       {
@@ -279,7 +279,7 @@ void GUI_Menu(uint8 image[][H])
         default:break;
       }
     }
-    if(PTA5_I == 0 && Ok_Time == 1)   //¡ı
+    if(PTA5_I == 0 && Ok_Time == 1)   //â†“
     {
       switch(Which_Number_2)
       {
@@ -308,13 +308,13 @@ void GUI_Menu(uint8 image[][H])
       if(Ok_Time > 1)
         Ok_Time = 0;
     }
-    if(PTA7_I == 0  && Ok_Time == 0)    //¡û ¡ú
+    if(PTA7_I == 0  && Ok_Time == 0)    //â† â†’
     {
       Which_Number_3++;
       if(Which_Number_3 > 12)
         Which_Number_3 = 1;
     }
-    if(PTA13_I == 0 && Ok_Time == 1)   //¡ü 
+    if(PTA13_I == 0 && Ok_Time == 1)   //â†‘ 
     {
       switch(Which_Number_3)
       {
@@ -366,7 +366,7 @@ void GUI_Menu(uint8 image[][H])
         default:break;
       }
     }
-    if(PTA5_I == 0 && Ok_Time == 1)   //¡ı
+    if(PTA5_I == 0 && Ok_Time == 1)   //â†“
     {
       switch(Which_Number_3)
       {

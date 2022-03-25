@@ -2,47 +2,47 @@
  * @file HW_NVIC.c
  * @version 3.02[By LPLD]
  * @date 2013-11-29
- * @brief ÄÚºËNVICÄ£¿éÏà¹Øº¯Êı
+ * @brief å†…æ ¸NVICæ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚
  */
 #include "HW_NVIC.h"
 
 /*
  * LPLD_NVIC_Init
  *
- * ÔÚ¸Ãº¯ÊıÖĞÅäÖÃIRQn_TypeÍ¨µÀÓÅÏÈ¼¶£¬²¢¸ù¾İĞèÒªÔÚNVICÖĞÊ¹ÄÜIRQn_Type
- * ÔÚº¯ÊıÖĞµ÷ÓÃÁËcore_m4.hÖĞµÄNVICº¯Êı¹ÜÀíM4ÄÚºËµÄ16¸öÖĞ¶ÏÓÅÏÈ¼¶
- * 16¸öÖĞ¶ÏÓÅÏÈ¼¶Í¨¹ı·Ö×éµÄĞÎÊ½½øĞĞ¹ÜÀí£¬½«NVICÖĞµÄÓÅÏÈ¼¶·ÖÎª5×é£¬NVIC_PriorityGroup_0 -- 5
- * Ã¿×é°üº¬ÇÀÕ¼Ê½ÓÅÏÈ¼¶£¨NVIC_IRQChannelPreemptionPriority£©ºÍÏìÓ¦Ê½ÓÅÏÈ¼¶£¨NVIC_IRQChannelSubPriority£©
+ * åœ¨è¯¥å‡½æ•°ä¸­é…ç½®IRQn_Typeé€šé“ä¼˜å…ˆçº§ï¼Œå¹¶æ ¹æ®éœ€è¦åœ¨NVICä¸­ä½¿èƒ½IRQn_Type
+ * åœ¨å‡½æ•°ä¸­è°ƒç”¨äº†core_m4.hä¸­çš„NVICå‡½æ•°ç®¡ç†M4å†…æ ¸çš„16ä¸ªä¸­æ–­ä¼˜å…ˆçº§
+ * 16ä¸ªä¸­æ–­ä¼˜å…ˆçº§é€šè¿‡åˆ†ç»„çš„å½¢å¼è¿›è¡Œç®¡ç†ï¼Œå°†NVICä¸­çš„ä¼˜å…ˆçº§åˆ†ä¸º5ç»„ï¼ŒNVIC_PriorityGroup_0 -- 5
+ * æ¯ç»„åŒ…å«æŠ¢å å¼ä¼˜å…ˆçº§ï¼ˆNVIC_IRQChannelPreemptionPriorityï¼‰å’Œå“åº”å¼ä¼˜å…ˆçº§ï¼ˆNVIC_IRQChannelSubPriorityï¼‰
  *
- * ÓÅÏÈ¼¶ÖÙ²Ã:
- * >1 PreemptionPriorityÓÅÏÈ¼¶¸ßµÄ²ÅÄÜÇÀÕ¼PreemptionPriorityÓÅÏÈ¼¶µÍµÄÖĞ¶ÏÒì³£;
- * (¼´NVIC_IRQChannelPreemptionPriorityÖµÔ½Ğ¡ÓÅÏÈ¼¶Ô½¸ß);
- * >2 PreemptionPriorityÓÅÏÈ¼¶ÏàÍ¬µÄÖĞ¶ÏÒì³£Ö®¼ä²»ÄÜÏà»¥ÇÀÕ¼;
- * >3 Èç¹ûPreemptionPriorityÓÅÏÈ¼¶ÏàµÈ£¬ÔÙ±È½ÏSubPriorityÏìÓ¦ÓÅÏÈ¼¶£¬SubPriorityÏìÓ¦ÓÅÏÈ¼¶ÖµÔ½Ğ¡ÖĞ¶ÏÓÅÏÈ¼¶Ô½¸ß;
+ * ä¼˜å…ˆçº§ä»²è£:
+ * >1 PreemptionPriorityä¼˜å…ˆçº§é«˜çš„æ‰èƒ½æŠ¢å PreemptionPriorityä¼˜å…ˆçº§ä½çš„ä¸­æ–­å¼‚å¸¸;
+ * (å³NVIC_IRQChannelPreemptionPriorityå€¼è¶Šå°ä¼˜å…ˆçº§è¶Šé«˜);
+ * >2 PreemptionPriorityä¼˜å…ˆçº§ç›¸åŒçš„ä¸­æ–­å¼‚å¸¸ä¹‹é—´ä¸èƒ½ç›¸äº’æŠ¢å ;
+ * >3 å¦‚æœPreemptionPriorityä¼˜å…ˆçº§ç›¸ç­‰ï¼Œå†æ¯”è¾ƒSubPriorityå“åº”ä¼˜å…ˆçº§ï¼ŒSubPriorityå“åº”ä¼˜å…ˆçº§å€¼è¶Šå°ä¸­æ–­ä¼˜å…ˆçº§è¶Šé«˜;
  *
- * NVICÖĞµÄÓÅÏÈ¼¶·Ö×é»®·Ö¼ûNVIC_InitTypeDefÖĞµÄNVIC ÖĞ¶Ï·Ö×é
+ * NVICä¸­çš„ä¼˜å…ˆçº§åˆ†ç»„åˆ’åˆ†è§NVIC_InitTypeDefä¸­çš„NVIC ä¸­æ–­åˆ†ç»„
  * 
- * ²ÎÊı:
- *    NVIC_InitStructure--NVIC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûNVIC_InitTypeDef
- * Êä³ö:
- *    0:ÅäÖÃÊ§°Ü
- *    1:ÅäÖÃ³É¹¦
+ * å‚æ•°:
+ *    NVIC_InitStructure--NVICåˆå§‹åŒ–ç»“æ„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§NVIC_InitTypeDef
+ * è¾“å‡º:
+ *    0:é…ç½®å¤±è´¥
+ *    1:é…ç½®æˆåŠŸ
  *
 */
 uint8 LPLD_NVIC_Init(NVIC_InitTypeDef NVIC_InitStructure)
@@ -54,11 +54,11 @@ uint8 LPLD_NVIC_Init(NVIC_InitTypeDef NVIC_InitStructure)
   uint32 nvic_sub_priority = NVIC_InitStructure.NVIC_IRQChannelSubPriority;
   boolean status = NVIC_InitStructure.NVIC_IRQChannelEnable;
   uint32 temp;
-  //²ÎÊı¼ì²é
+  //å‚æ•°æ£€æŸ¥
   ASSERT(IS_NVIC_PRIORITY_GROUP(nvic_priority_group));
   ASSERT(IS_NVIC_PREEMPTION_PRIORITY(nvic_preemption_priority));
   ASSERT(IS_NVIC_SUB_PRIORITY(nvic_sub_priority));
-  //¸ù¾İ NVICÖĞ¶Ï·Ö×é ÅäÖÃÇÀÕ¼ÓÅÏÈ¼¶
+  //æ ¹æ® NVICä¸­æ–­åˆ†ç»„ é…ç½®æŠ¢å ä¼˜å…ˆçº§
   switch(nvic_priority_group)
   {
       case NVIC_PriorityGroup_0: NVIC_SetPriorityGrouping(NVIC_PriorityGroup_0);
@@ -83,12 +83,12 @@ uint8 LPLD_NVIC_Init(NVIC_InitTypeDef NVIC_InitStructure)
               break;
       default:return 0;
   }
-  //¸ù¾İÖĞ¶Ï·ÖÇÀÕ¼ÉèÖÃÖĞ¶ÏÇÀÕ¼ÓÅÏÈ¼¶
-  //¸ù¾İÖĞ¶Ï·ÖÇÀÕ¼ÉèÖÃÖĞ¶ÏÏìÓ¦ÓÅÏÈ¼¶
+  //æ ¹æ®ä¸­æ–­åˆ†æŠ¢å è®¾ç½®ä¸­æ–­æŠ¢å ä¼˜å…ˆçº§
+  //æ ¹æ®ä¸­æ–­åˆ†æŠ¢å è®¾ç½®ä¸­æ–­å“åº”ä¼˜å…ˆçº§
   temp = NVIC_EncodePriority(nvic_priority_group,\
                              nvic_preemption_priority,\
                              nvic_sub_priority);
-  //ÉèÖÃÖĞ¶ÏÏòÁ¿ºÅ,²¢ÔÚM4ÄÚºËÖĞÉèÖÃNVICÓÅÏÈ¼¶
+  //è®¾ç½®ä¸­æ–­å‘é‡å·,å¹¶åœ¨M4å†…æ ¸ä¸­è®¾ç½®NVICä¼˜å…ˆçº§
   NVIC_SetPriority(int_id,temp);
   
   if(status == TRUE)

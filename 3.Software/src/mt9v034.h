@@ -1,12 +1,13 @@
+
 /**
- * --------------����"��������K60�ײ��"�Ĺ��̣�Smart_Car��-----------------
+ * --------------基于"拉普兰德K60底层库"的工程（Smart_Car）-----------------
  * @file MT9V034.h
  * @version 0.0
  * @date 2015-2-7
- * @brief ���ڸù��̵�����
+ * @brief 关于该工程的描述
  *
- * ��Ȩ����:�������칤ҵѧԺ ��ʮ���˼����  ����ͷ2�� 
- * Ӳ��ƽ̨:  MK60FX512
+ * 版权所有:北华航天工业学院 第十届飞思卡尔  摄像头2队 
+ * 硬件平台:  MK60FX512
  * 
  */
 #ifndef __MT9V034_H__
@@ -14,10 +15,10 @@
 
 #include "common.h"
 
-/* ����SCCB�豸��ַ */
+/* 定义SCCB设备地址 */
 #define SCCB_DEV_ADR    0xB8                             //MT9V034
 
-/* MT9V03�Ĵ��� */
+/* MT9V03寄存器 */
 #define BINNING_ROW_A					4
 #define BINNING_COLUMN_A				4
 #define BINNING_ROW_B					2
@@ -74,8 +75,8 @@
 #define MTV_CHIP_VERSION_REG    		0x00
 #define MTV_CHIP_CONTROL_REG    		0x07
 #define MTV_SOFT_RESET_REG      		0x0C
-#define MTV_VREF_ADC_REG                        0x2C    //ADCת���ο���ѹ��Ĭ��Ϊ0x0000 
-                                                        /*�üĴ�����2:0λֵ���£�
+#define MTV_VREF_ADC_REG                        0x2C    //ADC转换参考电压，默认为0x0000 
+                                                        /*该寄存器的2:0位值如下：
                                                           0---VREF_ADC = 1.0V      1---VREF_ADC = 1.1V
                                                           2---VREF_ADC = 1.2V      3---VREF_ADC = 1.3V
                                                           4---VREF_ADC = 1.4V      5---VREF_ADC = 1.5V
@@ -97,7 +98,7 @@
 #define MTV_AGC_LOWPASS_REG		        0xAA
 #define MTV_DIGITAL_TEST_REG			0x7F
 
-//��������
+//函数申明
 void MT9V034_Init();
 
 #endif /* __MT9V034_H__ */

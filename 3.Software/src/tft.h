@@ -1,12 +1,12 @@
 /**
- * --------------»ùÓÚ"À­ÆÕÀ¼µÂK60µ×²ã¿â"µÄ¹¤³Ì£¨Smart_Car£©-----------------
+ * --------------åŸºäº"æ‹‰æ™®å…°å¾·K60åº•å±‚åº“"çš„å·¥ç¨‹ï¼ˆSmart_Carï¼‰-----------------
  * @file TFT.h
  * @version 0.0
  * @date 2015-2-7
- * @brief ¹ØÓÚ¸Ã¹¤³ÌµÄÃèÊö
+ * @brief å…³äºè¯¥å·¥ç¨‹çš„æè¿°
  *
- * °æÈ¨ËùÓĞ:±±»ªº½Ìì¹¤ÒµÑ§Ôº µÚÊ®½ì·ÉË¼¿¨¶û  ÉãÏñÍ·2¶Ó 
- * Ó²¼şÆ½Ì¨:  MK60FX512
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—åèˆªå¤©å·¥ä¸šå­¦é™¢ ç¬¬åå±Šé£æ€å¡å°”  æ‘„åƒå¤´2é˜Ÿ 
+ * ç¡¬ä»¶å¹³å°:  MK60FX512
  * 
  */
 #ifndef __TFT_H__
@@ -15,7 +15,7 @@
 #include "common.h"
 #include "global.h"
 
-/* TFTÑÕÉ« */
+/* TFTé¢œè‰² */
 #define COLOR_White          0xFFFF
 #define COLOR_Black          0x0000
 #define COLOR_Gray           0xF7DE
@@ -26,7 +26,7 @@
 #define COLOR_Cyan           0x7FFF
 #define COLOR_Yellow         0xFFE0
 
-/* º¯ÊıÉêÃ÷ */
+/* å‡½æ•°ç”³æ˜ */
 void TFT_Init(void);
 void TFT_SetCursor( uint8 x, uint8 y );
 void TFT_SetWindows( uint8 x0, uint8 y0, uint8 x1, uint8 y1 );

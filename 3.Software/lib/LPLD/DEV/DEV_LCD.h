@@ -2,41 +2,41 @@
  * @file DEV_LCD.h
  * @version 0.1[By LPLD]
  * @date 2013-09-24
- * @brief LCDÉè±¸Çı¶¯³ÌĞò
+ * @brief LCDè®¾å¤‡é©±åŠ¨ç¨‹åº
  *
- * ¸ü¸Ä½¨Òé:¿É¸ù¾İÊµ¼ÊÓ²¼şĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:å¯æ ¹æ®å®é™…ç¡¬ä»¶ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚
  */
 #ifndef __DEV_LCD_H__
 #define __DEV_LCD_H__
 
 #include "common.h"
 
-/********ÓÃ»§¿ÉĞŞ¸ÄÖµ ¿ªÊ¼***********/
-//LCD´°¿ÚÏÔÊ¾·½Ïò£º1ÎªºáÏò£»0Îª×İÏò
+/********ç”¨æˆ·å¯ä¿®æ”¹å€¼ å¼€å§‹***********/
+//LCDçª—å£æ˜¾ç¤ºæ–¹å‘ï¼š1ä¸ºæ¨ªå‘ï¼›0ä¸ºçºµå‘
 #define HORIZONTAL  1    
-//LCDÖ¸Áî×ÜÏß»ùµØÖ·
+//LCDæŒ‡ä»¤æ€»çº¿åŸºåœ°å€
 #define LCD_CMD_ADDRESS   (0x60000000)
-//LCDÊı¾İ×ÜÏß»ùµØÖ·
+//LCDæ•°æ®æ€»çº¿åŸºåœ°å€
 #define LCD_DATA_ADDRESS  (0x60010000)
-//LCD¸´Î»Òı½Å
+//LCDå¤ä½å¼•è„š
 #define LCD_SET_RST       PTC19_O=1
 #define LCD_CLR_RST       PTC19_O=0
-//Ğ´¼Ä´æÆ÷¼ä¸ôÑÓÊ±
+//å†™å¯„å­˜å™¨é—´éš”å»¶æ—¶
 #define LCD_DELAY_TIME    2
-/********ÓÃ»§¿ÉĞŞ¸ÄÖµ ½áÊø***********/
+/********ç”¨æˆ·å¯ä¿®æ”¹å€¼ ç»“æŸ***********/
 #if  ( HORIZONTAL == 1 )
 #define  MAX_X  320
 #define  MAX_Y  240   
@@ -57,75 +57,75 @@
 #define COLOR_Cyan           0x7FFF
 #define COLOR_Yellow         0xFFE0
 
-//R¡¢G¡¢B×ª16Î»RGB
+//Rã€Gã€Bè½¬16ä½RGB
 #define RGB565CONVERT(red, green, blue)\
 (uint16)( (( red   >> 3 ) << 11 ) | \
 (( green >> 2 ) << 5  ) | \
 ( blue  >> 3 ))
 
-//LCDÉè±¸ĞÅÏ¢½á¹¹Ìå
+//LCDè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
 typedef struct 
 {
-  uint16 Lcd_Id;    //LCDÉè±¸ID
-  uint16 Write_GRAM;  //Ğ´GRAMµØÖ·
-  uint16 X_GRAM;  //GRAM Ë®Æ½µØÖ·
-  uint16 Y_GRAM;  //GRAM ´¹Ö±µØÖ·
+  uint16 Lcd_Id;    //LCDè®¾å¤‡ID
+  uint16 Write_GRAM;  //å†™GRAMåœ°å€
+  uint16 X_GRAM;  //GRAM æ°´å¹³åœ°å€
+  uint16 Y_GRAM;  //GRAM å‚ç›´åœ°å€
       
 }LPLD_LCD_Info_t;
 
 extern uint16 *LCD_GRAM;
 
-//LCD³õÊ¼»¯
+//LCDåˆå§‹åŒ–
 uint16 LPLD_LCD_Init(void);
-//Ìî³äLCD±³¾°É«
+//å¡«å……LCDèƒŒæ™¯è‰²
 void LPLD_LCD_FillBackground(uint16);
-//Ìî³äLCD±³¾°É«µ½LCD_GRAM
+//å¡«å……LCDèƒŒæ™¯è‰²åˆ°LCD_GRAM
 void LPLD_LCD_FillBackgroundGRAM(uint16 *);
 
-//È¡µÃLCDÄ³µãµÄ16Î»RGBÖµ
+//å–å¾—LCDæŸç‚¹çš„16ä½RGBå€¼
 uint16 LPLD_LCD_GetPoint(uint16, uint16);
-//ÉèÖÃLCDÄ³µãµÄ16Î»RGBÖµ
+//è®¾ç½®LCDæŸç‚¹çš„16ä½RGBå€¼
 void LPLD_LCD_SetPoint(uint16, uint16, uint16);
 
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾×Ö·û
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºå­—ç¬¦
 void LPLD_LCD_ShowChar(uint16, uint16, uint8, uint16, uint16);
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾Êı×Ö
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºæ•°å­—
 void LPLD_LCD_ShowNum(uint16, uint16, uint16, uint8, uint16, uint16);
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾×Ö·û´®
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºå­—ç¬¦ä¸²
 void LPLD_LCD_ShowString(uint16, uint16, uint8 *,uint16, uint16);
-//ÁíÆğÒ»ĞĞÏÔÊ¾×Ö·û´®
+//å¦èµ·ä¸€è¡Œæ˜¾ç¤ºå­—ç¬¦ä¸²
 void LPLD_LCD_PrintStringLine(uint8 *, uint16, uint16);
-//½Ó×Åµ±Ç°ĞĞÏÔÊ¾×Ö·û´®
+//æ¥ç€å½“å‰è¡Œæ˜¾ç¤ºå­—ç¬¦ä¸²
 void LPLD_LCD_PrintString(uint8 *,uint16, uint16);
-//ÁíÆğÒ»ĞĞÏÔÊ¾Êı×Ö
+//å¦èµ·ä¸€è¡Œæ˜¾ç¤ºæ•°å­—
 void LPLD_LCD_PrintNumLine(uint16, uint8, uint16, uint16);
-//½Ó×Åµ±Ç°ĞĞÏÔÊ¾Êı×Ö
+//æ¥ç€å½“å‰è¡Œæ˜¾ç¤ºæ•°å­—
 void LPLD_LCD_PrintNum(uint16, uint8, uint16, uint16);
 
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾Ö±Ïß
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºç›´çº¿
 void LPLD_LCD_DrawLine(uint16, uint16, uint16, uint16 , uint16);
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾Õı·½ĞÎ
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºæ­£æ–¹å½¢
 void LPLD_LCD_DrawSquare(uint16, uint16, uint16, uint16, uint16);
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾¾ØĞÎ
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºçŸ©å½¢
 void LPLD_LCD_DrawRectangle(uint16, uint16, uint16, uint16, uint16, uint16);
-//ÏÔÊ¾Ò»·ùÖ¸¶¨´óĞ¡µÄU8»Ò¶ÈÍ¼Ïñ
+//æ˜¾ç¤ºä¸€å¹…æŒ‡å®šå¤§å°çš„U8ç°åº¦å›¾åƒ
 void LPLD_LCD_DrawU8Gray(uint8 *, uint16, uint16);
 
-//Ìî³äÖ¸¶¨ÑÕÉ«µÄ¾ØĞÎµ½LCD_GRAM
+//å¡«å……æŒ‡å®šé¢œè‰²çš„çŸ©å½¢åˆ°LCD_GRAM
 void LPLD_LCD_GRAMFillRec(uint16, uint16, uint16, uint16, uint16);
-//Ìî³äÖ¸¶¨ÑÕÉ«µÄºáÏßµ½LCD_GRAM
+//å¡«å……æŒ‡å®šé¢œè‰²çš„æ¨ªçº¿åˆ°LCD_GRAM
 void LPLD_LCD_GRAMDrawHLine(uint16, uint16, uint16, uint16);
 
-//BGRÑÕÉ«×ªRGBÑÕÉ«
+//BGRé¢œè‰²è½¬RGBé¢œè‰²
 uint16 LPLD_LCD_BGR2RGB(uint16);
-//U8»Ò¶ÈÑÕÉ«×ªÎªRGBÑÕÉ«
+//U8ç°åº¦é¢œè‰²è½¬ä¸ºRGBé¢œè‰²
 uint16 LPLD_LCD_U8GRAY2RGB(uint8);
 
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾ºáÏß
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºæ¨ªçº¿
 #define LPLD_LCD_DrawHLine(x0,y0,len,color) LPLD_LCD_DrawLine(x0,y0,x0+len-1,y0,color)
-//ÔÚÖ¸¶¨×ø±êÏÔÊ¾ÊúÏß
+//åœ¨æŒ‡å®šåæ ‡æ˜¾ç¤ºç«–çº¿
 #define LPLD_LCD_DrawVLine(x0,y0,len,color) LPLD_LCD_DrawLine(x0,y0,x0,y0+len-1,color)
-//ÉèÖÃLCD_GRAMÄ³µãµÄ16Î»RGBÖµ
+//è®¾ç½®LCD_GRAMæŸç‚¹çš„16ä½RGBå€¼
 #define LPLD_LCD_SetPointGRAM(Xpos,Ypos,color) LCD_GRAM[MAX_X*MAX_Y-(Ypos-1)*MAX_Y-(Xpos)]=color
 
 #endif 

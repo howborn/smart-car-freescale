@@ -2,75 +2,75 @@
  * @file HW_CAN.c
  * @version 3.03[By LPLD]
  * @date 2014-3-9
- * @brief CANµ×²ãÄ£¿éÏà¹Øº¯Êı
+ * @brief CANåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚
  */
 
 #include "common.h"
 #include "HW_CAN.h"
-//FlexCANÄ£¿éÉèÖÃ²¨ÌØÂÊº¯Êı
+//FlexCANæ¨¡å—è®¾ç½®æ³¢ç‰¹ç‡å‡½æ•°
 static void LPLD_CAN_SetBaudRate(CAN_Type *,uint32 );
-//FlexCAN Çå³şÖĞ¶Ï±êÖ¾Î»º¯Êı
+//FlexCAN æ¸…æ¥šä¸­æ–­æ ‡å¿—ä½å‡½æ•°
 static void LPLD_CAN_Interrupt_ClearPending(CAN_Type *, uint8 );
-//FlexCAN »ñµÃÖĞ¶Ï±êÖ¾Î»º¯Êı
+//FlexCAN è·å¾—ä¸­æ–­æ ‡å¿—ä½å‡½æ•°
 static uint8 LPLD_CAN_Interrupt_GetFlag(CAN_Type *, uint8 );
-//FlexCAN ½âËøMsg»º³åÇøº¯Êı
+//FlexCAN è§£é”Msgç¼“å†²åŒºå‡½æ•°
 static uint16 LPLD_CAN_UnlockMsg(CAN_Type *);
-//FlexCAN Ê¹ÄÜMsg»º³åÇøÖĞ¶Ïº¯Êı
+//FlexCAN ä½¿èƒ½Msgç¼“å†²åŒºä¸­æ–­å‡½æ•°
 static void LPLD_CAN_EnableMsgInterrupt(CAN_Type *, uint8 );
-//FlexCAN ÉèÖÃMsg»º³åÇøµÄCODE
+//FlexCAN è®¾ç½®Msgç¼“å†²åŒºçš„CODE
 static void LPLD_CAN_SetMsgCode(CAN_Type *, uint8 , uint8 );
-//FlexCAN »ñµÃMsg»º³åÇøµÄCODE
+//FlexCAN è·å¾—Msgç¼“å†²åŒºçš„CODE
 static uint32 LPLD_CAN_GetMsgCode(CAN_Type *, uint8 );
-//FlexCAN »ñµÃMsg»º³åÇøµÄTIMESTAMP
+//FlexCAN è·å¾—Msgç¼“å†²åŒºçš„TIMESTAMP
 static uint16 LPLD_CAN_GetMsgTimeStamp(CAN_Type *, uint8 );
-//FlexCAN ÉèÖÃMsg»º³åÇøµÄID
+//FlexCAN è®¾ç½®Msgç¼“å†²åŒºçš„ID
 void LPLD_CAN_SetMsgID(CAN_Type *, uint8 ,uint8, uint32 );
-//FlexCAN »ñµÃMsg»º³åÇøµÄID
+//FlexCAN è·å¾—Msgç¼“å†²åŒºçš„ID
 static uint32 LPLD_CAN_GetMsgID(CAN_Type *, uint8 );
-//FlexCAN »ñµÃMsg»º³åÇøµÄ³¤¶È
+//FlexCAN è·å¾—Msgç¼“å†²åŒºçš„é•¿åº¦
 uint8 LPLD_CAN_GetMsgLength(CAN_Type *canx, uint8 MSG_NUM);
-//FlexCAN »ñµÃMsg»º³åÇøµÄÊı¾İ
+//FlexCAN è·å¾—Msgç¼“å†²åŒºçš„æ•°æ®
 static void LPLD_CAN_GetData(CAN_Type *canx, uint8 , uint8 ,  uint8 *);
-//FlexCAN Ğ´Msg»º³åÇøµÄÊı¾İ
+//FlexCAN å†™Msgç¼“å†²åŒºçš„æ•°æ®
 static void LPLD_CAN_WriteData(CAN_Type *, uint8 , uint8, uint8 * );
-//FlexCAN ´«ÊäÖĞ¶Ïº¯Êı
+//FlexCAN ä¼ è¾“ä¸­æ–­å‡½æ•°
 void LPLD_CAN_Transmit_Interrupt(CAN_Type *, uint8 );
-//FlexCAN ½ÓÊÕÖĞ¶Ïº¯Êı
+//FlexCAN æ¥æ”¶ä¸­æ–­å‡½æ•°
 static void LPLD_CAN_Receive_Interrupt(CAN_Type *, uint8 );
-//FlexCAN CANxµÄÖĞ¶Ï´¦Àíº¯Êı
+//FlexCAN CANxçš„ä¸­æ–­å¤„ç†å‡½æ•°
 static void LPLD_CAN_MB_ISR(void);
-//ÉèÖÃ16¸öMsgµÄ½á¹¹Ìå
+//è®¾ç½®16ä¸ªMsgçš„ç»“æ„ä½“
 CAN_MSGOBJ_InitTypeDef  flexcan_msgobj_param_t[MSG_MAX_NO] = {0};
-//ÉèÖÃCANx MsgµÄÖĞ¶Ï»Øµôº¯Êı
+//è®¾ç½®CANx Msgçš„ä¸­æ–­å›æ‰å‡½æ•°
 CAN_ISR_CALLBACK CAN0_ISR[MSG_MAX_NO];
 CAN_ISR_CALLBACK CAN1_ISR[MSG_MAX_NO];
 
 /*
  * LPLD_CAN_Init
- * ÔÚ¸Ãº¯ÊıÖĞÊ¹ÄÜCANx£¬ÉèÖÃCANxµÄ²¨ÌØÂÊ£¬Ñ¡ÔñÏàÓ¦µÄ¹¤×÷Ä£Ê½
- * Í¨¹ıCAN_InitTypeDef½á¹¹Ìå¶ÔCAN½øĞĞ³õÊ¼»¯¡£
+ * åœ¨è¯¥å‡½æ•°ä¸­ä½¿èƒ½CANxï¼Œè®¾ç½®CANxçš„æ³¢ç‰¹ç‡ï¼Œé€‰æ‹©ç›¸åº”çš„å·¥ä½œæ¨¡å¼
+ * é€šè¿‡CAN_InitTypeDefç»“æ„ä½“å¯¹CANè¿›è¡Œåˆå§‹åŒ–ã€‚
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    CAN_InitTypeDef--can_init_structure
- *                     ¾ßÌå¶¨Òå¼ûHW_CAN.h can_init_structure
+ *                     å…·ä½“å®šä¹‰è§HW_CAN.h can_init_structure
  *
- * Êä³ö:
- *    ÎŞ
+ * è¾“å‡º:
+ *    æ— 
  *
  */
 void LPLD_CAN_Init(CAN_InitTypeDef can_init_structure)
@@ -135,36 +135,36 @@ void LPLD_CAN_Init(CAN_InitTypeDef can_init_structure)
       PORTE->PCR[25] = PORT_PCR_MUX(2)| PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
     }
   } 
-  //½ûÖ¹CANÍâÉè
+  //ç¦æ­¢CANå¤–è®¾
   canx->MCR   |= CAN_MCR_MDIS_MASK;
-  //Ö»ÓĞÔÚLPM_ACK = 1Çé¿öÏÂ²Å¿ÉÒÔÑ¡ÔñÖÓÔ´
-  canx->CTRL1 |= CAN_CTRL1_CLKSRC_MASK;  //Ñ¡Ôñperipheral clock×÷ÎªCANÍâÉèµÄÊ±ÖÓÔ´
-                                         //ÉèÖÃ´ËÎ»±ØĞëÔÚCANÍ£Ö¹Ä£Ê½ÏÂ
-  //ÔÚÊ±ÖÓ³õÊ¼»¯Íê±ÏºÍCAN×ÜÏßÊ¹ÄÜÍê±Ïºó£¬
-  //µ¥Æ¬»ú×Ô¶¯½øÈë¶³½áÄ£Ê½
-  //Ö»ÓĞÔÚ¶³½áÄ£Ê½ÏÂ²ÅÄÜÅäÖÃ´ó¶àÊıCAN×ÜÏß¼Ä´æÆ÷
-  //Ê¹ÄÜ¶³½áÄ£Ê½ 
+  //åªæœ‰åœ¨LPM_ACK = 1æƒ…å†µä¸‹æ‰å¯ä»¥é€‰æ‹©é’Ÿæº
+  canx->CTRL1 |= CAN_CTRL1_CLKSRC_MASK;  //é€‰æ‹©peripheral clockä½œä¸ºCANå¤–è®¾çš„æ—¶é’Ÿæº
+                                         //è®¾ç½®æ­¤ä½å¿…é¡»åœ¨CANåœæ­¢æ¨¡å¼ä¸‹
+  //åœ¨æ—¶é’Ÿåˆå§‹åŒ–å®Œæ¯•å’ŒCANæ€»çº¿ä½¿èƒ½å®Œæ¯•åï¼Œ
+  //å•ç‰‡æœºè‡ªåŠ¨è¿›å…¥å†»ç»“æ¨¡å¼
+  //åªæœ‰åœ¨å†»ç»“æ¨¡å¼ä¸‹æ‰èƒ½é…ç½®å¤§å¤šæ•°CANæ€»çº¿å¯„å­˜å™¨
+  //ä½¿èƒ½å†»ç»“æ¨¡å¼ 
   canx->MCR |= CAN_MCR_FRZ_MASK;
   canx->MCR &= ~CAN_MCR_MDIS_MASK; 
   
   while(!(canx->MCR & CAN_MCR_LPMACK_MASK));	
 
-  //½øĞĞÈí¼ş¸´Î»
+  //è¿›è¡Œè½¯ä»¶å¤ä½
   canx->MCR ^= CAN_MCR_SOFTRST_MASK;
   while(canx->MCR & CAN_MCR_SOFTRST_MASK);
             
-  //µÈ´ı½øÈë¶³½áÄ£Ê½ 
+  //ç­‰å¾…è¿›å…¥å†»ç»“æ¨¡å¼ 
   while(!(canx->MCR & CAN_MCR_FRZACK_MASK));
   
   if(mask_mode == CAN_MSGOBJ_GLOBAL_MASKING)
   {
-    canx->MCR &= ~CAN_MCR_IRMQ_MASK;   //Ê¹ÄÜÈ«¾ÖÆ¥Åä¼Ä´æÆ÷½ûÖ¹µ¥¶ÀÆ¥Åä 
+    canx->MCR &= ~CAN_MCR_IRMQ_MASK;   //ä½¿èƒ½å…¨å±€åŒ¹é…å¯„å­˜å™¨ç¦æ­¢å•ç‹¬åŒ¹é… 
   }
   else
   {
-    canx->MCR |= CAN_MCR_IRMQ_MASK;   //Ê¹ÄÜMsgµ¥¶ÀÆ¥Åä 
+    canx->MCR |= CAN_MCR_IRMQ_MASK;   //ä½¿èƒ½Msgå•ç‹¬åŒ¹é… 
   }
-  //½«MB_MAX¸öÓÊÏä»º³åÇøÄÚÈİÇå0
+  //å°†MB_MAXä¸ªé‚®ç®±ç¼“å†²åŒºå†…å®¹æ¸…0
   for(i = 0;i < MSG_MAX_NO; i++)
   {
     canx->MB[i].CS    = 0x00000000;
@@ -173,93 +173,93 @@ void LPLD_CAN_Init(CAN_InitTypeDef can_init_structure)
     canx->MB[i].WORD1 = 0x00000000;        
   }
   
-  canx->MCR |= CAN_MCR_SRXDIS_MASK ; //½ûÖ¹×ÔÎÒ½ÓÊÕ
-  //canx->MCR |= CAN_MCR_RFEN_MASK ;   //Ê¹ÄÜ½ÓÊÕFIFO
+  canx->MCR |= CAN_MCR_SRXDIS_MASK ; //ç¦æ­¢è‡ªæˆ‘æ¥æ”¶
+  //canx->MCR |= CAN_MCR_RFEN_MASK ;   //ä½¿èƒ½æ¥æ”¶FIFO
   //canx->CTRL2 |= CAN_CTRL2_RFFN(0);
   //canx->MCR |= CAN_MCR_IDAM(0);
   
-  //ÅäÖÃÏà¹ØµÄ¼Ä´æÆ÷
-  canx->CTRL2 &= ~CAN_CTRL2_EACEN_MASK; //½ÓÊÕÓÊÏä¹ıÂËIDEÆ¥Åä£¬RTR²»Æ¥Åä
-  canx->CTRL2 &= ~CAN_CTRL2_RRS_MASK;  //²»×Ô¶¯²úÉúÔ¶³ÌÇëÇóÖ¡²úÉú
-  canx->CTRL2 &= ~CAN_CTRL2_MRP_MASK;   //IDÊ×ÏÈ´ÓÓÊÏäÖĞÆ¥Åä
+  //é…ç½®ç›¸å…³çš„å¯„å­˜å™¨
+  canx->CTRL2 &= ~CAN_CTRL2_EACEN_MASK; //æ¥æ”¶é‚®ç®±è¿‡æ»¤IDEåŒ¹é…ï¼ŒRTRä¸åŒ¹é…
+  canx->CTRL2 &= ~CAN_CTRL2_RRS_MASK;  //ä¸è‡ªåŠ¨äº§ç”Ÿè¿œç¨‹è¯·æ±‚å¸§äº§ç”Ÿ
+  canx->CTRL2 &= ~CAN_CTRL2_MRP_MASK;   //IDé¦–å…ˆä»é‚®ç®±ä¸­åŒ¹é…
 
-  //canx->CTRL1 |= CAN_CTRL1_LBUF_MASK;  //·¢ËÍµÄÊ±ºò´ÓµÍMsg¿ªÊ¼
-  canx->CTRL1 &= ~CAN_CTRL1_LBUF_MASK;   //·¢ËÍµÄÊ±ºò´ÓµÍÓÅÏÈ¼¶·¢ËÍ
+  //canx->CTRL1 |= CAN_CTRL1_LBUF_MASK;  //å‘é€çš„æ—¶å€™ä»ä½Msgå¼€å§‹
+  canx->CTRL1 &= ~CAN_CTRL1_LBUF_MASK;   //å‘é€çš„æ—¶å€™ä»ä½ä¼˜å…ˆçº§å‘é€
                              
-  //canx->CTRL1 |= CAN_CTRL1_LPB_MASK;  //loop Ä£Ê½,ÓÃÓÚ²âÊÔ
-  canx->CTRL1 &= ~CAN_CTRL1_LPB_MASK;   //Ê¹ÓÃÕı³£Ä£Ê½
-  //ÉèÖÃCAN×ÜÏßÍ¨ĞÅµÄ²¨ÌØÂÊ
+  //canx->CTRL1 |= CAN_CTRL1_LPB_MASK;  //loop æ¨¡å¼,ç”¨äºæµ‹è¯•
+  canx->CTRL1 &= ~CAN_CTRL1_LPB_MASK;   //ä½¿ç”¨æ­£å¸¸æ¨¡å¼
+  //è®¾ç½®CANæ€»çº¿é€šä¿¡çš„æ³¢ç‰¹ç‡
   LPLD_CAN_SetBaudRate(canx,baud);
 
-  //Çå¿ÕCAN×ÔÓÉ¼ÆÊıÆ÷ 
+  //æ¸…ç©ºCANè‡ªç”±è®¡æ•°å™¨ 
   canx->TIMER = 0x0000; 
    /*
-  Èç¹ûMCRµÄIRMQÎª1£¬±íÊ¾Ã¿¸öÓÊÏä¶¼¿ÉÒÔµ¥¶À½øĞĞIDÆ¥Åä
-  ×¢Òâ£ºÈç¹ûÊÇlow cost MCUs£¨µÍÅäÖÃµÄMCU£©£¬Ã»ÓĞµ¥¶ÀÆ¥ÅäÕâÏî¹¦ÄÜ¡£
-          1\IDÆ¥Åä»áÑ¡Ôñfree to receive×´Ì¬µÄÓÊÏä×÷ÎªÊ¤Õß£¬
-          »ñÊ¤µÄÓÊÏä¿ÉÒÔ´Ó½ÓÊÕ»º³åÇøÄÚ½«½ÓÊÕµÄÖ¡ Move in µ½MBÖĞ£»
-          2\Èç¹û³öÏÖIDºÅÏàÍ¬µÄÓÊÏä£¬»áÊ×ÏÈ´ÓĞòºÅµÍµÄÓÊÏä½øĞĞÆ¥Åä£¬Èç¹û
-          µÍĞòºÅÓÊÏäÊÇnon free to receive×´Ì¬£¬ÄÇÃ´Æ¥Åä¹ı³Ì½«»á²éÕÒ
-          ÏÂÒ»¸öÓÊÏäÖ±µ½ÕÒµ½free to receive×´Ì¬ÇÒIDÏàÍ¬µÄÓÊÏä£»
-          3\Èç¹ûIDºÅÏàÍ¬µÄÓÊÏä¶¼´¦ÓÚnon free to receive×´Ì¬£¬ÄÇÃ´Æ¥Åä¹ı³Ì
-          ½«Í£Ö¹ÔÚ×îºóÒ»¸öÓĞÏàÍ¬IDµÄÓÊÏäÎ»ÖÃ£¬½«Ö¡Move in µ½MBÖĞ²¢ÇÒ½«¸ÃÓÊ
-          ÏäµÄ×´Ì¬ÉèÖÃ³ÉOVERRUN¡£
-          RXIMR[i]´æ´¢ÔÚµ¥Æ¬»úµÄRAMÖĞ£¬Ö»ÓĞÔÚCAN¶³½áÄ£Ê½ÏÂ¿ÉĞ´¡£
-          ´ËÊ±CANx_RXMGMASK¡¢CANx_RX14MASK¡¢CANx_RX15MASK²»Æğ×÷ÓÃ
+  å¦‚æœMCRçš„IRMQä¸º1ï¼Œè¡¨ç¤ºæ¯ä¸ªé‚®ç®±éƒ½å¯ä»¥å•ç‹¬è¿›è¡ŒIDåŒ¹é…
+  æ³¨æ„ï¼šå¦‚æœæ˜¯low cost MCUsï¼ˆä½é…ç½®çš„MCUï¼‰ï¼Œæ²¡æœ‰å•ç‹¬åŒ¹é…è¿™é¡¹åŠŸèƒ½ã€‚
+          1\IDåŒ¹é…ä¼šé€‰æ‹©free to receiveçŠ¶æ€çš„é‚®ç®±ä½œä¸ºèƒœè€…ï¼Œ
+          è·èƒœçš„é‚®ç®±å¯ä»¥ä»æ¥æ”¶ç¼“å†²åŒºå†…å°†æ¥æ”¶çš„å¸§ Move in åˆ°MBä¸­ï¼›
+          2\å¦‚æœå‡ºç°IDå·ç›¸åŒçš„é‚®ç®±ï¼Œä¼šé¦–å…ˆä»åºå·ä½çš„é‚®ç®±è¿›è¡ŒåŒ¹é…ï¼Œå¦‚æœ
+          ä½åºå·é‚®ç®±æ˜¯non free to receiveçŠ¶æ€ï¼Œé‚£ä¹ˆåŒ¹é…è¿‡ç¨‹å°†ä¼šæŸ¥æ‰¾
+          ä¸‹ä¸€ä¸ªé‚®ç®±ç›´åˆ°æ‰¾åˆ°free to receiveçŠ¶æ€ä¸”IDç›¸åŒçš„é‚®ç®±ï¼›
+          3\å¦‚æœIDå·ç›¸åŒçš„é‚®ç®±éƒ½å¤„äºnon free to receiveçŠ¶æ€ï¼Œé‚£ä¹ˆåŒ¹é…è¿‡ç¨‹
+          å°†åœæ­¢åœ¨æœ€åä¸€ä¸ªæœ‰ç›¸åŒIDçš„é‚®ç®±ä½ç½®ï¼Œå°†å¸§Move in åˆ°MBä¸­å¹¶ä¸”å°†è¯¥é‚®
+          ç®±çš„çŠ¶æ€è®¾ç½®æˆOVERRUNã€‚
+          RXIMR[i]å­˜å‚¨åœ¨å•ç‰‡æœºçš„RAMä¸­ï¼Œåªæœ‰åœ¨CANå†»ç»“æ¨¡å¼ä¸‹å¯å†™ã€‚
+          æ­¤æ—¶CANx_RXMGMASKã€CANx_RX14MASKã€CANx_RX15MASKä¸èµ·ä½œç”¨
   */
   if(canx->MCR & CAN_MCR_IRMQ_MASK)
   {
     for(i = 0;i < MSG_MAX_NO; i++)
     {
-      canx->RXIMR[i] = 0x1FFFFFFFL;//ÉèÖÃÓÊÏä29Î»È«²¿ÆÁ±Î
+      canx->RXIMR[i] = 0x1FFFFFFFL;//è®¾ç½®é‚®ç®±29ä½å…¨éƒ¨å±è”½
     }
   } 
  /*
-  Èç¹ûMCRµÄIRMQÎª0£¬±íÊ¾Ê¹ÓÃÈ«¾ÖÆ¥Åä¼Ä´æÆ÷½øĞĞÆ¥Åä£¬
-          ´ËÊ±CANx_RXMGMASK¡¢CANx_RX14MASK¡¢CANx_RX15MASKÆğ×÷ÓÃ£»
-          CANx_RXMGMASK¹ÜÀí³ıCANx_RX14MASK¡¢CANx_RX15MASKÒÔÍâµÄËùÓĞMsg£»
-          IDÆ¥Åä¹ı³Ì»áÍ£Ö¹ÔÚÕÒµ½µÄµÚÒ»¸öIDÏàÍ¬µÄÓÊÏäÎ»ÖÃ£¬²»¹Ü¸ÃÓÊÏäÊÇ·ñ´¦ÓÚ
-          free to receive×´Ì¬¡£
+  å¦‚æœMCRçš„IRMQä¸º0ï¼Œè¡¨ç¤ºä½¿ç”¨å…¨å±€åŒ¹é…å¯„å­˜å™¨è¿›è¡ŒåŒ¹é…ï¼Œ
+          æ­¤æ—¶CANx_RXMGMASKã€CANx_RX14MASKã€CANx_RX15MASKèµ·ä½œç”¨ï¼›
+          CANx_RXMGMASKç®¡ç†é™¤CANx_RX14MASKã€CANx_RX15MASKä»¥å¤–çš„æ‰€æœ‰Msgï¼›
+          IDåŒ¹é…è¿‡ç¨‹ä¼šåœæ­¢åœ¨æ‰¾åˆ°çš„ç¬¬ä¸€ä¸ªIDç›¸åŒçš„é‚®ç®±ä½ç½®ï¼Œä¸ç®¡è¯¥é‚®ç®±æ˜¯å¦å¤„äº
+          free to receiveçŠ¶æ€ã€‚
   */
 
-  canx->RXMGMASK = 0x1FFFFFFF; //29Î»IDÈ«²¿Æ¥Åä            
+  canx->RXMGMASK = 0x1FFFFFFF; //29ä½IDå…¨éƒ¨åŒ¹é…            
   canx->RX14MASK = 0x1FFFFFFF;
   canx->RX15MASK = 0x1FFFFFFF; 
  
   canx->MCR &= ~(CAN_MCR_HALT_MASK); 
-  //µÈµ½²»ÔÚ¶³½áÄ£Ê½£¬ĞİÃßÄ£Ê½»òÕßÍ£Ö¹Ä£Ê½
+  //ç­‰åˆ°ä¸åœ¨å†»ç»“æ¨¡å¼ï¼Œä¼‘çœ æ¨¡å¼æˆ–è€…åœæ­¢æ¨¡å¼
   while( canx->MCR & CAN_MCR_FRZACK_MASK); 
   
   while( canx->MCR & CAN_MCR_NOTRDY_MASK);
 }
 /*
  * LPLD_CAN_SetBaudRate
- * ÉèÖÃCAN²¨ÌØÂÊ,PLL±ØĞëÊÇ100Mhz
- * ²ÎÊı:
+ * è®¾ç½®CANæ³¢ç‰¹ç‡,PLLå¿…é¡»æ˜¯100Mhz
+ * å‚æ•°:
  *    CAN_Type *canx
- *      |___CAN0 --CAN0ºÅÄ£¿é
- *      |___CAN1 --CAN0ºÅÄ£¿é
- *    baud ²¨ÌØÂÊ
- *      |__CAN_BAUD_RATE_50KBPS  --²¨ÌØÂÊ50KBPS
- *      |__CAN_BAUD_RATE_100KBPS --²¨ÌØÂÊ100KBPS
- *      |__CAN_BAUD_RATE_250KBPS --²¨ÌØÂÊ250KBPS
- *      |__CAN_BAUD_RATE_500KBPS --²¨ÌØÂÊ500KBPS
- *      |__CAN_BAUD_RATE_1MBPS   --²¨ÌØÂÊ1MBPS
- *  Êä³ö£º
- *    ÎŞ
+ *      |___CAN0 --CAN0å·æ¨¡å—
+ *      |___CAN1 --CAN0å·æ¨¡å—
+ *    baud æ³¢ç‰¹ç‡
+ *      |__CAN_BAUD_RATE_50KBPS  --æ³¢ç‰¹ç‡50KBPS
+ *      |__CAN_BAUD_RATE_100KBPS --æ³¢ç‰¹ç‡100KBPS
+ *      |__CAN_BAUD_RATE_250KBPS --æ³¢ç‰¹ç‡250KBPS
+ *      |__CAN_BAUD_RATE_500KBPS --æ³¢ç‰¹ç‡500KBPS
+ *      |__CAN_BAUD_RATE_1MBPS   --æ³¢ç‰¹ç‡1MBPS
+ *  è¾“å‡ºï¼š
+ *    æ— 
 */
 static void LPLD_CAN_SetBaudRate(CAN_Type *canx,uint32 baud)
 {
   uint8 prescale;
-  //1¸öCAN×ÜÏßÎ»µÄÊ±¼äÁ¿×Ó£ºTime Quanta = SYNC_SEG + (PROP_SEG + PSEG1 + 2) + (PSEG2 + 1)£¬
-  //SYNC_SEG =  1 £¨¹Ì¶¨Öµ£©
+  //1ä¸ªCANæ€»çº¿ä½çš„æ—¶é—´é‡å­ï¼šTime Quanta = SYNC_SEG + (PROP_SEG + PSEG1 + 2) + (PSEG2 + 1)ï¼Œ
+  //SYNC_SEG =  1 ï¼ˆå›ºå®šå€¼ï¼‰
   ASSERT(baud <= CAN_BAUD_RATE_1MBPS);
   switch(baud)
   {
     case CAN_BAUD_RATE_1MBPS:
       {
         prescale = CAN_GET_PRESCALE(g_bus_clock,baud,8); 
-        //ÉèÖÃCAN×ÜÏßÍ¨ĞÅµÄ²¨ÌØÂÊ
+        //è®¾ç½®CANæ€»çº¿é€šä¿¡çš„æ³¢ç‰¹ç‡
         canx->CTRL1 = (0 | CAN_CTRL1_PROPSEG(3)
                          | CAN_CTRL1_RJW(0)   
                          | CAN_CTRL1_PSEG1(0) 
@@ -272,9 +272,9 @@ static void LPLD_CAN_SetBaudRate(CAN_Type *canx,uint32 baud)
     case CAN_BAUD_RATE_100KBPS:
     case CAN_BAUD_RATE_125KBPS:
       {
-        //ÉèÖÃtime_quanta = 12 
+        //è®¾ç½®time_quanta = 12 
         prescale = CAN_GET_PRESCALE(g_bus_clock,baud,12); 
-        //ÉèÖÃCAN×ÜÏßÍ¨ĞÅµÄ²¨ÌØÂÊ
+        //è®¾ç½®CANæ€»çº¿é€šä¿¡çš„æ³¢ç‰¹ç‡
         canx->CTRL1 = (0 | CAN_CTRL1_PROPSEG(2) 
                          | CAN_CTRL1_RJW(2)  
                          | CAN_CTRL1_PSEG1(3) 
@@ -286,9 +286,9 @@ static void LPLD_CAN_SetBaudRate(CAN_Type *canx,uint32 baud)
     case CAN_BAUD_RATE_500KBPS:
     case CAN_BAUD_RATE_250KBPS:
       {
-        //ÉèÖÃtime_quanta = 12 
+        //è®¾ç½®time_quanta = 12 
         prescale = CAN_GET_PRESCALE(g_bus_clock,baud,12); 
-        //ÉèÖÃCAN×ÜÏßÍ¨ĞÅµÄ²¨ÌØÂÊ
+        //è®¾ç½®CANæ€»çº¿é€šä¿¡çš„æ³¢ç‰¹ç‡
         canx->CTRL1 = (0 | CAN_CTRL1_PROPSEG(2)
                          | CAN_CTRL1_RJW(1)  
                          | CAN_CTRL1_PSEG1(3) 
@@ -302,13 +302,13 @@ static void LPLD_CAN_SetBaudRate(CAN_Type *canx,uint32 baud)
 
 /*
  * LPLD_CAN_Deinit
- * CAN·´³õÊ¼»¯º¯Êı£¬ÔÚ¸Ãº¯ÊıÖĞ½ûÖ¹CANxµÄ×ÜÏßÊ±ÖÓ£¬½ûÖ¹Ä£¿éÖĞ¶Ï£¬¹Ø±ÕCANÄ£¿é
+ * CANååˆå§‹åŒ–å‡½æ•°ï¼Œåœ¨è¯¥å‡½æ•°ä¸­ç¦æ­¢CANxçš„æ€»çº¿æ—¶é’Ÿï¼Œç¦æ­¢æ¨¡å—ä¸­æ–­ï¼Œå…³é—­CANæ¨¡å—
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    CAN_InitTypeDef--can_init_structure
- *                     ¾ßÌå¶¨Òå¼ûHW_CAN.h can_init_structure
- * Êä³ö:
- *    ÎŞ
+ *                     å…·ä½“å®šä¹‰è§HW_CAN.h can_init_structure
+ * è¾“å‡º:
+ *    æ— 
  *
 */
 void LPLD_CAN_Deinit(CAN_InitTypeDef can_init_structure)
@@ -325,20 +325,20 @@ void LPLD_CAN_Deinit(CAN_InitTypeDef can_init_structure)
     SIM->SCGC3 &= ~SIM_SCGC3_FLEXCAN1_MASK;
     enable_irq(CAN1_ORed_Message_buffer_IRQn);
   }
-  //½ûÖ¹CANÍâÉè
+  //ç¦æ­¢CANå¤–è®¾
   canx->MCR |= CAN_MCR_MDIS_MASK;
   canx->MCR |= CAN_MCR_HALT_MASK; 
   canx->MCR |= CAN_MCR_FRZ_MASK;
 }
 /*
  * LPLD_CAN_EnableIrq
- * Ê¹ÄÜCANÄ£¿éÖĞ¶Ï
+ * ä½¿èƒ½CANæ¨¡å—ä¸­æ–­
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    CAN_InitTypeDef--can_init_structure
- *                     ¾ßÌå¶¨Òå¼ûHW_CAN.h can_init_structure
- * Êä³ö:
- *    ÎŞ
+ *                     å…·ä½“å®šä¹‰è§HW_CAN.h can_init_structure
+ * è¾“å‡º:
+ *    æ— 
  *
 */
 void LPLD_CAN_EnableIrq(CAN_InitTypeDef can_init_structure)
@@ -357,13 +357,13 @@ void LPLD_CAN_EnableIrq(CAN_InitTypeDef can_init_structure)
 
 /*
  * LPLD_CAN_DisableIrq
- * ½ûÖ¹CANÄ£¿éÖĞ¶Ï
+ * ç¦æ­¢CANæ¨¡å—ä¸­æ–­
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    CAN_InitTypeDef--can_init_structure
- *                     ¾ßÌå¶¨Òå¼ûHW_CAN.h can_init_structure
- * Êä³ö:
- *    ÎŞ
+ *                     å…·ä½“å®šä¹‰è§HW_CAN.h can_init_structure
+ * è¾“å‡º:
+ *    æ— 
  *
 */
 void LPLD_CAN_DisableIrq(CAN_InitTypeDef can_init_structure)
@@ -383,21 +383,21 @@ void LPLD_CAN_DisableIrq(CAN_InitTypeDef can_init_structure)
 /*
  * LPLD_CAN_InitMessageObject
  *
- * ÉèÖÃCAN Message buffer£¨Msg£©¸ñÊ½£¬Í¨¹ıCAN_MSGOBJ_InitTypeDef
- * ½á¹¹Ìå¶ÔCAN Message buffer½øĞĞ³õÊ¼»¯¡£
+ * è®¾ç½®CAN Message bufferï¼ˆMsgï¼‰æ ¼å¼ï¼Œé€šè¿‡CAN_MSGOBJ_InitTypeDef
+ * ç»“æ„ä½“å¯¹CAN Message bufferè¿›è¡Œåˆå§‹åŒ–ã€‚
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    CAN_MSGOBJ_InitTypeDef--can_msg_init_structure
- *                            ¾ßÌå¶¨Òå¼ûHW_CAN.h CAN_MSGOBJ_InitTypeDef
+ *                            å…·ä½“å®šä¹‰è§HW_CAN.h CAN_MSGOBJ_InitTypeDef
  *    message_id
- *      ÉèÖÃmessage_id£¬id³¤¶È¸ù¾İCAN_MSGOBJ_InitTypeDefµÄ²ÎÊı¶ø¶¨
- *      idµÄ³¤¶È·ÖÎª11Î»±ê×¼Ö¡ºÍ29Î»À©Õ¹Ö¡Á½ÖÖ
- *      CAN_MSGOBJ_ID_STD ±íÊ¾±ê×¼Ö¡£¬ÈçCAN_MSGOBJ_InitTypeDefÖĞÉèÖÃid³¤¶ÈÎªCAN_MSGOBJ_ID_STD
- *      ´ËÊ±message_id×î³¤Îª11Î»£¬²»ÄÜ³¬¹ı0x0FFF£»
- *      CAN_MSGOBJ_ID_EXT ±íÊ¾À©Õ¹Ö¡£¬ÈçCAN_MSGOBJ_InitTypeDefÖĞÉèÖÃid³¤¶ÈÎªCAN_MSGOBJ_ID_EXT
- *      ´ËÊ±message_id×î³¤Îª29Î»£¬²»ÄÜ³¬¹ı0x1FFFFFFF£»
- * Êä³ö:
- *    ÎŞ
+ *      è®¾ç½®message_idï¼Œidé•¿åº¦æ ¹æ®CAN_MSGOBJ_InitTypeDefçš„å‚æ•°è€Œå®š
+ *      idçš„é•¿åº¦åˆ†ä¸º11ä½æ ‡å‡†å¸§å’Œ29ä½æ‰©å±•å¸§ä¸¤ç§
+ *      CAN_MSGOBJ_ID_STD è¡¨ç¤ºæ ‡å‡†å¸§ï¼Œå¦‚CAN_MSGOBJ_InitTypeDefä¸­è®¾ç½®idé•¿åº¦ä¸ºCAN_MSGOBJ_ID_STD
+ *      æ­¤æ—¶message_idæœ€é•¿ä¸º11ä½ï¼Œä¸èƒ½è¶…è¿‡0x0FFFï¼›
+ *      CAN_MSGOBJ_ID_EXT è¡¨ç¤ºæ‰©å±•å¸§ï¼Œå¦‚CAN_MSGOBJ_InitTypeDefä¸­è®¾ç½®idé•¿åº¦ä¸ºCAN_MSGOBJ_ID_EXT
+ *      æ­¤æ—¶message_idæœ€é•¿ä¸º29ä½ï¼Œä¸èƒ½è¶…è¿‡0x1FFFFFFFï¼›
+ * è¾“å‡º:
+ *    æ— 
  *
  */
 void LPLD_CAN_InitMessageObject(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,uint32 rx_id)
@@ -413,7 +413,7 @@ void LPLD_CAN_InitMessageObject(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,ui
   if(dir == CAN_MSGOBJ_DIR_RX)
   {
     canx_ptr->MB[msg_num_temp].CS = CAN_MB_CS_CODE(CAN_MSGOBJ_RX_INACTIVE); 
-    //ÉèÖÃMsgµÄID
+    //è®¾ç½®Msgçš„ID
     if(id_type == CAN_MSGOBJ_ID_STD)
     {
       id_temp =  CAN_MB_ID_STD(rx_id);
@@ -427,8 +427,8 @@ void LPLD_CAN_InitMessageObject(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,ui
   }
   if(can_msg_init_structure.CAN_MsgInterrupt == TRUE)
   {
-    LPLD_CAN_EnableMsgInterrupt(canx_ptr,msg_num_temp);//Ê¹ÄÜMsgÖĞ¶Ï 
-    //ÉèÖÃMsgÖĞ¶Ï»Øµôº¯Êı
+    LPLD_CAN_EnableMsgInterrupt(canx_ptr,msg_num_temp);//ä½¿èƒ½Msgä¸­æ–­ 
+    //è®¾ç½®Msgä¸­æ–­å›æ‰å‡½æ•°
     if(canx_ptr == CAN0)
     {
       if(isr_func != NULL)
@@ -458,18 +458,18 @@ void LPLD_CAN_InitMessageObject(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,ui
 }
 /*
  * LPLD_CAN_TransmitMessage
- * CAN ·¢ËÍÏûÏ¢º¯Êı
- * ²ÎÊı:
+ * CAN å‘é€æ¶ˆæ¯å‡½æ•°
+ * å‚æ•°:
  *    CAN_MSGOBJ_InitTypeDef--can_msg_init_structure
- *                            ¾ßÌå¶¨Òå¼ûHW_CAN.h CAN_MSGOBJ_InitTypeDef
+ *                            å…·ä½“å®šä¹‰è§HW_CAN.h CAN_MSGOBJ_InitTypeDef
  *    CAN_MessageFormat_TypeDef--*can_rx_msg
- *                            ¾ßÌå¶¨Òå¼ûHW_CAN.h CAN_MessageFormat_TypeDef
- *    ¸Ã½á¹¹ÌåÓÃÓÚ¶¨ÒåCANµÄÏûÏ¢¸ñÊ½£¬µ±CAN·¢ËÍÏûÏ¢Ê±£¬»á´ÓCAN_MessageFormat_TypeDef¶¨ÒåµÄ½á¹¹Ìå¶ÔÏóÖĞ
- *    ÌáÈ¡ĞÅÏ¢²¢´æ´¢µ½MSGÖĞ£¬MSG»á½«ÏûÏ¢·¢ËÍµ½CAN×ÜÏßÉÏ¡£
- *    ¸Ã½á¹¹ÌåÖĞµÄÖ÷Òª±äÁ¿Îª ÏûÏ¢ID¡¢Ê±¼ä´Á¡¢Êı¾İ³¤¶È¡¢´æ´¢Êı¾İµÄ»º³åÇø
- * Êä³ö:
- *    1 ·¢ËÍÍê±Ï
- *    0 ·¢ËÍÊ§°Ü
+ *                            å…·ä½“å®šä¹‰è§HW_CAN.h CAN_MessageFormat_TypeDef
+ *    è¯¥ç»“æ„ä½“ç”¨äºå®šä¹‰CANçš„æ¶ˆæ¯æ ¼å¼ï¼Œå½“CANå‘é€æ¶ˆæ¯æ—¶ï¼Œä¼šä»CAN_MessageFormat_TypeDefå®šä¹‰çš„ç»“æ„ä½“å¯¹è±¡ä¸­
+ *    æå–ä¿¡æ¯å¹¶å­˜å‚¨åˆ°MSGä¸­ï¼ŒMSGä¼šå°†æ¶ˆæ¯å‘é€åˆ°CANæ€»çº¿ä¸Šã€‚
+ *    è¯¥ç»“æ„ä½“ä¸­çš„ä¸»è¦å˜é‡ä¸º æ¶ˆæ¯IDã€æ—¶é—´æˆ³ã€æ•°æ®é•¿åº¦ã€å­˜å‚¨æ•°æ®çš„ç¼“å†²åŒº
+ * è¾“å‡º:
+ *    1 å‘é€å®Œæ¯•
+ *    0 å‘é€å¤±è´¥
  *
  */
 uint8 LPLD_CAN_TransmitMessage(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,
@@ -491,12 +491,12 @@ uint8 LPLD_CAN_TransmitMessage(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,
   
   if(msg_num_temp >= MSG_MAX_NO || in_data_length > 8)
   {
-    return 0; // ³¬³öãĞÖµ
+    return 0; // è¶…å‡ºé˜ˆå€¼
   }
-  //Èç¹û·¢ËÍMsg»º³åÇøÖĞµÄCODE²»µÈÓÚCAN_MSGOBJ_TX_ONCE
+  //å¦‚æœå‘é€Msgç¼“å†²åŒºä¸­çš„CODEä¸ç­‰äºCAN_MSGOBJ_TX_ONCE
   if( LPLD_CAN_GetMsgCode(canx_ptr,msg_num_temp) != CAN_MSGOBJ_TX_ONCE)
   {
-    //ÉèÖÃMsgµÄID
+    //è®¾ç½®Msgçš„ID
     if(id_type == CAN_MSGOBJ_ID_STD)
     {
       id_temp =  CAN_MB_ID_STD(message_id);
@@ -505,16 +505,16 @@ uint8 LPLD_CAN_TransmitMessage(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,
     {
       id_temp =  CAN_MB_ID_EXT(message_id);
     }
-    //Ïò·¢ËÍMsg»º³åÇøÖĞµÄCODEÖĞĞ´INACTIVEÃüÁî
+    //å‘å‘é€Msgç¼“å†²åŒºä¸­çš„CODEä¸­å†™INACTIVEå‘½ä»¤
     canx_ptr->MB[msg_num_temp].CS = CAN_MB_CS_CODE(CAN_MSGOBJ_TX_INACTIVE) | cs_temp;
     canx_ptr->MB[msg_num_temp].ID = CAN_MB_ID_PRIO(priority) | id_temp;
-    //ÏòMsgÖĞĞ´ÈëÒª·¢ËÍµÄÊı¾İ
+    //å‘Msgä¸­å†™å…¥è¦å‘é€çš„æ•°æ®
     LPLD_CAN_WriteData(canx_ptr,msg_num_temp,in_data_length,in_data_buffer);
-    //Ïò·¢ËÍMsg»º³åÇøÖĞµÄCODEÖĞĞ´TX_ONCEÃüÁî£¬µÈ´ı·¢ËÍÍê³É
+    //å‘å‘é€Msgç¼“å†²åŒºä¸­çš„CODEä¸­å†™TX_ONCEå‘½ä»¤ï¼Œç­‰å¾…å‘é€å®Œæˆ
     canx_ptr->MB[msg_num_temp].CS = (canx_ptr->MB[msg_num_temp].CS & (~CAN_MB_CS_CODE_MASK)) | 
                                      CAN_MB_CS_CODE(CAN_MSGOBJ_TX_ONCE)|
                                      CAN_MB_CS_DLC(in_data_length);
-    //Èç¹û¿ªÆô·¢ËÍÖĞ¶Ï£¬·¢ËÍÍê±Ïºó»á´¥·¢ÖĞ¶Ï
+    //å¦‚æœå¼€å¯å‘é€ä¸­æ–­ï¼Œå‘é€å®Œæ¯•åä¼šè§¦å‘ä¸­æ–­
     request = 1;
   }
   else
@@ -526,18 +526,18 @@ uint8 LPLD_CAN_TransmitMessage(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,
 
 /*
  * LPLD_CAN_ReceivedMessage
- * CAN ´¦Àí½ÓÊÕº¯Êı£¬´Ëº¯ÊıÒ»°ãÔÚCANÖĞ¶Ïº¯ÊıÖĞµ÷ÓÃ
- * ²ÎÊı:
+ * CAN å¤„ç†æ¥æ”¶å‡½æ•°ï¼Œæ­¤å‡½æ•°ä¸€èˆ¬åœ¨CANä¸­æ–­å‡½æ•°ä¸­è°ƒç”¨
+ * å‚æ•°:
  *    CAN_MSGOBJ_InitTypeDef--can_msg_init_structure
- *                            ¾ßÌå¶¨Òå¼ûHW_CAN.h CAN_MSGOBJ_InitTypeDef
+ *                            å…·ä½“å®šä¹‰è§HW_CAN.h CAN_MSGOBJ_InitTypeDef
  *    CAN_MessageFormat_TypeDef--*can_rx_msg
- *                            ¾ßÌå¶¨Òå¼ûHW_CAN.h CAN_MessageFormat_TypeDef
- *    ¸Ã½á¹¹ÌåÓÃÓÚ¶¨ÒåCANµÄÏûÏ¢¸ñÊ½£¬µ±CAN³É¹¦½ÓÊÕÏûÏ¢ÒÔºó£¬»á´ÓMSGÖĞ½«ĞÅÏ¢´æ´¢µ½
- *    CAN_MessageFormat_TypeDef¶¨ÒåµÄ½á¹¹Ìå¶ÔÏóÖĞ¡£
- *    ¸Ã½á¹¹ÌåÖĞµÄÖ÷Òª±äÁ¿Îª ÏûÏ¢ID¡¢Ê±¼ä´Á¡¢Êı¾İ³¤¶È¡¢´æ´¢Êı¾İµÄ»º³åÇø
+ *                            å…·ä½“å®šä¹‰è§HW_CAN.h CAN_MessageFormat_TypeDef
+ *    è¯¥ç»“æ„ä½“ç”¨äºå®šä¹‰CANçš„æ¶ˆæ¯æ ¼å¼ï¼Œå½“CANæˆåŠŸæ¥æ”¶æ¶ˆæ¯ä»¥åï¼Œä¼šä»MSGä¸­å°†ä¿¡æ¯å­˜å‚¨åˆ°
+ *    CAN_MessageFormat_TypeDefå®šä¹‰çš„ç»“æ„ä½“å¯¹è±¡ä¸­ã€‚
+ *    è¯¥ç»“æ„ä½“ä¸­çš„ä¸»è¦å˜é‡ä¸º æ¶ˆæ¯IDã€æ—¶é—´æˆ³ã€æ•°æ®é•¿åº¦ã€å­˜å‚¨æ•°æ®çš„ç¼“å†²åŒº
  *    
- *  Êä³ö£º
- *    ÎŞ
+ *  è¾“å‡ºï¼š
+ *    æ— 
  */
 void LPLD_CAN_ReceivedMessage(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,\
                               CAN_MessageFormat_TypeDef *can_rx_msg)
@@ -550,65 +550,65 @@ void LPLD_CAN_ReceivedMessage(CAN_MSGOBJ_InitTypeDef can_msg_init_structure,\
   uint32 msg_id;
   CAN_Type *canx = can_msg_init_structure.CAN_Canx;
   uint8 msg_num = can_msg_init_structure.CAN_MsgNum;
-  //»ñµÃMsg»º³åÇøÖĞµÄcodeÖµ
+  //è·å¾—Msgç¼“å†²åŒºä¸­çš„codeå€¼
   message_code = LPLD_CAN_GetMsgCode(canx,msg_num);
   
   if ((message_code != CAN_MSGOBJ_RX_BUSY) && 
      (message_code != CAN_MSGOBJ_RX_OVERRUN))
   {
-    //¶ÁÈ¡ID(¿ÉÑ¡)
+    //è¯»å–ID(å¯é€‰)
     msg_id = LPLD_CAN_GetMsgID(canx, msg_num);
    
-    //¶ÁÈ¡Msg»º³åÇø½ÓÊÕÊı¾İµÄ³¤¶È
+    //è¯»å–Msgç¼“å†²åŒºæ¥æ”¶æ•°æ®çš„é•¿åº¦
     data_length    = (uint8_t)LPLD_CAN_GetMsgLength(canx, msg_num);
-    //¶ÁÈ¡Msg»º³åÇø½ÓÊÕÊı¾İ
+    //è¯»å–Msgç¼“å†²åŒºæ¥æ”¶æ•°æ®
     LPLD_CAN_GetData(canx, msg_num,data_length,rx_data);
-    //»ñµÃMsg»º³åÇøÊ±¼ä´Á
+    //è·å¾—Msgç¼“å†²åŒºæ—¶é—´æˆ³
     time_stamp = LPLD_CAN_GetMsgTimeStamp(canx, msg_num);
     
     for(i = data_length; i < 8; i++)
     {
        rx_data[i] = 0;
     }
-    //½«MSGÖĞµÄÏûÏ¢´æ´¢µ½can_rx_msgÖĞ
+    //å°†MSGä¸­çš„æ¶ˆæ¯å­˜å‚¨åˆ°can_rx_msgä¸­
     can_rx_msg->CAN_MsgID = msg_id;
     can_rx_msg->CAN_MsgDataLength = data_length;
     can_rx_msg->CAN_MsgTimeStamp  = time_stamp;
     memcpy(can_rx_msg->CAN_MsgDataBuffer,rx_data,data_length);
      
-    //¶ÁÈ¡×ÔÓÉ¼ÆÊıÆ÷£¬½âËøµ±Ç°Msg»º³åÇø
+    //è¯»å–è‡ªç”±è®¡æ•°å™¨ï¼Œè§£é”å½“å‰Msgç¼“å†²åŒº
     timer = LPLD_CAN_UnlockMsg(canx);
-    //Çå¿ÕMsg»º³åÇøµÄÖĞ¶Ï±êÖ¾Î»
+    //æ¸…ç©ºMsgç¼“å†²åŒºçš„ä¸­æ–­æ ‡å¿—ä½
     LPLD_CAN_Interrupt_ClearPending(canx,msg_num);
-    //ÔÙ´ÎĞ´ÓÊÏäµÄcodeÎªempty×´Ì¬
+    //å†æ¬¡å†™é‚®ç®±çš„codeä¸ºemptyçŠ¶æ€
     LPLD_CAN_SetMsgCode(canx,msg_num,CAN_MSGOBJ_RX_EMPTY);
   }
   else
   {
-    //½ÓÊÕÓÊÏäÒç³ö
+    //æ¥æ”¶é‚®ç®±æº¢å‡º
     LPLD_CAN_Interrupt_ClearPending(canx,msg_num);
-    //¶ÁÈ¡×ÔÓÉ¼ÆÊıÆ÷£¬½âËøµ±Ç°Msg»º³åÇø
+    //è¯»å–è‡ªç”±è®¡æ•°å™¨ï¼Œè§£é”å½“å‰Msgç¼“å†²åŒº
     timer = LPLD_CAN_UnlockMsg(canx);
   }
 }
 
 /*
  * LPLD_CAN_Interrupt_ClearPending
- * Çå³ıMsgµÄÖĞ¶Ï±êÖ¾Î»
- * ²ÎÊı:
+ * æ¸…é™¤Msgçš„ä¸­æ–­æ ‡å¿—ä½
+ * å‚æ•°:
  *    CAN_Type *canx
- *      |___ CAN0 --CAN0ºÅÄ£¿é
- *      |___ CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñÒªÇå³ıÖĞ¶Ï±êÖ¾µÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ *      |___ CAN0 --CAN0å·æ¨¡å—
+ *      |___ CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©è¦æ¸…é™¤ä¸­æ–­æ ‡å¿—çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *   ÎŞ
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *   æ— 
  */
 static void LPLD_CAN_Interrupt_ClearPending(CAN_Type *canx, uint8 msg_num)
 {   
@@ -624,21 +624,21 @@ static void LPLD_CAN_Interrupt_ClearPending(CAN_Type *canx, uint8 msg_num)
 
 /*
  * LPLD_CAN_Interrupt_GetFlag
- * »ñµÃCAN µÄÖĞ¶Ï±êÖ¾Î»
- * ²ÎÊı:
+ * è·å¾—CAN çš„ä¸­æ–­æ ‡å¿—ä½
+ * å‚æ•°:
  *    CAN_Type *canx
- *      |___ CAN0 --CAN0ºÅÄ£¿é
- *      |___ CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñÒª»ñµÃÖĞ¶Ï±êÖ¾µÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ *      |___ CAN0 --CAN0å·æ¨¡å—
+ *      |___ CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©è¦è·å¾—ä¸­æ–­æ ‡å¿—çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *    ·µ»ØĞèÒª Msg»º³åÇøµÄÖĞ¶Ï±êÖ¾Î»
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *    è¿”å›éœ€è¦ Msgç¼“å†²åŒºçš„ä¸­æ–­æ ‡å¿—ä½
  */
 static uint8 LPLD_CAN_Interrupt_GetFlag(CAN_Type *canx, uint8 msg_num)
 {   
@@ -656,13 +656,13 @@ static uint8 LPLD_CAN_Interrupt_GetFlag(CAN_Type *canx, uint8 msg_num)
 
 /*
  * LPLD_CAN_UnlockMsg
- * ¸Ãº¯ÊıÍ¨¹ı¶ÁÈ¡×ÔÓÉ¼ÆÊıÆ÷£¬½âËøMsg
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- * Êä³ö:
- *    16Î»CAN×ÔÓÉ¼ÆÊıÆ÷¼ÇÂ¼µÄÊ±¼ä´Á
+ * è¯¥å‡½æ•°é€šè¿‡è¯»å–è‡ªç”±è®¡æ•°å™¨ï¼Œè§£é”Msg
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ * è¾“å‡º:
+ *    16ä½CANè‡ªç”±è®¡æ•°å™¨è®°å½•çš„æ—¶é—´æˆ³
  */
 static uint16 LPLD_CAN_UnlockMsg(CAN_Type *canx)
 {
@@ -671,22 +671,22 @@ static uint16 LPLD_CAN_UnlockMsg(CAN_Type *canx)
 
 /*
  * LPLD_CAN_EnableMsgInterrupt
- * ¸Ãº¯ÊıÓÃÓÚÊ¹ÄÜMsgÖĞ¶Ï
+ * è¯¥å‡½æ•°ç”¨äºä½¿èƒ½Msgä¸­æ–­
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒªÊ¹ÄÜÖĞ¶ÏµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦ä½¿èƒ½ä¸­æ–­çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *    ÎŞ
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *    æ— 
  *
  */
 static void LPLD_CAN_EnableMsgInterrupt(CAN_Type *canx, uint8 msg_num)
@@ -703,23 +703,23 @@ static void LPLD_CAN_EnableMsgInterrupt(CAN_Type *canx, uint8 msg_num)
 
 /*
  * LPLD_CAN_SetMsgCode
- * ¸Ãº¯ÊıÓÃÓÚÉèÖÃMsgµÄcodeÖµ
+ * è¯¥å‡½æ•°ç”¨äºè®¾ç½®Msgçš„codeå€¼
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒªÉèÖÃCODEµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦è®¾ç½®CODEçš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- *    code--ĞèÒªÉèÖÃµÄcodeÖµ
- * Êä³ö:
- *    ÎŞ
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ *    code--éœ€è¦è®¾ç½®çš„codeå€¼
+ * è¾“å‡º:
+ *    æ— 
  *
  */
 static void LPLD_CAN_SetMsgCode(CAN_Type *canx, uint8 msg_num, uint8 code)
@@ -730,22 +730,22 @@ static void LPLD_CAN_SetMsgCode(CAN_Type *canx, uint8 msg_num, uint8 code)
 
 /*
  * LPLD_CAN_GetMsgCode
- * ¸Ãº¯ÊıÓÃÓÚ»ñµÃMsg»º³åÇøµÄcodeÖµ
+ * è¯¥å‡½æ•°ç”¨äºè·å¾—Msgç¼“å†²åŒºçš„codeå€¼
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒª»ñµÃCODEµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦è·å¾—CODEçš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *     ·µ»ØÏàÓ¦Msg»º³åÇøµÄcode
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *     è¿”å›ç›¸åº”Msgç¼“å†²åŒºçš„code
  *
  */
 static uint32 LPLD_CAN_GetMsgCode(CAN_Type *canx, uint8 msg_num)
@@ -754,22 +754,22 @@ static uint32 LPLD_CAN_GetMsgCode(CAN_Type *canx, uint8 msg_num)
 }
 /*
  * LPLD_CAN_GetMsgTimeStamp
- * ¸Ãº¯ÊıÓÃÓÚ»ñµÃMsg»º³åÇøµÄÊ±¼ä´Á
+ * è¯¥å‡½æ•°ç”¨äºè·å¾—Msgç¼“å†²åŒºçš„æ—¶é—´æˆ³
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒª»ñµÃÊ±¼ä´ÁµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦è·å¾—æ—¶é—´æˆ³çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *     ·µ»ØÏàÓ¦Msg»º³åÇøµÄÊ±¼ä´Á
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *     è¿”å›ç›¸åº”Msgç¼“å†²åŒºçš„æ—¶é—´æˆ³
  *
  */
 static uint16 LPLD_CAN_GetMsgTimeStamp(CAN_Type *canx, uint8 msg_num)
@@ -778,22 +778,22 @@ static uint16 LPLD_CAN_GetMsgTimeStamp(CAN_Type *canx, uint8 msg_num)
 }
 /*
  * LPLD_CAN_GetMsgID
- * ¸Ãº¯ÊıÓÃÓÚ»ñµÃMsg»º³åÇøµÄIDÖµ
+ * è¯¥å‡½æ•°ç”¨äºè·å¾—Msgç¼“å†²åŒºçš„IDå€¼
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒª»ñµÃIDµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦è·å¾—IDçš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *     ·µ»ØÏàÓ¦Msg»º³åÇøµÄID
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *     è¿”å›ç›¸åº”Msgç¼“å†²åŒºçš„ID
  *
  */
 static uint32 LPLD_CAN_GetMsgID(CAN_Type *canx, uint8 msg_num)
@@ -811,22 +811,22 @@ static uint32 LPLD_CAN_GetMsgID(CAN_Type *canx, uint8 msg_num)
 }
 /*
  * LPLD_CAN_GetMsgLength
- * ¸Ãº¯ÊıÓÃÓÚ»ñµÃMsg»º³åÇøµÄÊı¾İ³¤¶È
+ * è¯¥å‡½æ•°ç”¨äºè·å¾—Msgç¼“å†²åŒºçš„æ•°æ®é•¿åº¦
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒª»ñµÃÊı¾İ³¤¶ÈµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦è·å¾—æ•°æ®é•¿åº¦çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *     Êı¾İµÄ³¤¶È
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *     æ•°æ®çš„é•¿åº¦
  *
  */
 static uint8 LPLD_CAN_GetMsgLength(CAN_Type *canx, uint8 msg_num)
@@ -836,26 +836,26 @@ static uint8 LPLD_CAN_GetMsgLength(CAN_Type *canx, uint8 msg_num)
 
 /*
  * LPLD_CAN_GetData
- * ¸Ãº¯ÊıÓÃÓÚ»ñµÃMsg»º³åÇøÖĞµÄÊı¾İ
+ * è¯¥å‡½æ•°ç”¨äºè·å¾—Msgç¼“å†²åŒºä¸­çš„æ•°æ®
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒª»ñµÃÊı¾İµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦è·å¾—æ•°æ®çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
  *    in_length
- *      |__»ñµÃÊı¾İ³¤¶È
+ *      |__è·å¾—æ•°æ®é•¿åº¦
  *    *in_buffer
- *      |__»ñµÃÊı¾İµÄ»º³åÇø
- * Êä³ö:
- *    ÎŞ 
+ *      |__è·å¾—æ•°æ®çš„ç¼“å†²åŒº
+ * è¾“å‡º:
+ *    æ—  
  */
 static void LPLD_CAN_GetData(
     CAN_Type *canx, 
@@ -890,26 +890,26 @@ static void LPLD_CAN_GetData(
 
 /*
  * LPLD_CAN_WriteData
- * ¸Ãº¯ÊıÓÃÓÚÏòMsg»º³åÇøÖĞµÄĞ´Êı¾İ
+ * è¯¥å‡½æ•°ç”¨äºå‘Msgç¼“å†²åŒºä¸­çš„å†™æ•°æ®
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒªĞ´Êı¾İµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦å†™æ•°æ®çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
  *    in_length
- *      |__Ğ´ÈëÊı¾İ³¤¶È
+ *      |__å†™å…¥æ•°æ®é•¿åº¦
  *    *in_buffer
- *      |__Ğ´ÈëÊı¾İµÄ»º³åÇø
- * Êä³ö:
- *    ÎŞ 
+ *      |__å†™å…¥æ•°æ®çš„ç¼“å†²åŒº
+ * è¾“å‡º:
+ *    æ—  
  */
 static void LPLD_CAN_WriteData(
     CAN_Type *canx, 
@@ -919,8 +919,8 @@ static void LPLD_CAN_WriteData(
 {
   int i;
   uint32 word[2] = {0};  
-  uint8  word_num   = (in_length - 1)/ 4; //»ñµÃ Msg µÄWord Öµ
-  uint8  rest_bytes = (in_length - 1)% 4; //»ñµÃÊ£Óà×Ö½ÚµÄÖµ
+  uint8  word_num   = (in_length - 1)/ 4; //è·å¾— Msg çš„Word å€¼
+  uint8  rest_bytes = (in_length - 1)% 4; //è·å¾—å‰©ä½™å­—èŠ‚çš„å€¼
 
   if( msg_num >= MSG_MAX_NO || in_length >8)
   {
@@ -951,22 +951,22 @@ static void LPLD_CAN_WriteData(
 
 /*
  * LPLD_CAN_Transmit_Interrupt
- * ¸Ãº¯ÊıÓÃÓÚ´¦ÀíMsg»º³åÇø·¢ËÍÖĞ¶Ïº¯Êı
+ * è¯¥å‡½æ•°ç”¨äºå¤„ç†Msgç¼“å†²åŒºå‘é€ä¸­æ–­å‡½æ•°
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒª´¦Àí·¢ËÍÖĞ¶ÏµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦å¤„ç†å‘é€ä¸­æ–­çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *    ÎŞ 
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *    æ—  
  */
 void LPLD_CAN_Transmit_Interrupt(CAN_Type *canx, uint8 msg_num)
 {
@@ -996,28 +996,28 @@ void LPLD_CAN_Transmit_Interrupt(CAN_Type *canx, uint8 msg_num)
 
 /*
  * LPLD_CAN_Receive_Interrupt
- * ¸Ãº¯ÊıÓÃÓÚ´¦ÀíMsg»º³åÇø½ÓÊÕÖĞ¶Ïº¯Êı
+ * è¯¥å‡½æ•°ç”¨äºå¤„ç†Msgç¼“å†²åŒºæ¥æ”¶ä¸­æ–­å‡½æ•°
  * 
- * ²ÎÊı:
- *    canx--ÉèÖÃCAN×ÜÏßÍ¨µÀ
- *      |__CAN0 --CAN0ºÅÄ£¿é
- *      |__CAN1 --CAN1ºÅÄ£¿é
- *    msg_num Ñ¡ÔñĞèÒª´¦Àí½ÓÊÕÖĞ¶ÏµÄMsg»º³åÇø
- *      |___ MSG_NUM_0 --Msg»º³åÇø0
- *      |___ MSG_NUM_1 --Msg»º³åÇø1
- *      |___ MSG_NUM_2 --Msg»º³åÇø2
- *      |___ MSG_NUM_3 --Msg»º³åÇø3
- *      |___ MSG_NUM_4 --Msg»º³åÇø4
+ * å‚æ•°:
+ *    canx--è®¾ç½®CANæ€»çº¿é€šé“
+ *      |__CAN0 --CAN0å·æ¨¡å—
+ *      |__CAN1 --CAN1å·æ¨¡å—
+ *    msg_num é€‰æ‹©éœ€è¦å¤„ç†æ¥æ”¶ä¸­æ–­çš„Msgç¼“å†²åŒº
+ *      |___ MSG_NUM_0 --Msgç¼“å†²åŒº0
+ *      |___ MSG_NUM_1 --Msgç¼“å†²åŒº1
+ *      |___ MSG_NUM_2 --Msgç¼“å†²åŒº2
+ *      |___ MSG_NUM_3 --Msgç¼“å†²åŒº3
+ *      |___ MSG_NUM_4 --Msgç¼“å†²åŒº4
  *      ...... 
- *      |___ MSG_NUM_15 --Msg»º³åÇø15
- * Êä³ö:
- *    ÎŞ 
+ *      |___ MSG_NUM_15 --Msgç¼“å†²åŒº15
+ * è¾“å‡º:
+ *    æ—  
  */
 static void LPLD_CAN_Receive_Interrupt(CAN_Type *canx, uint8 msg_num)
 {
   if(LPLD_CAN_Interrupt_GetFlag(canx,msg_num) == 1)
   {
-    //Èç¹û¶¨ÒåÁËÖĞ¶Ï»Øµôº¯Êı£¬ÔÚ´ËÖ´ĞĞ
+    //å¦‚æœå®šä¹‰äº†ä¸­æ–­å›æ‰å‡½æ•°ï¼Œåœ¨æ­¤æ‰§è¡Œ
     if(canx == CAN0)
     {
       if( CAN0_ISR[msg_num] != NULL)
@@ -1041,12 +1041,12 @@ static void LPLD_CAN_Receive_Interrupt(CAN_Type *canx, uint8 msg_num)
 }
 /*
  * LPLD_CAN_MB_ISR
- * CANxÖĞ¶Ï´¦Àíº¯Êı
+ * CANxä¸­æ–­å¤„ç†å‡½æ•°
  * 
- * ²ÎÊı:
- *    ÎŞ
- * Êä³ö:
- *    ÎŞ 
+ * å‚æ•°:
+ *    æ— 
+ * è¾“å‡º:
+ *    æ—  
  */
 static void LPLD_CAN_MB_ISR(void)
 {
@@ -1070,21 +1070,21 @@ static void LPLD_CAN_MB_ISR(void)
   }
 }
 /*
- * CAN0ÖĞ¶Ï´¦Àíº¯Êı
- * ÓëÆô¶¯ÎÄ¼şstartup_K60.sÖĞµÄÖĞ¶ÏÏòÁ¿±í¹ØÁª
- * ÓÃ»§ÎŞĞèĞŞ¸Ä£¬³ÌĞò×Ô¶¯½øÈë¶ÔÓ¦Í¨µÀÖĞ¶Ïº¯Êı
+ * CAN0ä¸­æ–­å¤„ç†å‡½æ•°
+ * ä¸å¯åŠ¨æ–‡ä»¶startup_K60.sä¸­çš„ä¸­æ–­å‘é‡è¡¨å…³è”
+ * ç”¨æˆ·æ— éœ€ä¿®æ”¹ï¼Œç¨‹åºè‡ªåŠ¨è¿›å…¥å¯¹åº”é€šé“ä¸­æ–­å‡½æ•°
  */
 void CAN0_MESS_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖĞ¶Ï·şÎñ×Óº¯Êı
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   LPLD_CAN_MB_ISR();
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖĞ¶Ï·şÎñ×Óº¯Êı
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }      
 //29:  CAM 0 OR'ed Message buffer (0-15)
@@ -1117,21 +1117,21 @@ void CAN0_IMEU_IRQHandler(void){}      //43:  CAM 0 Individual Matching Elements
 void CAN0_LR_IRQHandler(void){}        //44:  CAM 0 Lost receive
 
 /*
- * CAN1ÖĞ¶Ï´¦Àíº¯Êı
- * ÓëÆô¶¯ÎÄ¼şstartup_K60.sÖĞµÄÖĞ¶ÏÏòÁ¿±í¹ØÁª
- * ÓÃ»§ÎŞĞèĞŞ¸Ä£¬³ÌĞò×Ô¶¯½øÈë¶ÔÓ¦Í¨µÀÖĞ¶Ïº¯Êı
+ * CAN1ä¸­æ–­å¤„ç†å‡½æ•°
+ * ä¸å¯åŠ¨æ–‡ä»¶startup_K60.sä¸­çš„ä¸­æ–­å‘é‡è¡¨å…³è”
+ * ç”¨æˆ·æ— éœ€ä¿®æ”¹ï¼Œç¨‹åºè‡ªåŠ¨è¿›å…¥å¯¹åº”é€šé“ä¸­æ–­å‡½æ•°
  */
 void CAN1_MESS_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖĞ¶Ï·şÎñ×Óº¯Êı
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   LPLD_CAN_MB_ISR();
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖĞ¶Ï·şÎñ×Óº¯Êı
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }
 //37:  CAM 1 OR'ed Message buffer (0-15)

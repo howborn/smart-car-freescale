@@ -1,12 +1,12 @@
 /**
- * --------------»ùÓÚ"À­ÆÕÀ¼µÂK60µ×²ã¿â"µÄ¹¤³Ì£¨Smart_Car£©-----------------
+ * --------------åŸºäº"æ‹‰æ™®å…°å¾·K60åº•å±‚åº“"çš„å·¥ç¨‹ï¼ˆSmart_Carï¼‰-----------------
  * @file Global.h
  * @version 0.0
  * @date 2015-2-7
- * @brief ¹ØÓÚ¸Ã¹¤³ÌµÄÃèÊö
+ * @brief å…³äºè¯¥å·¥ç¨‹çš„æè¿°
  *
- * °æÈ¨ËùÓĞ:±±»ªº½Ìì¹¤ÒµÑ§Ôº µÚÊ®½ì·ÉË¼¿¨¶û  ÉãÏñÍ·2¶Ó 
- * Ó²¼şÆ½Ì¨:  MK60FX512
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—åèˆªå¤©å·¥ä¸šå­¦é™¢ ç¬¬åå±Šé£æ€å¡å°”  æ‘„åƒå¤´2é˜Ÿ 
+ * ç¡¬ä»¶å¹³å°:  MK60FX512
  * 
  */
 #ifndef __GLOBAL_H__
@@ -18,12 +18,12 @@
 #define BUZZ_ON         LPLD_GPIO_Output_b(PTB,18,1)
 #define BUZZ_OFF        LPLD_GPIO_Output_b(PTB,18,0) 
 
-#define H              188                             /* Í¼Ïñ¿í¶È */
-#define V              120                             /* Í¼Ïñ¸ß¶È */
-#define Start_Row      23                             //Í¼Ïñ´¦Àí¿ªÊ¼ÁĞ
-#define End_Row        183                            //Í¼Ïñ´¦Àí½áÊøÁĞ
-#define Start_Column   0                              //Í¼Ïñ´¦Àí¿ªÊ¼ĞĞ
-#define End_Column     120                             //Í¼Ïñ´¦Àí½áÊøĞĞ
+#define H              188                             /* å›¾åƒå®½åº¦ */
+#define V              120                             /* å›¾åƒé«˜åº¦ */
+#define Start_Row      23                             //å›¾åƒå¤„ç†å¼€å§‹åˆ—
+#define End_Row        183                            //å›¾åƒå¤„ç†ç»“æŸåˆ—
+#define Start_Column   0                              //å›¾åƒå¤„ç†å¼€å§‹è¡Œ
+#define End_Column     120                             //å›¾åƒå¤„ç†ç»“æŸè¡Œ
 
 #define BUFF_SIZE   512*45
 extern uint8 buff[BUFF_SIZE];
@@ -35,14 +35,14 @@ extern uint8 Flag_DispPhoto;
 extern uint8 Stop_Flag;
 extern uint8 printf_flag;
 extern uint8 frame;
-extern int16 D_Pwm_Center;                                //¶æ»ú²ÎÊıÒÑĞ£Õı
+extern int16 D_Pwm_Center;                                //èˆµæœºå‚æ•°å·²æ ¡æ­£
 extern int16 D_Kp_a;
 extern int16 D_Kp_b;
 extern int16 D_Kp;
 extern int16 D_Kd;
 extern int32 D_PWM;
 
-extern int16 S_L_Kp;                                        //·Å´ó10±¶
+extern int16 S_L_Kp;                                        //æ”¾å¤§10å€
 extern int16 S_L_Ki;
 extern int16 S_L_Kd;
 extern int16 S_R_Kp;                                    
@@ -57,14 +57,14 @@ extern int16 Get_R_Speed;
 
 extern int16 Speed;
 
-extern int16 Straight_High_Speed;            //Ö±µÀ×î¸ßËÙ¶È
-extern int16 Straight_Low_Speed;             //Ö±µÀ×îµÍËÙ¶È
+extern int16 Straight_High_Speed;            //ç›´é“æœ€é«˜é€Ÿåº¦
+extern int16 Straight_Low_Speed;             //ç›´é“æœ€ä½é€Ÿåº¦
 
-extern int16 S_C_High_Speed;                 //Ö±µÀÈëÍä×î¸ßËÙ¶È
-extern int16 S_C_Low_Speed;                  //Ö±µÀÈëÍä×îµÍËÙ¶È
+extern int16 S_C_High_Speed;                 //ç›´é“å…¥å¼¯æœ€é«˜é€Ÿåº¦
+extern int16 S_C_Low_Speed;                  //ç›´é“å…¥å¼¯æœ€ä½é€Ÿåº¦
 
-extern int16 Curve_High_Speed;                //ÍäµÀ×î¸ßËÙ¶È
-extern int16 Curve_Low_Speed;                 //ÍäµÀ×îµÍËÙ¶È
+extern int16 Curve_High_Speed;                //å¼¯é“æœ€é«˜é€Ÿåº¦
+extern int16 Curve_Low_Speed;                 //å¼¯é“æœ€ä½é€Ÿåº¦
 
 
 extern int16 S_a;
@@ -73,9 +73,9 @@ extern int16 S_b;
 extern int16 Set_L_Speed;
 extern int16 Set_R_Speed;
 
-extern uint16 Send_Data[4];                                 //¼àÊÓÊı¾İ
+extern uint16 Send_Data[4];                                 //ç›‘è§†æ•°æ®
 
-extern int16 Line_Array[End_Column-Start_Column][3];        //´æ´¢¸÷ĞĞ±ßÏßºÍÖĞÏß-->¸ñÊ½£ºLine_Array[][0]--×ó±ßÏß     Line_Array[][1]--ÖĞÏß   Line_Array[][2]--ÓÒ±ßÏß
+extern int16 Line_Array[End_Column-Start_Column][3];        //å­˜å‚¨å„è¡Œè¾¹çº¿å’Œä¸­çº¿-->æ ¼å¼ï¼šLine_Array[][0]--å·¦è¾¹çº¿     Line_Array[][1]--ä¸­çº¿   Line_Array[][2]--å³è¾¹çº¿
 extern int16 Center_Line;
 extern int16 Active_Lines;
 extern int16 Str_Cur_Offset; 

@@ -1,6 +1,6 @@
 /**
  * --------------基于"拉普兰德K60底层库"的工程（Smart_Car）-----------------
- * @file Interrupt.h
+ * @file Init.h
  * @version 0.0
  * @date 2015-2-7
  * @brief 关于该工程的描述
@@ -9,12 +9,9 @@
  * 硬件平台:  MK60FX512
  * 
  */
-#ifndef __INTERRUPT_H__
-#define __INTERRUPT_H__
+#ifndef __INIT_H__
+#define __INIT_H__
 
-void VS_isr();
-void HS_isr();
-void Stop_isr();
-void Picture_get();
+void Init();              /* 系统初始化 */
 
 #endif

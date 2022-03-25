@@ -2,43 +2,43 @@
  * @file HW_SDHC.h
  * @version 3.01[By LPLD]
  * @date 2013-10-21
- * @brief SDHCµ×²ãÄ£¿éÏà¹Øº¯Êı
+ * @brief SDHCåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£ 
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚ 
  *
- * °æÈ¨ËµÃ÷:
- *  SDHCÄ£¿éÇı¶¯³ÌĞòÕªÈ¡×Ô·ÉË¼¿¨¶ûMQXµ×²ãÇı¶¯£¬²¿·Ö¹¦ÄÜÓÉÀ­ÆÕÀ¼µÂĞŞ¸Ä¡£
- *  HW_SDHC.h¼°HW_SDHC.cÄÚµÄ´úÂë°æÈ¨¹é·ÉË¼¿¨¶û¹«Ë¾ÏíÓĞ¡£
+ * ç‰ˆæƒè¯´æ˜:
+ *  SDHCæ¨¡å—é©±åŠ¨ç¨‹åºæ‘˜å–è‡ªé£æ€å¡å°”MQXåº•å±‚é©±åŠ¨ï¼Œéƒ¨åˆ†åŠŸèƒ½ç”±æ‹‰æ™®å…°å¾·ä¿®æ”¹ã€‚
+ *  HW_SDHC.håŠHW_SDHC.cå†…çš„ä»£ç ç‰ˆæƒå½’é£æ€å¡å°”å…¬å¸äº«æœ‰ã€‚
  */
 #ifndef __HW_SDHC_H__
 #define __HW_SDHC_H__
 
 #define SDHC_CLOCK      g_core_clock
 
-//SD¿¨³õÊ¼Êı¾İ´«ÊäĞè¹¤×÷ÔÚµÍÓÚ400 kb£¯sµÄÆµÂÊ
-#define     SDHC_INIT_BANDRATE      300000                  //Æô¶¯Ê±µÄ²¨ÌØÂÊ
+//SDå¡åˆå§‹æ•°æ®ä¼ è¾“éœ€å·¥ä½œåœ¨ä½äº400 kbï¼sçš„é¢‘ç‡
+#define     SDHC_INIT_BANDRATE      300000                  //å¯åŠ¨æ—¶çš„æ³¢ç‰¹ç‡
 
-#define     SDHC_BANDRATE           (30*1000*1000)          //Õı³£¹¤×÷Ê±µÄ²¨ÌØÂÊ
+#define     SDHC_BANDRATE           (30*1000*1000)          //æ­£å¸¸å·¥ä½œæ—¶çš„æ³¢ç‰¹ç‡
 
-#define     SDHC_BUS_WIDTH          ESDHC_BUS_WIDTH_4BIT    //´ø¿í£¬Ä¿Ç°´úÂë½öÖ§³Ö 1bit ºÍ 4bit
+#define     SDHC_BUS_WIDTH          ESDHC_BUS_WIDTH_4BIT    //å¸¦å®½ï¼Œç›®å‰ä»£ç ä»…æ”¯æŒ 1bit å’Œ 4bit
 
 
-#define     SDCARD_BLOCK_SIZE       512                     //SD¿¨¿é´óĞ¡
+#define     SDCARD_BLOCK_SIZE       512                     //SDå¡å—å¤§å°
 
-#define     SEND_OCR_TIME           100                     //·¢ËÍ CMD55 + ACMD41 ÃüÁîµÄ´ÎÊı
+#define     SEND_OCR_TIME           100                     //å‘é€ CMD55 + ACMD41 å‘½ä»¤çš„æ¬¡æ•°
 
 
 /* Error code returned by I/O functions */
@@ -55,37 +55,37 @@ typedef enum
 } ESDHC_IOCTL_CMD_e;
 
 
-/* ÃüÁîÂëÓÃÓÚ disk_ioctrl º¯Êı */
-/* ESDHC ´íÎóÂë */
+/* å‘½ä»¤ç ç”¨äº disk_ioctrl å‡½æ•° */
+/* ESDHC é”™è¯¯ç  */
 typedef enum
 {
     ESDHC_IOCTL_OK,             //OK
-    ESDHC_INIT_ERR,             //³õÊ¼»¯Ê§°Ü
-    ESDHC_CMD_ERR,              //·¢ËÍÃüÁî³ö´í
-    ESDHC_CMD_TIMEOUT,          //·¢ËÍÃüÁî³¬Ê±
-    ESDHC_CMD_INVALID,          //ÎŞĞ§ÃüÁî
+    ESDHC_INIT_ERR,             //åˆå§‹åŒ–å¤±è´¥
+    ESDHC_CMD_ERR,              //å‘é€å‘½ä»¤å‡ºé”™
+    ESDHC_CMD_TIMEOUT,          //å‘é€å‘½ä»¤è¶…æ—¶
+    ESDHC_CMD_INVALID,          //æ— æ•ˆå‘½ä»¤
 
-    ESDHC_PARAM_INVALID,        //²ÎÊıÎŞĞ§
-    ESDHC_BUS_WIDTH_INVALID,    //×ÜÏß¿í¶ÈÎŞĞ§
+    ESDHC_PARAM_INVALID,        //å‚æ•°æ— æ•ˆ
+    ESDHC_BUS_WIDTH_INVALID,    //æ€»çº¿å®½åº¦æ— æ•ˆ
 
-    ESDHC_BUSY,                 //Éè±¸Ã¦
+    ESDHC_BUSY,                 //è®¾å¤‡å¿™
 } ESDHC_IOCTL_ERR_e;
 
 
-/* ESDHC ×ÜÏß¿í¶È */
+/* ESDHC æ€»çº¿å®½åº¦ */
 typedef enum
 {
-    //ÖµÊÇ¸ù¾İ¼Ä´æÆ÷ À´ÅäÖÃµÄ
+    //å€¼æ˜¯æ ¹æ®å¯„å­˜å™¨ æ¥é…ç½®çš„
     ESDHC_BUS_WIDTH_1BIT    = 0,
     ESDHC_BUS_WIDTH_4BIT    = 1,
     ESDHC_BUS_WIDTH_8BIT    = 2,
 } ESDHC_BUS_WIDTH_e;
 
-/* ESDHC ¿¨ÀàĞÍ */
+/* ESDHC å¡ç±»å‹ */
 typedef enum
 {
-    ESDHC_CARD_NONE                      ,//Ã»ÓĞ¿¨
-    ESDHC_CARD_UNKNOWN                   ,//²»ÄÜÊ¶±ğ¿¨
+    ESDHC_CARD_NONE                      ,//æ²¡æœ‰å¡
+    ESDHC_CARD_UNKNOWN                   ,//ä¸èƒ½è¯†åˆ«å¡
     ESDHC_CARD_SD                        ,//SD
     ESDHC_CARD_SDHC                      ,//SDHC
     ESDHC_CARD_SDIO                      ,//SDIO
@@ -95,7 +95,7 @@ typedef enum
     ESDHC_CARD_CEATA                     ,
 } ESDHC_CARD_e;
 
-/* ESDHC ÃüÁîÀàĞÍ */
+/* ESDHC å‘½ä»¤ç±»å‹ */
 typedef enum
 {
     ESDHC_TYPE_NORMAL                    ,
@@ -104,7 +104,7 @@ typedef enum
     ESDHC_TYPE_ABORT                     ,
 } ESDHC_TYPE_e;
 
-/* ESDHC ÃüÁî */
+/* ESDHC å‘½ä»¤ */
 #define ESDHC_CMD0                           (0)
 #define ESDHC_CMD1                           (1)
 #define ESDHC_CMD2                           (2)
@@ -175,11 +175,11 @@ typedef enum
 
 typedef struct
 {
-    uint8  COMMAND;             //ÃüÁî
-    uint8  TYPE;                //ÃüÁîÀàĞÍ SDHC_XFERTYP_CMDTYP
+    uint8  COMMAND;             //å‘½ä»¤
+    uint8  TYPE;                //å‘½ä»¤ç±»å‹ SDHC_XFERTYP_CMDTYP
     uint8  READ;
-    uint8  RES;                 //±£Áô
-    uint32 ARGUMENT;            //ÃüÁîµÄ²ÎÊı¼Ä´æÆ÷ (SDHC_CMDARG)
+    uint8  RES;                 //ä¿ç•™
+    uint32 ARGUMENT;            //å‘½ä»¤çš„å‚æ•°å¯„å­˜å™¨ (SDHC_CMDARG)
     uint32 BLOCKS;
     uint32 RESPONSE[4];
 
@@ -187,26 +187,26 @@ typedef struct
 
 
 /*!
- *  @brief      SD Card ½á¹¹ĞÅÏ¢
+ *  @brief      SD Card ç»“æ„ä¿¡æ¯
  */
 typedef struct
 {
-    /* Êµ¼Ê¿¨×´Ì¬                                   */
+    /* å®é™…å¡çŠ¶æ€                                   */
     uint32                CARD;
 
-    /* µ×²ãµÄÏìÓ¦³¬Ê± >= 250 ms                     */
+    /* åº•å±‚çš„å“åº”è¶…æ—¶ >= 250 ms                     */
     uint32               SD_TIMEOUT;
 
-    /* ¸ÃÉè±¸µÄ¿éÊıÁ¿                               */
+    /* è¯¥è®¾å¤‡çš„å—æ•°é‡                               */
     uint32                NUM_BLOCKS;
 
-    /* ¿¨µØÖ·                                       */
+    /* å¡åœ°å€                                       */
     uint32                ADDRESS;
 
-    /* ¸ßÈİÁ¿ = ¿éÑ°Ö· (SDÊÇ×Ö½ÚÑ°Ö·£¬SDHCÊÇ¿éÑ°Ö·) */
+    /* é«˜å®¹é‡ = å—å¯»å€ (SDæ˜¯å­—èŠ‚å¯»å€ï¼ŒSDHCæ˜¯å—å¯»å€) */
     uint8                 SDHC;
 
-    /* ¹æ·¶2»ò¸ü¸ß°æ±¾µÄ¿¨ = ²»Í¬µÄCSD¼Ä´æÆ÷        */
+    /* è§„èŒƒ2æˆ–æ›´é«˜ç‰ˆæœ¬çš„å¡ = ä¸åŒçš„CSDå¯„å­˜å™¨        */
     uint8                 VERSION2;
 
     uint8                 RES[2];
@@ -218,10 +218,10 @@ typedef struct
 extern SDCARD_t        SDHC_card;
 
 
-extern void                 SDHC_init();                                        // SDHC ³õÊ¼»¯
-extern ESDHC_IOCTL_ERR_e    SDHC_ioctl(ESDHC_IOCTL_CMD_e  cmd, void *param_ptr); // SDHC ¿ØÖÆÃüÁî
-extern void                 SDHC_set_baudrate(uint32 baudrate);                 // SDHC²¨ÌØÂÊÅäÖÃ
-extern uint32               SDHC_cmd (pESDHC_CMD_t command);                    // SDHC·¢ËÍcmdÃüÁî
+extern void                 SDHC_init();                                        // SDHC åˆå§‹åŒ–
+extern ESDHC_IOCTL_ERR_e    SDHC_ioctl(ESDHC_IOCTL_CMD_e  cmd, void *param_ptr); // SDHC æ§åˆ¶å‘½ä»¤
+extern void                 SDHC_set_baudrate(uint32 baudrate);                 // SDHCæ³¢ç‰¹ç‡é…ç½®
+extern uint32               SDHC_cmd (pESDHC_CMD_t command);                    // SDHCå‘é€cmdå‘½ä»¤
 
 
 #define SDHC_is_running()     (0 != (SDHC_PRSSTAT & (SDHC_PRSSTAT_RTA_MASK | SDHC_PRSSTAT_WTA_MASK | SDHC_PRSSTAT_DLA_MASK | SDHC_PRSSTAT_CDIHB_MASK | SDHC_PRSSTAT_CIHB_MASK)))

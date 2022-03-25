@@ -44,8 +44,8 @@
 **     - rev. 1.2 (2011-09-08)
 **         Cortex_Core_Configuration extended with additional parameters.
 **         Gap between end of interrupt vector table and flash configuration field filled by default ISR.
-**     - rev. 1.2.1 (2013-06-18) À­ÆÕÀ¼µÂĞŞ¸Ä www.lpld.cn
-**         Ìí¼ÓHardFault_IRQnÖĞ¶ÏÏòÁ¿ºÅ.
+**     - rev. 1.2.1 (2013-06-18) æ‹‰æ™®å…°å¾·ä¿®æ”¹ www.lpld.cn
+**         æ·»åŠ HardFault_IRQnä¸­æ–­å‘é‡å·.
 **
 ** ###################################################################
 */
@@ -54,11 +54,11 @@
  * @file MK60DZ10.h
  * @version 1.2.1[By LPLD]
  * @date 2011-09-08
- * @brief ÎªMK60DZ10Ìá¹©»ùÓÚCMSIS¹æ·¶µÄÍâÉè½ÓÈë²ã
+ * @brief ä¸ºMK60DZ10æä¾›åŸºäºCMSISè§„èŒƒçš„å¤–è®¾æ¥å…¥å±‚
  *
- * ¸ü¸Ä½¨Òé:½ûÖ¹ĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ç¦æ­¢ä¿®æ”¹
  *
- * ±¾ÎÄ¼ş¶¨ÒåMK60DZ10µÄÎ»´ø²Ù×÷¡¢ÖĞ¶ÏÏòÁ¿ºÅ£¬¼Ä´æÆ÷½á¹¹¼°µØÖ·µÈ
+ * æœ¬æ–‡ä»¶å®šä¹‰MK60DZ10çš„ä½å¸¦æ“ä½œã€ä¸­æ–­å‘é‡å·ï¼Œå¯„å­˜å™¨ç»“æ„åŠåœ°å€ç­‰
  */
 
 #if !defined(MK60DZ10_H_)

@@ -1,12 +1,12 @@
 /**
- * --------------»ùÓÚ"À­ÆÕÀ¼µÂK60µ×²ã¿â"µÄ¹¤³Ì£¨Smart_Car£©-----------------
+ * --------------åŸºäº"æ‹‰æ™®å…°å¾·K60åº•å±‚åº“"çš„å·¥ç¨‹ï¼ˆSmart_Carï¼‰-----------------
  * @file Control.c
  * @version 0.0
  * @date 2015-2-7
- * @brief ¹ØÓÚ¸Ã¹¤³ÌµÄÃèÊö
+ * @brief å…³äºè¯¥å·¥ç¨‹çš„æè¿°
  *
- * °æÈ¨ËùÓĞ:±±»ªº½Ìì¹¤ÒµÑ§Ôº µÚÊ®½ì·ÉË¼¿¨¶û  ÉãÏñÍ·2¶Ó 
- * Ó²¼şÆ½Ì¨:  MK60FX512
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—åèˆªå¤©å·¥ä¸šå­¦é™¢ ç¬¬åå±Šé£æ€å¡å°”  æ‘„åƒå¤´2é˜Ÿ 
+ * ç¡¬ä»¶å¹³å°:  MK60FX512
  * 
  */
 #include "common.h"
@@ -28,7 +28,7 @@ int16 S_R_Pre_Error = 0;
 int16 S_R_Pre_DError = 0;
 
 int8  S_PWM_Dead = 4;
-int8  S_PID_Bang = 50;                                               //PIDºÍbangbang¿ØÖÆÇĞ»»ãĞÖµ
+int8  S_PID_Bang = 50;                                               //PIDå’Œbangbangæ§åˆ¶åˆ‡æ¢é˜ˆå€¼
 int16 H_Speed;
 int16 L_Speed;
 
@@ -37,55 +37,55 @@ int16 S_PWM_Min = -7000;
 
 uint8 Turn_Flag = 1;
 
-float32 P1 = 0.009569,P2 = 2.962,P3 = 1000.0,Speed_Ratio = 1.0;    //Ç°ÃæÈı¸öÏµÊı·Å´óÁË1000±¶
+float32 P1 = 0.009569,P2 = 2.962,P3 = 1000.0,Speed_Ratio = 1.0;    //å‰é¢ä¸‰ä¸ªç³»æ•°æ”¾å¤§äº†1000å€
 /*-----------------------------------------------------------------------
-* Get_Speed: »ñÈ¡µ±Ç°ËÙ¶È
+* Get_Speed: è·å–å½“å‰é€Ÿåº¦
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Get_Speed()
 {
-  Get_L_Speed = -(LPLD_FTM_GetCounter(FTM1));         //»ñÈ¡×óÂÖËÙ¶È(Âö³å¸öÊı)
-  Get_R_Speed = LPLD_FTM_GetCounter(FTM2);           //»ñÈ¡ÓÒÂÖËÙ¶È
-  LPLD_FTM_ClearCounter(FTM1);                       //Çå¿Õ¼ÆÊıÆ÷
+  Get_L_Speed = -(LPLD_FTM_GetCounter(FTM1));         //è·å–å·¦è½®é€Ÿåº¦(è„‰å†²ä¸ªæ•°)
+  Get_R_Speed = LPLD_FTM_GetCounter(FTM2);           //è·å–å³è½®é€Ÿåº¦
+  LPLD_FTM_ClearCounter(FTM1);                       //æ¸…ç©ºè®¡æ•°å™¨
   LPLD_FTM_ClearCounter(FTM2); 
 } 
 
 /*-----------------------------------------------------------------------
-* Set_Speed: Éè¶¨µ±Ç°ËÙ¶È
+* Set_Speed: è®¾å®šå½“å‰é€Ÿåº¦
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Set_Speed()
 {
-  //ËÙ¶È²ßÂÔ
-  if(Track_Type == 1)                               //Ö±µÀ
+  //é€Ÿåº¦ç­–ç•¥
+  if(Track_Type == 1)                               //ç›´é“
   {
     H_Speed = Straight_High_Speed;
     L_Speed = Straight_Low_Speed;
   }
-  else if(Track_Type == 2)                         //Ö±µÀÈëÍä
+  else if(Track_Type == 2)                         //ç›´é“å…¥å¼¯
   {
     H_Speed = S_C_High_Speed;
     L_Speed = S_C_Low_Speed;
   }
-  else if(Track_Type == 3)                        //ÍäµÀ
+  else if(Track_Type == 3)                        //å¼¯é“
   {
     H_Speed = Curve_High_Speed;
     L_Speed = Curve_Low_Speed;
   }
-  Speed = (int32)(H_Speed-(H_Speed-L_Speed)*(D_Error*D_Error)/8836.0);   //Éè¶¨Õû³µËÙ¶È
-  //¼ÆËã×óÓÒÂÖÉè¶¨ËÙ¶È
-  if(Turn_Flag == 1)                                 //×ó×ª
+  Speed = (int32)(H_Speed-(H_Speed-L_Speed)*(D_Error*D_Error)/8836.0);   //è®¾å®šæ•´è½¦é€Ÿåº¦
+  //è®¡ç®—å·¦å³è½®è®¾å®šé€Ÿåº¦
+  if(Turn_Flag == 1)                                 //å·¦è½¬
   {
      Set_R_Speed = Speed;
      Set_L_Speed = (int32)(Set_R_Speed * (1.0/Speed_Ratio));
   }
-  else                                              //ÓÒ×ª
+  else                                              //å³è½¬
   {
      Set_L_Speed = Speed;
      Set_R_Speed = (int32)(Set_L_Speed * (1.0/Speed_Ratio));
@@ -93,11 +93,11 @@ void Set_Speed()
 }
 
 /*-----------------------------------------------------------------------
-* BangBangBack: °ô°ôÉ²³µ
+* BangBangBack: æ£’æ£’åˆ¹è½¦
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Speed_L_Back(void) 
 {
@@ -105,22 +105,22 @@ void Speed_L_Back(void)
 }
 
 /*-----------------------------------------------------------------------
-* BangBangGo: °ô°ôÆô¶¯
+* BangBangGo: æ£’æ£’å¯åŠ¨
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Speed_L_Go(void) 
 {
   S_L_PWM =8000; 
 }
 /*-----------------------------------------------------------------------
-* BangBangBack: °ô°ôÉ²³µ
+* BangBangBack: æ£’æ£’åˆ¹è½¦
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Speed_R_Back(void) 
 {
@@ -128,11 +128,11 @@ void Speed_R_Back(void)
 }
 
 /*-----------------------------------------------------------------------
-* BangBangGo: °ô°ôÆô¶¯
+* BangBangGo: æ£’æ£’å¯åŠ¨
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Speed_R_Go(void) 
 {
@@ -140,11 +140,11 @@ void Speed_R_Go(void)
 }
 
 /*-----------------------------------------------------------------------
-* Speed_L_Control: ×óÂÖËÙ¶È¿ØÖÆ
+* Speed_L_Control: å·¦è½®é€Ÿåº¦æ§åˆ¶
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 static void Speed_L_Control()
 {
@@ -153,38 +153,38 @@ static void Speed_L_Control()
   S_L_Error = Set_L_Speed - Get_L_Speed;                          //e(k)
   S_L_DError = S_L_Error - S_L_Pre_Error;                         //e(k)-e(k-1)
   S_L_DDError = S_L_DError - S_L_Pre_DError;                      //e(k)-e(k-1)-(e(k-1)-e(k-2))
-  S_L_Pre_Error = S_L_Error;                                      //Å²¶¯Êı¾İ
+  S_L_Pre_Error = S_L_Error;                                      //æŒªåŠ¨æ•°æ®
   S_L_Pre_DError = S_L_DError;  
  
   if(S_L_Error > S_PID_Bang)           Speed_L_Go();               //BangBang
   else if(S_L_Error < -S_PID_Bang)    Speed_L_Back();             //BangBang
   else                                                            //PID              
   {
-    if((S_L_Error < S_PWM_Dead) && (S_L_Error > -S_PWM_Dead))     //ÉèÖÃµ÷½ÚËÀÇø
+    if((S_L_Error < S_PWM_Dead) && (S_L_Error > -S_PWM_Dead))     //è®¾ç½®è°ƒèŠ‚æ­»åŒº
       s_pwm = 0;
     else
     {
       if(Get_L_Speed<(0.2*Set_L_Speed)) 
-        pwm_i = 0;                                              //»ı·Ö·ÖÀë·ÀÖ¹Õğµ´
+        pwm_i = 0;                                              //ç§¯åˆ†åˆ†ç¦»é˜²æ­¢éœ‡è¡
       else
-        pwm_i = S_L_Ki * S_L_Error;                            //»ı·ÖÏî
+        pwm_i = S_L_Ki * S_L_Error;                            //ç§¯åˆ†é¡¹
       
-      pwm_p = S_L_Kp * S_L_DError;                             //±ÈÀıÏî
-      pwm_d = S_L_Kd * S_L_DDError;                            //Î¢·ÖÏî
+      pwm_p = S_L_Kp * S_L_DError;                             //æ¯”ä¾‹é¡¹
+      pwm_d = S_L_Kd * S_L_DDError;                            //å¾®åˆ†é¡¹
       s_pwm = (int32)(pwm_p + pwm_i + pwm_d);
     }
     S_L_PWM += s_pwm;
     
-    if(S_L_PWM >= S_PWM_Max)            S_L_PWM = S_PWM_Max;         //ÏŞ·ù
+    if(S_L_PWM >= S_PWM_Max)            S_L_PWM = S_PWM_Max;         //é™å¹…
     else if(S_L_PWM <= S_PWM_Min)      S_L_PWM = S_PWM_Min;
   }
 }
 /*-----------------------------------------------------------------------
-* Speed_R_Control: ÓÒÂÖËÙ¶È¿ØÖÆ
+* Speed_R_Control: å³è½®é€Ÿåº¦æ§åˆ¶
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 static void Speed_R_Control()
 {
@@ -193,39 +193,39 @@ static void Speed_R_Control()
   S_R_Error = Set_R_Speed - Get_R_Speed;                          //e(k)
   S_R_DError = S_R_Error - S_R_Pre_Error;                         //e(k)-e(k-1)
   S_R_DDError = S_R_DError - S_R_Pre_DError;                      //e(k)-e(k-1)-(e(k-1)-e(k-2))
-  S_R_Pre_Error = S_R_Error;                                      //Å²¶¯Êı¾İ
+  S_R_Pre_Error = S_R_Error;                                      //æŒªåŠ¨æ•°æ®
   S_R_Pre_DError = S_R_DError;  
   
   if(S_R_Error > S_PID_Bang)           Speed_R_Go();              //BangBang
   else if(S_R_Error < -S_PID_Bang)    Speed_R_Back();            //BangBang
   else                                                           //PID 
   {
-    if((S_R_Error < S_PWM_Dead) && (S_R_Error > -S_PWM_Dead))     //ÉèÖÃµ÷½ÚËÀÇø
+    if((S_R_Error < S_PWM_Dead) && (S_R_Error > -S_PWM_Dead))     //è®¾ç½®è°ƒèŠ‚æ­»åŒº
       s_pwm = 0;              
     else
     {
       if(Get_R_Speed<(0.2*Set_R_Speed)) 
-        pwm_i = 0;                                             //»ı·Ö·ÖÀë·ÀÖ¹Õğµ´
+        pwm_i = 0;                                             //ç§¯åˆ†åˆ†ç¦»é˜²æ­¢éœ‡è¡
       else
-        pwm_i = S_R_Ki * S_R_Error;                            //»ı·ÖÏî
-      pwm_p = S_R_Kp * S_R_DError;                             //±ÈÀıÏî
+        pwm_i = S_R_Ki * S_R_Error;                            //ç§¯åˆ†é¡¹
+      pwm_p = S_R_Kp * S_R_DError;                             //æ¯”ä¾‹é¡¹
       
-      pwm_d = S_R_Kd * S_R_DDError;                            //Î¢·ÖÏî
+      pwm_d = S_R_Kd * S_R_DDError;                            //å¾®åˆ†é¡¹
       s_pwm = (int32)(pwm_p + pwm_i + pwm_d);
     }
     S_R_PWM += s_pwm;
     
-    if(S_R_PWM >= S_PWM_Max)            S_R_PWM = S_PWM_Max;      //ÏŞ·ù
+    if(S_R_PWM >= S_PWM_Max)            S_R_PWM = S_PWM_Max;      //é™å¹…
     else if(S_R_PWM <= S_PWM_Min)      S_R_PWM = S_PWM_Min;
    }
 }
 
 /*-----------------------------------------------------------------------
-* Stop_car: É²³µ
+* Stop_car: åˆ¹è½¦
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Stop_car()
 {
@@ -244,11 +244,11 @@ void Stop_car()
 }
 
 /*-----------------------------------------------------------------------
-* Speed_PWM_Update: Êä³öËÙ¶È
+* Speed_PWM_Update: è¾“å‡ºé€Ÿåº¦
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Speed_PWM_Update()
 { 
@@ -274,11 +274,11 @@ void Speed_PWM_Update()
   }
 }
 /*-----------------------------------------------------------------------
-* Speed_Control: ËÙ¶È¿ØÖÆ
+* Speed_Control: é€Ÿåº¦æ§åˆ¶
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Speed_Control()
 {
@@ -295,48 +295,48 @@ void Speed_Control()
 }
 
 /*-----------------------------------------------------------------------
-* Direction_Control: Î»ÖÃÊ½PID-¶æ»ú¿ØÖÆ
+* Direction_Control: ä½ç½®å¼PID-èˆµæœºæ§åˆ¶
 *
-*                           ¶æ»ú²ÎÊı
+*                           èˆµæœºå‚æ•°
 *
-*                       ×ó      ÖĞ     ÓÒ
+*                       å·¦      ä¸­     å³
 *                      1665   1865   2065
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void Direction_Control()
 {
-  //Î»ÖÃÊ½PID
+  //ä½ç½®å¼PID
   int32 pwm_p,pwm_d,d_pwm;
   float32 p1,p2;
   D_Last_Error = D_Error;
   D_Error = Center_Line - 94;
   D_Kp = (int16)((D_Error*D_Error)/D_Kp_a+D_Kp_b);
-  pwm_p = D_Kp * D_Error;                                            //¼ÆËã±ÈÀıÏî
+  pwm_p = D_Kp * D_Error;                                            //è®¡ç®—æ¯”ä¾‹é¡¹
   pwm_d = D_Kd * (D_Error - D_Last_Error);
-  d_pwm = (int32)((pwm_p + pwm_d)/10.0);                            //Ç°Ãæ²ÎÊı·Å´óÁË10±¶£¬¹Ê´Ë´¦ĞèÒªËõĞ¡10±¶                     
+  d_pwm = (int32)((pwm_p + pwm_d)/10.0);                            //å‰é¢å‚æ•°æ”¾å¤§äº†10å€ï¼Œæ•…æ­¤å¤„éœ€è¦ç¼©å°10å€                     
 
-  if(d_pwm < -200)                                                 //ÏŞ·ù
+  if(d_pwm < -200)                                                 //é™å¹…
     d_pwm = -200;
   else if(d_pwm > 200)
     d_pwm = 200;
   
   D_PWM =D_Pwm_Center - d_pwm; 
   
-  if(d_pwm < 0)                            //×ó×ª
+  if(d_pwm < 0)                            //å·¦è½¬
   {
     Turn_Flag = 1;
     d_pwm = -d_pwm;
   }
-  else                                    //ÓÒ×ª
+  else                                    //å³è½¬
   {
     Turn_Flag = 0;
   }
-  //²îËÙ¼ÆËã
+  //å·®é€Ÿè®¡ç®—
   p1 = P1*d_pwm*d_pwm;
   p2 = P2*d_pwm;
   Speed_Ratio=(p1 + p2 + P3)/1000.0;
   
-  LPLD_FTM_PWM_ChangeDuty(FTM0, FTM_Ch7, D_PWM);                 //Êä³ö¸ø¶æ»ú
+  LPLD_FTM_PWM_ChangeDuty(FTM0, FTM_Ch7, D_PWM);                 //è¾“å‡ºç»™èˆµæœº
 }

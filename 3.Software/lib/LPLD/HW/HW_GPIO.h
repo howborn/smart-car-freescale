@@ -2,28 +2,28 @@
  * @file HW_GPIO.h
  * @version 3.03[By LPLD]
  * @date 2014-2-10
- * @brief GPIOµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief GPIOåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_GPIO_H__
 #define __HW_GPIO_H__
 /********************************************************************/
 
-//GPIOÒý½ÅÑÚÂë¶¨Òå
+//GPIOå¼•è„šæŽ©ç å®šä¹‰
 typedef enum GpioPinsEnum
 {
   GPIO_Pin0       =0x00000001,
@@ -64,15 +64,15 @@ typedef enum GpioPinsEnum
   GPIO_Pin24_31   =0xFF000000
 } GpioPinsEnum_Type;
   
-//GPIOÎ»´ø²Ù×÷ºê¶¨Òå
-//Pin·½Ïò¿ØÖÆ
+//GPIOä½å¸¦æ“ä½œå®å®šä¹‰
+//Pinæ–¹å‘æŽ§åˆ¶
 #define DDR(x, n)       BITBAND_REG(x->PDDR, n)
 #define DDRAn(n)        DDR(PTA, n)
 #define DDRBn(n)        DDR(PTB, n)
 #define DDRCn(n)        DDR(PTC, n)
 #define DDRDn(n)        DDR(PTD, n)
 #define DDREn(n)        DDR(PTE, n)
-#define DDRA0           DDRAn(0)        //PortA·½Ïò¿ØÖÆ
+#define DDRA0           DDRAn(0)        //PortAæ–¹å‘æŽ§åˆ¶
 #define DDRA1           DDRAn(1)
 #define DDRA2           DDRAn(2)
 #define DDRA3           DDRAn(3)
@@ -98,7 +98,7 @@ typedef enum GpioPinsEnum
 #define DDRA27          DDRAn(27)
 #define DDRA28          DDRAn(28)
 #define DDRA29          DDRAn(29)
-#define DDRB0           DDRBn(0)        //PortB·½Ïò¿ØÖÆ
+#define DDRB0           DDRBn(0)        //PortBæ–¹å‘æŽ§åˆ¶
 #define DDRB1           DDRBn(1)
 #define DDRB2           DDRBn(2)
 #define DDRB3           DDRBn(3)
@@ -118,7 +118,7 @@ typedef enum GpioPinsEnum
 #define DDRB21          DDRBn(21)
 #define DDRB22          DDRBn(22)
 #define DDRB23          DDRBn(23)
-#define DDRC0           DDRCn(0)        //PortC·½Ïò¿ØÖÆ
+#define DDRC0           DDRCn(0)        //PortCæ–¹å‘æŽ§åˆ¶
 #define DDRC1           DDRCn(1)
 #define DDRC2           DDRCn(2)
 #define DDRC3           DDRCn(3)
@@ -138,7 +138,7 @@ typedef enum GpioPinsEnum
 #define DDRC17          DDRCn(17)
 #define DDRC18          DDRCn(18)
 #define DDRC19          DDRCn(19)
-#define DDRD0           DDRDn(0)        //PortD·½Ïò¿ØÖÆ
+#define DDRD0           DDRDn(0)        //PortDæ–¹å‘æŽ§åˆ¶
 #define DDRD1           DDRDn(1)
 #define DDRD2           DDRDn(2)
 #define DDRD3           DDRDn(3)
@@ -154,7 +154,7 @@ typedef enum GpioPinsEnum
 #define DDRD13          DDRDn(13)
 #define DDRD14          DDRDn(14)
 #define DDRD15          DDRDn(15)
-#define DDRE0           DDREn(0)        //PortE·½Ïò¿ØÖÆ
+#define DDRE0           DDREn(0)        //PortEæ–¹å‘æŽ§åˆ¶
 #define DDRE1           DDREn(1)
 #define DDRE2           DDREn(2)
 #define DDRE3           DDREn(3)
@@ -172,14 +172,14 @@ typedef enum GpioPinsEnum
 #define DDRE26          DDREn(26)
 #define DDRE27          DDREn(27)
 #define DDRE28          DDREn(28)
-//PinÊä³ö
+//Pinè¾“å‡º
 #define PTxn_O(x, n)    BITBAND_REG(x->PDOR, n)
 #define PTAn_O(n)       PTxn_O(PTA, n)
 #define PTBn_O(n)       PTxn_O(PTB, n)
 #define PTCn_O(n)       PTxn_O(PTC, n)
 #define PTDn_O(n)       PTxn_O(PTD, n)
 #define PTEn_O(n)       PTxn_O(PTE, n)
-#define PTA0_O          PTAn_O(0)        //PortAÊä³ö
+#define PTA0_O          PTAn_O(0)        //PortAè¾“å‡º
 #define PTA1_O          PTAn_O(1)
 #define PTA2_O          PTAn_O(2)
 #define PTA3_O          PTAn_O(3)
@@ -205,7 +205,7 @@ typedef enum GpioPinsEnum
 #define PTA27_O         PTAn_O(27)
 #define PTA28_O         PTAn_O(28)
 #define PTA29_O         PTAn_O(29)
-#define PTB0_O          PTBn_O(0)        //PortBÊä³ö
+#define PTB0_O          PTBn_O(0)        //PortBè¾“å‡º
 #define PTB1_O          PTBn_O(1)
 #define PTB2_O          PTBn_O(2)
 #define PTB3_O          PTBn_O(3)
@@ -225,7 +225,7 @@ typedef enum GpioPinsEnum
 #define PTB21_O         PTBn_O(21)
 #define PTB22_O         PTBn_O(22)
 #define PTB23_O         PTBn_O(23)
-#define PTC0_O          PTCn_O(0)        //PortCÊä³ö
+#define PTC0_O          PTCn_O(0)        //PortCè¾“å‡º
 #define PTC1_O          PTCn_O(1)
 #define PTC2_O          PTCn_O(2)
 #define PTC3_O          PTCn_O(3)
@@ -245,7 +245,7 @@ typedef enum GpioPinsEnum
 #define PTC17_O         PTCn_O(17)
 #define PTC18_O         PTCn_O(18)
 #define PTC19_O         PTCn_O(19)
-#define PTD0_O          PTDn_O(0)        //PortDÊä³ö
+#define PTD0_O          PTDn_O(0)        //PortDè¾“å‡º
 #define PTD1_O          PTDn_O(1)
 #define PTD2_O          PTDn_O(2)
 #define PTD3_O          PTDn_O(3)
@@ -261,7 +261,7 @@ typedef enum GpioPinsEnum
 #define PTD13_O         PTDn_O(13)
 #define PTD14_O         PTDn_O(14)
 #define PTD15_O         PTDn_O(15)
-#define PTE0_O          PTEn_O(0)        //PortEÊä³ö
+#define PTE0_O          PTEn_O(0)        //PortEè¾“å‡º
 #define PTE1_O          PTEn_O(1)
 #define PTE2_O          PTEn_O(2)
 #define PTE3_O          PTEn_O(3)
@@ -279,14 +279,14 @@ typedef enum GpioPinsEnum
 #define PTE26_O         PTEn_O(26)
 #define PTE27_O         PTEn_O(27)
 #define PTE28_O         PTEn_O(28)
-//PinÊäÈë
+//Pinè¾“å…¥
 #define PTxn_I(x, n)    BITBAND_REG(x->PDIR, n)
 #define PTAn_I(n)       PTxn_I(PTA, n)
 #define PTBn_I(n)       PTxn_I(PTB, n)
 #define PTCn_I(n)       PTxn_I(PTC, n)
 #define PTDn_I(n)       PTxn_I(PTD, n)
 #define PTEn_I(n)       PTxn_I(PTE, n)
-#define PTA0_I          PTAn_I(0)        //PortAÊäÈë
+#define PTA0_I          PTAn_I(0)        //PortAè¾“å…¥
 #define PTA1_I          PTAn_I(1)
 #define PTA2_I          PTAn_I(2)
 #define PTA3_I          PTAn_I(3)
@@ -312,7 +312,7 @@ typedef enum GpioPinsEnum
 #define PTA27_I         PTAn_I(27)
 #define PTA28_I         PTAn_I(28)
 #define PTA29_I         PTAn_I(29)
-#define PTB0_I          PTBn_I(0)        //PortBÊäÈë
+#define PTB0_I          PTBn_I(0)        //PortBè¾“å…¥
 #define PTB1_I          PTBn_I(1)
 #define PTB2_I          PTBn_I(2)
 #define PTB3_I          PTBn_I(3)
@@ -332,7 +332,7 @@ typedef enum GpioPinsEnum
 #define PTB21_I         PTBn_I(21)
 #define PTB22_I         PTBn_I(22)
 #define PTB23_I         PTBn_I(23)
-#define PTC0_I          PTCn_I(0)        //PortCÊäÈë
+#define PTC0_I          PTCn_I(0)        //PortCè¾“å…¥
 #define PTC1_I          PTCn_I(1)
 #define PTC2_I          PTCn_I(2)
 #define PTC3_I          PTCn_I(3)
@@ -352,7 +352,7 @@ typedef enum GpioPinsEnum
 #define PTC17_I         PTCn_I(17)
 #define PTC18_I         PTCn_I(18)
 #define PTC19_I         PTCn_I(19)
-#define PTD0_I          PTDn_I(0)        //PortDÊäÈë
+#define PTD0_I          PTDn_I(0)        //PortDè¾“å…¥
 #define PTD1_I          PTDn_I(1)
 #define PTD2_I          PTDn_I(2)
 #define PTD3_I          PTDn_I(3)
@@ -368,7 +368,7 @@ typedef enum GpioPinsEnum
 #define PTD13_I         PTDn_I(13)
 #define PTD14_I         PTDn_I(14)
 #define PTD15_I         PTDn_I(15)
-#define PTE0_I          PTEn_I(0)        //PortEÊäÈë
+#define PTE0_I          PTEn_I(0)        //PortEè¾“å…¥
 #define PTE1_I          PTEn_I(1)
 #define PTE2_I          PTEn_I(2)
 #define PTE3_I          PTEn_I(3)
@@ -387,133 +387,133 @@ typedef enum GpioPinsEnum
 #define PTE27_I         PTEn_I(27)
 #define PTE28_I         PTEn_I(28)
 
-//GPIO³õÊ¼»¯²ÎÊýÖµºê¶¨Òå
+//GPIOåˆå§‹åŒ–å‚æ•°å€¼å®å®šä¹‰
 //GPIO_InitTypeDef->GPIO_Dir
-#define DIR_INPUT       0       //ÊäÈë
-#define DIR_OUTPUT      1       //Êä³ö
+#define DIR_INPUT       0       //è¾“å…¥
+#define DIR_OUTPUT      1       //è¾“å‡º
 //GPIO_InitTypeDef->GPIO_Output
-#define OUTPUT_L        0       //Êä³öµÍµçÆ½
-#define OUTPUT_H        1       //Êä³ö¸ßµçÆ½
+#define OUTPUT_L        0       //è¾“å‡ºä½Žç”µå¹³
+#define OUTPUT_H        1       //è¾“å‡ºé«˜ç”µå¹³
 //GPIO_InitTypeDef->GPIO_PinControl
-#define INPUT_PULL_DOWN (0|PORT_PCR_PE_MASK)                      //ÊäÈëÏÂÀ­
-#define INPUT_PULL_UP   (PORT_PCR_PS_MASK|PORT_PCR_PE_MASK)       //ÊäÈëÉÏÀ­
-#define INPUT_PULL_DIS  0                                       //½ûÓÃPULL
-#define OUTPUT_SR_FAST  0                       //¸ßÑ¹°ÚÂÊ
-#define OUTPUT_SR_SLOW  PORT_PCR_SRE_MASK       //µÍÑ¹°ÚÂÊ
-#define INPUT_PF_EN     PORT_PCR_PFE_MASK       //Ê¹ÄÜµÍÍ¨ÂË²¨Æ÷
-#define INPUT_PF_DIS    0                       //½ûÓÃµÍÍ¨ÂË²¨Æ÷
-#define OUTPUT_OD_EN    PORT_PCR_ODE_MASK       //Êä³ö¿ªÂ©Ê¹ÄÜ
-#define OUTPUT_OD_DIS   0                       //Êä³ö¿ªÂ©½ûÓÃ
-#define OUTPUT_DSH      PORT_PCR_DSE_MASK       //¸ßÇý¶¯ÄÜÁ¦Êä³ö
-#define OUTPUT_DSL      0                       //µÍÇý¶¯ÄÜÁ¦Êä³ö
-#define IRQC_DIS        PORT_PCR_IRQC(0x00)     //½ûÓÃÖÐ¶Ï\ÇëÇó
-#define IRQC_DMARI      PORT_PCR_IRQC(0x01)     //ÉÏÉýÑØ²úÉúDMAÇëÇó
-#define IRQC_DMAFA      PORT_PCR_IRQC(0x02)     //ÏÂ½µÑØ²úÉúDMAÇëÇó
-#define IRQC_DMAET      PORT_PCR_IRQC(0x03)     //±ßÑØ²úÉúDMAÇëÇó
-#define IRQC_L          PORT_PCR_IRQC(0x08)     //µÍµçÆ½´¥·¢Íâ²¿ÖÐ¶Ï
-#define IRQC_RI         PORT_PCR_IRQC(0x09)     //ÉÏÉýÑØ´¥·¢Íâ²¿ÖÐ¶Ï
-#define IRQC_FA         PORT_PCR_IRQC(0x0A)     //ÏÂ½µÑØ´¥·¢Íâ²¿ÖÐ¶Ï
-#define IRQC_ET         PORT_PCR_IRQC(0x0B)     //±ßÑØ´¥·¢Íâ²¿ÖÐ¶Ï
-#define IRQC_H          PORT_PCR_IRQC(0x0C)     //¸ßµçÆ½´¥·¢Íâ²¿ÖÐ¶Ï
+#define INPUT_PULL_DOWN (0|PORT_PCR_PE_MASK)                      //è¾“å…¥ä¸‹æ‹‰
+#define INPUT_PULL_UP   (PORT_PCR_PS_MASK|PORT_PCR_PE_MASK)       //è¾“å…¥ä¸Šæ‹‰
+#define INPUT_PULL_DIS  0                                       //ç¦ç”¨PULL
+#define OUTPUT_SR_FAST  0                       //é«˜åŽ‹æ‘†çŽ‡
+#define OUTPUT_SR_SLOW  PORT_PCR_SRE_MASK       //ä½ŽåŽ‹æ‘†çŽ‡
+#define INPUT_PF_EN     PORT_PCR_PFE_MASK       //ä½¿èƒ½ä½Žé€šæ»¤æ³¢å™¨
+#define INPUT_PF_DIS    0                       //ç¦ç”¨ä½Žé€šæ»¤æ³¢å™¨
+#define OUTPUT_OD_EN    PORT_PCR_ODE_MASK       //è¾“å‡ºå¼€æ¼ä½¿èƒ½
+#define OUTPUT_OD_DIS   0                       //è¾“å‡ºå¼€æ¼ç¦ç”¨
+#define OUTPUT_DSH      PORT_PCR_DSE_MASK       //é«˜é©±åŠ¨èƒ½åŠ›è¾“å‡º
+#define OUTPUT_DSL      0                       //ä½Žé©±åŠ¨èƒ½åŠ›è¾“å‡º
+#define IRQC_DIS        PORT_PCR_IRQC(0x00)     //ç¦ç”¨ä¸­æ–­\è¯·æ±‚
+#define IRQC_DMARI      PORT_PCR_IRQC(0x01)     //ä¸Šå‡æ²¿äº§ç”ŸDMAè¯·æ±‚
+#define IRQC_DMAFA      PORT_PCR_IRQC(0x02)     //ä¸‹é™æ²¿äº§ç”ŸDMAè¯·æ±‚
+#define IRQC_DMAET      PORT_PCR_IRQC(0x03)     //è¾¹æ²¿äº§ç”ŸDMAè¯·æ±‚
+#define IRQC_L          PORT_PCR_IRQC(0x08)     //ä½Žç”µå¹³è§¦å‘å¤–éƒ¨ä¸­æ–­
+#define IRQC_RI         PORT_PCR_IRQC(0x09)     //ä¸Šå‡æ²¿è§¦å‘å¤–éƒ¨ä¸­æ–­
+#define IRQC_FA         PORT_PCR_IRQC(0x0A)     //ä¸‹é™æ²¿è§¦å‘å¤–éƒ¨ä¸­æ–­
+#define IRQC_ET         PORT_PCR_IRQC(0x0B)     //è¾¹æ²¿è§¦å‘å¤–éƒ¨ä¸­æ–­
+#define IRQC_H          PORT_PCR_IRQC(0x0C)     //é«˜ç”µå¹³è§¦å‘å¤–éƒ¨ä¸­æ–­
 
-//GPIOÄ£¿éÖÐ¶Ï»Øµ÷º¯ÊýÀàÐÍ
+//GPIOæ¨¡å—ä¸­æ–­å›žè°ƒå‡½æ•°ç±»åž‹
 typedef void (*GPIO_ISR_CALLBACK)(void);
 
-//GPIOÄ£¿é³õÊ¼»¯½á¹¹Ìå£¬ÓÃÓÚÅäÖÃGPIO¸÷Ïî²ÎÊý
+//GPIOæ¨¡å—åˆå§‹åŒ–ç»“æž„ä½“ï¼Œç”¨äºŽé…ç½®GPIOå„é¡¹å‚æ•°
 typedef struct
 {  
   /*
-    ÃèÊö£º
-      Ñ¡ÔñPORTx
-    È¡Öµ£º
-      PTA¡¢PTB¡¢PTC¡¢PTD¡¢PTE
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é€‰æ‹©PORTx
+    å–å€¼ï¼š
+      PTAã€PTBã€PTCã€PTDã€PTE
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   GPIO_Type *GPIO_PTx;
   
   /*
-    ÃèÊö£º
-      Ñ¡ÔñÒª³õÊ¼»¯µÄÒý½Å
-    È¡Öµ£º
-      GPIO_Pin0~GPIO_Pin31¡¢
-      GPIO_Pin0_7¡¢GPIO_Pin8_15¡¢GPIO_Pin16_23¡¢GPIO_Pin24_31
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é€‰æ‹©è¦åˆå§‹åŒ–çš„å¼•è„š
+    å–å€¼ï¼š
+      GPIO_Pin0~GPIO_Pin31ã€
+      GPIO_Pin0_7ã€GPIO_Pin8_15ã€GPIO_Pin16_23ã€GPIO_Pin24_31
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint32 GPIO_Pins;
   
   /*
-    ÃèÊö£º
-      ÅäÖÃÒý½Å¿ØÖÆ¿ØÖÆ£ºPull|Ñ¹°ÚÂÊ|ÂË²¨|¿ªÂ©|Çý¶¯Á¦|ÖÐ¶Ï
-    È¡Öµ£º
-      ¼ûºê¶¨Òå
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏ£ºÎÞPull|¸ßÑ¹°ÚÂÊ|ÎÞÂË²¨|ÎÞ¿ªÂ©|µÍÇý¶¯Á¦|½ûÖÐ¶Ï
+    æè¿°ï¼š
+      é…ç½®å¼•è„šæŽ§åˆ¶æŽ§åˆ¶ï¼šPull|åŽ‹æ‘†çŽ‡|æ»¤æ³¢|å¼€æ¼|é©±åŠ¨åŠ›|ä¸­æ–­
+    å–å€¼ï¼š
+      è§å®å®šä¹‰
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤ï¼šæ— Pull|é«˜åŽ‹æ‘†çŽ‡|æ— æ»¤æ³¢|æ— å¼€æ¼|ä½Žé©±åŠ¨åŠ›|ç¦ä¸­æ–­
   */
   uint32 GPIO_PinControl;
   
   /*
-    ÃèÊö£º
-      Ñ¡ÔñGPIOµÄÊäÈëÊä³ö·½Ïò
-    È¡Öµ£º
-      ÊäÈë-DIR_INPUT
-      Êä³ö-DIR_OUTPUT
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é€‰æ‹©GPIOçš„è¾“å…¥è¾“å‡ºæ–¹å‘
+    å–å€¼ï¼š
+      è¾“å…¥-DIR_INPUT
+      è¾“å‡º-DIR_OUTPUT
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint8 GPIO_Dir;
   
   /*
-    ÃèÊö£º
-      Ñ¡ÔñGPIOµÄ³õÊ¼»¯Ê±µÄÊä³ö
-    È¡Öµ£º
-      µÍµçÆ½-OUTPUT_L
-      ¸ßµçÆ½-OUTPUT_H
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏÎªµÍµçÆ½
+    æè¿°ï¼š
+      é€‰æ‹©GPIOçš„åˆå§‹åŒ–æ—¶çš„è¾“å‡º
+    å–å€¼ï¼š
+      ä½Žç”µå¹³-OUTPUT_L
+      é«˜ç”µå¹³-OUTPUT_H
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤ä¸ºä½Žç”µå¹³
   */
   uint8 GPIO_Output;
   
   /*
-    ÃèÊö£º
-      Íâ²¿ÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢ÈçÎ´³õÊ¼»¯Ôò²»»á´¥·¢ÖÐ¶Ï
+    æè¿°ï¼š
+      å¤–éƒ¨ä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€å¦‚æœªåˆå§‹åŒ–åˆ™ä¸ä¼šè§¦å‘ä¸­æ–­
   */
   GPIO_ISR_CALLBACK GPIO_Isr; 
 } GPIO_InitTypeDef;
 
-//¼ì²âPORTXµÄÒý½ÅPINXÊÇ·ñ²úÉúÍâ²¿ÖÐ¶Ï
+//æ£€æµ‹PORTXçš„å¼•è„šPINXæ˜¯å¦äº§ç”Ÿå¤–éƒ¨ä¸­æ–­
 #define LPLD_GPIO_IsPinxExt(PORTX, PINX)  (PORTX->ISFR&PINX)
-//Çå³ýPORTXµÄÖÐ¶Ï±êÖ¾
+//æ¸…é™¤PORTXçš„ä¸­æ–­æ ‡å¿—
 #define LPLD_GPIO_ClearIntFlag(PORTX)     (PORTX->ISFR=0xFFFFFFFF)
 
-//GPIOÍ¨ÓÃ³õÊ¼»¯º¯Êý
+//GPIOé€šç”¨åˆå§‹åŒ–å‡½æ•°
 uint8 LPLD_GPIO_Init(GPIO_InitTypeDef);
-//Ê¹ÄÜGPIOÍâ²¿ÖÐ¶Ï
+//ä½¿èƒ½GPIOå¤–éƒ¨ä¸­æ–­
 uint8 LPLD_GPIO_EnableIrq(GPIO_InitTypeDef);
-//½ûÓÃGPIOÍâ²¿ÖÐ¶Ï
+//ç¦ç”¨GPIOå¤–éƒ¨ä¸­æ–­
 uint8 LPLD_GPIO_DisableIrq(GPIO_InitTypeDef);
-//ÉèÖÃGPIO¶Ë¿Ú0~31Î»µÄÊä³ö
+//è®¾ç½®GPIOç«¯å£0~31ä½çš„è¾“å‡º
 void LPLD_GPIO_Output(GPIO_Type *, uint32);
-//ÉèÖÃGPIO¶Ë¿ÚÒ»Î»µÄÊä³ö
+//è®¾ç½®GPIOç«¯å£ä¸€ä½çš„è¾“å‡º
 void LPLD_GPIO_Output_b(GPIO_Type *, uint32, uint8);
-//ÉèÖÃGPIO¶Ë¿Ú8Î»µÄÊä³ö
+//è®¾ç½®GPIOç«¯å£8ä½çš„è¾“å‡º
 void LPLD_GPIO_Output_8b(GPIO_Type *, uint8, uint8);
-//ÉèÖÃGPIO¶Ë¿Ú0~31µÄµçÆ½·­×ª
+//è®¾ç½®GPIOç«¯å£0~31çš„ç”µå¹³ç¿»è½¬
 void LPLD_GPIO_Toggle(GPIO_Type *, uint32);
-//ÉèÖÃGPIO¶Ë¿ÚÒ»Î»µÄ·­×ª
+//è®¾ç½®GPIOç«¯å£ä¸€ä½çš„ç¿»è½¬
 void LPLD_GPIO_Toggle_b(GPIO_Type *, uint8);
-//ÉèÖÃGPIO¶Ë¿Ú8Î»µÄ·­×ª
+//è®¾ç½®GPIOç«¯å£8ä½çš„ç¿»è½¬
 void LPLD_GPIO_Toggle_8b(GPIO_Type *, uint8, uint8);
-//È¡µÃGPIO¿Ú0~31Î»µÄÊý¾Ý
+//å–å¾—GPIOå£0~31ä½çš„æ•°æ®
 uint32 LPLD_GPIO_Input(GPIO_Type *);
-//È¡µÃGPIO¿ÚÄ³Ò»Î»µÄÊý¾Ý
+//å–å¾—GPIOå£æŸä¸€ä½çš„æ•°æ®
 uint8 LPLD_GPIO_Input_b(GPIO_Type *, uint8);
-//È¡µÃGPIO¶Ë¿Ú8Î»Êý¾ÝµÄÊäÈë
+//å–å¾—GPIOç«¯å£8ä½æ•°æ®çš„è¾“å…¥
 uint8 LPLD_GPIO_Input_8b(GPIO_Type *, uint8);
 
 #endif /* __HW_GPIO_H__ */

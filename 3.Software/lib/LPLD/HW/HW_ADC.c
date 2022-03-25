@@ -2,27 +2,27 @@
  * @file HW_ADC.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief ADCµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief ADCåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "HW_ADC.h"
 
-//ÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñº¯ÊýÊý×é
+//ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡å‡½æ•°æ•°ç»„
 #if defined(CPU_MK60DZ10)
 ADC_ISR_CALLBACK ADC_ISR[2];
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
@@ -32,15 +32,15 @@ static uint8 LPLD_ADC_Cal(ADC_Type *);
 
 /*
  * LPLD_ADC_Init
- * ADCÍ¨ÓÃ³õÊ¼»¯º¯Êý£¬Ñ¡ÔñADCx¡¢²É¼¯Ä£Ê½¡¢¾«¶ÈµÈ²ÎÊý
+ * ADCé€šç”¨åˆå§‹åŒ–å‡½æ•°ï¼Œé€‰æ‹©ADCxã€é‡‡é›†æ¨¡å¼ã€ç²¾åº¦ç­‰å‚æ•°
  * 
- * ²ÎÊý:
- *    adc_init_structure--ADC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûADC_InitTypeDef
+ * å‚æ•°:
+ *    adc_init_structure--ADCåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§ADC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_ADC_Init(ADC_InitTypeDef adc_init_structure)
 {
@@ -56,36 +56,36 @@ uint8 LPLD_ADC_Init(ADC_InitTypeDef adc_init_structure)
   uint8 hwtrg = adc_init_structure.ADC_HwTrgCfg;
   ADC_ISR_CALLBACK isr_func = adc_init_structure.ADC_Isr;
   
-  //²ÎÊý¼ì²é
-  ASSERT( (diff==ADC_SE)||(diff==ADC_DIFF) );  //ÅÐ¶ÏÄ£Ê½Ñ¡Ôñ
-  ASSERT( mode<=SE_16BIT );       //ÅÐ¶Ï¾«¶ÈÑ¡Ôñ
-  ASSERT( (time==SAMTIME_SHORT)||(time==SAMTIME_LONG) );  //ÅÐ¶Ï²ÉÑùÊ±¼äÑ¡Ôñ
-  ASSERT( ltime<=LSAMTIME_2EX );  //ÅÐ¶Ï³¤²ÉÑùÊ±¼ä
-  ASSERT( (avg&0x3)<=(HW_32AVG&0x3) );  //ÅÐ¶ÏÓ²¼þÆ½¾ù
-  ASSERT( (muxab==MUX_ADXXA)||(muxab==MUX_ADXXB) );  //ÅÐ¶ÏADC¸´ÓÃABÑ¡Ôñ
-  ASSERT( (pga&0x7)<=(LSAMTIME_2EX&0x7));  //ÅÐ¶ÏPGA
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( (diff==ADC_SE)||(diff==ADC_DIFF) );  //åˆ¤æ–­æ¨¡å¼é€‰æ‹©
+  ASSERT( mode<=SE_16BIT );       //åˆ¤æ–­ç²¾åº¦é€‰æ‹©
+  ASSERT( (time==SAMTIME_SHORT)||(time==SAMTIME_LONG) );  //åˆ¤æ–­é‡‡æ ·æ—¶é—´é€‰æ‹©
+  ASSERT( ltime<=LSAMTIME_2EX );  //åˆ¤æ–­é•¿é‡‡æ ·æ—¶é—´
+  ASSERT( (avg&0x3)<=(HW_32AVG&0x3) );  //åˆ¤æ–­ç¡¬ä»¶å¹³å‡
+  ASSERT( (muxab==MUX_ADXXA)||(muxab==MUX_ADXXB) );  //åˆ¤æ–­ADCå¤ç”¨ABé€‰æ‹©
+  ASSERT( (pga&0x7)<=(LSAMTIME_2EX&0x7));  //åˆ¤æ–­PGA
   
-  //ÅäÖÃADCÊ±ÖÓ
+  //é…ç½®ADCæ—¶é’Ÿ
   if(adcx == ADC0)
   {
     i=0;
-    SIM->SCGC6 |= SIM_SCGC6_ADC0_MASK;   // ¿ªÆôADC0Ê±ÖÓ
+    SIM->SCGC6 |= SIM_SCGC6_ADC0_MASK;   // å¼€å¯ADC0æ—¶é’Ÿ
   }
   else if(adcx == ADC1)
   {
     i=1;
-    SIM->SCGC3 |= SIM_SCGC3_ADC1_MASK;   // ¿ªÆôADC1Ê±ÖÓ
+    SIM->SCGC3 |= SIM_SCGC3_ADC1_MASK;   // å¼€å¯ADC1æ—¶é’Ÿ
   }
 #if defined(CPU_MK60F12) || defined(CPU_MK60F15)
   else if(adcx == ADC2)
   {
     i=2;
-    SIM->SCGC6 |= SIM_SCGC6_ADC2_MASK;   // ¿ªÆôADC1Ê±ÖÓ
+    SIM->SCGC6 |= SIM_SCGC6_ADC2_MASK;   // å¼€å¯ADC1æ—¶é’Ÿ
   }
   else if(adcx == ADC3)
   {
     i=3;
-    SIM->SCGC3 |= SIM_SCGC3_ADC3_MASK;   // ¿ªÆôADC1Ê±ÖÓ
+    SIM->SCGC3 |= SIM_SCGC3_ADC3_MASK;   // å¼€å¯ADC1æ—¶é’Ÿ
   }
 #endif
   else 
@@ -94,44 +94,44 @@ uint8 LPLD_ADC_Init(ADC_InitTypeDef adc_init_structure)
   }
 
   if(adc_init_structure.ADC_CalEnable == TRUE)
-    LPLD_ADC_Cal(adcx);  //½øÐÐADCÐ£×¼
+    LPLD_ADC_Cal(adcx);  //è¿›è¡ŒADCæ ¡å‡†
   
-  //ÉèÖÃADCCFG1¼Ä´æÆ÷
-  adcx->CFG1  =  0& (~ADC_CFG1_ADLPC_MASK)         // ÖØÐÂÎªÕý³£Ê¹ÓÃ½øÐÐÅäÖÃ
-                  | ADC_CFG1_ADIV(ADIV_1)          // ADCÊäÈëÊ±ÖÓ·ÖÆµÎª 1
-                  | time                           // ÉèÖÃ³¤¶ÌÊ±¼ä²ÉÑùÄ£Ê½
-                  | ADC_CFG1_ADICLK(ADICLK_BUS_2)  // ADCÊäÈëÊ±ÖÓÔ´Îª BusClk
-                  | ADC_CFG1_MODE(mode);           //ÉèÖÃADC×ª»»¾«¶È
+  //è®¾ç½®ADCCFG1å¯„å­˜å™¨
+  adcx->CFG1  =  0& (~ADC_CFG1_ADLPC_MASK)         // é‡æ–°ä¸ºæ­£å¸¸ä½¿ç”¨è¿›è¡Œé…ç½®
+                  | ADC_CFG1_ADIV(ADIV_1)          // ADCè¾“å…¥æ—¶é’Ÿåˆ†é¢‘ä¸º 1
+                  | time                           // è®¾ç½®é•¿çŸ­æ—¶é—´é‡‡æ ·æ¨¡å¼
+                  | ADC_CFG1_ADICLK(ADICLK_BUS_2)  // ADCè¾“å…¥æ—¶é’Ÿæºä¸º BusClk
+                  | ADC_CFG1_MODE(mode);           //è®¾ç½®ADCè½¬æ¢ç²¾åº¦
 
-  //ÉèÖÃADCCFG2¼Ä´æÆ÷
-  adcx->CFG2 = 0 & (~ADC_CFG2_ADACKEN_MASK)   //½ûÓÃÒì²½Ê±ÖÓÊä³ö
-                 | muxab        // ADC¸´ÓÃÑ¡Ôñ
-                 | ADC_CFG2_ADHSC_MASK        // ¸ßËÙ×ª»»
-                 | ADC_CFG2_ADLSTS(ltime);    // ³¤²ÉÑùÊ±¼äÊ±ÖÓÖÜÆÚÑ¡Ôñ
-                                              // ×Ü²ÉÑùÖÜÆÚ¼ûK60¼¼ÊõÎÄµµ page:840
-  //ÓÃÓÚÉè¶¨ãÐÖµ
+  //è®¾ç½®ADCCFG2å¯„å­˜å™¨
+  adcx->CFG2 = 0 & (~ADC_CFG2_ADACKEN_MASK)   //ç¦ç”¨å¼‚æ­¥æ—¶é’Ÿè¾“å‡º
+                 | muxab        // ADCå¤ç”¨é€‰æ‹©
+                 | ADC_CFG2_ADHSC_MASK        // é«˜é€Ÿè½¬æ¢
+                 | ADC_CFG2_ADLSTS(ltime);    // é•¿é‡‡æ ·æ—¶é—´æ—¶é’Ÿå‘¨æœŸé€‰æ‹©
+                                              // æ€»é‡‡æ ·å‘¨æœŸè§K60æŠ€æœ¯æ–‡æ¡£ page:840
+  //ç”¨äºŽè®¾å®šé˜ˆå€¼
   adcx->CV1  = 0x1234u ; 
   adcx->CV2  = 0x5678u ;
   
-  adcx->SC2  = 0 | (hwtrg & ADC_SC2_ADTRG_MASK) //ÉèÖÃ´¥·¢·½Ê½
-                 & (~ADC_SC2_ACFE_MASK)         //¹Ø±Õ±È½Ï¹¦ÄÜ
-                 & (~ADC_SC2_DMAEN_MASK)        //¹Ø±ÕDMA
-                 |  ADC_SC2_ACREN_MASK          //Ê¹ÄÜ·¶Î§±È½Ï
-                 |  ADC_SC2_ACFGT_MASK          //Ê¹ÄÜ´óÓÚ±È½Ï¹¦ÄÜ
-                 |  ADC_SC2_REFSEL(REFSEL_EXT); //Ñ¡ÔñÍâ²¿²Î¿¼Ô´VREFHºÍVREFL
+  adcx->SC2  = 0 | (hwtrg & ADC_SC2_ADTRG_MASK) //è®¾ç½®è§¦å‘æ–¹å¼
+                 & (~ADC_SC2_ACFE_MASK)         //å…³é—­æ¯”è¾ƒåŠŸèƒ½
+                 & (~ADC_SC2_DMAEN_MASK)        //å…³é—­DMA
+                 |  ADC_SC2_ACREN_MASK          //ä½¿èƒ½èŒƒå›´æ¯”è¾ƒ
+                 |  ADC_SC2_ACFGT_MASK          //ä½¿èƒ½å¤§äºŽæ¯”è¾ƒåŠŸèƒ½
+                 |  ADC_SC2_REFSEL(REFSEL_EXT); //é€‰æ‹©å¤–éƒ¨å‚è€ƒæºVREFHå’ŒVREFL
   
   if(adc_init_structure.ADC_DmaEnable == TRUE) 
-    adcx->SC2  |= ADC_SC2_DMAEN_MASK;   //Ê¹ÄÜDMA
+    adcx->SC2  |= ADC_SC2_DMAEN_MASK;   //ä½¿èƒ½DMA
 
-  adcx->SC3  = 0 & (~ADC_SC3_CAL_MASK)          //¹Ø±ÕÐ£×¼
-                 & (~ADC_SC3_ADCO_MASK)         //Ñ¡ÔñÒ»´Î×ª»»
-                 |  avg;        //Ó²¼þÆ½¾ù
+  adcx->SC3  = 0 & (~ADC_SC3_CAL_MASK)          //å…³é—­æ ¡å‡†
+                 & (~ADC_SC3_ADCO_MASK)         //é€‰æ‹©ä¸€æ¬¡è½¬æ¢
+                 |  avg;        //ç¡¬ä»¶å¹³å‡
   
   adcx->PGA  = pga<<ADC_PGA_PGAG_SHIFT; 
   
-  //Ð£×¼Íê±ÏºóÔÙÖØÐÂ³õÊ¼»¯ADC¼Ä´æÆ÷
-  //adcx->SC1[0] = ADC_SC1_ADCH(AD31);    //¸´Î»SC1
-  adcx->SC1[hwtrg & 0x01] = diff;         //ÉèÖÃµ¥¶Ë¡¢²î·ÖÊäÈë
+  //æ ¡å‡†å®Œæ¯•åŽå†é‡æ–°åˆå§‹åŒ–ADCå¯„å­˜å™¨
+  //adcx->SC1[0] = ADC_SC1_ADCH(AD31);    //å¤ä½SC1
+  adcx->SC1[hwtrg & 0x01] = diff;         //è®¾ç½®å•ç«¯ã€å·®åˆ†è¾“å…¥
   
   if(isr_func!= NULL)
   {
@@ -143,40 +143,40 @@ uint8 LPLD_ADC_Init(ADC_InitTypeDef adc_init_structure)
 
 /*
  * LPLD_ADC_Deinit
- * ADC·´³õÊ¼»¯º¯Êý£¬½ûÓÃADCÄ£¿é
+ * ADCååˆå§‹åŒ–å‡½æ•°ï¼Œç¦ç”¨ADCæ¨¡å—
  * 
- * ²ÎÊý:
- *    adc_init_structure--ADC³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûADC_InitTypeDef
+ * å‚æ•°:
+ *    adc_init_structure--ADCåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§ADC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_ADC_Deinit(ADC_InitTypeDef adc_init_structure)
 {
   ADC_Type *adcx = adc_init_structure.ADC_Adcx;
   uint8 hwtrg = adc_init_structure.ADC_HwTrgCfg;
   
-  adcx->SC1[hwtrg & 0x01] = ADC_SC1_ADCH(AD31);    //¸´Î»SC1
+  adcx->SC1[hwtrg & 0x01] = ADC_SC1_ADCH(AD31);    //å¤ä½SC1
   
-  //ÅäÖÃADCÊ±ÖÓ
+  //é…ç½®ADCæ—¶é’Ÿ
   if(adcx == ADC0)
   {
-    SIM->SCGC6 &= ~(SIM_SCGC6_ADC0_MASK);   // ¹Ø±ÕADC0Ê±ÖÓ
+    SIM->SCGC6 &= ~(SIM_SCGC6_ADC0_MASK);   // å…³é—­ADC0æ—¶é’Ÿ
   }
   else if(adcx == ADC1)
   {
-    SIM->SCGC3 &= ~(SIM_SCGC3_ADC1_MASK);   // ¹Ø±ÕADC1Ê±ÖÓ
+    SIM->SCGC3 &= ~(SIM_SCGC3_ADC1_MASK);   // å…³é—­ADC1æ—¶é’Ÿ
   }
 #if defined(CPU_MK60F12) || defined(CPU_MK60F15)
   else if(adcx == ADC2)
   {
-    SIM->SCGC3 &= ~(SIM_SCGC6_ADC2_MASK);   // ¿ªÆôADC1Ê±ÖÓ
+    SIM->SCGC3 &= ~(SIM_SCGC6_ADC2_MASK);   // å¼€å¯ADC1æ—¶é’Ÿ
   }
   else if(adcx == ADC3)
   {
-    SIM->SCGC3 &= ~(SIM_SCGC3_ADC3_MASK);   // ¿ªÆôADC1Ê±ÖÓ
+    SIM->SCGC3 &= ~(SIM_SCGC3_ADC3_MASK);   // å¼€å¯ADC1æ—¶é’Ÿ
   }
 #endif
   else 
@@ -189,128 +189,128 @@ uint8 LPLD_ADC_Deinit(ADC_InitTypeDef adc_init_structure)
 
 /*
  * LPLD_ADC_Get
- * Èí¼þ´¥·¢Ä£Ê½»ñÈ¡AD×ª»»½á¹û
+ * è½¯ä»¶è§¦å‘æ¨¡å¼èŽ·å–ADè½¬æ¢ç»“æžœ
  * 
- * ²ÎÊý:
- *    adcx--ADCxÄ£¿éºÅ
+ * å‚æ•°:
+ *    adcx--ADCxæ¨¡å—å·
  *      |__ADC0          --ADC0
  *      |__ADC1          --ADC1
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
  *      |__ADC2          --ADC2
  *      |__ADC3          --ADC3
- *    chn--ADC²É¼¯ÊäÈëÍ¨µÀ,Ïê¼û¼¼ÊõÊÖ²áK60P144M100SF2RMµÚ118Ò³
+ *    chn--ADCé‡‡é›†è¾“å…¥é€šé“,è¯¦è§æŠ€æœ¯æ‰‹å†ŒK60P144M100SF2RMç¬¬118é¡µ
  *      ADC0
- *      |__DAD0          --²î·Ö(ADC0_DP0ºÍADC0_DM0)/µ¥¶Ë(ADC0_DP0)
- *      |__DAD1          --²î·Ö(ADC0_DP1ºÍADC0_DM1)/µ¥¶Ë(ADC0_DP1)
- *      |__DAD2          --²î·Ö(PGA0_DPºÍPGA0_DM)/µ¥¶Ë(PGA0_DP)
- *      |__DAD3          --²î·Ö(ADC0_DP3ºÍADC0_DM3)/µ¥¶Ë(ADC0_DP3)
- *      |__AD4           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE4b--PTC2)
- *      |__AD5           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE5b--PTD1)
- *      |__AD6           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE6b--PTD5)
- *      |__AD7           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE7b--PTD6)
- *      |__AD8           --µ¥¶Ë(ADC0_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC0_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC0_SE10--PTA7)
- *      |__AD11          --µ¥¶Ë(ADC0_SE11--PTA8)
- *      |__AD12          --µ¥¶Ë(ADC0_SE12--PTB2)
- *      |__AD13          --µ¥¶Ë(ADC0_SE13--PTB3)
- *      |__AD14          --µ¥¶Ë(ADC0_SE14--PTC0)
- *      |__AD15          --µ¥¶Ë(ADC0_SE15--PTC1)
- *      |__AD16          --µ¥¶Ë(ADC0_SE16)
- *      |__AD17          --µ¥¶Ë(ADC0_SE17-PTE24)
- *      |__AD18          --µ¥¶Ë(ADC0_SE18--PTE25)
- *      |__AD19          --µ¥¶Ë(ADC0_DM0)
- *      |__AD20          --µ¥¶Ë(ADC0_DM1)
- *      |__AD23          --µ¥¶Ë(DAC0)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC0_DP0å’ŒADC0_DM0)/å•ç«¯(ADC0_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC0_DP1å’ŒADC0_DM1)/å•ç«¯(ADC0_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA0_DPå’ŒPGA0_DM)/å•ç«¯(PGA0_DP)
+ *      |__DAD3          --å·®åˆ†(ADC0_DP3å’ŒADC0_DM3)/å•ç«¯(ADC0_DP3)
+ *      |__AD4           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE4b--PTC2)
+ *      |__AD5           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE5b--PTD1)
+ *      |__AD6           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE6b--PTD5)
+ *      |__AD7           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE7b--PTD6)
+ *      |__AD8           --å•ç«¯(ADC0_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC0_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC0_SE10--PTA7)
+ *      |__AD11          --å•ç«¯(ADC0_SE11--PTA8)
+ *      |__AD12          --å•ç«¯(ADC0_SE12--PTB2)
+ *      |__AD13          --å•ç«¯(ADC0_SE13--PTB3)
+ *      |__AD14          --å•ç«¯(ADC0_SE14--PTC0)
+ *      |__AD15          --å•ç«¯(ADC0_SE15--PTC1)
+ *      |__AD16          --å•ç«¯(ADC0_SE16)
+ *      |__AD17          --å•ç«¯(ADC0_SE17-PTE24)
+ *      |__AD18          --å•ç«¯(ADC0_SE18--PTE25)
+ *      |__AD19          --å•ç«¯(ADC0_DM0)
+ *      |__AD20          --å•ç«¯(ADC0_DM1)
+ *      |__AD23          --å•ç«¯(DAC0)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
  *      ADC1
- *      |__DAD0          --²î·Ö(ADC1_DP0ºÍADC1_DM0)/µ¥¶Ë(ADC1_DP0)
- *      |__DAD1          --²î·Ö(ADC1_DP1ºÍADC1_DM1)/µ¥¶Ë(ADC1_DP1)
- *      |__DAD2          --²î·Ö(PGA1_DPºÍPGA1_DM)/µ¥¶Ë(PGA1_DP)
- *      |__DAD3          --²î·Ö(ADC1_DP3ºÍADC1_DM3)/µ¥¶Ë(ADC1_DP3)
- *      |__AD4           --µ¥¶ËA(ADC1_SE4a--PTE0)/µ¥¶ËB(ADC1_SE4b--PTC8)
- *      |__AD5           --µ¥¶ËA(ADC1_SE5a--PTE1)/µ¥¶ËB(ADC1_SE5b--PTC9)
- *      |__AD6           --µ¥¶ËA(ADC1_SE6a--PTE2)/µ¥¶ËB(ADC1_SE6b--PTC10)
- *      |__AD7           --µ¥¶ËA(ADC1_SE7a--PTE3)/µ¥¶ËB(ADC1_SE7b--PTC11)
- *      |__AD8           --µ¥¶Ë(ADC1_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC1_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC1_SE10--PTB4)
- *      |__AD11          --µ¥¶Ë(ADC1_SE11--PTB5)
- *      |__AD12          --µ¥¶Ë(ADC1_SE12--PTB6)
- *      |__AD13          --µ¥¶Ë(ADC1_SE13--PTB7)
- *      |__AD14          --µ¥¶Ë(ADC1_SE14--PTB10)
- *      |__AD15          --µ¥¶Ë(ADC1_SE15--PTB11)
- *      |__AD16          --µ¥¶Ë(ADC1_SE16)
- *      |__AD17          --µ¥¶Ë(ADC1_SE17--PTA17)
- *      |__AD18          --µ¥¶Ë(VREF)
- *      |__AD19          --µ¥¶Ë(ADC1_DM0)
- *      |__AD20          --µ¥¶Ë(ADC1_DM1)
- *      |__AD23          --µ¥¶Ë(DAC1)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC1_DP0å’ŒADC1_DM0)/å•ç«¯(ADC1_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC1_DP1å’ŒADC1_DM1)/å•ç«¯(ADC1_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA1_DPå’ŒPGA1_DM)/å•ç«¯(PGA1_DP)
+ *      |__DAD3          --å·®åˆ†(ADC1_DP3å’ŒADC1_DM3)/å•ç«¯(ADC1_DP3)
+ *      |__AD4           --å•ç«¯A(ADC1_SE4a--PTE0)/å•ç«¯B(ADC1_SE4b--PTC8)
+ *      |__AD5           --å•ç«¯A(ADC1_SE5a--PTE1)/å•ç«¯B(ADC1_SE5b--PTC9)
+ *      |__AD6           --å•ç«¯A(ADC1_SE6a--PTE2)/å•ç«¯B(ADC1_SE6b--PTC10)
+ *      |__AD7           --å•ç«¯A(ADC1_SE7a--PTE3)/å•ç«¯B(ADC1_SE7b--PTC11)
+ *      |__AD8           --å•ç«¯(ADC1_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC1_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC1_SE10--PTB4)
+ *      |__AD11          --å•ç«¯(ADC1_SE11--PTB5)
+ *      |__AD12          --å•ç«¯(ADC1_SE12--PTB6)
+ *      |__AD13          --å•ç«¯(ADC1_SE13--PTB7)
+ *      |__AD14          --å•ç«¯(ADC1_SE14--PTB10)
+ *      |__AD15          --å•ç«¯(ADC1_SE15--PTB11)
+ *      |__AD16          --å•ç«¯(ADC1_SE16)
+ *      |__AD17          --å•ç«¯(ADC1_SE17--PTA17)
+ *      |__AD18          --å•ç«¯(VREF)
+ *      |__AD19          --å•ç«¯(ADC1_DM0)
+ *      |__AD20          --å•ç«¯(ADC1_DM1)
+ *      |__AD23          --å•ç«¯(DAC1)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
- *          Ïê¼û¼¼ÊõÊÖ²áK60P144M120SF2RMµÚ131Ò³
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
+ *          è¯¦è§æŠ€æœ¯æ‰‹å†ŒK60P144M120SF2RMç¬¬131é¡µ
  *      ADC2      
- *      |__DAD0          --²î·Ö(ADC2_DP0ºÍADC2_DM0)/µ¥¶Ë(ADC2_DP0)
- *      |__DAD1          --²î·Ö(ADC2_DP1ºÍADC2_DM1)/µ¥¶Ë(ADC2_DP1)
- *      |__DAD2          --²î·Ö(PGA2_DPºÍPGA2_DM)/µ¥¶Ë(PGA2_DP)
- *      |__DAD3          --²î·Ö(ADC2_DP3ºÍADC2_DM3)/µ¥¶Ë(ADC2_DP3)
- *      |__AD4           --µ¥¶ËA(ADC2_SE4a--PTB20)/µ¥¶ËB(±£Áô)
- *      |__AD5           --µ¥¶ËA(ADC2_SE5a--PTB21)/µ¥¶ËB(±£Áô)
- *      |__AD6           --µ¥¶ËA(±£Áô)/µ¥¶ËB(±£Áô)
- *      |__AD7           --µ¥¶ËA(±£Áô)/µ¥¶ËB(±£Áô)
- *      |__AD8           --µ¥¶Ë(ADC2_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC2_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC2_SE10)
- *      |__AD11          --µ¥¶Ë(ADC2_SE11)
- *      |__AD12          --µ¥¶Ë(ADC2_SE12--PTA29)
- *      |__AD13          --µ¥¶Ë(ADC2_SE13--PTA28)
- *      |__AD14          --µ¥¶Ë(ADC2_SE14--PTA27)
- *      |__AD15          --µ¥¶Ë(ADC2_SE15--PTA26)
- *      |__AD16          --µ¥¶Ë(ADC2_SE16--PTE8)
- *      |__AD17          --µ¥¶Ë(ADC2_SE17--PTE9)
- *      |__AD18          --µ¥¶Ë(ADC2_SE18)
- *      |__AD19          --µ¥¶Ë(ADC2_DM0)
- *      |__AD20          --µ¥¶Ë(ADC2_DM1)
- *      |__AD23          --µ¥¶Ë(DAC2)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC2_DP0å’ŒADC2_DM0)/å•ç«¯(ADC2_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC2_DP1å’ŒADC2_DM1)/å•ç«¯(ADC2_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA2_DPå’ŒPGA2_DM)/å•ç«¯(PGA2_DP)
+ *      |__DAD3          --å·®åˆ†(ADC2_DP3å’ŒADC2_DM3)/å•ç«¯(ADC2_DP3)
+ *      |__AD4           --å•ç«¯A(ADC2_SE4a--PTB20)/å•ç«¯B(ä¿ç•™)
+ *      |__AD5           --å•ç«¯A(ADC2_SE5a--PTB21)/å•ç«¯B(ä¿ç•™)
+ *      |__AD6           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ä¿ç•™)
+ *      |__AD7           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ä¿ç•™)
+ *      |__AD8           --å•ç«¯(ADC2_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC2_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC2_SE10)
+ *      |__AD11          --å•ç«¯(ADC2_SE11)
+ *      |__AD12          --å•ç«¯(ADC2_SE12--PTA29)
+ *      |__AD13          --å•ç«¯(ADC2_SE13--PTA28)
+ *      |__AD14          --å•ç«¯(ADC2_SE14--PTA27)
+ *      |__AD15          --å•ç«¯(ADC2_SE15--PTA26)
+ *      |__AD16          --å•ç«¯(ADC2_SE16--PTE8)
+ *      |__AD17          --å•ç«¯(ADC2_SE17--PTE9)
+ *      |__AD18          --å•ç«¯(ADC2_SE18)
+ *      |__AD19          --å•ç«¯(ADC2_DM0)
+ *      |__AD20          --å•ç«¯(ADC2_DM1)
+ *      |__AD23          --å•ç«¯(DAC2)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
  *      ADC3
- *      |__DAD0          --²î·Ö(ADC3_DP0ºÍADC3_DM0)/µ¥¶Ë(ADC3_DP0)
- *      |__DAD1          --²î·Ö(ADC3_DP1ºÍADC3_DM1)/µ¥¶Ë(ADC3_DP1)
- *      |__DAD2          --²î·Ö(PGA3_DPºÍPGA3_DM)/µ¥¶Ë(PGA3_DP)
- *      |__DAD3          --²î·Ö(ADC3_DP3ºÍADC3_DM3)/µ¥¶Ë(ADC3_DP3)
- *      |__AD4           --µ¥¶ËA(ADC3_SE4a--PTA10)/µ¥¶ËB(ADC3_SE4b--PTE27)
- *      |__AD5           --µ¥¶ËA(ADC3_SE5a--PTA9)/µ¥¶ËB(ADC3_SE5b--PTE26)
- *      |__AD6           --µ¥¶ËA(ADC3_SE6a--PTA6)/µ¥¶ËB(±£Áô)
- *      |__AD7           --µ¥¶ËA(ADC3_SE7a--PTE28)/µ¥¶ËB(±£Áô)
- *      |__AD8           --µ¥¶Ë(ADC3_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC3_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC3_SE10)
- *      |__AD11          --µ¥¶Ë(ADC3_SE11)
- *      |__AD12          --µ¥¶Ë(ADC3_SE12)
- *      |__AD13          --µ¥¶Ë(ADC3_SE13)
- *      |__AD14          --µ¥¶Ë(ADC3_SE14)
- *      |__AD15          --µ¥¶Ë(ADC3_SE15--PTA11)
- *      |__AD16          --µ¥¶Ë(ADC3_SE16--PTE11)
- *      |__AD17          --µ¥¶Ë(ADC3_SE17--PTE12)
- *      |__AD18          --µ¥¶Ë(VREF)
- *      |__AD19          --µ¥¶Ë(ADC3_DM0)
- *      |__AD20          --µ¥¶Ë(ADC3_DM1)
- *      |__AD23          --µ¥¶Ë(DAC3)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC3_DP0å’ŒADC3_DM0)/å•ç«¯(ADC3_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC3_DP1å’ŒADC3_DM1)/å•ç«¯(ADC3_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA3_DPå’ŒPGA3_DM)/å•ç«¯(PGA3_DP)
+ *      |__DAD3          --å·®åˆ†(ADC3_DP3å’ŒADC3_DM3)/å•ç«¯(ADC3_DP3)
+ *      |__AD4           --å•ç«¯A(ADC3_SE4a--PTA10)/å•ç«¯B(ADC3_SE4b--PTE27)
+ *      |__AD5           --å•ç«¯A(ADC3_SE5a--PTA9)/å•ç«¯B(ADC3_SE5b--PTE26)
+ *      |__AD6           --å•ç«¯A(ADC3_SE6a--PTA6)/å•ç«¯B(ä¿ç•™)
+ *      |__AD7           --å•ç«¯A(ADC3_SE7a--PTE28)/å•ç«¯B(ä¿ç•™)
+ *      |__AD8           --å•ç«¯(ADC3_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC3_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC3_SE10)
+ *      |__AD11          --å•ç«¯(ADC3_SE11)
+ *      |__AD12          --å•ç«¯(ADC3_SE12)
+ *      |__AD13          --å•ç«¯(ADC3_SE13)
+ *      |__AD14          --å•ç«¯(ADC3_SE14)
+ *      |__AD15          --å•ç«¯(ADC3_SE15--PTA11)
+ *      |__AD16          --å•ç«¯(ADC3_SE16--PTE11)
+ *      |__AD17          --å•ç«¯(ADC3_SE17--PTE12)
+ *      |__AD18          --å•ç«¯(VREF)
+ *      |__AD19          --å•ç«¯(ADC3_DM0)
+ *      |__AD20          --å•ç«¯(ADC3_DM1)
+ *      |__AD23          --å•ç«¯(DAC3)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
- * Êä³ö:
- *    ADÍ¨µÀ×ª»»Öµ(ÓÒ¶ÔÆë)£¬ÈôÎª²î·Ö×ª»»½á¹û£¬ÔòÎª¶þ½øÖÆ²¹Âë¸ñÊ½(ÐèÇ¿ÖÆ×ª»»Îªint16)
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
+ * è¾“å‡º:
+ *    ADé€šé“è½¬æ¢å€¼(å³å¯¹é½)ï¼Œè‹¥ä¸ºå·®åˆ†è½¬æ¢ç»“æžœï¼Œåˆ™ä¸ºäºŒè¿›åˆ¶è¡¥ç æ ¼å¼(éœ€å¼ºåˆ¶è½¬æ¢ä¸ºint16)
  *
  */
 uint16 LPLD_ADC_Get(ADC_Type *adcx, AdcChnEnum_Type chn)
@@ -318,41 +318,41 @@ uint16 LPLD_ADC_Get(ADC_Type *adcx, AdcChnEnum_Type chn)
   adcx->SC1[0] &= ~(ADC_SC1_AIEN_MASK);
   adcx->SC1[0] &= ~(ADC_SC1_ADCH_MASK);
   adcx->SC1[0] |= ADC_SC1_ADCH(chn);
-  while((adcx->SC1[0]&ADC_SC1_COCO_MASK) == 0); //µÈ´ý×ª»»Íê³É  
+  while((adcx->SC1[0]&ADC_SC1_COCO_MASK) == 0); //ç­‰å¾…è½¬æ¢å®Œæˆ  
   return adcx->R[0];
 }
 
 /*
  * LPLD_ADC_EnableConversion
- * Ê¹ÄÜADCx×ª»»Í¨µÀ£¬ÓÃÓÚÈí¼þÖÐ¶Ï¡¢Ó²¼þ´¥·¢µÈÄ£Ê½
+ * ä½¿èƒ½ADCxè½¬æ¢é€šé“ï¼Œç”¨äºŽè½¯ä»¶ä¸­æ–­ã€ç¡¬ä»¶è§¦å‘ç­‰æ¨¡å¼
  * 
- * ²ÎÊý:
- *    adcx--ADCxÄ£¿éºÅ
+ * å‚æ•°:
+ *    adcx--ADCxæ¨¡å—å·
  *      |__ADC0          --ADC0
  *      |__ADC1          --ADC1
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
  *      |__ADC2          --ADC2
  *      |__ADC3          --ADC3
- *    chn--ADC²É¼¯ÊäÈëÍ¨µÀ,Ïê¼û¼¼ÊõÊÖ²áK60P144M100SF2RMµÚ118Ò³
- *      È¡ÖµÍ¬LPLD_ADC_GetÐÎ²Îchn
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
- *          MK60FÏê¼û¼¼ÊõÊÖ²áK60P144M120SF2RMµÚ131Ò³
- *    ab--SC1¼Ä´æÆ÷A¡¢BÍ¨µÀÑ¡Ôñ
- *      |__0          --A×ª»»Í¨µÀ
- *      |__1          --B×ª»»Í¨µÀ
- *    irq--ÊÇ·ñÊ¹ÄÜ×ª»»Íê³ÉÖÐ¶Ï
- *      |__TRUE       --Ê¹ÄÜ×ª»»Íê³ÉÖÐ¶Ï
- *      |__FALSE      --½ûÓÃ×ª»»Íê³ÉÖÐ¶Ï
+ *    chn--ADCé‡‡é›†è¾“å…¥é€šé“,è¯¦è§æŠ€æœ¯æ‰‹å†ŒK60P144M100SF2RMç¬¬118é¡µ
+ *      å–å€¼åŒLPLD_ADC_Getå½¢å‚chn
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
+ *          MK60Fè¯¦è§æŠ€æœ¯æ‰‹å†ŒK60P144M120SF2RMç¬¬131é¡µ
+ *    ab--SC1å¯„å­˜å™¨Aã€Bé€šé“é€‰æ‹©
+ *      |__0          --Aè½¬æ¢é€šé“
+ *      |__1          --Bè½¬æ¢é€šé“
+ *    irq--æ˜¯å¦ä½¿èƒ½è½¬æ¢å®Œæˆä¸­æ–­
+ *      |__TRUE       --ä½¿èƒ½è½¬æ¢å®Œæˆä¸­æ–­
+ *      |__FALSE      --ç¦ç”¨è½¬æ¢å®Œæˆä¸­æ–­
  *
- * Êä³ö:
- *    ÎÞ
+ * è¾“å‡º:
+ *    æ— 
  *
  */
 void LPLD_ADC_EnableConversion(ADC_Type *adcx, AdcChnEnum_Type chn, uint8 ab, boolean irq)
 {
-  //²ÎÊý¼ì²é
-  ASSERT( ab<=1 );  //ÅÐ¶ÏAB¿ØÖÆ¼Ä´æÆ÷
-  ASSERT( irq<=1 );  //ÅÐ¶ÏÊÇ·ñÊ¹ÄÜÖÐ¶Ï
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( ab<=1 );  //åˆ¤æ–­ABæŽ§åˆ¶å¯„å­˜å™¨
+  ASSERT( irq<=1 );  //åˆ¤æ–­æ˜¯å¦ä½¿èƒ½ä¸­æ–­
   if(irq == TRUE)
   {
     adcx->SC1[ab] |= (ADC_SC1_AIEN_MASK);
@@ -363,45 +363,45 @@ void LPLD_ADC_EnableConversion(ADC_Type *adcx, AdcChnEnum_Type chn, uint8 ab, bo
 
 /*
  * LPLD_ADC_GetResult
- * »ñÈ¡AD×ª»»½á¹û
+ * èŽ·å–ADè½¬æ¢ç»“æžœ
  * 
- * ²ÎÊý:
- *    adcx--ADCxÄ£¿éºÅ
+ * å‚æ•°:
+ *    adcx--ADCxæ¨¡å—å·
  *      |__ADC0          --ADC0
  *      |__ADC1          --ADC1
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
  *      |__ADC2          --ADC2
  *      |__ADC3          --ADC3
- *    ab--SC1¼Ä´æÆ÷A¡¢BÍ¨µÀÑ¡Ôñ
- *      |__0          --A×ª»»Í¨µÀ
- *      |__1          --B×ª»»Í¨µÀ
+ *    ab--SC1å¯„å­˜å™¨Aã€Bé€šé“é€‰æ‹©
+ *      |__0          --Aè½¬æ¢é€šé“
+ *      |__1          --Bè½¬æ¢é€šé“
  *
- * Êä³ö:
- *    ADÍ¨µÀ×ª»»Öµ(ÓÒ¶ÔÆë)£¬ÈôÎª²î·Ö×ª»»½á¹û£¬ÔòÎª¶þ½øÖÆ²¹Âë¸ñÊ½(ÐèÇ¿ÖÆ×ª»»Îªint16)
+ * è¾“å‡º:
+ *    ADé€šé“è½¬æ¢å€¼(å³å¯¹é½)ï¼Œè‹¥ä¸ºå·®åˆ†è½¬æ¢ç»“æžœï¼Œåˆ™ä¸ºäºŒè¿›åˆ¶è¡¥ç æ ¼å¼(éœ€å¼ºåˆ¶è½¬æ¢ä¸ºint16)
  *
  */
 uint16 LPLD_ADC_GetResult(ADC_Type *adcx, uint8 ab)
 {
-  //²ÎÊý¼ì²é
-  ASSERT( ab<=1 );  //ÅÐ¶ÏAB¿ØÖÆ¼Ä´æÆ÷
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( ab<=1 );  //åˆ¤æ–­ABæŽ§åˆ¶å¯„å­˜å™¨
   return adcx->R[ab];
 }
 
 /*
  * LPLD_ADC_GetSC1nCOCO
- * »ñÈ¡SC1¼Ä´æÆ÷ÖÐCOCOÎ»ÖÃ1µÄ±àºÅ
+ * èŽ·å–SC1å¯„å­˜å™¨ä¸­COCOä½ç½®1çš„ç¼–å·
  * 
- * ²ÎÊý:
- *    adcx--ADCxÄ£¿éºÅ
+ * å‚æ•°:
+ *    adcx--ADCxæ¨¡å—å·
  *      |__ADC0          --ADC0
  *      |__ADC1          --ADC1
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
  *      |__ADC2          --ADC2
  *      |__ADC3          --ADC3
  *
- * Êä³ö:
-*    0--SC1A¼Ä´æÆ÷COCOÎ»ÖÃ1
-*    1--SC1B¼Ä´æÆ÷COCOÎ»ÖÃ1
+ * è¾“å‡º:
+*    0--SC1Aå¯„å­˜å™¨COCOä½ç½®1
+*    1--SC1Bå¯„å­˜å™¨COCOä½ç½®1
  *
  */
 uint8 LPLD_ADC_GetSC1nCOCO(ADC_Type *adcx)
@@ -415,15 +415,15 @@ uint8 LPLD_ADC_GetSC1nCOCO(ADC_Type *adcx)
 
 /*
  * LPLD_ADC_EnableIrq
- * Ê¹ÄÜADCxÖÐ¶Ï
+ * ä½¿èƒ½ADCxä¸­æ–­
  * 
- * ²ÎÊý:
- *    adc_init_structure--PIT³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûADC_InitTypeDef
+ * å‚æ•°:
+ *    adc_init_structure--PITåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§ADC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  *
  */
 uint8 LPLD_ADC_EnableIrq(ADC_InitTypeDef adc_init_structure)
@@ -451,15 +451,15 @@ uint8 LPLD_ADC_EnableIrq(ADC_InitTypeDef adc_init_structure)
 
 /*
  * LPLD_ADC_DisableIrq
- * ½ûÓÃADCxÖÐ¶Ï
+ * ç¦ç”¨ADCxä¸­æ–­
  * 
- * ²ÎÊý:
- *    adc_init_structure--PIT³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûADC_InitTypeDef
+ * å‚æ•°:
+ *    adc_init_structure--PITåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§ADC_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  *
  */
 uint8 LPLD_ADC_DisableIrq(ADC_InitTypeDef adc_init_structure)
@@ -487,140 +487,140 @@ uint8 LPLD_ADC_DisableIrq(ADC_InitTypeDef adc_init_structure)
 
 /*
  * LPLD_ADC_Chn_Enable
- * Ê¹ÄÜADCxÏàÓ¦×ª»»Í¨µÀµÄAD²É¼¯¹¦ÄÜ
+ * ä½¿èƒ½ADCxç›¸åº”è½¬æ¢é€šé“çš„ADé‡‡é›†åŠŸèƒ½
  * 
- * ²ÎÊý:
- *    adcx--ADCxÄ£¿éºÅ
+ * å‚æ•°:
+ *    adcx--ADCxæ¨¡å—å·
  *      |__ADC0          --ADC0
  *      |__ADC1          --ADC1
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
  *      |__ADC2          --ADC2
  *      |__ADC3          --ADC3
- *    chn--ADC²É¼¯ÊäÈëÍ¨µÀ,Ïê¼û¼¼ÊõÊÖ²áK60P144M100SF2RMµÚ118Ò³
+ *    chn--ADCé‡‡é›†è¾“å…¥é€šé“,è¯¦è§æŠ€æœ¯æ‰‹å†ŒK60P144M100SF2RMç¬¬118é¡µ
  *      ADC0
- *      |__DAD0          --²î·Ö(ADC0_DP0ºÍADC0_DM0)/µ¥¶Ë(ADC0_DP0)
- *      |__DAD1          --²î·Ö(ADC0_DP1ºÍADC0_DM1)/µ¥¶Ë(ADC0_DP1)
- *      |__DAD2          --²î·Ö(PGA0_DPºÍPGA0_DM)/µ¥¶Ë(PGA0_DP)
- *      |__DAD3          --²î·Ö(ADC0_DP3ºÍADC0_DM3)/µ¥¶Ë(ADC0_DP3)
- *      |__AD4           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE4b--PTC2)
- *      |__AD5           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE5b--PTD1)
- *      |__AD6           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE6b--PTD5)
- *      |__AD7           --µ¥¶ËA(±£Áô)/µ¥¶ËB(ADC0_SE7b--PTD6)
- *      |__AD8           --µ¥¶Ë(ADC0_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC0_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC0_SE10--PTA7)
- *      |__AD11          --µ¥¶Ë(ADC0_SE11--PTA8)
- *      |__AD12          --µ¥¶Ë(ADC0_SE12--PTB2)
- *      |__AD13          --µ¥¶Ë(ADC0_SE13--PTB3)
- *      |__AD14          --µ¥¶Ë(ADC0_SE14--PTC0)
- *      |__AD15          --µ¥¶Ë(ADC0_SE15--PTC1)
- *      |__AD16          --µ¥¶Ë(ADC0_SE16)
- *      |__AD17          --µ¥¶Ë(ADC0_SE17-PTE24)
- *      |__AD18          --µ¥¶Ë(ADC0_SE18--PTE25)
- *      |__AD19          --µ¥¶Ë(ADC0_DM0)
- *      |__AD20          --µ¥¶Ë(ADC0_DM1)
- *      |__AD23          --µ¥¶Ë(DAC0)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC0_DP0å’ŒADC0_DM0)/å•ç«¯(ADC0_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC0_DP1å’ŒADC0_DM1)/å•ç«¯(ADC0_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA0_DPå’ŒPGA0_DM)/å•ç«¯(PGA0_DP)
+ *      |__DAD3          --å·®åˆ†(ADC0_DP3å’ŒADC0_DM3)/å•ç«¯(ADC0_DP3)
+ *      |__AD4           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE4b--PTC2)
+ *      |__AD5           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE5b--PTD1)
+ *      |__AD6           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE6b--PTD5)
+ *      |__AD7           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ADC0_SE7b--PTD6)
+ *      |__AD8           --å•ç«¯(ADC0_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC0_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC0_SE10--PTA7)
+ *      |__AD11          --å•ç«¯(ADC0_SE11--PTA8)
+ *      |__AD12          --å•ç«¯(ADC0_SE12--PTB2)
+ *      |__AD13          --å•ç«¯(ADC0_SE13--PTB3)
+ *      |__AD14          --å•ç«¯(ADC0_SE14--PTC0)
+ *      |__AD15          --å•ç«¯(ADC0_SE15--PTC1)
+ *      |__AD16          --å•ç«¯(ADC0_SE16)
+ *      |__AD17          --å•ç«¯(ADC0_SE17-PTE24)
+ *      |__AD18          --å•ç«¯(ADC0_SE18--PTE25)
+ *      |__AD19          --å•ç«¯(ADC0_DM0)
+ *      |__AD20          --å•ç«¯(ADC0_DM1)
+ *      |__AD23          --å•ç«¯(DAC0)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
  *      ADC1
- *      |__DAD0          --²î·Ö(ADC1_DP0ºÍADC1_DM0)/µ¥¶Ë(ADC1_DP0)
- *      |__DAD1          --²î·Ö(ADC1_DP1ºÍADC1_DM1)/µ¥¶Ë(ADC1_DP1)
- *      |__DAD2          --²î·Ö(PGA1_DPºÍPGA1_DM)/µ¥¶Ë(PGA1_DP)
- *      |__DAD3          --²î·Ö(ADC1_DP3ºÍADC1_DM3)/µ¥¶Ë(ADC1_DP3)
- *      |__AD4           --µ¥¶ËA(ADC1_SE4a--PTE0)/µ¥¶ËB(ADC1_SE4b--PTC8)
- *      |__AD5           --µ¥¶ËA(ADC1_SE5a--PTE1)/µ¥¶ËB(ADC1_SE5b--PTC9)
- *      |__AD6           --µ¥¶ËA(ADC1_SE6a--PTE2)/µ¥¶ËB(ADC1_SE6b--PTC10)
- *      |__AD7           --µ¥¶ËA(ADC1_SE7a--PTE3)/µ¥¶ËB(ADC1_SE7b--PTC11)
- *      |__AD8           --µ¥¶Ë(ADC1_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC1_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC1_SE10--PTB4)
- *      |__AD11          --µ¥¶Ë(ADC1_SE11--PTB5)
- *      |__AD12          --µ¥¶Ë(ADC1_SE12--PTB6)
- *      |__AD13          --µ¥¶Ë(ADC1_SE13--PTB7)
- *      |__AD14          --µ¥¶Ë(ADC1_SE14--PTB10)
- *      |__AD15          --µ¥¶Ë(ADC1_SE15--PTB11)
- *      |__AD16          --µ¥¶Ë(ADC1_SE16)
- *      |__AD17          --µ¥¶Ë(ADC1_SE17--PTA17)
- *      |__AD18          --µ¥¶Ë(VREF)
- *      |__AD19          --µ¥¶Ë(ADC1_DM0)
- *      |__AD20          --µ¥¶Ë(ADC1_DM1)
- *      |__AD23          --µ¥¶Ë(DAC1)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC1_DP0å’ŒADC1_DM0)/å•ç«¯(ADC1_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC1_DP1å’ŒADC1_DM1)/å•ç«¯(ADC1_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA1_DPå’ŒPGA1_DM)/å•ç«¯(PGA1_DP)
+ *      |__DAD3          --å·®åˆ†(ADC1_DP3å’ŒADC1_DM3)/å•ç«¯(ADC1_DP3)
+ *      |__AD4           --å•ç«¯A(ADC1_SE4a--PTE0)/å•ç«¯B(ADC1_SE4b--PTC8)
+ *      |__AD5           --å•ç«¯A(ADC1_SE5a--PTE1)/å•ç«¯B(ADC1_SE5b--PTC9)
+ *      |__AD6           --å•ç«¯A(ADC1_SE6a--PTE2)/å•ç«¯B(ADC1_SE6b--PTC10)
+ *      |__AD7           --å•ç«¯A(ADC1_SE7a--PTE3)/å•ç«¯B(ADC1_SE7b--PTC11)
+ *      |__AD8           --å•ç«¯(ADC1_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC1_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC1_SE10--PTB4)
+ *      |__AD11          --å•ç«¯(ADC1_SE11--PTB5)
+ *      |__AD12          --å•ç«¯(ADC1_SE12--PTB6)
+ *      |__AD13          --å•ç«¯(ADC1_SE13--PTB7)
+ *      |__AD14          --å•ç«¯(ADC1_SE14--PTB10)
+ *      |__AD15          --å•ç«¯(ADC1_SE15--PTB11)
+ *      |__AD16          --å•ç«¯(ADC1_SE16)
+ *      |__AD17          --å•ç«¯(ADC1_SE17--PTA17)
+ *      |__AD18          --å•ç«¯(VREF)
+ *      |__AD19          --å•ç«¯(ADC1_DM0)
+ *      |__AD20          --å•ç«¯(ADC1_DM1)
+ *      |__AD23          --å•ç«¯(DAC1)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
- *          Ïê¼û¼¼ÊõÊÖ²áK60P144M120SF2RMµÚ131Ò³
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
+ *          è¯¦è§æŠ€æœ¯æ‰‹å†ŒK60P144M120SF2RMç¬¬131é¡µ
  *      ADC2      
- *      |__DAD0          --²î·Ö(ADC2_DP0ºÍADC2_DM0)/µ¥¶Ë(ADC2_DP0)
- *      |__DAD1          --²î·Ö(ADC2_DP1ºÍADC2_DM1)/µ¥¶Ë(ADC2_DP1)
- *      |__DAD2          --²î·Ö(PGA2_DPºÍPGA2_DM)/µ¥¶Ë(PGA2_DP)
- *      |__DAD3          --²î·Ö(ADC2_DP3ºÍADC2_DM3)/µ¥¶Ë(ADC2_DP3)
- *      |__AD4           --µ¥¶ËA(ADC2_SE4a--PTB20)/µ¥¶ËB(±£Áô)
- *      |__AD5           --µ¥¶ËA(ADC2_SE5a--PTB21)/µ¥¶ËB(±£Áô)
- *      |__AD6           --µ¥¶ËA(±£Áô)/µ¥¶ËB(±£Áô)
- *      |__AD7           --µ¥¶ËA(±£Áô)/µ¥¶ËB(±£Áô)
- *      |__AD8           --µ¥¶Ë(ADC2_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC2_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC2_SE10)
- *      |__AD11          --µ¥¶Ë(ADC2_SE11)
- *      |__AD12          --µ¥¶Ë(ADC2_SE12--PTA29)
- *      |__AD13          --µ¥¶Ë(ADC2_SE13--PTA28)
- *      |__AD14          --µ¥¶Ë(ADC2_SE14--PTA27)
- *      |__AD15          --µ¥¶Ë(ADC2_SE15--PTA26)
- *      |__AD16          --µ¥¶Ë(ADC2_SE16--PTE8)
- *      |__AD17          --µ¥¶Ë(ADC2_SE17--PTE9)
- *      |__AD18          --µ¥¶Ë(ADC2_SE18)
- *      |__AD19          --µ¥¶Ë(ADC2_DM0)
- *      |__AD20          --µ¥¶Ë(ADC2_DM1)
- *      |__AD23          --µ¥¶Ë(DAC2)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC2_DP0å’ŒADC2_DM0)/å•ç«¯(ADC2_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC2_DP1å’ŒADC2_DM1)/å•ç«¯(ADC2_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA2_DPå’ŒPGA2_DM)/å•ç«¯(PGA2_DP)
+ *      |__DAD3          --å·®åˆ†(ADC2_DP3å’ŒADC2_DM3)/å•ç«¯(ADC2_DP3)
+ *      |__AD4           --å•ç«¯A(ADC2_SE4a--PTB20)/å•ç«¯B(ä¿ç•™)
+ *      |__AD5           --å•ç«¯A(ADC2_SE5a--PTB21)/å•ç«¯B(ä¿ç•™)
+ *      |__AD6           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ä¿ç•™)
+ *      |__AD7           --å•ç«¯A(ä¿ç•™)/å•ç«¯B(ä¿ç•™)
+ *      |__AD8           --å•ç«¯(ADC2_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC2_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC2_SE10)
+ *      |__AD11          --å•ç«¯(ADC2_SE11)
+ *      |__AD12          --å•ç«¯(ADC2_SE12--PTA29)
+ *      |__AD13          --å•ç«¯(ADC2_SE13--PTA28)
+ *      |__AD14          --å•ç«¯(ADC2_SE14--PTA27)
+ *      |__AD15          --å•ç«¯(ADC2_SE15--PTA26)
+ *      |__AD16          --å•ç«¯(ADC2_SE16--PTE8)
+ *      |__AD17          --å•ç«¯(ADC2_SE17--PTE9)
+ *      |__AD18          --å•ç«¯(ADC2_SE18)
+ *      |__AD19          --å•ç«¯(ADC2_DM0)
+ *      |__AD20          --å•ç«¯(ADC2_DM1)
+ *      |__AD23          --å•ç«¯(DAC2)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
  *      ADC3
- *      |__DAD0          --²î·Ö(ADC3_DP0ºÍADC3_DM0)/µ¥¶Ë(ADC3_DP0)
- *      |__DAD1          --²î·Ö(ADC3_DP1ºÍADC3_DM1)/µ¥¶Ë(ADC3_DP1)
- *      |__DAD2          --²î·Ö(PGA3_DPºÍPGA3_DM)/µ¥¶Ë(PGA3_DP)
- *      |__DAD3          --²î·Ö(ADC3_DP3ºÍADC3_DM3)/µ¥¶Ë(ADC3_DP3)
- *      |__AD4           --µ¥¶ËA(ADC3_SE4a--PTA10)/µ¥¶ËB(ADC3_SE4b--PTE27)
- *      |__AD5           --µ¥¶ËA(ADC3_SE5a--PTA9)/µ¥¶ËB(ADC3_SE5b--PTE26)
- *      |__AD6           --µ¥¶ËA(ADC3_SE6a--PTA6)/µ¥¶ËB(±£Áô)
- *      |__AD7           --µ¥¶ËA(ADC3_SE7a--PTE28)/µ¥¶ËB(±£Áô)
- *      |__AD8           --µ¥¶Ë(ADC3_SE8--PTB0)
- *      |__AD9           --µ¥¶Ë(ADC3_SE9--PTB1)
- *      |__AD10          --µ¥¶Ë(ADC3_SE10)
- *      |__AD11          --µ¥¶Ë(ADC3_SE11)
- *      |__AD12          --µ¥¶Ë(ADC3_SE12)
- *      |__AD13          --µ¥¶Ë(ADC3_SE13)
- *      |__AD14          --µ¥¶Ë(ADC3_SE14)
- *      |__AD15          --µ¥¶Ë(ADC3_SE15--PTA11)
- *      |__AD16          --µ¥¶Ë(ADC3_SE16--PTE11)
- *      |__AD17          --µ¥¶Ë(ADC3_SE17--PTE12)
- *      |__AD18          --µ¥¶Ë(VREF)
- *      |__AD19          --µ¥¶Ë(ADC3_DM0)
- *      |__AD20          --µ¥¶Ë(ADC3_DM1)
- *      |__AD23          --µ¥¶Ë(DAC3)
- *      |__AD26          --ÎÂ¶È´«¸ÐÆ÷
+ *      |__DAD0          --å·®åˆ†(ADC3_DP0å’ŒADC3_DM0)/å•ç«¯(ADC3_DP0)
+ *      |__DAD1          --å·®åˆ†(ADC3_DP1å’ŒADC3_DM1)/å•ç«¯(ADC3_DP1)
+ *      |__DAD2          --å·®åˆ†(PGA3_DPå’ŒPGA3_DM)/å•ç«¯(PGA3_DP)
+ *      |__DAD3          --å·®åˆ†(ADC3_DP3å’ŒADC3_DM3)/å•ç«¯(ADC3_DP3)
+ *      |__AD4           --å•ç«¯A(ADC3_SE4a--PTA10)/å•ç«¯B(ADC3_SE4b--PTE27)
+ *      |__AD5           --å•ç«¯A(ADC3_SE5a--PTA9)/å•ç«¯B(ADC3_SE5b--PTE26)
+ *      |__AD6           --å•ç«¯A(ADC3_SE6a--PTA6)/å•ç«¯B(ä¿ç•™)
+ *      |__AD7           --å•ç«¯A(ADC3_SE7a--PTE28)/å•ç«¯B(ä¿ç•™)
+ *      |__AD8           --å•ç«¯(ADC3_SE8--PTB0)
+ *      |__AD9           --å•ç«¯(ADC3_SE9--PTB1)
+ *      |__AD10          --å•ç«¯(ADC3_SE10)
+ *      |__AD11          --å•ç«¯(ADC3_SE11)
+ *      |__AD12          --å•ç«¯(ADC3_SE12)
+ *      |__AD13          --å•ç«¯(ADC3_SE13)
+ *      |__AD14          --å•ç«¯(ADC3_SE14)
+ *      |__AD15          --å•ç«¯(ADC3_SE15--PTA11)
+ *      |__AD16          --å•ç«¯(ADC3_SE16--PTE11)
+ *      |__AD17          --å•ç«¯(ADC3_SE17--PTE12)
+ *      |__AD18          --å•ç«¯(VREF)
+ *      |__AD19          --å•ç«¯(ADC3_DM0)
+ *      |__AD20          --å•ç«¯(ADC3_DM1)
+ *      |__AD23          --å•ç«¯(DAC3)
+ *      |__AD26          --æ¸©åº¦ä¼ æ„Ÿå™¨
  *      |__AD27          --Bandgap
- *      |__AD29          --²î·Ö(-VREFH)/µ¥¶Ë(VREFH)
- *      |__AD30          --µ¥¶Ë(VREFL)
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ *      |__AD29          --å·®åˆ†(-VREFH)/å•ç«¯(VREFH)
+ *      |__AD30          --å•ç«¯(VREFL)
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  *
  */
 uint8 LPLD_ADC_Chn_Enable(ADC_Type *adcx, AdcChnEnum_Type chn)
 {
-  //ÅÐ¶Ï¸´ÓÃÒý½ÅÊÇa»òb
+  //åˆ¤æ–­å¤ç”¨å¼•è„šæ˜¯aæˆ–b
   uint8 mux = (adcx->CFG2 & ADC_CFG2_MUXSEL_MASK)>>ADC_CFG2_MUXSEL_SHIFT;
     
   if(chn > AD30)
     return 0;
   
-  //²»Í¬µÄÍ¨µÀ¶ÔÓ¦²»Í¬µÄÒý½Å£¬Òò´ËÐèÒªÅÐ¶Ï²¢ÅäÖÃ
+  //ä¸åŒçš„é€šé“å¯¹åº”ä¸åŒçš„å¼•è„šï¼Œå› æ­¤éœ€è¦åˆ¤æ–­å¹¶é…ç½®
   if(adcx == ADC0)
   {
     switch(chn)
@@ -840,57 +840,57 @@ uint8 LPLD_ADC_Chn_Enable(ADC_Type *adcx, AdcChnEnum_Type chn)
 
 /*
  * ADC_Cal
- * ADCÄ£¿éÐ£×¼º¯Êý£¬ÄÚ²¿µ÷ÓÃ
+ * ADCæ¨¡å—æ ¡å‡†å‡½æ•°ï¼Œå†…éƒ¨è°ƒç”¨
  * 
- * ²ÎÊý:
- *    adcx--ADCÄ£¿éºÅ
- *      |__ADC0         -ADC0Ä£¿é
- *      |__ADC1         -ADC1Ä£¿é
- *      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
- *      |__ADC2         -ADC0Ä£¿é
- *      |__ADC3         -ADC1Ä£¿é
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * å‚æ•°:
+ *    adcx--ADCæ¨¡å—å·
+ *      |__ADC0         -ADC0æ¨¡å—
+ *      |__ADC1         -ADC1æ¨¡å—
+ *      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
+ *      |__ADC2         -ADC0æ¨¡å—
+ *      |__ADC3         -ADC1æ¨¡å—
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 static uint8 LPLD_ADC_Cal(ADC_Type *adcx)
 {
   uint16 cal_var;
     
-  //Îª×Ô¶¯Ð£×¼ÅäÖÃ²ÎÊý
-  //ÎªÌá¸ßÐ£×¼¾«¶È£¬ÐèÅäÖÃÎª£º
-  //32´ÎÓ²¼þÆ½¾ù¡¢ADCK²»³¬¹ý4MHz
-  //²Î¿¼¸ß=Vdda¡¢Õý³£¹¦ºÄÄ£Ê½
-  //¿ÉºöÂÔµÄÅäÖÃ£º
-  //ÊäÈëÍ¨µÀ¡¢×ª»»Ä£Ê½Á¬Ðø¹¦ÄÜ¡¢±È½Ï¹¦ÄÜ¡¢¾«¶È¡¢²î·Öµ¥¶Ë
-  //ÉèÖÃADCCFG1¼Ä´æÆ÷
-  adcx->CFG1  = 0 &(~ADC_CFG1_ADLPC_MASK)          // Õý³£¹¦ºÄÅäÖÃ
-                  | ADC_CFG1_ADIV(ADIV_8)          // ADCÊäÈëÊ±ÖÓ·ÖÆµÎª8
-                  | ADC_CFG1_ADLSMP_MASK           // ÉèÖÃ³¤Ê±¼ä²ÉÑùÄ£Ê½
-                  | ADC_CFG1_ADICLK(ADICLK_BUS_2); // ADCÊäÈëÊ±ÖÓÔ´Îª BusClk/2
+  //ä¸ºè‡ªåŠ¨æ ¡å‡†é…ç½®å‚æ•°
+  //ä¸ºæé«˜æ ¡å‡†ç²¾åº¦ï¼Œéœ€é…ç½®ä¸ºï¼š
+  //32æ¬¡ç¡¬ä»¶å¹³å‡ã€ADCKä¸è¶…è¿‡4MHz
+  //å‚è€ƒé«˜=Vddaã€æ­£å¸¸åŠŸè€—æ¨¡å¼
+  //å¯å¿½ç•¥çš„é…ç½®ï¼š
+  //è¾“å…¥é€šé“ã€è½¬æ¢æ¨¡å¼è¿žç»­åŠŸèƒ½ã€æ¯”è¾ƒåŠŸèƒ½ã€ç²¾åº¦ã€å·®åˆ†å•ç«¯
+  //è®¾ç½®ADCCFG1å¯„å­˜å™¨
+  adcx->CFG1  = 0 &(~ADC_CFG1_ADLPC_MASK)          // æ­£å¸¸åŠŸè€—é…ç½®
+                  | ADC_CFG1_ADIV(ADIV_8)          // ADCè¾“å…¥æ—¶é’Ÿåˆ†é¢‘ä¸º8
+                  | ADC_CFG1_ADLSMP_MASK           // è®¾ç½®é•¿æ—¶é—´é‡‡æ ·æ¨¡å¼
+                  | ADC_CFG1_ADICLK(ADICLK_BUS_2); // ADCè¾“å…¥æ—¶é’Ÿæºä¸º BusClk/2
 
-  //ÉèÖÃADCCFG2¼Ä´æÆ÷
+  //è®¾ç½®ADCCFG2å¯„å­˜å™¨
   adcx->CFG2 = 0 & (~ADC_CFG2_ADACKEN_MASK)
-                 | ADC_CFG2_ADHSC_MASK         // ¸ßËÙ×ª»»
-                 | ADC_CFG2_ADLSTS(LSAMTIME_20EX); // ³¤²ÉÑùÊ±¼äÊ±ÖÓÖÜÆÚÑ¡Ôñ ¶îÍâ20¸öÊ±ÖÓÖÜÆÚ£¬¹²24¸öADCKÖÜÆÚ
-                                               // ×Ü²ÉÑùÖÜÆÚ¼ûK60¼¼ÊõÎÄµµ page:840
-  //ÓÃÓÚÉè¶¨ãÐÖµ
+                 | ADC_CFG2_ADHSC_MASK         // é«˜é€Ÿè½¬æ¢
+                 | ADC_CFG2_ADLSTS(LSAMTIME_20EX); // é•¿é‡‡æ ·æ—¶é—´æ—¶é’Ÿå‘¨æœŸé€‰æ‹© é¢å¤–20ä¸ªæ—¶é’Ÿå‘¨æœŸï¼Œå…±24ä¸ªADCKå‘¨æœŸ
+                                               // æ€»é‡‡æ ·å‘¨æœŸè§K60æŠ€æœ¯æ–‡æ¡£ page:840
+  //ç”¨äºŽè®¾å®šé˜ˆå€¼
   adcx->CV1  = 0x1234u ; 
   adcx->CV2  = 0x5678u ;
   
-  adcx->SC2 = 0 & (~ADC_SC2_ADTRG_MASK)        //Ê¹ÄÜÈí¼þ´¥·¢×÷ÎªÐ£×¼
-                | ADC_SC2_REFSEL(REFSEL_EXT);  //Ñ¡ÔñÍâ²¿²Î¿¼Ô´VREFHºÍVREFL
+  adcx->SC2 = 0 & (~ADC_SC2_ADTRG_MASK)        //ä½¿èƒ½è½¯ä»¶è§¦å‘ä½œä¸ºæ ¡å‡†
+                | ADC_SC2_REFSEL(REFSEL_EXT);  //é€‰æ‹©å¤–éƒ¨å‚è€ƒæºVREFHå’ŒVREFL
     
-  adcx->SC3 &= ( ~ADC_SC3_ADCO_MASK & ~ADC_SC3_AVGS_MASK );  //ÉèÖÃµ¥´Î×ª»»£¬Çå³ýÆ½¾ù±êÖ¾
-  adcx->SC3 |= ( ADC_SC3_AVGE_MASK | ADC_SC3_AVGS(HW_32AVG) );//´ò¿ªÆ½¾ù±êÖ¾£¬ÉèÖÃµ½×î´ó²ÉÑùÆ½×¼
+  adcx->SC3 &= ( ~ADC_SC3_ADCO_MASK & ~ADC_SC3_AVGS_MASK );  //è®¾ç½®å•æ¬¡è½¬æ¢ï¼Œæ¸…é™¤å¹³å‡æ ‡å¿—
+  adcx->SC3 |= ( ADC_SC3_AVGE_MASK | ADC_SC3_AVGS(HW_32AVG) );//æ‰“å¼€å¹³å‡æ ‡å¿—ï¼Œè®¾ç½®åˆ°æœ€å¤§é‡‡æ ·å¹³å‡†
   
-  adcx->SC3 |= ADC_SC3_CAL_MASK ;                            //¿ªÊ¼Ð£×¼
+  adcx->SC3 |= ADC_SC3_CAL_MASK ;                            //å¼€å§‹æ ¡å‡†
   
-  while((adcx->SC1[0] & ADC_SC1_COCO_MASK)== 0x00 );         //µÈ´ýÐ£×¼Íê³É
+  while((adcx->SC1[0] & ADC_SC1_COCO_MASK)== 0x00 );         //ç­‰å¾…æ ¡å‡†å®Œæˆ
   	
   if ((adcx->SC3& ADC_SC3_CALF_MASK) == ADC_SC3_CALF_MASK )
   {  
-   return 0;    //¼ì²éµ½Ð£×¼´íÎó£¬·µ»Ø´íÎó
+   return 0;    //æ£€æŸ¥åˆ°æ ¡å‡†é”™è¯¯ï¼Œè¿”å›žé”™è¯¯
   }
   // Calculate plus-side calibration
   cal_var  = 0x00;
@@ -917,31 +917,31 @@ static uint8 LPLD_ADC_Cal(ADC_Type *adcx)
   cal_var |= 0x8000; // Set MSB
 
   adcx->MG   = ADC_MG_MG(cal_var); 
-  adcx->SC3 &= ~ADC_SC3_CAL_MASK ; //Çå³ýÐ£Ñé±êÖ¾
+  adcx->SC3 &= ~ADC_SC3_CAL_MASK ; //æ¸…é™¤æ ¡éªŒæ ‡å¿—
   
   return 1;
 }
 
 /*
- * ADC0--ADC1ÖÐ¶Ï´¦Àíº¯Êý
- * ÓëÆô¶¯ÎÄ¼þstartup_K60.sÖÐµÄÖÐ¶ÏÏòÁ¿±í¹ØÁª
- * ÓÃ»§ÎÞÐèÐÞ¸Ä£¬³ÌÐò×Ô¶¯½øÈë¶ÔÓ¦Í¨µÀÖÐ¶Ïº¯Êý
+ * ADC0--ADC1ä¸­æ–­å¤„ç†å‡½æ•°
+ * ä¸Žå¯åŠ¨æ–‡ä»¶startup_K60.sä¸­çš„ä¸­æ–­å‘é‡è¡¨å…³è”
+ * ç”¨æˆ·æ— éœ€ä¿®æ”¹ï¼Œç¨‹åºè‡ªåŠ¨è¿›å…¥å¯¹åº”é€šé“ä¸­æ–­å‡½æ•°
  */
 
 void ADC0_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+  //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
   ADC_ISR[0]();  
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }
 
@@ -949,16 +949,16 @@ void ADC1_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+  //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
   ADC_ISR[1]();  
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }
 
@@ -967,16 +967,16 @@ void ADC2_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+  //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
   ADC_ISR[2]();  
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }
 
@@ -984,16 +984,16 @@ void ADC3_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖÐ¶Ï·þÎñ×Óº¯Êý
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+  //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
   ADC_ISR[2]();  
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖÐ¶Ï·þÎñ×Óº¯Êý
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }
 #endif

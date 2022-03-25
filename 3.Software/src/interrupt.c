@@ -1,12 +1,12 @@
 /**
- * --------------����"��������K60�ײ��"�Ĺ��̣�Smart_Car��-----------------
+ * --------------基于"拉普兰德K60底层库"的工程（Smart_Car）-----------------
  * @file Interrupt.c
  * @version 0.0
  * @date 2015-2-7
- * @brief ���ڸù��̵�����
+ * @brief 关于该工程的描述
  *
- * ��Ȩ����:�������칤ҵѧԺ ��ʮ���˼����  ����ͷ2�� 
- * Ӳ��ƽ̨:  MK60FX512
+ * 版权所有:北华航天工业学院 第十届飞思卡尔  摄像头2队 
+ * 硬件平台:  MK60FX512
  * 
  */
 #include "common.h"
@@ -15,11 +15,11 @@
 int8 Flag_VS = 0;  
 
 /*-----------------------------------------------------------------------
-* Stop_isr: ͣ��
+* Stop_isr: 停车
 *
-* ���룺��
+* 输入：无
 *
-* �������
+* 输出：无
 -----------------------------------------------------------------------*/
 void Stop_isr()
 {
@@ -30,64 +30,64 @@ void Stop_isr()
   }
 }
 /*-----------------------------------------------------------------------
-* VS_isr: ����ͷ���ж�
+* VS_isr: 摄像头场中断
 *
-* ���룺��
+* 输入：无
 *
-* �������
+* 输出：无
 -----------------------------------------------------------------------*/
 void VS_isr()
 {
   if(LPLD_GPIO_IsPinxExt(PORTB, GPIO_Pin9))
   {
-     //��⵽����ʼ�źţ�����Ŀ�ĵ�ַ
+     //检测到场开始信号，加载目的地址
      LPLD_DMA_LoadDstAddr(DMA_CH0, Image); 
-     //�����жϱ�־����ֹ������Ч���ж�
+     //清行中断标志，防止进入无效行中断
      LPLD_GPIO_ClearIntFlag(PORTA);
      enable_irq(PORTA_IRQn);
   }
 }
 /*-----------------------------------------------------------------------
-* HS_isr: ����ͷ���ж�
+* HS_isr: 摄像头行中断
 *
-* ���룺��
+* 输入：无
 *
-* �������
+* 输出：无
 -----------------------------------------------------------------------*/
 void HS_isr()
 {
   if(LPLD_GPIO_IsPinxExt(PORTA, GPIO_Pin26))
   {       
-    //��⵽�п�ʼ�źţ�ʹ��DMA����
+    //检测到行开始信号，使能DMA请求
      if(Flag_VS < V)
      {  
        LPLD_DMA_EnableReq(DMA_CH0);        
      }
-     //�����ɼ��������ر��ж�
+     //行数采集已满，关闭中断
     else
     {
-      //��GPIO�ж� 
+      //关GPIO中断 
       disable_irq(PORTA_IRQn);
       disable_irq(PORTB_IRQn);
-      Flag_DispPhoto = 1;              //������ʾͼ��
+      Flag_DispPhoto = 1;              //可以显示图像
       Flag_VS = 0;     
     } 
     Flag_VS ++;
   }
 }
 /*-----------------------------------------------------------------------
-* Picture_get: ͼ��Ԥ����
+* Picture_get: 图像预处理
 *
-* ���룺��
+* 输入：无
 *
-* �������
+* 输出：无
 -----------------------------------------------------------------------*/
 void Picture_get(void)
 {
   Flag_DispPhoto = 0;
   
-  LPLD_GPIO_ClearIntFlag(PORTB);      //������ͷ���жϱ�־
-  enable_irq(PORTB_IRQn);             //ʹ������ͷ���ж�   
+  LPLD_GPIO_ClearIntFlag(PORTB);      //清摄像头场中断标志
+  enable_irq(PORTB_IRQn);             //使能摄像头场中断   
   
   while(Flag_VS<2);
   

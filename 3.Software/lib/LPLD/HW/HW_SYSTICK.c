@@ -2,117 +2,117 @@
  * @file HW_SYSTICK.c
  * @version 3.02[By LPLD]
  * @date 2013-11-29
- * @brief SYSTICKµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief SYSTICKåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "HW_SYSTICK.h"
 
 /*
-*   SyStickÊÇÒ»¿îCotex-M4ÄÚºËµÄ¶¨Ê±Æ÷
-*   SyStick²ÉÓÃ¼õ¼ÆÊýµÄ·½Ê½£¬Èç¹û¼õµ½Áã£¬ÔòÉèÖÃCOUNTFLAG±êÖ¾Î»£¬Èç¹ûÊ¹ÄÜÖÐ¶Ï£¬Ôò²úÉúÖÐ¶Ï
-*   È»ºó¼ÌÐø¼ÓÔØRVRÖÐµÄÖµ£¬¼ÌÐø¼ÆÊý£»
-*   ¾ßÌåÅäÖÃ²Î¿¼Cortex-M4 Reference Manual
+*   SyStickæ˜¯ä¸€æ¬¾Cotex-M4å†…æ ¸çš„å®šæ—¶å™¨
+*   SyStické‡‡ç”¨å‡è®¡æ•°çš„æ–¹å¼ï¼Œå¦‚æžœå‡åˆ°é›¶ï¼Œåˆ™è®¾ç½®COUNTFLAGæ ‡å¿—ä½ï¼Œå¦‚æžœä½¿èƒ½ä¸­æ–­ï¼Œåˆ™äº§ç”Ÿä¸­æ–­
+*   ç„¶åŽç»§ç»­åŠ è½½RVRä¸­çš„å€¼ï¼Œç»§ç»­è®¡æ•°ï¼›
+*   å…·ä½“é…ç½®å‚è€ƒCortex-M4 Reference Manual
 */
 SYSTICK_ISR_CALLBACK SYSTICK_ISR;
 /*
 * LPLD_SYSTICK_Init
-* SYSTICK³õÊ¼»¯º¯Êý£¬Æô¶¯SYStick¶¨Ê±Æ÷£¬ÉèÖÃÊ±ÖÓÔ´ÎªÄÚºËÊ±ÖÓ
-* >Èç¹ûÔÚ½á¹¹Ìå³õÊ¼»¯µÄÊ±ºò¶¨Òå»Øµ÷º¯Êý£¬ÔÚLPLD_SYSTICK_InitÖÐ¿ªÆôÖÐ¶Ï¹¦ÄÜ
-* >Èç¹ûÃ»ÓÐÓÃµ½ÖÐ¶Ï£¬¿ÉÒÔÍ¨¹ýÑ­»·ÅÐ¶ÏLPLD_SYSTICK_ISDONEµÄ·½Ê½»ñµÃSYSTICKÊÇ·ñ¼ÆÊýÍê³É
+* SYSTICKåˆå§‹åŒ–å‡½æ•°ï¼Œå¯åŠ¨SYStickå®šæ—¶å™¨ï¼Œè®¾ç½®æ—¶é’Ÿæºä¸ºå†…æ ¸æ—¶é’Ÿ
+* >å¦‚æžœåœ¨ç»“æž„ä½“åˆå§‹åŒ–çš„æ—¶å€™å®šä¹‰å›žè°ƒå‡½æ•°ï¼Œåœ¨LPLD_SYSTICK_Initä¸­å¼€å¯ä¸­æ–­åŠŸèƒ½
+* >å¦‚æžœæ²¡æœ‰ç”¨åˆ°ä¸­æ–­ï¼Œå¯ä»¥é€šè¿‡å¾ªçŽ¯åˆ¤æ–­LPLD_SYSTICK_ISDONEçš„æ–¹å¼èŽ·å¾—SYSTICKæ˜¯å¦è®¡æ•°å®Œæˆ
 * 
-* ²ÎÊý:
-*    systick_init_structure--SYSTICK³õÊ¼»¯½á¹¹Ìå£¬
-*                        ¾ßÌå¶¨Òå¼ûSYSTICK_InitType
+* å‚æ•°:
+*    systick_init_structure--SYSTICKåˆå§‹åŒ–ç»“æž„ä½“ï¼Œ
+*                        å…·ä½“å®šä¹‰è§SYSTICK_InitType
 *
-* Êä³ö£º
-*   ÎÞ
+* è¾“å‡ºï¼š
+*   æ— 
 */
 void LPLD_SYSTICK_Init(SYSTICK_InitType systick_init_structure)  
 {      
-  //Èç¹ûÄÚºËÊ±ÖÓÊÇ100Mhz£¬×î´ó¶¨Ê±167ms
+  //å¦‚æžœå†…æ ¸æ—¶é’Ÿæ˜¯100Mhzï¼Œæœ€å¤§å®šæ—¶167ms
   uint32 ldval = systick_init_structure.SYSTICK_PeriodUs * SYSTICK_UINT_US(g_core_clock)
              + systick_init_structure.SYSTICK_PeriodMs * SYSTICK_UINT_MS(g_core_clock);
-  //¼ÆÊý¼Ä´æÆ÷µÄÖµ²»ÄÜ³¬¹ý0xFFFFFF           
+  //è®¡æ•°å¯„å­˜å™¨çš„å€¼ä¸èƒ½è¶…è¿‡0xFFFFFF           
   if( ldval > SYSTICK_COUNTER_MAX)
   {
     return;
   }
   
-  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)      //½ûÖ¹SYSTICK
-                    | SYSTICK_CSR_CLKSOURCE_MASK     //Ñ¡ÔñÄÚºËÊ±ÖÓ×÷ÎªÊ±ÖÓÔ´
-                    | SYSTICK_CSR_COUNTFLAG_MASK;    //Çå³ý±êÖ¾Î»
+  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)      //ç¦æ­¢SYSTICK
+                    | SYSTICK_CSR_CLKSOURCE_MASK     //é€‰æ‹©å†…æ ¸æ—¶é’Ÿä½œä¸ºæ—¶é’Ÿæº
+                    | SYSTICK_CSR_COUNTFLAG_MASK;    //æ¸…é™¤æ ‡å¿—ä½
   if(systick_init_structure.SYSTICK_Isr != NULL)
   {
-    SYSTICK->CSR |= SYSTICK_CSR_TICKINT_MASK;  //Ê¹ÄÜsystickÖÐ¶Ï
+    SYSTICK->CSR |= SYSTICK_CSR_TICKINT_MASK;  //ä½¿èƒ½systickä¸­æ–­
     SYSTICK_ISR = systick_init_structure.SYSTICK_Isr;
     NVIC_SetPriority (SysTick_IRQn, (1<<__NVIC_PRIO_BITS) - 1);
-    enable_irq(SysTick_IRQn);                 //Ê¹ÄÜSYSTICKÖÐ¶Ï
+    enable_irq(SysTick_IRQn);                 //ä½¿èƒ½SYSTICKä¸­æ–­
   }
   SYSTICK->RVR = ldval - 1;  
   SYSTICK->CVR = 0x00;  
-  SYSTICK->CSR |= SYSTICK_CSR_ENABLE_MASK;  //Ê¹ÄÜSYSTICK
+  SYSTICK->CSR |= SYSTICK_CSR_ENABLE_MASK;  //ä½¿èƒ½SYSTICK
 }
 
 /*
 * LPLD_SYSTICK_Init
-* SYSTICK·´³õÊ¼»¯º¯Êý£¬¹Ø±ÕSYStick¶¨Ê±Æ÷
-* ¹Ø±ÕÖÐ¶Ï£¬Çå¿Õ¼ÆÊýÆ÷
+* SYSTICKååˆå§‹åŒ–å‡½æ•°ï¼Œå…³é—­SYStickå®šæ—¶å™¨
+* å…³é—­ä¸­æ–­ï¼Œæ¸…ç©ºè®¡æ•°å™¨
 * 
-* ²ÎÊý:
-*   ÎÞ
+* å‚æ•°:
+*   æ— 
 *
-* Êä³ö£º
-*   ÎÞ
+* è¾“å‡ºï¼š
+*   æ— 
 */
 void LPLD_SYSTICK_DeInit(void)
 {
-  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)   //½ûÖ¹SYSTICK
-                   & (~SYSTICK_CSR_TICKINT_MASK)  //½ûÖ¹²úÉúÄÚºËSYSTICKÒì³£
-                   & (~SYSTICK_CSR_CLKSOURCE_MASK)//Ñ¡ÔñÄÚºËÊ±ÖÓ×÷ÎªÊ±ÖÓÔ´
-                   | SYSTICK_CSR_COUNTFLAG_MASK;  //Çå³ý±êÖ¾Î»                     
-  disable_irq(SysTick_IRQn);         //½ûÖ¹SYSTICKÖÐ¶Ï       
+  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)   //ç¦æ­¢SYSTICK
+                   & (~SYSTICK_CSR_TICKINT_MASK)  //ç¦æ­¢äº§ç”Ÿå†…æ ¸SYSTICKå¼‚å¸¸
+                   & (~SYSTICK_CSR_CLKSOURCE_MASK)//é€‰æ‹©å†…æ ¸æ—¶é’Ÿä½œä¸ºæ—¶é’Ÿæº
+                   | SYSTICK_CSR_COUNTFLAG_MASK;  //æ¸…é™¤æ ‡å¿—ä½                     
+  disable_irq(SysTick_IRQn);         //ç¦æ­¢SYSTICKä¸­æ–­       
   SYSTICK->CVR = 0x00;  
 }
 
 /*
 * LPLD_SYSTICK_DelayUs
 *
-* ÀûÓÃSYSTICK²úÉúUsÑÓÊ±,ÒÑÔÚº¯ÊýÄÚ²¿³õÊ¼»¯£¬Ö±½Óµ÷ÓÃ¸Ãº¯Êý¼È¿ÉÒÔ²úÉúÑÓÊ±
-* Æô¶¯SYStick¶¨Ê±Æ÷£¬ÉèÖÃ¶¨Ê±Æ÷µÄ¼ÆÊý¼ä¸ôÎª1/g_core_clock us
-* ÉèÖÃ¼ÓÔØ¼Ä´æÆ÷£¬¼ÓÔØ¼Ä´æÆ÷µÄÖµÎª1/g_core_clock us µÄperiod_usÕûÊý±¶
+* åˆ©ç”¨SYSTICKäº§ç”ŸUså»¶æ—¶,å·²åœ¨å‡½æ•°å†…éƒ¨åˆå§‹åŒ–ï¼Œç›´æŽ¥è°ƒç”¨è¯¥å‡½æ•°æ—¢å¯ä»¥äº§ç”Ÿå»¶æ—¶
+* å¯åŠ¨SYStickå®šæ—¶å™¨ï¼Œè®¾ç½®å®šæ—¶å™¨çš„è®¡æ•°é—´éš”ä¸º1/g_core_clock us
+* è®¾ç½®åŠ è½½å¯„å­˜å™¨ï¼ŒåŠ è½½å¯„å­˜å™¨çš„å€¼ä¸º1/g_core_clock us çš„period_usæ•´æ•°å€
 *
-* ²ÎÊý:
-*    period_us--ÑÓÊ±µÄÎ¢ÃëÖµ
+* å‚æ•°:
+*    period_us--å»¶æ—¶çš„å¾®ç§’å€¼
 *
-* Êä³ö:
-*   ÎÞ
+* è¾“å‡º:
+*   æ— 
 */
 void LPLD_SYSTICK_DelayUs(uint32 period_us)
 {  
   uint32 i;
   
-  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)      //½ûÖ¹SYSTICK
-                 & (~SYSTICK_CSR_TICKINT_MASK)       //½ûÖ¹²úÉúÄÚºËSYSTICKÒì³£
-                 | SYSTICK_CSR_CLKSOURCE_MASK        //Ñ¡ÔñÄÚºËÊ±ÖÓ×÷ÎªÊ±ÖÓÔ´
-                 | SYSTICK_CSR_COUNTFLAG_MASK;       //Çå³ý±êÖ¾Î»
+  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)      //ç¦æ­¢SYSTICK
+                 & (~SYSTICK_CSR_TICKINT_MASK)       //ç¦æ­¢äº§ç”Ÿå†…æ ¸SYSTICKå¼‚å¸¸
+                 | SYSTICK_CSR_CLKSOURCE_MASK        //é€‰æ‹©å†…æ ¸æ—¶é’Ÿä½œä¸ºæ—¶é’Ÿæº
+                 | SYSTICK_CSR_COUNTFLAG_MASK;       //æ¸…é™¤æ ‡å¿—ä½
                   
   i = period_us * SYSTICK_UINT_US(g_core_clock) - 1; 
-  //¼ÆÊý¼Ä´æÆ÷µÄÖµ²»ÄÜ³¬¹ý0xFFFFFF
+  //è®¡æ•°å¯„å­˜å™¨çš„å€¼ä¸èƒ½è¶…è¿‡0xFFFFFF
   if( i > SYSTICK_COUNTER_MAX)
   {
     return;
@@ -127,10 +127,10 @@ void LPLD_SYSTICK_DelayUs(uint32 period_us)
   while(i & SYSTICK_CSR_ENABLE_MASK \
         && !(i & SYSTICK_CSR_COUNTFLAG_MASK)); 
    
-  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)     //½ûÖ¹SYSTICK
-                 & (~SYSTICK_CSR_TICKINT_MASK)      //½ûÖ¹²úÉúÄÚºËSYSTICKÒì³£
-                 | SYSTICK_CSR_CLKSOURCE_MASK       //Ñ¡ÔñÄÚºËÊ±ÖÓ×÷ÎªÊ±ÖÓÔ´
-                 | SYSTICK_CSR_COUNTFLAG_MASK;      //Çå³ý±êÖ¾Î»  
+  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)     //ç¦æ­¢SYSTICK
+                 & (~SYSTICK_CSR_TICKINT_MASK)      //ç¦æ­¢äº§ç”Ÿå†…æ ¸SYSTICKå¼‚å¸¸
+                 | SYSTICK_CSR_CLKSOURCE_MASK       //é€‰æ‹©å†…æ ¸æ—¶é’Ÿä½œä¸ºæ—¶é’Ÿæº
+                 | SYSTICK_CSR_COUNTFLAG_MASK;      //æ¸…é™¤æ ‡å¿—ä½  
                  
   SYSTICK->CVR = 0x00;  
 }  
@@ -138,27 +138,27 @@ void LPLD_SYSTICK_DelayUs(uint32 period_us)
 /*
 * LPLD_SYSTICK_DelayMs
 *
-* ÀûÓÃSYSTICK²úÉúMsÑÓÊ±,ÒÑÔÚº¯ÊýÄÚ²¿³õÊ¼»¯£¬Ö±½Óµ÷ÓÃ¸Ãº¯Êý¼È¿ÉÒÔ²úÉúÑÓÊ±
-* Æô¶¯SYStick¶¨Ê±Æ÷£¬ÉèÖÃ¶¨Ê±Æ÷µÄ¼ÆÊý¼ä¸ôÎª1/g_core_clock ms
-* ÉèÖÃ¼ÓÔØ¼Ä´æÆ÷£¬¼ÓÔØ¼Ä´æÆ÷µÄÖµÎª1/g_core_clock ms µÄperiod_msÕûÊý±¶
+* åˆ©ç”¨SYSTICKäº§ç”ŸMså»¶æ—¶,å·²åœ¨å‡½æ•°å†…éƒ¨åˆå§‹åŒ–ï¼Œç›´æŽ¥è°ƒç”¨è¯¥å‡½æ•°æ—¢å¯ä»¥äº§ç”Ÿå»¶æ—¶
+* å¯åŠ¨SYStickå®šæ—¶å™¨ï¼Œè®¾ç½®å®šæ—¶å™¨çš„è®¡æ•°é—´éš”ä¸º1/g_core_clock ms
+* è®¾ç½®åŠ è½½å¯„å­˜å™¨ï¼ŒåŠ è½½å¯„å­˜å™¨çš„å€¼ä¸º1/g_core_clock ms çš„period_msæ•´æ•°å€
 *
-* ²ÎÊý:
-*    period_ms--ÑÓÊ±µÄºÁÃëÖµ
+* å‚æ•°:
+*    period_ms--å»¶æ—¶çš„æ¯«ç§’å€¼
 *
-* Êä³ö:
-*   ÎÞ
+* è¾“å‡º:
+*   æ— 
 */
 void LPLD_SYSTICK_DelayMs(uint32 period_ms)
 {  
   uint32 i;
   
-  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)    //½ûÖ¹SYSTICK
-               & (~SYSTICK_CSR_TICKINT_MASK)       //½ûÖ¹²úÉúÄÚºËSYSTICKÒì³£
-               | SYSTICK_CSR_CLKSOURCE_MASK        //Ñ¡ÔñÄÚºËÊ±ÖÓ×÷ÎªÊ±ÖÓÔ´
-               | SYSTICK_CSR_COUNTFLAG_MASK;       //Çå³ý±êÖ¾Î»
+  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)    //ç¦æ­¢SYSTICK
+               & (~SYSTICK_CSR_TICKINT_MASK)       //ç¦æ­¢äº§ç”Ÿå†…æ ¸SYSTICKå¼‚å¸¸
+               | SYSTICK_CSR_CLKSOURCE_MASK        //é€‰æ‹©å†…æ ¸æ—¶é’Ÿä½œä¸ºæ—¶é’Ÿæº
+               | SYSTICK_CSR_COUNTFLAG_MASK;       //æ¸…é™¤æ ‡å¿—ä½
                
   i = period_ms * SYSTICK_UINT_MS(g_core_clock) - 1;
-  //¼ÆÊý¼Ä´æÆ÷µÄÖµ²»ÄÜ³¬¹ý0xFFFFFF
+  //è®¡æ•°å¯„å­˜å™¨çš„å€¼ä¸èƒ½è¶…è¿‡0xFFFFFF
   if( i > SYSTICK_COUNTER_MAX)
   {
     return;
@@ -173,10 +173,10 @@ void LPLD_SYSTICK_DelayMs(uint32 period_ms)
   while(i & SYSTICK_CSR_ENABLE_MASK \
         && !(i & SYSTICK_CSR_COUNTFLAG_MASK)); 
    
-  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)    //½ûÖ¹SYSTICK
-                 & (~SYSTICK_CSR_TICKINT_MASK)     //½ûÖ¹²úÉúÄÚºËSYSTICKÒì³£
-                 | SYSTICK_CSR_CLKSOURCE_MASK      //Ñ¡ÔñÄÚºËÊ±ÖÓ×÷ÎªÊ±ÖÓÔ´
-                 | SYSTICK_CSR_COUNTFLAG_MASK;     //Çå³ý±êÖ¾Î»  
+  SYSTICK->CSR = 0 & (~SYSTICK_CSR_ENABLE_MASK)    //ç¦æ­¢SYSTICK
+                 & (~SYSTICK_CSR_TICKINT_MASK)     //ç¦æ­¢äº§ç”Ÿå†…æ ¸SYSTICKå¼‚å¸¸
+                 | SYSTICK_CSR_CLKSOURCE_MASK      //é€‰æ‹©å†…æ ¸æ—¶é’Ÿä½œä¸ºæ—¶é’Ÿæº
+                 | SYSTICK_CSR_COUNTFLAG_MASK;     //æ¸…é™¤æ ‡å¿—ä½  
                  
   SYSTICK->CVR = 0x00;  
 } 

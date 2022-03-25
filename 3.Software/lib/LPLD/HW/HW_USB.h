@@ -2,28 +2,28 @@
  * @file HW_USB.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief UARTµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief UARTåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_USB_H__
 #define __HW_USB_H__
 
-/*¸ù¾ÝUSB2.0±ê×¼*/
-/*¶¨ÒåUSBÉè±¸µÄÀàÐÍ*/
+/*æ ¹æ®USB2.0æ ‡å‡†*/
+/*å®šä¹‰USBè®¾å¤‡çš„ç±»åž‹*/
 #define USB_DEVICE_CLASS_AUDIO        1
 #define USB_DEVICE_CLASS_CDC          2
 #define USB_DEVICE_CLASS_HID          3
@@ -49,29 +49,29 @@ typedef enum
 #define  MOUSE_UP_MOVE           (0xF8) /* up movement */
 #define  MOUSE_DOWN_MOVE         (0x08) /* down movement */
 #endif
-//USBÄ£¿éÖÐ¶Ï»Øµ÷º¯ÊýÀàÐÍ
+//USBæ¨¡å—ä¸­æ–­å›žè°ƒå‡½æ•°ç±»åž‹
 typedef void (*USB_ISR_CALLBACK)(void);
 typedef void (*USB_REV_ISR_CALLBACK)(void);
-//USB³õÊ¼»¯º¯Êý
+//USBåˆå§‹åŒ–å‡½æ•°
 void LPLD_USB_Init(void);
-//USB·´³õÊ¼»¯º¯Êý
+//USBååˆå§‹åŒ–å‡½æ•°
 void LPLD_USB_DeInit(void);
 
 #if(USB_DEVICE_CLASS == USB_DEVICE_CLASS_CDC)
-//USBÉèÖÃ ÐéÄâ´®¿Ú ½ÓÊÕÖÐ¶Ï·þÎñº¯Êý
+//USBè®¾ç½® è™šæ‹Ÿä¸²å£ æŽ¥æ”¶ä¸­æ–­æœåŠ¡å‡½æ•°
 void LPLD_USB_SetRevIsr(USB_REV_ISR_CALLBACK);
-//USB ÐéÄâ´®¿Ú ½ÓÊÕº¯Êý
+//USB è™šæ‹Ÿä¸²å£ æŽ¥æ”¶å‡½æ•°
 uint8 LPLD_USB_VirtualCom_Rx(uint8 *rx_buf);
-//USB ÐéÄâ´®¿Ú ·¢ËÍº¯Êý
+//USB è™šæ‹Ÿä¸²å£ å‘é€å‡½æ•°
 uint8 LPLD_USB_VirtualCom_Tx(uint8 *tx_buf,uint8_t len);
-//USB»Ö¸´½ÓÊÕµ½µÄÊý¾Ýµ½ÓÃ»§ÄÚ´æº¯Êý
+//USBæ¢å¤æŽ¥æ”¶åˆ°çš„æ•°æ®åˆ°ç”¨æˆ·å†…å­˜å‡½æ•°
 void LPLD_USB_QueueData(void);
 #endif
 
 #if(USB_DEVICE_CLASS == USB_DEVICE_CLASS_HID)
-//HIDÊó±ê¿ØÖÆº¯Êý
+//HIDé¼ æ ‡æŽ§åˆ¶å‡½æ•°
 void LPLD_USB_HID_MouseControl(uint8 * buf);
-//ÔÚmain loopÖÐÑ­»·µ÷¶ÈÊó±ê¼ì²â
+//åœ¨main loopä¸­å¾ªçŽ¯è°ƒåº¦é¼ æ ‡æ£€æµ‹
 void LPLD_USB_HID_LoopTask(uint8 * buf);
 #endif
 

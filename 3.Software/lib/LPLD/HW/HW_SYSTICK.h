@@ -2,22 +2,22 @@
  * @file HW_SYSTICK.h
  * @version 3.02[By LPLD]
  * @date 2013-11-29
- * @brief SYSTICKµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief SYSTICKåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_SYSTICK_H__
 #define __HW_SYSTICK_H__
@@ -93,43 +93,43 @@ typedef void (*SYSTICK_ISR_CALLBACK)(void);
 
 typedef struct {
   /*
-    ÃèÊö£º
-      SYSTICKÄ£¿éµÄÖÜÆÚ£¬µ¥Î»us
-    È¡Öµ£º
+    æè¿°ï¼š
+      SYSTICKæ¨¡å—çš„å‘¨æœŸï¼Œå•ä½us
+    å–å€¼ï¼š
       1~0xFFFFFFFF
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬SYSTICK_PeriodUs¡¢SYSTICK_PeriodMs¡¢SYSTICK_PeriodSÖÁÉÙÒ»¸ö³õÊ¼»¯
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼ŒSYSTICK_PeriodUsã€SYSTICK_PeriodMsã€SYSTICK_PeriodSè‡³å°‘ä¸€ä¸ªåˆå§‹åŒ–
   */
   uint32 SYSTICK_PeriodUs;
   
   /*
-    ÃèÊö£º
-      SYSTICKÄ£¿éµÄÖÜÆÚ£¬µ¥Î»ms
-    È¡Öµ£º
+    æè¿°ï¼š
+      SYSTICKæ¨¡å—çš„å‘¨æœŸï¼Œå•ä½ms
+    å–å€¼ï¼š
       1~0xFFFFFFFF
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬SYSTICK_PeriodUs¡¢SYSTICK_PeriodMs¡¢SYSTICK_PeriodSÖÁÉÙÒ»¸ö³õÊ¼»¯
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼ŒSYSTICK_PeriodUsã€SYSTICK_PeriodMsã€SYSTICK_PeriodSè‡³å°‘ä¸€ä¸ªåˆå§‹åŒ–
   */
   uint32 SYSTICK_PeriodMs;
 
   /*
-    ÃèÊö£º
-      SYSTICKÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢ÈçÎ´³õÊ¼»¯Ôò²»»á´¥·¢ÖÐ¶Ï
+    æè¿°ï¼š
+      SYSTICKä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€å¦‚æœªåˆå§‹åŒ–åˆ™ä¸ä¼šè§¦å‘ä¸­æ–­
   */
   SYSTICK_ISR_CALLBACK SYSTICK_Isr; 
 	
 }SYSTICK_InitType;
 
-//SYSTICK³õÊ¼»¯º¯Êý
+//SYSTICKåˆå§‹åŒ–å‡½æ•°
 void LPLD_SYSTICK_Init(SYSTICK_InitType );
-//SYSTICK·´³õÊ¼»¯º¯Êý
+//SYSTICKååˆå§‹åŒ–å‡½æ•°
 void LPLD_SYSTICK_DeInit(void);
-//SYSTICKÑÓÊ±USº¯Êý
+//SYSTICKå»¶æ—¶USå‡½æ•°
 void LPLD_SYSTICK_DelayUs(uint32 );
-//SYSTICKÑÓÊ±MSº¯Êý
+//SYSTICKå»¶æ—¶MSå‡½æ•°
 void LPLD_SYSTICK_DelayMs(uint32 );
 #endif

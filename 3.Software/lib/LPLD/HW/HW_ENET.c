@@ -2,84 +2,84 @@
  * @file HW_ENET.c
  * @version 3.01[By LPLD]
  * @date 2013-10-21
- * @brief ENET�ײ�ģ����غ���
+ * @brief ENET底层模块相关函数
  *
- * ���Ľ���:�������޸�
+ * 更改建议:不建议修改
  *
- * ��Ȩ����:�����������µ��Ӽ������޹�˾
+ * 版权所有:北京拉普兰德电子技术有限公司
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ����������������[LPLD]������ά������������ʹ���߿���Դ���롣
- * �����߿���������ʹ�û��Դ���롣�����μ�����ע��Ӧ���Ա�����
- * ���ø��Ļ�ɾ��ԭ��Ȩ���������������ο����߿��Լ�ע���ΰ�Ȩ�����ߡ�
- * ��Ӧ�����ش�Э��Ļ����ϣ�����Դ���롢���ó��۴��뱾����
- * �������²���������ʹ�ñ��������������κ��¹ʡ��������λ���ز���Ӱ�졣
- * ����������������͡�˵��������ľ���ԭ�������ܡ�ʵ�ַ�����
- * ������������[LPLD]��Ȩ�������߲��ý�������������ҵ��Ʒ��
+ * 本代码由拉普兰德[LPLD]开发并维护，并向所有使用者开放源代码。
+ * 开发者可以随意修使用或改源代码。但本段及以上注释应予以保留。
+ * 不得更改或删除原版权所有者姓名，二次开发者可以加注二次版权所有者。
+ * 但应在遵守此协议的基础上，开放源代码、不得出售代码本身。
+ * 拉普兰德不负责由于使用本代码所带来的任何事故、法律责任或相关不良影响。
+ * 拉普兰德无义务解释、说明本代码的具体原理、功能、实现方法。
+ * 除非拉普兰德[LPLD]授权，开发者不得将本代码用于商业产品。
  */
 #include "common.h"
 #include "HW_ENET.h"
 
-//�û��Զ����жϷ���������
+//用户自定义中断服务函数数组
 ENET_ISR_CALLBACK ENET_ISR[4]={NULL, NULL, NULL, NULL};
 
-//�ڲ���������
+//内部函数声明
 static void LPLD_ENET_BDInit( void );
 static void LPLD_ENET_Delay(uint32 time);
 
 
 /*******************************************************************
  *
- *                ENETģ�麯��
+ *                ENET模块函数
  *
 *******************************************************************/
 
 /*
  * LPLD_ENET_Init
- * ENETģ���ʼ��������PHY�շ�����ʼ����MAC��ʼ����BD��ʼ��
+ * ENET模块初始化，包括PHY收发器初始化，MAC初始化，BD初始化
  * 
- * ����:
- *    enet_init_struct--ENET��ʼ���ṹ�壬
- *                        ���嶨���ENET_InitTypeDef
+ * 参数:
+ *    enet_init_struct--ENET初始化结构体，
+ *                        具体定义见ENET_InitTypeDef
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  */
 void LPLD_ENET_Init(ENET_InitTypeDef enet_init_struct)
 {
  
   uint16 usData;
  
-  //ʹ��ENETʱ��
+  //使能ENET时钟
   SIM->SCGC2 |= SIM_SCGC2_ENET_MASK;
 
-  //������������MPU������
+  //允许并发访问MPU控制器
   MPU->CESR = 0;         
         
-  //��������������ʼ��
+  //缓冲区描述符初始化
   LPLD_ENET_BDInit();
   
-  //��λENET
+  //复位ENET
   ENET->ECR = ENET_ECR_RESET_MASK;
 
-  //�ȴ�����8��ʱ������
+  //等待至少8个时钟周期
   for( usData = 0; usData < 10; usData++ )
   {
     asm( "NOP" );
   }
     
-  //��ʼ��MII�ӿ�
+  //初始化MII接口
   LPLD_ENET_MiiInit(g_bus_clock/1000000/*MHz*/);       
         
-  //ʹ���жϲ��������ȼ�
+  //使能中断并设置优先级
   //set_irq_priority (76, 6);
-  enable_irq(ENET_Transmit_IRQn);        //ENET�����ж�
+  enable_irq(ENET_Transmit_IRQn);        //ENET发送中断
   //set_irq_priority (77, 6);
-  enable_irq(ENET_Receive_IRQn);         //ENET�����ж�
+  enable_irq(ENET_Receive_IRQn);         //ENET接收中断
   //set_irq_priority (78, 6);
-  enable_irq(ENET_Error_IRQn);           //ENET���������ж�
+  enable_irq(ENET_Error_IRQn);           //ENET错误及其他中断
   
   if(enet_init_struct.ENET_TxIsr != NULL)
   {
@@ -98,7 +98,7 @@ void LPLD_ENET_Init(ENET_InitTypeDef enet_init_struct)
     ENET_ISR[ENET_ERR_ISR] = enet_init_struct.ENET_ErrIsr;
   }
 
-  //ʹ��GPIO���Ÿ��ù���
+  //使能GPIO引脚复用功能
   PORTB->PCR[0]  = PORT_PCR_MUX(4);  //GPIO;//RMII0_MDIO/MII0_MDIO
   PORTB->PCR[1]  = PORT_PCR_MUX(4);  //GPIO;//RMII0_MDC/MII0_MDC    
   PORTA->PCR[14] = PORT_PCR_MUX(4);  //RMII0_CRS_DV/MII0_RXDV
@@ -109,7 +109,7 @@ void LPLD_ENET_Init(ENET_InitTypeDef enet_init_struct)
   PORTA->PCR[17] = PORT_PCR_MUX(4);  //RMII0_TXD1/MII0_TXD1
   
     
-  //�ȴ�PHY�շ�����λ���
+  //等待PHY收发器复位完成
   do
   {
     LPLD_ENET_Delay( ENET_LINK_DELAY );
@@ -133,7 +133,7 @@ void LPLD_ENET_Init(ENET_InitTypeDef enet_init_struct)
   printf("PHY_MISR=0x%X\r\n",usData);
 #endif 
   
-  //��ʼ�Զ�Э��
+  //开始自动协商
   LPLD_ENET_MiiWrite(CFG_PHY_ADDRESS, PHY_BMCR, ( PHY_BMCR_AN_RESTART | PHY_BMCR_AN_ENABLE ) );
 
 #ifdef ENET_PRINT_PHY_INFO
@@ -141,7 +141,7 @@ void LPLD_ENET_Init(ENET_InitTypeDef enet_init_struct)
   printf("PHY_BMCR=0x%X\r\n",usData);
 #endif 
   
-  //�ȴ��Զ�Э�����
+  //等待自动协商完成
   do
   {
     LPLD_ENET_Delay( ENET_LINK_DELAY );
@@ -153,96 +153,96 @@ void LPLD_ENET_Init(ENET_InitTypeDef enet_init_struct)
     printf("PHY_BMSR=0x%X\r\n",usData);
 #endif 
     
-  //����Э�̽������ENETģ��
+  //根据协商结果设置ENET模块
   LPLD_ENET_MiiRead(CFG_PHY_ADDRESS, PHY_STATUS, &usData );  
 
 #ifdef ENET_PRINT_PHY_INFO
   printf("PHY_STATUS=0x%X\r\n",usData);
 #endif 
   
-  //������������ַ��ϣ�Ĵ���
+  //清除单独和组地址哈希寄存器
   ENET->IALR = 0;
   ENET->IAUR = 0;
   ENET->GALR = 0;
   ENET->GAUR = 0;
   
-  //����ENETģ��MAC��ַ
+  //设置ENET模块MAC地址
   LPLD_ENET_SetAddress(enet_init_struct.ENET_MacAddress);
     
-  //���ý��տ��ƼĴ�������󳤶ȡ�RMIIģʽ������CRCУ���
+  //设置接收控制寄存器，最大长度、RMII模式、接收CRC校验等
   ENET->RCR = ENET_RCR_MAX_FL(CFG_ENET_MAX_PACKET_SIZE) | ENET_RCR_MII_MODE_MASK | ENET_RCR_CRCFWD_MASK | ENET_RCR_RMII_MODE_MASK;
 
-  //������ͽ��տ���
+  //清除发送接收控制
   ENET->TCR = 0;
         
-  //ͨѶ��ʽ����
+  //通讯方式设置
   if( usData & PHY_DUPLEX_STATUS )
   {
-    //ȫ˫��
+    //全双工
     ENET->RCR &= (uint32)~ENET_RCR_DRT_MASK;
     ENET->TCR |= ENET_TCR_FDEN_MASK;
   }
   else
   {
-    //��˫��
+    //半双工
     ENET->RCR |= ENET_RCR_DRT_MASK;
     ENET->TCR &= (uint32)~ENET_TCR_FDEN_MASK;
   }
   
-  //ͨ����������
+  //通信速率设置
   if( usData & PHY_SPEED_STATUS )
   {
     //10Mbps
     ENET->RCR |= ENET_RCR_RMII_10T_MASK;
   }
 
-  //ʹ�÷���ǿ�ͻ�����������
+  //使用非增强型缓冲区描述符
   ENET->ECR = 0;
   
   
-  //���ý��ջ���������
+  //设置接收缓冲区长度
   ENET->MRBR = (unsigned short) CFG_ENET_RX_BUFFER_SIZE;
 
-  //ָ���ν��ջ��������������е�ͷ��ַ
+  //指向环形接收缓冲区描述符序列的头地址
   ENET->RDSR = ( uint32 ) &( xENETRxDescriptors[ 0 ] );
 
-  //ָ���η��ͻ��������������е�ͷ��ַ
+  //指向环形发送缓冲区描述符序列的头地址
   ENET->TDSR = ( uint32 ) xENETTxDescriptors;
 
-  //���ENET�ж��¼�
+  //清除ENET中断事件
   ENET->EIR = ( uint32 ) -1;
 
-  //ʹ���ж�
+  //使能中断
   ENET->EIMR = 0 
-            | ENET_EIMR_RXF_MASK  //�����ж�
-            | ENET_EIMR_TXF_MASK  //�����ж�
-            //ENET�ж�
+            | ENET_EIMR_RXF_MASK  //接收中断
+            | ENET_EIMR_TXF_MASK  //发送中断
+            //ENET中断
             | ENET_EIMR_UN_MASK | ENET_EIMR_RL_MASK | ENET_EIMR_LC_MASK | ENET_EIMR_BABT_MASK | ENET_EIMR_BABR_MASK | ENET_EIMR_EBERR_MASK
             | ENET_EIMR_RXB_MASK
             ;
 
-  //ʹ��ENETģ��
+  //使能ENET模块
   ENET->ECR |= ENET_ECR_ETHEREN_MASK;
 
-  //�������ջ�����Ϊ��
+  //表明接收缓冲区为空
   ENET->RDAR = ENET_RDAR_RDAR_MASK;
 }
 
 
 /*
  * LPLD_ENET_SetIsr
- * ENETģ���жϺ�������
+ * ENET模块中断函数设置
  * 
- * ����:
- *    type--�ж�����
- *      |__ENET_RXF_ISR   -�����ж�
- *      |__ENET_TXF_ISR   -�����ж�
- *    isr_func--�û��жϳ�����ڵ�ַ
- *      |__�û��ڹ����ļ��¶�����жϺ���������������Ϊ:�޷���ֵ,�޲���(eg. void isr(void);)
+ * 参数:
+ *    type--中断类型
+ *      |__ENET_RXF_ISR   -接收中断
+ *      |__ENET_TXF_ISR   -发送中断
+ *    isr_func--用户中断程序入口地址
+ *      |__用户在工程文件下定义的中断函数名，函数必须为:无返回值,无参数(eg. void isr(void);)
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  *
  */
 uint8 LPLD_ENET_SetIsr(uint8 type, ENET_ISR_CALLBACK isr_func)
@@ -257,15 +257,15 @@ uint8 LPLD_ENET_SetIsr(uint8 type, ENET_ISR_CALLBACK isr_func)
 
 /*
  * Eth_RX_IRQHandler
- * ENET�����жϵײ���ں���
+ * ENET接收中断底层入口函数
  * 
- * �û������޸ģ������Զ������Ӧͨ���жϺ���
+ * 用户无需修改，程序自动进入对应通道中断函数
  */
 void Eth_RX_IRQHandler(void)
 {   
   ENET->EIR |= ENET_EIMR_RXF_MASK; 
     
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   if(ENET_ISR[ENET_RXF_ISR] != NULL)
   {
     ENET_ISR[ENET_RXF_ISR]();  
@@ -274,15 +274,15 @@ void Eth_RX_IRQHandler(void)
 
 /*
  * Eth_TX_IRQHandler
- * ENET�����жϵײ���ں���
+ * ENET发送中断底层入口函数
  * 
- * �û������޸ģ������Զ������Ӧͨ���жϺ���
+ * 用户无需修改，程序自动进入对应通道中断函数
  */
 void Eth_TX_IRQHandler(void)
 {  
   ENET->EIR |= ENET_EIMR_TXF_MASK; 
     
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   if(ENET_ISR[ENET_TXF_ISR] != NULL)
   {
     ENET_ISR[ENET_TXF_ISR]();  
@@ -291,13 +291,13 @@ void Eth_TX_IRQHandler(void)
 
 /*
  * Eth_IEEE1588_IRQHandler
- * IEEE1588�жϵײ���ں���
+ * IEEE1588中断底层入口函数
  * 
- * �û������޸ģ������Զ������Ӧͨ���жϺ���
+ * 用户无需修改，程序自动进入对应通道中断函数
  */
 void Eth_IEEE1588_IRQHandler(void)
 {    
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   if(ENET_ISR[ENET_1588_ISR] != NULL)
   {
     ENET_ISR[ENET_1588_ISR]();  
@@ -306,13 +306,13 @@ void Eth_IEEE1588_IRQHandler(void)
 
 /*
  * Eth_Err_Misc_IRQHandler
- * ���������жϵײ���ں���
+ * 其他错误中断底层入口函数
  * 
- * �û������޸ģ������Զ������Ӧͨ���жϺ���
+ * 用户无需修改，程序自动进入对应通道中断函数
  */
 void Eth_Err_Misc_IRQHandler(void)
 {  
-  //�����û��Զ����жϷ���
+  //调用用户自定义中断服务
   if(ENET_ISR[ENET_ERR_ISR] != NULL)
   {
     ENET_ISR[ENET_ERR_ISR](); 
@@ -321,13 +321,13 @@ void Eth_Err_Misc_IRQHandler(void)
 
 /*
  * LPLD_ENET_Delay
- * ENETģ���ڲ���ʱ����
+ * ENET模块内部延时函数
  * 
- * ����:
- *    time--�ӳٴ�С
+ * 参数:
+ *    time--延迟大小
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  */
 static void LPLD_ENET_Delay(uint32 time)
 {
@@ -342,20 +342,20 @@ static void LPLD_ENET_Delay(uint32 time)
 
 /*
  * LPLD_ENET_BDInit
- * ��������������ʼ��
+ * 缓冲区描述符初始化
  * 
- * ����:
- *    ��
+ * 参数:
+ *    无
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  */
 static void LPLD_ENET_BDInit( void )
 {
   uint32 ux;
   uint8 *pcBufPointer;
   
-  //Ѱ��<��������������ռ�>�е�16�ֽڶ���ĵ�ַ��������λΪ0����ʼ��ַ
+  //寻找<发送描述符数组空间>中的16字节对齐的地址，即低四位为0的起始地址
   pcBufPointer = &( xENETTxDescriptors_unaligned[ 0 ] );
   while( ( ( uint32 ) pcBufPointer & 0x0fUL ) != 0 )
   {
@@ -363,7 +363,7 @@ static void LPLD_ENET_BDInit( void )
   }
   xENETTxDescriptors = ( ENET_NbufTypeDef * ) pcBufPointer;
   
-  //Ѱ��<��������������ռ�>�е�16�ֽڶ���ĵ�ַ
+  //寻找<接收描述符数组空间>中的16字节对齐的地址
   pcBufPointer = &( xENETRxDescriptors_unaligned[ 0 ] );
   while( ( ( uint32 ) pcBufPointer & 0x0fUL ) != 0 )
   {
@@ -371,7 +371,7 @@ static void LPLD_ENET_BDInit( void )
   }
   xENETRxDescriptors = ( ENET_NbufTypeDef * ) pcBufPointer;
   
-  //���ͻ�������������ʼ��
+  //发送缓冲区描述符初始化
   for( ux = 0; ux < CFG_NUM_ENET_TX_BUFFERS; ux++ )
   {
     xENETTxDescriptors[ ux ].status = 0;
@@ -379,14 +379,14 @@ static void LPLD_ENET_BDInit( void )
     xENETTxDescriptors[ ux ].length = 0;
   }
   
-  //Ѱ��<���ջ������ռ�>�е�16�ֽڶ���ĵ�ַ
+  //寻找<接收缓冲区空间>中的16字节对齐的地址
   pcBufPointer = &( ucENETRxBuffers[ 0 ] );
   while( ( ( uint32 ) pcBufPointer & 0x0fUL ) != 0 )
   {
     pcBufPointer++;
   }
   
-  //���ջ�������������ʼ��
+  //接收缓冲区描述符初始化
   for( ux = 0; ux < CFG_NUM_ENET_RX_BUFFERS; ux++ )
   {
     xENETRxDescriptors[ ux ].status = RX_BD_E;
@@ -396,7 +396,7 @@ static void LPLD_ENET_BDInit( void )
   
   }
   
-  //���û��������������������е����һ��״̬λΪWrap
+  //设置缓冲区描述符环形序列中的最后一个状态位为Wrap
   xENETTxDescriptors[ CFG_NUM_ENET_TX_BUFFERS - 1 ].status |= TX_BD_W;
   xENETRxDescriptors[ CFG_NUM_ENET_RX_BUFFERS - 1 ].status |= RX_BD_W;
   
@@ -406,22 +406,22 @@ static void LPLD_ENET_BDInit( void )
 
 /*
  * LPLD_ENET_MacSend
- * ��̫֡���ͺ���
+ * 以太帧发送函数
  * 
- * ����:
- *    *ch--����֡ͷ��ַ��������֡Ϊ��̫֡���������Ŀ�ĵ�ַ��Դ��ַ�����͵ȡ�
- *    len--����֡���ȡ�
+ * 参数:
+ *    *ch--数据帧头地址，该数据帧为以太帧，必须包含目的地址、源地址、类型等。
+ *    len--数据帧长度。
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  */
 void LPLD_ENET_MacSend(uint8 *ch, uint16 len)
 {
   
-  //��鵱ǰ���ͻ������������Ƿ����
+  //检查当前发送缓冲区描述符是否可用
   while( xENETTxDescriptors[ uxNextTxBuffer ].status & TX_BD_R);
   
-  //���÷��ͻ�����������
+  //设置发送缓冲区描述符
   xENETTxDescriptors[ uxNextTxBuffer ].data = (uint8 *)__REV((uint32)ch);
   xENETTxDescriptors[ uxNextTxBuffer ].length = __REVSH(len);
   xENETTxDescriptors[ uxNextTxBuffer ].status = ( TX_BD_R | TX_BD_L | TX_BD_TC | TX_BD_W );
@@ -432,7 +432,7 @@ void LPLD_ENET_MacSend(uint8 *ch, uint16 len)
     uxNextTxBuffer = 0;
   }
   
-  //ʹ�ܷ���
+  //使能发送
   ENET->TDAR = ENET_TDAR_TDAR_MASK;
   
 }
@@ -440,14 +440,14 @@ void LPLD_ENET_MacSend(uint8 *ch, uint16 len)
 
 /*
  * LPLD_ENET_MacRecv
- * ��̫֡���պ���
+ * 以太帧接收函数
  * 
- * ����:
- *    *ch--��������֡ͷ��ַ��
- *    *len--����֡���ȵ�ַ��
+ * 参数:
+ *    *ch--接收数据帧头地址。
+ *    *len--数据帧长度地址。
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  */
 uint8 LPLD_ENET_MacRecv(uint8 *ch, uint16 *len)
 {
@@ -455,7 +455,7 @@ uint8 LPLD_ENET_MacRecv(uint8 *ch, uint16 *len)
   *len = 0;
   uxNextRxBuffer = 0; 
   
-  //Ѱ��Ϊ�ǿյĽ��ջ����������� 
+  //寻找为非空的接收缓冲区描述符 
   while( (xENETRxDescriptors[ uxNextRxBuffer ].status & RX_BD_E)!=0 )
   {
     uxNextRxBuffer++; 
@@ -467,12 +467,12 @@ uint8 LPLD_ENET_MacRecv(uint8 *ch, uint16 *len)
     
   }
   
-  //��ȡ���ջ�����������
+  //读取接收缓冲区描述符
   *len  =  __REVSH(xENETRxDescriptors[ uxNextRxBuffer ].length);
   prvRxd =  (uint8 *)__REV((uint32)xENETRxDescriptors[ uxNextRxBuffer ].data);      
   memcpy((void *)ch, (void *)prvRxd, *len);      
   
-  //������ջ�����������״̬��־Empty
+  //清除接收缓冲区描述符状态标志Empty
   xENETRxDescriptors[ uxNextRxBuffer ].status |= RX_BD_E;
   ENET->RDAR = ENET_RDAR_RDAR_MASK;	
   return 0;
@@ -481,13 +481,13 @@ uint8 LPLD_ENET_MacRecv(uint8 *ch, uint16 *len)
 
 /*
  * LPLD_ENET_HashAddress
- * ���ɸ�����MAC��ַ�Ĺ�ϣ��
+ * 生成给定的MAC地址的哈希表
  * 
- * ����:
- *    *addr--6�ֽڵ�ַָ�롣
+ * 参数:
+ *    *addr--6字节地址指针。
  *
- * ���:
- *    32λCRCУ��ĸ�6λ
+ * 输出:
+ *    32位CRC校验的高6位
  */
 uint8 LPLD_ENET_HashAddress(const uint8* addr)
 {
@@ -517,23 +517,23 @@ uint8 LPLD_ENET_HashAddress(const uint8* addr)
 
 /*
  * LPLD_ENET_SetAddress
- * ����MAC������ַ
+ * 设置MAC物理地址
  * 
- * ����:
- *    *pa--6�ֽڵ�������ַָ�롣
+ * 参数:
+ *    *pa--6字节的物理地址指针。
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  */
 void LPLD_ENET_SetAddress(const uint8 *pa)
 {
   uint8 crc;
   
-  //����������ַ
+  //设置物理地址
   ENET->PALR = (uint32)((pa[0]<<24) | (pa[1]<<16) | (pa[2]<<8) | pa[3]);
   ENET->PAUR = (uint32)((pa[4]<<24) | (pa[5]<<16));
   
-  //����������ַ���㲢���ö�����ַ��ϣ�Ĵ�����ֵ
+  //根据物理地址计算并设置独立地址哈希寄存器的值
   crc = LPLD_ENET_HashAddress(pa);
   if(crc >= 32)
     ENET->IAUR |= (uint32)(1 << (crc - 32));
@@ -545,20 +545,20 @@ void LPLD_ENET_SetAddress(const uint8 *pa)
 
 /*******************************************************************
  *
- *                PHY�豸MII�ӿں���
+ *                PHY设备MII接口函数
  *
 *******************************************************************/
 
 /*
  * LPLD_ENET_MiiInit
- * ����ENETģ���MII�ӿ�ʱ�ӣ�����Ƶ��Ϊ2.5MHz
- * MII_SPEED = ϵͳʱ�� / (2.5MHz * 2)
+ * 设置ENET模块的MII接口时钟，期望频率为2.5MHz
+ * MII_SPEED = 系统时钟 / (2.5MHz * 2)
  * 
- * ����:
- *    sys_clk_mhz--ϵͳ��Ƶ
+ * 参数:
+ *    sys_clk_mhz--系统主频
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  */
 void LPLD_ENET_MiiInit(uint32 sys_clk_mhz)
 {
@@ -568,25 +568,25 @@ void LPLD_ENET_MiiInit(uint32 sys_clk_mhz)
 
 /*
  * LPLD_ENET_MiiWrite
- * MII�ӿ�д
+ * MII接口写
  * 
- * ����:
- *    phy_addr--�����շ�����ַ
- *    reg_addr--�Ĵ�����ַ
- *    data--д�������
+ * 参数:
+ *    phy_addr--物理收发器地址
+ *    reg_addr--寄存器地址
+ *    data--写入的数据
  *
- * ���:
- *    1--д��ʱ
- *    0--д��ɹ�
+ * 输出:
+ *    1--写超时
+ *    0--写入成功
  */
 uint8 LPLD_ENET_MiiWrite(uint16 phy_addr, uint16 reg_addr, uint16 data)
 {
   uint32 timeout;
   
-  //���MII�ж��¼�
+  //清除MII中断事件
   ENET->EIR = ENET_EIR_MII_MASK;
   
-  //��ʼ��MII����֡�Ĵ���
+  //初始化MII管理帧寄存器
   ENET->MMFR = 0
             | ENET_MMFR_ST(0x01)
             | ENET_MMFR_OP(0x01)
@@ -595,7 +595,7 @@ uint8 LPLD_ENET_MiiWrite(uint16 phy_addr, uint16 reg_addr, uint16 data)
             | ENET_MMFR_TA(0x02)
             | ENET_MMFR_DATA(data);
   
-  //�ȴ�MII��������ж��¼�
+  //等待MII传输完成中断事件
   for (timeout = 0; timeout < MII_TIMEOUT; timeout++)
   {
     if (ENET->EIR & ENET_EIR_MII_MASK)
@@ -605,7 +605,7 @@ uint8 LPLD_ENET_MiiWrite(uint16 phy_addr, uint16 reg_addr, uint16 data)
   if(timeout == MII_TIMEOUT) 
     return 1;
   
-  //���MII�ж��¼�
+  //清除MII中断事件
   ENET->EIR = ENET_EIR_MII_MASK;
   
   return 0;
@@ -614,25 +614,25 @@ uint8 LPLD_ENET_MiiWrite(uint16 phy_addr, uint16 reg_addr, uint16 data)
 
 /*
  * LPLD_ENET_MiiRead
- * MII�ӿڶ�
+ * MII接口读
  * 
- * ����:
- *    phy_addr--�����շ�����ַ
- *    reg_addr--�Ĵ�����ַ
- *    *data--���������ݵ�ַָ��
+ * 参数:
+ *    phy_addr--物理收发器地址
+ *    reg_addr--寄存器地址
+ *    *data--读出的数据地址指针
  *
- * ���:
- *    1--����ʱ
- *    0--��ȡ�ɹ�
+ * 输出:
+ *    1--读超时
+ *    0--读取成功
  */
 uint8 LPLD_ENET_MiiRead(uint16 phy_addr, uint16 reg_addr, uint16 *data)
 {
   uint32 timeout;
   
-  //���MII�ж��¼�
+  //清除MII中断事件
   ENET->EIR = ENET_EIR_MII_MASK;
   
-  //��ʼ��MII����֡�Ĵ���
+  //初始化MII管理帧寄存器
   ENET->MMFR = 0
             | ENET_MMFR_ST(0x01)
             | ENET_MMFR_OP(0x2)
@@ -640,7 +640,7 @@ uint8 LPLD_ENET_MiiRead(uint16 phy_addr, uint16 reg_addr, uint16 *data)
             | ENET_MMFR_RA(reg_addr)
             | ENET_MMFR_TA(0x02);
   
-  //�ȴ�MII��������ж��¼�
+  //等待MII传输完成中断事件
   for (timeout = 0; timeout < MII_TIMEOUT; timeout++)
   {
     if (ENET->EIR & ENET_EIR_MII_MASK)
@@ -650,7 +650,7 @@ uint8 LPLD_ENET_MiiRead(uint16 phy_addr, uint16 reg_addr, uint16 *data)
   if(timeout == MII_TIMEOUT) 
     return 1;
   
-  //���MII�ж��¼�
+  //清除MII中断事件
   ENET->EIR = ENET_EIR_MII_MASK;
   
   *data = ENET->MMFR & 0x0000FFFF;

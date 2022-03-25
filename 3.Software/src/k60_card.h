@@ -1,43 +1,15 @@
-/**
- * @file k60_card.h
- * @version 3.1[By LPLD]
- * @date 2015-01-11
- * @brief À­ÆÕÀ¼µÂK60ºËÐÄ°åÅäÖÃÎÄ¼þ
- *
- * ¸ü¸Ä½¨Òé:¿É¸ù¾Ý¹¤³ÌÐèÇóÐÞ¸Ä
- *
- * **±ØÐëÔÚÃ¿¸ö¹¤³ÌµÄappÎÄ¼þ¼ÐÄÚ°üº¬´ËÎÄ¼þ¡£**
- * ¸ÃÍ·ÎÄ¼þÎªÀ­ÆÕÀ¼µÂK60µ×²ã¿âËù±ØÐëµÄÅäÖÃÎÄ¼þ¡£
- * ÓÃÓÚÅäÖÃMCUÐÍºÅ¡¢Ö÷Æµ¡¢µ÷ÊÔÐÅÏ¢µÈ²ÎÊý¡£
- *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
- * http://www.lpld.cn
- * mail:support@lpld.cn
- *
- * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
- * 
- * »ùÓÚLPLDµÄMK60DZ10¿â½øÐÐµÄ¸ü¸Ä£¬×÷ÎªMK60F15¹Ì¼þ¿â¡£
- * @ ·®ºÆ°Ø
- */
 #ifndef __K60_CARD_H__
 #define __K60_CARD_H__
 
 /*
- * ÏµÍ³Ö÷Æµ¶¨Òå(CORE_CLK_MHZ)
- * ¿ÉÑ¡·¶Î§:
+ * ç³»ç»Ÿä¸»é¢‘å®šä¹‰(CORE_CLK_MHZ)
+ * å¯é€‰èŒƒå›´:
  * <MK60F15>
  * PLL_100       //100MHz 
- * PLL_120       //120MHz ÊÇMK60F12µÄ¶î¶¨×î¸ßÖ÷Æµ£¬ÔÙÍùÉÏ·ÉË¼¿¨¶û¿É²»ÖÊ±£
- * PLL_150       //150MHz ÊÇMK60F15µÄ¶î¶¨×î¸ßÖ÷Æµ£¬ÔÙÍùÉÏ·ÉË¼¿¨¶û¿É²»ÖÊ±£
+ * PLL_120       //120MHz æ˜¯MK60F12çš„é¢å®šæœ€é«˜ä¸»é¢‘ï¼Œå†å¾€ä¸Šé£žæ€å¡å°”å¯ä¸è´¨ä¿
+ * PLL_150       //150MHz æ˜¯MK60F15çš„é¢å®šæœ€é«˜ä¸»é¢‘ï¼Œå†å¾€ä¸Šé£žæ€å¡å°”å¯ä¸è´¨ä¿
  * PLL_180       //180MHz
- * PLL_200       //200MHz Èç¹û³¬µ½200£¬·¢ÈÈºÜÕý³££¬ÉÕÁË±ðÕÒÎÒ>_>
+ * PLL_200       //200MHz å¦‚æžœè¶…åˆ°200ï¼Œå‘çƒ­å¾ˆæ­£å¸¸ï¼Œçƒ§äº†åˆ«æ‰¾æˆ‘>_>
  */
 #if defined(USE_K60F15)
   #define CORE_CLK_MHZ        PLL_180
@@ -45,33 +17,33 @@
 
 
 /*
- * ×ÜÏßÆµÂÊ¶¨Òå(BUS_CLK_MHZ)
- * ¿ÉÑ¡·¶Î§:
- *   ²»³¬¹ýÏµÍ³Ö÷Æµ£¬µ«½¨Òé²»³¬¹ý100£¬³¬¹ý100ºó»á³öÏÖÅÜ·É¡¢·¢ÈÈÏÖÏó
+ * æ€»çº¿é¢‘çŽ‡å®šä¹‰(BUS_CLK_MHZ)
+ * å¯é€‰èŒƒå›´:
+ *   ä¸è¶…è¿‡ç³»ç»Ÿä¸»é¢‘ï¼Œä½†å»ºè®®ä¸è¶…è¿‡100ï¼Œè¶…è¿‡100åŽä¼šå‡ºçŽ°è·‘é£žã€å‘çƒ­çŽ°è±¡
  *
 */
 #if (defined(USE_K60F15))
   #define BUS_CLK_MHZ         60u
 #endif   
 /*
- * Flex×ÜÏßÆµÂÊ¶¨Òå(FLEXBUS_CLK_MHZ)
- * ¿ÉÑ¡·¶Î§:
- *   ²»³¬¹ý50
+ * Flexæ€»çº¿é¢‘çŽ‡å®šä¹‰(FLEXBUS_CLK_MHZ)
+ * å¯é€‰èŒƒå›´:
+ *   ä¸è¶…è¿‡50
  *
 */
 #define FLEXBUS_CLK_MHZ     50u 
    
 /*
- * FlashÆµÂÊ¶¨Òå(FLASH_CLK_MHZ)
- * ¿ÉÑ¡·¶Î§:
- *   ²»³¬¹ý25
+ * Flashé¢‘çŽ‡å®šä¹‰(FLASH_CLK_MHZ)
+ * å¯é€‰èŒƒå›´:
+ *   ä¸è¶…è¿‡25
  *
 */
 #define FLASH_CLK_MHZ       25u    
 
 
 /* 
- * Ñ¡Ôñµ÷ÊÔÐÅÏ¢Êä³öËùÓÐµÄ´®¿ÚºÅºÍ²¨ÌØÂÊ
+ * é€‰æ‹©è°ƒè¯•ä¿¡æ¯è¾“å‡ºæ‰€æœ‰çš„ä¸²å£å·å’Œæ³¢ç‰¹çŽ‡
  */
 #define TERM_PORT           UART0
 #define TERMINAL_BAUD       115200
@@ -79,9 +51,9 @@
 #define UART_T_PORT         PTB17
 
 /*
- * ÊÇ·ñÆôÓÃ´®¿ÚÏÔÊ¾µ÷ÊÔÐÅÏ¢
- * Èç¹ûÆôÓÃ£¬ºËÐÄ°å»áÔÚÔËÐÐÊ±Í¨¹ýUART5ÏÔÊ¾Æ÷¼þÏà¹ØÐÅÏ¢£¬Õ¼ÓÃPTE8ºÍPTE9Á½¸ö¶Ë¿Ú
- * 1ÏÔÊ¾  0²»ÏÔÊ¾
+ * æ˜¯å¦å¯ç”¨ä¸²å£æ˜¾ç¤ºè°ƒè¯•ä¿¡æ¯
+ * å¦‚æžœå¯ç”¨ï¼Œæ ¸å¿ƒæ¿ä¼šåœ¨è¿è¡Œæ—¶é€šè¿‡UART5æ˜¾ç¤ºå™¨ä»¶ç›¸å…³ä¿¡æ¯ï¼Œå ç”¨PTE8å’ŒPTE9ä¸¤ä¸ªç«¯å£
+ * 1æ˜¾ç¤º  0ä¸æ˜¾ç¤º
  */
 #define PRINT_ON_OFF    0
 
@@ -90,9 +62,9 @@
 #endif
    
 /*
- * ÊÇ·ñÆôÓÃ¶ÏÑÔº¯ÊýÅÐ¶Ï²ÎÊýºÏ·¨ÐÔ
- * Èç¹ûÆôÓÃ£¬»áÔö¼Ó²¿·Ö¿âº¯µÄÔËÐÐÊ±¼äÀ´ÅÐ¶Ï²ÎÊýµÄºÏ·¨ÐÔ
- * 1Ê¹ÓÃ  0²»Ê¹ÓÃ
+ * æ˜¯å¦å¯ç”¨æ–­è¨€å‡½æ•°åˆ¤æ–­å‚æ•°åˆæ³•æ€§
+ * å¦‚æžœå¯ç”¨ï¼Œä¼šå¢žåŠ éƒ¨åˆ†åº“å‡½çš„è¿è¡Œæ—¶é—´æ¥åˆ¤æ–­å‚æ•°çš„åˆæ³•æ€§
+ * 1ä½¿ç”¨  0ä¸ä½¿ç”¨
  */
 #define ASSERT_ON_OFF   0
 
@@ -101,31 +73,31 @@
 #endif
 
 /*
- * ÊÇ·ñÊ¹ÓÃuCOS II
- * 1Ê¹ÓÃ  0²»Ê¹ÓÃ
+ * æ˜¯å¦ä½¿ç”¨uCOS II
+ * 1ä½¿ç”¨  0ä¸ä½¿ç”¨
  */
 #define UCOS_II         0
 
 /*
- * ÊÇ·ñÊ¹ÓÃFatFs
- * 1Ê¹ÓÃ  0²»Ê¹ÓÃ
+ * æ˜¯å¦ä½¿ç”¨FatFs
+ * 1ä½¿ç”¨  0ä¸ä½¿ç”¨
  */
 #define USE_FATFS       1
 
 /*
- * Ñ¡Ôñµ±Ç°USBÉè±¸µÄÀàÐÍ
+ * é€‰æ‹©å½“å‰USBè®¾å¤‡çš„ç±»åž‹
  * USB_DEVICE_CLASS_CDC
  * USB_DEVICE_CLASS_HID
  */
 //#define USB_DEVICE_CLASS USB_DEVICE_CLASS_CDC
 
 /*
- * ¶¨ÒåMCUÐÍºÅ
+ * å®šä¹‰MCUåž‹å·
  */
 #if defined(USE_K60F15)
   #define CPU_MK60F15
 #else
-  #error "Î´¶¨ÒåCPUÀàÐÍ"
+  #error "æœªå®šä¹‰CPUç±»åž‹"
 #endif  
 
 

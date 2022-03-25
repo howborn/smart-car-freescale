@@ -1,17 +1,17 @@
 /*!
  *     COPYRIGHT NOTICE
- *     Copyright (c) 2013,Ò°»ğ¿Æ¼¼
+ *     Copyright (c) 2013,é‡ç«ç§‘æŠ€
  *     All rights reserved.
- *     ¼¼ÊõÌÖÂÛ£ºÒ°»ğ³õÑ§ÂÛÌ³ http://www.chuxue123.com
+ *     æŠ€æœ¯è®¨è®ºï¼šé‡ç«åˆå­¦è®ºå› http://www.chuxue123.com
  *
- *     ³ı×¢Ã÷³ö´¦Íâ£¬ÒÔÏÂËùÓĞÄÚÈİ°æÈ¨¾ùÊôÒ°»ğ¿Æ¼¼ËùÓĞ£¬Î´¾­ÔÊĞí£¬²»µÃÓÃÓÚÉÌÒµÓÃÍ¾£¬
- *     ĞŞ¸ÄÄÚÈİÊ±±ØĞë±£ÁôÒ°»ğ¿Æ¼¼µÄ°æÈ¨ÉùÃ÷¡£
+ *     é™¤æ³¨æ˜å‡ºå¤„å¤–ï¼Œä»¥ä¸‹æ‰€æœ‰å†…å®¹ç‰ˆæƒå‡å±é‡ç«ç§‘æŠ€æ‰€æœ‰ï¼Œæœªç»å…è®¸ï¼Œä¸å¾—ç”¨äºå•†ä¸šç”¨é€”ï¼Œ
+ *     ä¿®æ”¹å†…å®¹æ—¶å¿…é¡»ä¿ç•™é‡ç«ç§‘æŠ€çš„ç‰ˆæƒå£°æ˜ã€‚
  *
- *     ±¾Çı¶¯ÓÉbrtos´úÂëÌáÈ¡²¢ĞŞ¸Ä¶ø³É:http://code.google.com/p/brtos/downloads/detail?name=BRTOS%201.66%20Kinetis%20-%20SD%20card%20-%20BMP%2024%20bit.rar&can=2&q=
+ *     æœ¬é©±åŠ¨ç”±brtosä»£ç æå–å¹¶ä¿®æ”¹è€Œæˆ:http://code.google.com/p/brtos/downloads/detail?name=BRTOS%201.66%20Kinetis%20-%20SD%20card%20-%20BMP%2024%20bit.rar&can=2&q=
  *
  * @file       diskio.c
- * @brief      FATFS µ×²ã½Ó¿ÚÊµÏÖº¯Êı
- * @author     Ò°»ğ¿Æ¼¼ & gustavo(brtos×÷Õß)
+ * @brief      FATFS åº•å±‚æ¥å£å®ç°å‡½æ•°
+ * @author     é‡ç«ç§‘æŠ€ & gustavo(brtosä½œè€…)
  * @version    v5.0
  * @date       2013-09-19
  */
@@ -21,11 +21,11 @@
 #include "diskio.h"
 
 
-static volatile DSTATUS   Stat             = STA_NOINIT;    /* Ó²ÅÌ×´Ì¬         */
+static volatile DSTATUS   Stat             = STA_NOINIT;    /* ç¡¬ç›˜çŠ¶æ€         */
 
 /*!
- *  @brief      Ó²ÅÌ³õÊ¼»¯
- *  @param      drv                 Éè±¸ºÅ(Ä¿Ç°´úÂë½öÖ§³ÖÎª 0)
+ *  @brief      ç¡¬ç›˜åˆå§‹åŒ–
+ *  @param      drv                 è®¾å¤‡å·(ç›®å‰ä»£ç ä»…æ”¯æŒä¸º 0)
  *  @since      v5.0
  */
 DSTATUS disk_initialize (unsigned char drv)
@@ -33,9 +33,9 @@ DSTATUS disk_initialize (unsigned char drv)
     uint32                      param, c_size, c_size_mult, read_bl_len;
     ESDHC_CMD_t                 command;
 
-    if (drv) return STA_NOINIT;         /* Ä¿Ç°´úÂë½öÖ§³Ö1¸öÉè±¸ */
-    if (Stat & STA_NODISK) return Stat; /* Ã»ÓĞ²åÈë¿¨ */
-    if ((Stat & STA_NOINIT) == 0)   return 0;/* Ã»ÓĞ³õÊ¼»¯ */
+    if (drv) return STA_NOINIT;         /* ç›®å‰ä»£ç ä»…æ”¯æŒ1ä¸ªè®¾å¤‡ */
+    if (Stat & STA_NODISK) return Stat; /* æ²¡æœ‰æ’å…¥å¡ */
+    if ((Stat & STA_NOINIT) == 0)   return 0;/* æ²¡æœ‰åˆå§‹åŒ– */
 
     SDHC_card.SD_TIMEOUT = 0;
     SDHC_card.NUM_BLOCKS = 0;
@@ -43,13 +43,13 @@ DSTATUS disk_initialize (unsigned char drv)
     SDHC_card.SDHC = FALSE;
     SDHC_card.VERSION2 = FALSE;
 
-    /* ³õÊ¼»¯ºÍ¼ì²â¿¨ */
+    /* åˆå§‹åŒ–å’Œæ£€æµ‹å¡ */
     if (ESDHC_IOCTL_OK != SDHC_ioctl (ESDHC_IOCTL_INIT, NULL))
     {
         return FALSE;
     }
 
-    /* SDHC ¼ì²â */
+    /* SDHC æ£€æµ‹ */
     param = 0;
     if (ESDHC_IOCTL_OK != SDHC_ioctl (ESDHC_IOCTL_GET_CARD, &param))
     {
@@ -67,7 +67,7 @@ DSTATUS disk_initialize (unsigned char drv)
         return FALSE;
     }
 
-    /* ¿¨Ê¶±ğ */
+    /* å¡è¯†åˆ« */
     command.COMMAND = ESDHC_CMD2;
     command.TYPE = ESDHC_TYPE_NORMAL;
     command.ARGUMENT = 0;
@@ -78,7 +78,7 @@ DSTATUS disk_initialize (unsigned char drv)
         return FALSE;
     }
 
-    /* »ñµÃ¿¨µØÖ· */
+    /* è·å¾—å¡åœ°å€ */
     command.COMMAND = ESDHC_CMD3;
     command.TYPE = ESDHC_TYPE_NORMAL;
     command.ARGUMENT = 0;
@@ -90,7 +90,7 @@ DSTATUS disk_initialize (unsigned char drv)
     }
     SDHC_card.ADDRESS = command.RESPONSE[0] & 0xFFFF0000;
 
-    /* »ñµÃ¿¨²ÎÊı */
+    /* è·å¾—å¡å‚æ•° */
     command.COMMAND = ESDHC_CMD9;
     command.TYPE = ESDHC_TYPE_NORMAL;
     command.ARGUMENT = SDHC_card.ADDRESS;
@@ -115,7 +115,7 @@ DSTATUS disk_initialize (unsigned char drv)
         SDHC_card.NUM_BLOCKS = (c_size + 1) << 10;
     }
 
-    /* Ñ¡Ôñ¿¨ */
+    /* é€‰æ‹©å¡ */
     command.COMMAND = ESDHC_CMD7;
     command.TYPE = ESDHC_TYPE_NORMAL;
     command.ARGUMENT = SDHC_card.ADDRESS;
@@ -126,7 +126,7 @@ DSTATUS disk_initialize (unsigned char drv)
         return FALSE;
     }
 
-    /* ÉèÖÃ¿éµÄ´óĞ¡ */
+    /* è®¾ç½®å—çš„å¤§å° */
     command.COMMAND = ESDHC_CMD16;
     command.TYPE = ESDHC_TYPE_NORMAL;
     command.ARGUMENT = SDCARD_BLOCK_SIZE;
@@ -139,7 +139,7 @@ DSTATUS disk_initialize (unsigned char drv)
 
     if (ESDHC_BUS_WIDTH_4BIT == SDHC_BUS_WIDTH)
     {
-        /* Ó¦ÓÃ³ÌĞòÌØ¶¨µÄÃüÁî */
+        /* åº”ç”¨ç¨‹åºç‰¹å®šçš„å‘½ä»¤ */
         command.COMMAND = ESDHC_CMD55;
         command.TYPE = ESDHC_TYPE_NORMAL;
         command.ARGUMENT = SDHC_card.ADDRESS;
@@ -150,7 +150,7 @@ DSTATUS disk_initialize (unsigned char drv)
             return FALSE;
         }
 
-        /* ÉèÖÃ×ÜÏß´ø¿í == 4 */
+        /* è®¾ç½®æ€»çº¿å¸¦å®½ == 4 */
         command.COMMAND = ESDHC_ACMD6;
         command.TYPE = ESDHC_TYPE_NORMAL;
         command.ARGUMENT = 2;
@@ -168,15 +168,15 @@ DSTATUS disk_initialize (unsigned char drv)
         }
     }
 
-    Stat &= ~STA_NOINIT;        /* Çå STA_NOINIT */
+    Stat &= ~STA_NOINIT;        /* æ¸… STA_NOINIT */
 
     return (Stat & 0x03);
 }
 
 /*!
- *  @brief      ´ÓMMC½ÓÊÕÊı¾İ°ü
- *  @param      buff                ½ÓÊÕ SDCARD_BLOCK_SIZE ¸ö×Ö½ÚµÄÊı¾İ¿éµ½Êı¾İ»º³åÇøµØÖ·
- *  @param      btr                 ×Ö½ÚÊıÄ¿(±ØĞëÊÇ 4 µÄ±¶Êı)
+ *  @brief      ä»MMCæ¥æ”¶æ•°æ®åŒ…
+ *  @param      buff                æ¥æ”¶ SDCARD_BLOCK_SIZE ä¸ªå­—èŠ‚çš„æ•°æ®å—åˆ°æ•°æ®ç¼“å†²åŒºåœ°å€
+ *  @param      btr                 å­—èŠ‚æ•°ç›®(å¿…é¡»æ˜¯ 4 çš„å€æ•°)
  *  @since      v5.0
  */
 static int rcvr_datablock (uint8   *buff, uint32  btr)
@@ -205,7 +205,7 @@ static int rcvr_datablock (uint8   *buff, uint32  btr)
 
             while (0 == (SDHC_PRSSTAT & SDHC_PRSSTAT_BREN_MASK)) {};
 
-            //Ğ¡¶Ë
+            //å°ç«¯
             *ptr++ = SDHC_DATPORT;
         }
         bytes -= i;
@@ -215,38 +215,38 @@ static int rcvr_datablock (uint8   *buff, uint32  btr)
 }
 
 /*!
- *  @brief      ¶ÁÉÈÇø
- *  @param      drv                 Çı¶¯ºÅ(Ä¿Ç°´úÂë½öÖ§³ÖÎª 0)
- *  @param      buff                »º³åÇøµØÖ·
- *  @param      sector              ÉÈÇøºÅ
- *  @param      count               ÉÈÇøÊı(1~255)
- *  @return     DRESULT             Ö´ĞĞ½á¹û
+ *  @brief      è¯»æ‰‡åŒº
+ *  @param      drv                 é©±åŠ¨å·(ç›®å‰ä»£ç ä»…æ”¯æŒä¸º 0)
+ *  @param      buff                ç¼“å†²åŒºåœ°å€
+ *  @param      sector              æ‰‡åŒºå·
+ *  @param      count               æ‰‡åŒºæ•°(1~255)
+ *  @return     DRESULT             æ‰§è¡Œç»“æœ
  *  @since      v5.0
  */
-DRESULT disk_read (         //¶Á´ÅÅÌÉÈÇø
-    uint8  drv,             /* ÎïÀíÇı¶¯±àºÅ (0) */
-    uint8  *buff,           /* Ö¸ÏòÊı¾İ»º³åÇøÀ´´æ´¢¶Áµ½µÄÊı¾İ */
-    uint32 sector,          /* ¿ªÊ¼µÄÉÈÇøºÅ (LBA) */
-    uint8  count            /* ÉÈÇø×ÜÊı(1..255) */
+DRESULT disk_read (         //è¯»ç£ç›˜æ‰‡åŒº
+    uint8  drv,             /* ç‰©ç†é©±åŠ¨ç¼–å· (0) */
+    uint8  *buff,           /* æŒ‡å‘æ•°æ®ç¼“å†²åŒºæ¥å­˜å‚¨è¯»åˆ°çš„æ•°æ® */
+    uint32 sector,          /* å¼€å§‹çš„æ‰‡åŒºå· (LBA) */
+    uint8  count            /* æ‰‡åŒºæ€»æ•°(1..255) */
 )
 {
     ESDHC_CMD_t command;
 
-    if (drv || (!count)) return RES_PARERR;       //drv Ö»ÄÜÎª 0£¬ count ±ØĞë²»µÈÓÚ0
-    if (Stat & STA_NOINIT) return RES_NOTRDY;     //Î´¾ÍĞ÷
+    if (drv || (!count)) return RES_PARERR;       //drv åªèƒ½ä¸º 0ï¼Œ count å¿…é¡»ä¸ç­‰äº0
+    if (Stat & STA_NOINIT) return RES_NOTRDY;     //æœªå°±ç»ª
 
-    /* ¼ì²â²ÎÊı */
+    /* æ£€æµ‹å‚æ•° */
     if ((NULL == buff))
     {
-        return RES_PARERR;//²ÎÊıÎŞĞ§
+        return RES_PARERR;//å‚æ•°æ— æ•ˆ
     }
 
     if (!SDHC_card.SDHC)
     {
-        sector *= SDCARD_BLOCK_SIZE;    /* Èç¹ûĞèÒª,×ª»»Îª×Ö½ÚµØÖ· */
+        sector *= SDCARD_BLOCK_SIZE;    /* å¦‚æœéœ€è¦,è½¬æ¢ä¸ºå­—èŠ‚åœ°å€ */
     }
 
-    if (count == 1) /* µ¥¿é¶Á */
+    if (count == 1) /* å•å—è¯» */
     {
         command.COMMAND = ESDHC_CMD17;
         command.TYPE = ESDHC_TYPE_NORMAL;
@@ -264,7 +264,7 @@ DRESULT disk_read (         //¶Á´ÅÅÌÉÈÇø
     }
     else
     {
-        /* ¶à¿é¶Á */
+        /* å¤šå—è¯» */
         //
         command.COMMAND = ESDHC_CMD18;
         //command.COMMAND = ESDHC_CMD17;
@@ -286,9 +286,9 @@ DRESULT disk_read (         //¶Á´ÅÅÌÉÈÇø
 }
 
 /*!
- *  @brief      ·¢ËÍÊı¾İ°üµ½ MMC
- *  @param      buff                ·¢ËÍ SDCARD_BLOCK_SIZE ¸ö×Ö½ÚµÄÊı¾İ¿éµÄÊı¾İ»º³åÇøµØÖ·
- *  @param      btr                 ×Ö½ÚÊıÄ¿(±ØĞëÊÇ 4 µÄ±¶Êı)
+ *  @brief      å‘é€æ•°æ®åŒ…åˆ° MMC
+ *  @param      buff                å‘é€ SDCARD_BLOCK_SIZE ä¸ªå­—èŠ‚çš„æ•°æ®å—çš„æ•°æ®ç¼“å†²åŒºåœ°å€
+ *  @param      btr                 å­—èŠ‚æ•°ç›®(å¿…é¡»æ˜¯ 4 çš„å€æ•°)
  *  @since      v5.0
  */
 static int xmit_datablock (const uint8 *buff, uint32 btr    )
@@ -321,12 +321,12 @@ static int xmit_datablock (const uint8 *buff, uint32 btr    )
 
 
 /*!
- *  @brief      Ğ´ÉÈÇø
- *  @param      drv                 Çı¶¯ºÅ(Ä¿Ç°´úÂë½öÖ§³ÖÎª 0)
- *  @param      buff                »º³åÇøµØÖ·
- *  @param      sector              ÉÈÇøºÅ
- *  @param      count               ÉÈÇøÊı(1~255)
- *  @return     DRESULT             Ö´ĞĞ½á¹û
+ *  @brief      å†™æ‰‡åŒº
+ *  @param      drv                 é©±åŠ¨å·(ç›®å‰ä»£ç ä»…æ”¯æŒä¸º 0)
+ *  @param      buff                ç¼“å†²åŒºåœ°å€
+ *  @param      sector              æ‰‡åŒºå·
+ *  @param      count               æ‰‡åŒºæ•°(1~255)
+ *  @return     DRESULT             æ‰§è¡Œç»“æœ
  *  @since      v5.0
  */
 DRESULT disk_write (uint8  drv, const uint8  *buff, uint32 sector, uint8  count)
@@ -341,7 +341,7 @@ DRESULT disk_write (uint8  drv, const uint8  *buff, uint32 sector, uint8  count)
     /* Check parameters */
     if ((NULL == buff))
     {
-        return RES_PARERR;      // ²ÎÊıÎŞĞ§
+        return RES_PARERR;      // å‚æ•°æ— æ•ˆ
     }
 
     if (!SDHC_card.SDHC)
@@ -417,10 +417,10 @@ DRESULT disk_write (uint8  drv, const uint8  *buff, uint32 sector, uint8  count)
 
 
 /*!
- *  @brief      Ó²ÅÌ ¿ØÖÆÃüÁî
- *  @param      drv                 Çı¶¯ºÅ
- *  @param      ctrl                ¿ØÖÆÃüÁî
- *  @param      buff                »º³åÇøµØÖ·£¬ÓÃÓÚ½ÓÊÕºÍ·¢ËÍ¿ØÖÆÊı¾İ
+ *  @brief      ç¡¬ç›˜ æ§åˆ¶å‘½ä»¤
+ *  @param      drv                 é©±åŠ¨å·
+ *  @param      ctrl                æ§åˆ¶å‘½ä»¤
+ *  @param      buff                ç¼“å†²åŒºåœ°å€ï¼Œç”¨äºæ¥æ”¶å’Œå‘é€æ§åˆ¶æ•°æ®
  *  @since      v5.0
  */
 DRESULT disk_ioctl (
@@ -489,8 +489,8 @@ DRESULT disk_ioctl (
 
 
 /*!
- *  @brief      »ñÈ¡Ó²ÅÌ×´Ì¬
- *  @return     Ó²ÅÌ×´Ì¬
+ *  @brief      è·å–ç¡¬ç›˜çŠ¶æ€
+ *  @return     ç¡¬ç›˜çŠ¶æ€
  *  @since      v5.0
  */
 DSTATUS disk_status (
@@ -503,8 +503,8 @@ DSTATUS disk_status (
 
 
 /*!
- *  @brief      »ñÈ¡Ê±¼ä(ÎªÁËÂú×ã½Ó¿ÚĞèÒª¶øÌí¼Ó£¬Êµ¼ÊÉÏ²¢Ã»ÓÃÊµÏÖ¹¦ÄÜ)
- *  @return     ½á¹û×ÜÊÇÎª 0
+ *  @brief      è·å–æ—¶é—´(ä¸ºäº†æ»¡è¶³æ¥å£éœ€è¦è€Œæ·»åŠ ï¼Œå®é™…ä¸Šå¹¶æ²¡ç”¨å®ç°åŠŸèƒ½)
+ *  @return     ç»“æœæ€»æ˜¯ä¸º 0
  *  @since      v5.0
  */
 uint32  get_fattime (void)

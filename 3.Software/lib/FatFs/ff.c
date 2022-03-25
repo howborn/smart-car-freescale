@@ -2523,7 +2523,7 @@ FRESULT f_open (
     {
         uint32 dw, cl;
 
-        if (res != FR_OK)                   /* Ã»ÓĞÎÄ¼ş£¬ĞèÒª´´½¨ĞÂµÄ No file, create new */
+        if (res != FR_OK)                   /* æ²¡æœ‰æ–‡ä»¶ï¼Œéœ€è¦åˆ›å»ºæ–°çš„ No file, create new */
         {
             if (res == FR_NO_FILE)          /* There is no file to open, create a new entry */
 #if _FS_SHARE
@@ -2542,7 +2542,7 @@ FRESULT f_open (
             }
             else
             {
-                if (mode & FA_CREATE_NEW)   /* ÒÑ¾­ÓĞÁË£¬²»ÄÜ´´½¨ĞÂµÄ Cannot create as new file */
+                if (mode & FA_CREATE_NEW)   /* å·²ç»æœ‰äº†ï¼Œä¸èƒ½åˆ›å»ºæ–°çš„ Cannot create as new file */
                     res = FR_EXIST;
             }
         }

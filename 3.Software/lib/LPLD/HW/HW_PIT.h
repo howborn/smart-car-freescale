@@ -2,31 +2,31 @@
  * @file HW_PIT.h
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief PITµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief PITåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_PIT_H__
 #define __HW_PIT_H__
 /********************************************************************/
 
-//PITÄ£¿éÖÐ¶Ï»Øµ÷º¯ÊýÀàÐÍ
+//PITæ¨¡å—ä¸­æ–­å›žè°ƒå‡½æ•°ç±»åž‹
 typedef void (*PIT_ISR_CALLBACK)(void);
 
-//PITÄ£¿éºÅ¶¨Òå
+//PITæ¨¡å—å·å®šä¹‰
 typedef enum PITx
 {
   PIT0=0,
@@ -35,67 +35,67 @@ typedef enum PITx
   PIT3=3
 }PITx;
 
-//PITÄ£¿é³õÊ¼»¯½á¹¹Ìå£¬ÓÃÓÚÅäÖÃPIT¸÷Ïî²ÎÊý
+//PITæ¨¡å—åˆå§‹åŒ–ç»“æž„ä½“ï¼Œç”¨äºŽé…ç½®PITå„é¡¹å‚æ•°
 typedef struct
 {  
   /*
-    ÃèÊö£º
-      Ñ¡ÔñPITx
-    È¡Öµ£º
-      PIT0¡¢PIT1¡¢PIT2¡¢PIT3
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é€‰æ‹©PITx
+    å–å€¼ï¼š
+      PIT0ã€PIT1ã€PIT2ã€PIT3
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   PITx PIT_Pitx;
   
   /*
-    ÃèÊö£º
-      PITxÄ£¿éµÄÖÜÆÚ£¬µ¥Î»us
-    È¡Öµ£º
+    æè¿°ï¼š
+      PITxæ¨¡å—çš„å‘¨æœŸï¼Œå•ä½us
+    å–å€¼ï¼š
       1~0xFFFFFFFF
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬PIT_PeriodUs¡¢PIT_PeriodMs¡¢PIT_PeriodSÖÁÉÙÒ»¸ö³õÊ¼»¯
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼ŒPIT_PeriodUsã€PIT_PeriodMsã€PIT_PeriodSè‡³å°‘ä¸€ä¸ªåˆå§‹åŒ–
   */
   uint32 PIT_PeriodUs;
   
   /*
-    ÃèÊö£º
-      PITxÄ£¿éµÄÖÜÆÚ£¬µ¥Î»ms
-    È¡Öµ£º
+    æè¿°ï¼š
+      PITxæ¨¡å—çš„å‘¨æœŸï¼Œå•ä½ms
+    å–å€¼ï¼š
       1~0xFFFFFFFF
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬PIT_PeriodUs¡¢PIT_PeriodMs¡¢PIT_PeriodSÖÁÉÙÒ»¸ö³õÊ¼»¯
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼ŒPIT_PeriodUsã€PIT_PeriodMsã€PIT_PeriodSè‡³å°‘ä¸€ä¸ªåˆå§‹åŒ–
   */
   uint32 PIT_PeriodMs;
   
   /*
-    ÃèÊö£º
-      PITxÄ£¿éµÄÖÜÆÚ£¬µ¥Î»s
-    È¡Öµ£º
+    æè¿°ï¼š
+      PITxæ¨¡å—çš„å‘¨æœŸï¼Œå•ä½s
+    å–å€¼ï¼š
       1~0xFFFFFFFF
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬PIT_PeriodUs¡¢PIT_PeriodMs¡¢PIT_PeriodSÖÁÉÙÒ»¸ö³õÊ¼»¯
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼ŒPIT_PeriodUsã€PIT_PeriodMsã€PIT_PeriodSè‡³å°‘ä¸€ä¸ªåˆå§‹åŒ–
   */
   uint32 PIT_PeriodS;
 
   /*
-    ÃèÊö£º
-      PITxÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢ÈçÎ´³õÊ¼»¯Ôò²»»á´¥·¢ÖÐ¶Ï
+    æè¿°ï¼š
+      PITxä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€å¦‚æœªåˆå§‹åŒ–åˆ™ä¸ä¼šè§¦å‘ä¸­æ–­
   */
   PIT_ISR_CALLBACK PIT_Isr; 
 } PIT_InitTypeDef;
 
-//PITÍ¨ÓÃ³õÊ¼»¯º¯Êý£¬Ñ¡ÔñPITx¡¢ÅäÖÃÖÐ¶ÏÖÜÆÚ¡¢ÖÐ¶Ïº¯Êý
+//PITé€šç”¨åˆå§‹åŒ–å‡½æ•°ï¼Œé€‰æ‹©PITxã€é…ç½®ä¸­æ–­å‘¨æœŸã€ä¸­æ–­å‡½æ•°
 uint8 LPLD_PIT_Init(PIT_InitTypeDef);
-//PIT·´³õÊ¼»¯º¯Êý£¬¹Ø±ÕÑ¡ÔñµÄPITx
+//PITååˆå§‹åŒ–å‡½æ•°ï¼Œå…³é—­é€‰æ‹©çš„PITx
 void LPLD_PIT_Deinit(PIT_InitTypeDef);
-//Ê¹ÄÜPITxÖÐ¶Ï
+//ä½¿èƒ½PITxä¸­æ–­
 void LPLD_PIT_EnableIrq(PIT_InitTypeDef);
-//½ûÓÃPITxÖÐ¶Ï
+//ç¦ç”¨PITxä¸­æ–­
 void LPLD_PIT_DisableIrq(PIT_InitTypeDef);
 
 #endif /* __HW_PIT_H__ */

@@ -2,37 +2,37 @@
  * @file HW_ENET.h
  * @version 3.01[By LPLD]
  * @date 2013-10-27
- * @brief ENETµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief ENETåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_ENET_H__
 #define __HW_ENET_H__
 /********************************************************************/
 
-//ÊÇ·ñ´òÓ¡PHY¼Ä´æÆ÷ÊýÖµ£¬ÓÃÓÚµ÷ÊÔ²é¿´
+//æ˜¯å¦æ‰“å°PHYå¯„å­˜å™¨æ•°å€¼ï¼Œç”¨äºŽè°ƒè¯•æŸ¥çœ‹
 #define ENET_PRINT_PHY_INFO
 
-//ENETÄ£¿éÖÐ¶Ï»Øµ÷º¯ÊýÀàÐÍ
+//ENETæ¨¡å—ä¸­æ–­å›žè°ƒå‡½æ•°ç±»åž‹
 typedef void (*ENET_ISR_CALLBACK)(void);
 
-// PHYÊÕ·¢Æ÷ºê¶¨Òå
+// PHYæ”¶å‘å™¨å®å®šä¹‰
 #define ENET_LINK_DELAY			1
 
-/* MII¼Ä´æÆ÷µØÖ· */
+/* MIIå¯„å­˜å™¨åœ°å€ */
 #define PHY_BMCR                    (0x00)
 #define PHY_BMSR                    (0x01)
 #define PHY_PHYIDR1                 (0x02)
@@ -48,7 +48,7 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define PHY_PAGESEL                 (0x13)
 
 
-/* PHY_BMCR¼Ä´æÆ÷Î»¶¨Òå */
+/* PHY_BMCRå¯„å­˜å™¨ä½å®šä¹‰ */
 #define PHY_BMCR_RESET              (0x8000)
 #define PHY_BMCR_LOOP               (0x4000)
 #define PHY_BMCR_SPEED              (0x2000)
@@ -59,7 +59,7 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define PHY_BMCR_FDX                (0x0100)
 #define PHY_BMCR_COL_TEST           (0x0080)
 
-/* PHY_BMSR¼Ä´æÆ÷Î»¶¨Òå */
+/* PHY_BMSRå¯„å­˜å™¨ä½å®šä¹‰ */
 #define PHY_BMSR_100BT4             (0x8000)
 #define PHY_BMSR_100BTX_FDX         (0x4000)
 #define PHY_BMSR_100BTX             (0x2000)
@@ -73,7 +73,7 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define PHY_BMSR_JABBER             (0x0002)
 #define PHY_BMSR_EXTENDED           (0x0001)
 
-/* PHY_ANAR¼Ä´æÆ÷Î»¶¨Òå */
+/* PHY_ANARå¯„å­˜å™¨ä½å®šä¹‰ */
 #define PHY_ANAR_NEXT_PAGE          (0x8001)
 #define PHY_ANAR_REM_FAULT          (0x2001)
 #define PHY_ANAR_PAUSE              (0x0401)
@@ -84,7 +84,7 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define PHY_ANAR_10BT               (0x0021)
 #define PHY_ANAR_802_3              (0x0001)
 
-/* PHY_ANLPAR¼Ä´æÆ÷Î»¶¨Òå */
+/* PHY_ANLPARå¯„å­˜å™¨ä½å®šä¹‰ */
 #define PHY_ANLPAR_NEXT_PAGE        (0x8000)
 #define PHY_ANLPAR_ACK              (0x4000)
 #define PHY_ANLPAR_REM_FAULT        (0x2000)
@@ -96,7 +96,7 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define PHY_ANLPAR_10BT             (0x0020)
 
 
-/* PHY_PHYSTS¼Ä´æÆ÷Î»¶¨Òå */
+/* PHY_PHYSTSå¯„å­˜å™¨ä½å®šä¹‰ */
 #define PHY_PHYSTS_MDIXMODE         (0x4000)
 #define PHY_PHYSTS_RX_ERR_LATCH     (0x2000)
 #define PHY_PHYSTS_POL_STATUS       (0x1000)
@@ -113,18 +113,18 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define PHY_PHYSTS_LINKSTATUS       (0x0001)
 
 
-/* PHYÓ²¼þÌØÐÔ */
+/* PHYç¡¬ä»¶ç‰¹æ€§ */
 #define PHY_STATUS		    ( 0x10 )
 #define PHY_DUPLEX_STATUS	    ( 0x04 )
 #define PHY_SPEED_STATUS	    ( 0x02 )
 
-/* PHYÊÕ·¢Æ÷Ó²¼þµØÖ· */
+/* PHYæ”¶å‘å™¨ç¡¬ä»¶åœ°å€ */
 #define CFG_PHY_ADDRESS	            0x01
 
 
-//Freescale´¦ÀíÆ÷Ïà¹Ø¶¨Òå
+//Freescaleå¤„ç†å™¨ç›¸å…³å®šä¹‰
 
-/* TX»º³åÇøÃèÊö·ûÎ»¶¨Òå */
+/* TXç¼“å†²åŒºæè¿°ç¬¦ä½å®šä¹‰ */
 #define TX_BD_R			0x0080
 #define TX_BD_TO1		0x0040
 #define TX_BD_W			0x0020
@@ -133,7 +133,7 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define TX_BD_TC		0x0004
 #define TX_BD_ABC		0x0002
 
-/* TXÔöÇ¿ÐÍ»º³åÇøÃèÊö·ûÎ»¶¨Òå */
+/* TXå¢žå¼ºåž‹ç¼“å†²åŒºæè¿°ç¬¦ä½å®šä¹‰ */
 #define TX_BD_INT       0x00000040 
 #define TX_BD_TS        0x00000020 
 #define TX_BD_PINS      0x00000010 
@@ -148,8 +148,8 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 
 #define TX_BD_BDU       0x00000080    
 
-/* RX»º³åÇøÃèÊö·ûÎ»¶¨Òå */
-// 0Æ«ÒÆ±êÖ¾ - ×´Ì¬:´ó¶Ë¸ñÊ½
+/* RXç¼“å†²åŒºæè¿°ç¬¦ä½å®šä¹‰ */
+// 0åç§»æ ‡å¿— - çŠ¶æ€:å¤§ç«¯æ ¼å¼
 #define RX_BD_E			0x0080
 #define RX_BD_R01		0x0040
 #define RX_BD_W			0x0020
@@ -164,7 +164,7 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 #define RX_BD_OV		0x0200
 #define RX_BD_TR		0x0100
 
-/* RXÔöÇ¿ÐÍ»º³åÇøÃèÊö·ûÎ»¶¨Òå */
+/* RXå¢žå¼ºåž‹ç¼“å†²åŒºæè¿°ç¬¦ä½å®šä¹‰ */
 #define RX_BD_ME               0x00000080    
 #define RX_BD_PE               0x00000004    
 #define RX_BD_CE               0x00000002    
@@ -180,113 +180,113 @@ typedef void (*ENET_ISR_CALLBACK)(void);
 
 #define RX_BD_BDU              0x00000080   
 
-/* MII½Ó¿Ú³¬Ê± */
+/* MIIæŽ¥å£è¶…æ—¶ */
 #define MII_TIMEOUT		0x1FFFF
 
-/* ÖÐ¶Ï·þÎñ×Ó³ÌÐòÀàÐÍ */
+/* ä¸­æ–­æœåŠ¡å­ç¨‹åºç±»åž‹ */
 #define ENET_RXF_ISR            0
 #define ENET_TXF_ISR            1
 #define ENET_1588_ISR           2
 #define ENET_ERR_ISR            3
 
-/* ÒÔÌ«Ö¡Ïà¹Ø¶¨Òå */
-#define CFG_NUM_ENET_TX_BUFFERS       1     //·¢ËÍ»º³åÇø¸öÊý
-#define CFG_NUM_ENET_RX_BUFFERS	      8     //½ÓÊÕ»º³åÇø¸öÊý
-#define CFG_ENET_TX_BUFFER_SIZE	      1520  //ÒÔÌ«·¢ËÍÖ¡»º³åÇø³¤¶È
-#define CFG_ENET_RX_BUFFER_SIZE	      256   //ÒÔÌ«½ÓÊÕÖ¡»º³åÇø³¤¶È
-#define CFG_ENET_MAX_PACKET_SIZE      1520  //ÒÔÌ«·¢×î´óÊý¾Ý°ü³¤¶È
+/* ä»¥å¤ªå¸§ç›¸å…³å®šä¹‰ */
+#define CFG_NUM_ENET_TX_BUFFERS       1     //å‘é€ç¼“å†²åŒºä¸ªæ•°
+#define CFG_NUM_ENET_RX_BUFFERS	      8     //æŽ¥æ”¶ç¼“å†²åŒºä¸ªæ•°
+#define CFG_ENET_TX_BUFFER_SIZE	      1520  //ä»¥å¤ªå‘é€å¸§ç¼“å†²åŒºé•¿åº¦
+#define CFG_ENET_RX_BUFFER_SIZE	      256   //ä»¥å¤ªæŽ¥æ”¶å¸§ç¼“å†²åŒºé•¿åº¦
+#define CFG_ENET_MAX_PACKET_SIZE      1520  //ä»¥å¤ªå‘æœ€å¤§æ•°æ®åŒ…é•¿åº¦
 
 
-/* »º³åÇøÃèÊö·û½á¹¹Ìå */
+/* ç¼“å†²åŒºæè¿°ç¬¦ç»“æž„ä½“ */
 typedef struct
 {
-  uint16 status;	//¿ØÖÆºÍ×´Ì¬Î»
-  uint16 length;	//´«Êä³¤¶È
-  uint8  *data;	//»º³åÇøµØÖ·
+  uint16 status;	//æŽ§åˆ¶å’ŒçŠ¶æ€ä½
+  uint16 length;	//ä¼ è¾“é•¿åº¦
+  uint8  *data;	//ç¼“å†²åŒºåœ°å€
 } ENET_NbufTypeDef;
 
-//ENETÄ£¿é³õÊ¼»¯½á¹¹Ìå
+//ENETæ¨¡å—åˆå§‹åŒ–ç»“æž„ä½“
 typedef struct
 {  
   /*
-    ÃèÊö£º
-      MACµØÖ·
-    È¡Öµ£º
-      ³¤¶È8×Ö½Ú
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      MACåœ°å€
+    å–å€¼ï¼š
+      é•¿åº¦8å­—èŠ‚
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint8 *ENET_MacAddress;
   
   /*
-    ÃèÊö£º
-      ·¢ËÍÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      å‘é€ä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–
   */
   ENET_ISR_CALLBACK ENET_TxIsr;
   
   /*
-    ÃèÊö£º
-      ½ÓÊÕÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      æŽ¥æ”¶ä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–
   */
   ENET_ISR_CALLBACK ENET_RxIsr;
   
   /*
-    ÃèÊö£º
-      IEEE1588ÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      IEEE1588ä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–
   */
   ENET_ISR_CALLBACK ENET_1588Isr;
     
   /*
-    ÃèÊö£º
-      ÆäËû´íÎóÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      å…¶ä»–é”™è¯¯ä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–
   */  
   ENET_ISR_CALLBACK ENET_ErrIsr;
   
 } ENET_InitTypeDef;
 
-/* ÃèÊö·ûÊý×é¿Õ¼ä */
+/* æè¿°ç¬¦æ•°ç»„ç©ºé—´ */
 static uint8 xENETTxDescriptors_unaligned[ ( CFG_NUM_ENET_TX_BUFFERS * sizeof( ENET_NbufTypeDef ) ) + 16 ];
 static uint8 xENETRxDescriptors_unaligned[ ( CFG_NUM_ENET_RX_BUFFERS * sizeof( ENET_NbufTypeDef ) ) + 16 ];
 static uint8 ucENETRxBuffers[ ( CFG_NUM_ENET_RX_BUFFERS * CFG_ENET_RX_BUFFER_SIZE ) + 16 ];
 
-/* DMA»º³åÇøÃèÊö·ûÖ¸Õë£¬Îª½á¹¹ÌåÊý×é£¬±ØÐëÉèÖÃÎª16×Ö½Ú¶ÔÆë */
+/* DMAç¼“å†²åŒºæè¿°ç¬¦æŒ‡é’ˆï¼Œä¸ºç»“æž„ä½“æ•°ç»„ï¼Œå¿…é¡»è®¾ç½®ä¸º16å­—èŠ‚å¯¹é½ */
 static ENET_NbufTypeDef *xENETTxDescriptors;
 static ENET_NbufTypeDef *xENETRxDescriptors;
 
-/* DMA»º³åÇøÃèÊö·ûÖ¸Õë£¬±ØÐëÉèÖÃÎª16×Ö½Ú¶ÔÆë */
+/* DMAç¼“å†²åŒºæè¿°ç¬¦æŒ‡é’ˆï¼Œå¿…é¡»è®¾ç½®ä¸º16å­—èŠ‚å¯¹é½ */
 static uint32 uxNextRxBuffer = 0, uxNextTxBuffer = 0;
 
-//ENETÄ£¿é³õÊ¼»¯
+//ENETæ¨¡å—åˆå§‹åŒ–
 void LPLD_ENET_Init(ENET_InitTypeDef);
-//ÒÔÌ«Ö¡·¢ËÍº¯Êý
+//ä»¥å¤ªå¸§å‘é€å‡½æ•°
 void LPLD_ENET_MacSend(uint8*, uint16);
-//ÒÔÌ«Ö¡½ÓÊÕº¯Êý
+//ä»¥å¤ªå¸§æŽ¥æ”¶å‡½æ•°
 uint8 LPLD_ENET_MacRecv(uint8*, uint16*);
-//Éú³É¸ø¶¨µÄMACµØÖ·µÄ¹þÏ£±í
+//ç”Ÿæˆç»™å®šçš„MACåœ°å€çš„å“ˆå¸Œè¡¨
 uint8 LPLD_ENET_HashAddress(const uint8*);
-//ÉèÖÃMACÎïÀíµØÖ·
+//è®¾ç½®MACç‰©ç†åœ°å€
 void LPLD_ENET_SetAddress(const uint8*);
-//ÉèÖÃENETÄ£¿éµÄMII½Ó¿ÚÊ±ÖÓ
+//è®¾ç½®ENETæ¨¡å—çš„MIIæŽ¥å£æ—¶é’Ÿ
 void LPLD_ENET_MiiInit(uint32);
-//MII½Ó¿ÚÐ´
+//MIIæŽ¥å£å†™
 uint8 LPLD_ENET_MiiWrite(uint16 , uint16, uint16);
-//MII½Ó¿Ú¶Á
+//MIIæŽ¥å£è¯»
 uint8 LPLD_ENET_MiiRead(uint16, uint16, uint16*);
 
 /*******************************************************************/

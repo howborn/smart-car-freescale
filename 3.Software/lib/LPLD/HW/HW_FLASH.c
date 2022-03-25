@@ -2,54 +2,54 @@
  * @file HW_FLASH.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief FTFLµ×²ãÄ£¿éÏà¹Øº¯Êı
+ * @brief FTFLåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "HW_FLASH.h"
 
 /*
  * LPLD_Flash_Init
- * FlashÄ£¿é³õÊ¼»¯
+ * Flashæ¨¡å—åˆå§‹åŒ–
  * 
- * ²ÎÊı:
- *    ÎŞ
+ * å‚æ•°:
+ *    æ— 
  *
- * Êä³ö:
- *    ÎŞ
+ * è¾“å‡º:
+ *    æ— 
  */
 void LPLD_Flash_Init(void)
 {
-  //¼ì²éFlash·ÃÎÊ´íÎó
+  //æ£€æŸ¥Flashè®¿é—®é”™è¯¯
   if (FTFE->FSTAT & FTFE_FSTAT_ACCERR_MASK)
   {
-    FTFE->FSTAT |= FTFE_FSTAT_ACCERR_MASK;//Çå³ı´íÎó±êÖ¾
+    FTFE->FSTAT |= FTFE_FSTAT_ACCERR_MASK;//æ¸…é™¤é”™è¯¯æ ‡å¿—
   }
-  //¼ì²é±£»¤´íÎó
+  //æ£€æŸ¥ä¿æŠ¤é”™è¯¯
   else if (FTFE->FSTAT & FTFE_FSTAT_FPVIOL_MASK)
   {
     FTFE->FSTAT |= FTFE_FSTAT_FPVIOL_MASK;
   }
   else if (FTFE->FSTAT & FTFE_FSTAT_RDCOLERR_MASK)
   {
-  //¼ì²é¶Á³åÍ»´íÎó
+  //æ£€æŸ¥è¯»å†²çªé”™è¯¯
     FTFE->FSTAT |= FTFE_FSTAT_RDCOLERR_MASK;
   } /* EndIf */
-  //½ûÓÃFlashÄ£¿éµÄÊı¾İ»º´æ
+  //ç¦ç”¨Flashæ¨¡å—çš„æ•°æ®ç¼“å­˜
   FMC->PFB01CR &= ~FMC_PFB01CR_B01DCE_MASK;
   FMC->PFB23CR &= ~FMC_PFB23CR_B23DCE_MASK;
 } 
@@ -57,36 +57,36 @@ void LPLD_Flash_Init(void)
 
 /*
  * LPLD_Flash_SectorErase
- * ²Á³ıFlashÉÈÇø
+ * æ“¦é™¤Flashæ‰‡åŒº
  * 
- * ²ÎÊı:
- *    FlashPtr--ÉÈÇøµØÖ·Ö¸Õë£¬¼´ÉÈÇøºÅ³ËÒÔ2048
+ * å‚æ•°:
+ *    FlashPtr--æ‰‡åŒºåœ°å€æŒ‡é’ˆï¼Œå³æ‰‡åŒºå·ä¹˜ä»¥2048
  *
- * Êä³ö:
- *    ´íÎó´úÂë
+ * è¾“å‡º:
+ *    é”™è¯¯ä»£ç 
  */
 uint8 LPLD_Flash_SectorErase(uint32 FlashPtr)
 {
   uint8 Return = FLASH_OK;
-  //µÈ´ıCCIFÖÃ1
+  //ç­‰å¾…CCIFç½®1
   while (!(FTFE->FSTAT & FTFE_FSTAT_CCIF_MASK)){};
-  //Ğ´ÈëÃüÁîµÀFCCOB¼Ä´æÆ÷
+  //å†™å…¥å‘½ä»¤é“FCCOBå¯„å­˜å™¨
   FTFE->FCCOB0 = FlashCmd_SectorErase;
   FTFE->FCCOB1 = (uint8_t) (FlashPtr >> 16);
   FTFE->FCCOB2 = (uint8_t)((FlashPtr >> 8 ) & 0xFF);
   FTFE->FCCOB3 = (uint8_t)( FlashPtr & 0xFF);
 
-  //Ö´ĞĞÃüÁî
+  //æ‰§è¡Œå‘½ä»¤
   FTFE->FSTAT |= FTFE_FSTAT_CCIF_MASK;    
-  //µÈ´ıÃüÁîÍê³É
+  //ç­‰å¾…å‘½ä»¤å®Œæˆ
   while (!(FTFE->FSTAT & FTFE_FSTAT_CCIF_MASK)) {};
-  //¼ì²éFlash·ÃÎÊ´íÎó
+  //æ£€æŸ¥Flashè®¿é—®é”™è¯¯
   if (FTFE->FSTAT & FTFE_FSTAT_ACCERR_MASK)
   {
-    FTFE->FSTAT |= FTFE_FSTAT_ACCERR_MASK; //Çå³ı´íÎó±êÖ¾
-    Return |= FLASH_FACCERR;              //¸üĞÂ·µ»ØÖµ
+    FTFE->FSTAT |= FTFE_FSTAT_ACCERR_MASK; //æ¸…é™¤é”™è¯¯æ ‡å¿—
+    Return |= FLASH_FACCERR;              //æ›´æ–°è¿”å›å€¼
   }
-  //¼ì²éFlash±£»¤±êÖ¾
+  //æ£€æŸ¥Flashä¿æŠ¤æ ‡å¿—
   else if (FTFE->FSTAT & FTFE_FSTAT_FPVIOL_MASK)
   {
     FTFE->FSTAT |= FTFE_FSTAT_FPVIOL_MASK;
@@ -97,7 +97,7 @@ uint8 LPLD_Flash_SectorErase(uint32 FlashPtr)
     FTFE->FSTAT |= FTFE_FSTAT_RDCOLERR_MASK;
     Return |= FLASH_RDCOLERR;
   }
-  //¼ì²éFlash¶Á³åÍ»´íÎó
+  //æ£€æŸ¥Flashè¯»å†²çªé”™è¯¯
   else if (FTFE->FSTAT & FTFE_FSTAT_MGSTAT0_MASK)
   {
     Return |= FLASH_MGSTAT0;
@@ -107,15 +107,15 @@ uint8 LPLD_Flash_SectorErase(uint32 FlashPtr)
 
 /*
  * LPLD_Flash_ByteProgram
- * ±à³ÌFlash
+ * ç¼–ç¨‹Flash
  * 
- * ²ÎÊı:
- *    FlashStartAdd--Flash±à³ÌÆğÊ¼µØÖ·
- *    *DataSrcPtr--Êı¾İÔ´Ö¸Õë
- *    NumberOfBytes--Êı¾İ×Ö½Ú³¤¶È
+ * å‚æ•°:
+ *    FlashStartAdd--Flashç¼–ç¨‹èµ·å§‹åœ°å€
+ *    *DataSrcPtr--æ•°æ®æºæŒ‡é’ˆ
+ *    NumberOfBytes--æ•°æ®å­—èŠ‚é•¿åº¦
  *
- * Êä³ö:
- *    ´íÎó´úÂë
+ * è¾“å‡º:
+ *    é”™è¯¯ä»£ç 
  */
 uint8 LPLD_Flash_ByteProgram(uint32 FlashStartAdd, uint32 *DataSrcPtr, uint32 NumberOfBytes)
 {
@@ -131,17 +131,17 @@ uint8 LPLD_Flash_ByteProgram(uint32 FlashStartAdd, uint32 *DataSrcPtr, uint32 Nu
   {
     size_buffer = (NumberOfBytes - 1)/BYTE_DIV + 1;
   }
-  //µÈ´ıÖ±µ½CCIFÉèÖÃ
+  //ç­‰å¾…ç›´åˆ°CCIFè®¾ç½®
   while (!(FTFE->FSTAT & FTFE_FSTAT_CCIF_MASK)){};
 
   while ((size_buffer) && (Return == FLASH_OK))
   {
-    //Ğ´FLASHÃüÁîµ½FCCOB
+    //å†™FLASHå‘½ä»¤åˆ°FCCOB
     FTFE->FCCOB0 = FlashCmd_ProgramPhrase;
     FTFE->FCCOB1 = (uint8_t)( FlashStartAdd >> 16);
     FTFE->FCCOB2 = (uint8_t)((FlashStartAdd >>  8) & 0xFF);
     FTFE->FCCOB3 = (uint8_t)( FlashStartAdd & 0xFF);
-    //Èç¹ûK60ÉèÖÃ³ÉÎªĞ¡¶Ë¸ñÊ½£¬½øĞĞÈçÏÂ²Ù×÷
+    //å¦‚æœK60è®¾ç½®æˆä¸ºå°ç«¯æ ¼å¼ï¼Œè¿›è¡Œå¦‚ä¸‹æ“ä½œ
     FTFE->FCCOB4 = (uint8_t)(*((uint8_t*)DataSrcPtr+3));
     FTFE->FCCOB5 = (uint8_t)(*((uint8_t*)DataSrcPtr+2));
     FTFE->FCCOB6 = (uint8_t)(*((uint8_t*)DataSrcPtr+1));
@@ -150,23 +150,23 @@ uint8 LPLD_Flash_ByteProgram(uint32 FlashStartAdd, uint32 *DataSrcPtr, uint32 Nu
     FTFE->FCCOB9 = (uint8_t)(*((uint8_t*)DataSrcPtr+6));
     FTFE->FCCOBA = (uint8_t)(*((uint8_t*)DataSrcPtr+5));
     FTFE->FCCOBB = (uint8_t)(*((uint8_t*)DataSrcPtr+4));
-    //Èç¹ûK60ÉèÖÃ³ÉÎª´ó¶Ë¸ñÊ½£¬½øĞĞÈçÏÂ²Ù×÷
+    //å¦‚æœK60è®¾ç½®æˆä¸ºå¤§ç«¯æ ¼å¼ï¼Œè¿›è¡Œå¦‚ä¸‹æ“ä½œ
     //FTFE_FCCOB4 = (uint8_t)(*((uint_8*)DataSrcPtr+0));
     //FTFE_FCCOB5 = (uint8_t)(*((uint_8*)DataSrcPtr+1));
     //FTFE_FCCOB6 = (uint8_t)(*((uint_8*)DataSrcPtr+2));
     //FTFE_FCCOB7 = (uint8_t)(*((uint_8*)DataSrcPtr+3));
-    //ÉèÖÃFLASH¼ÓÔØÃüÁî
+    //è®¾ç½®FLASHåŠ è½½å‘½ä»¤
     FTFE->FSTAT |= FTFE_FSTAT_CCIF_MASK;    
-    //µÈ´ıÃüÁîÍê³É
+    //ç­‰å¾…å‘½ä»¤å®Œæˆ
     while (!(FTFE->FSTAT & FTFE_FSTAT_CCIF_MASK)) {};
 
-    //¼ì²âFLASH·ÃÎÊ´íÎó
+    //æ£€æµ‹FLASHè®¿é—®é”™è¯¯
     if (FTFE->FSTAT & FTFE_FSTAT_ACCERR_MASK)
     {
       FTFE->FSTAT |= FTFE_FSTAT_ACCERR_MASK;
       Return |= FLASH_FACCERR;
     }
-    //¼ì²âFLASH±£»¤´íÎó
+    //æ£€æµ‹FLASHä¿æŠ¤é”™è¯¯
     else if (FTFE->FSTAT & FTFE_FSTAT_FPVIOL_MASK)
     {
       FTFE->FSTAT |= FTFE_FSTAT_FPVIOL_MASK;
@@ -181,7 +181,7 @@ uint8 LPLD_Flash_ByteProgram(uint32 FlashStartAdd, uint32 *DataSrcPtr, uint32 Nu
     {
         Return |= FLASH_MGSTAT0;
     } 
-    //¼ÆËãÆ«ÒÆÁ¿
+    //è®¡ç®—åç§»é‡
     size_buffer --;
     DataSrcPtr += 2;     
     FlashStartAdd +=BYTE_DIV;

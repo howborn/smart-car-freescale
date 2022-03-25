@@ -1,18 +1,18 @@
 /**
- * --------------»ùÓÚ"À­ÆÕÀ¼µÂK60µ×²ã¿â"µÄ¹¤³Ì£¨Smart_Car£©-----------------
+ * --------------åŸºäº"æ‹‰æ™®å…°å¾·K60åº•å±‚åº“"çš„å·¥ç¨‹ï¼ˆSmart_Carï¼‰-----------------
  * @file MT9V034.c
  * @version 0.0
  * @date 2015-2-7
- * @brief ¹ØÓÚ¸Ã¹¤³ÌµÄÃèÊö
+ * @brief å…³äºè¯¥å·¥ç¨‹çš„æè¿°
  *
- * °æÈ¨ËùÓĞ:±±»ªº½Ìì¹¤ÒµÑ§Ôº µÚÊ®½ì·ÉË¼¿¨¶û  ÉãÏñÍ·2¶Ó 
- * Ó²¼şÆ½Ì¨:  MK60FX512
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—åèˆªå¤©å·¥ä¸šå­¦é™¢ ç¬¬åå±Šé£æ€å¡å°”  æ‘„åƒå¤´2é˜Ÿ 
+ * ç¡¬ä»¶å¹³å°:  MK60FX512
  * 
  */
-#include "MT9V034.h"
-#include "Delay.h"
+#include "mt9v034.h"
+#include "delay.h"
 
-//SCCBÍ¨ĞÅµÄÒı½Å
+//SCCBé€šä¿¡çš„å¼•è„š
 /* SCL */
 #define SCCB_SCL_PTX        PTB  
 #define SCCB_SCL_IOX        GPIO_Pin8
@@ -23,13 +23,13 @@
 #define SCCB_SDA_IOX        GPIO_Pin10
 #define SCCB_SDA_O          PTB10_O 
 #define SCCB_SDA_I          PTB10_I 
-//¶¨ÒåSDAÊäÈëÊä³ö
+//å®šä¹‰SDAè¾“å…¥è¾“å‡º
 #define SCCB_SDA_OUT()      DDRB10 = 1
 #define SCCB_SDA_IN()       DDRB10 = 0
 
 /*
  * LPLD_SCCB_Init
- * ³õÊ¼»¯SCCBËùĞèÒı½Å
+ * åˆå§‹åŒ–SCCBæ‰€éœ€å¼•è„š
  */
 void LPLD_SCCB_Init(void)
 {
@@ -41,7 +41,7 @@ void LPLD_SCCB_Init(void)
   sccb.GPIO_Output = OUTPUT_H;
   sccb.GPIO_PinControl = NULL;
   LPLD_GPIO_Init(sccb);
-  //SDAÉÏÀ­
+  //SDAä¸Šæ‹‰
   sccb.GPIO_PTx = SCCB_SDA_PTX;
   sccb.GPIO_Pins = SCCB_SDA_IOX;
   sccb.GPIO_Dir = DIR_OUTPUT;
@@ -52,7 +52,7 @@ void LPLD_SCCB_Init(void)
 
 /*
  * LPLD_SCCB_Start
- * SCCBÆğÊ¼ĞÅºÅ£¬ÄÚ²¿µ÷ÓÃ
+ * SCCBèµ·å§‹ä¿¡å·ï¼Œå†…éƒ¨è°ƒç”¨
  */
 static uint8 LPLD_SCCB_Start(void)
 {
@@ -84,7 +84,7 @@ static uint8 LPLD_SCCB_Start(void)
 
 /*
  * LPLD_SCCB_Stop
- * SCCBÍ£Ö¹ĞÅºÅ£¬ÄÚ²¿µ÷ÓÃ
+ * SCCBåœæ­¢ä¿¡å·ï¼Œå†…éƒ¨è°ƒç”¨
  */
 static void LPLD_SCCB_Stop(void)
 {
@@ -100,7 +100,7 @@ static void LPLD_SCCB_Stop(void)
 
 /*
  * LPLD_SCCB_Stop
- * SCCBÓ¦´ğĞÅºÅ£¬ÄÚ²¿µ÷ÓÃ
+ * SCCBåº”ç­”ä¿¡å·ï¼Œå†…éƒ¨è°ƒç”¨
  */
 static void LPLD_SCCB_Ack(void)
 {	
@@ -119,7 +119,7 @@ static void LPLD_SCCB_Ack(void)
 
 /*
  * LPLD_SCCB_NoAck
- * SCCBÎŞÓ¦´ğĞÅºÅ£¬ÄÚ²¿µ÷ÓÃ
+ * SCCBæ— åº”ç­”ä¿¡å·ï¼Œå†…éƒ¨è°ƒç”¨
  */
 static void LPLD_SCCB_NoAck(void)
 {	
@@ -135,7 +135,7 @@ static void LPLD_SCCB_NoAck(void)
 
 /*
  * LPLD_SCCB_WaitAck
- * SCCBµÈ´ıÓ¦´ğĞÅºÅ£¬ÄÚ²¿µ÷ÓÃ
+ * SCCBç­‰å¾…åº”ç­”ä¿¡å·ï¼Œå†…éƒ¨è°ƒç”¨
  */
 static uint8 LPLD_SCCB_WaitAck(void) 	
 {
@@ -162,7 +162,7 @@ static uint8 LPLD_SCCB_WaitAck(void)
 
 /*
  * LPLD_SCCB_SendByte
- * SCCB·¢ËÍÊı¾İ£¬ÄÚ²¿µ÷ÓÃ
+ * SCCBå‘é€æ•°æ®ï¼Œå†…éƒ¨è°ƒç”¨
  */
 static void LPLD_SCCB_SendByte(uint8 data) 
 {
@@ -189,7 +189,7 @@ static void LPLD_SCCB_SendByte(uint8 data)
 
 /*
  * LPLD_SCCB_SendByte
- * SCCB½ÓÊÕÊı¾İ£¬ÄÚ²¿µ÷ÓÃ
+ * SCCBæ¥æ”¶æ•°æ®ï¼Œå†…éƒ¨è°ƒç”¨
  */
 static uint8 LPLD_SCCB_ReceiveByte(void)  
 { 
@@ -223,15 +223,15 @@ static uint8 LPLD_SCCB_ReceiveByte(void)
 }
 /*
  * LPLD_SCCB_WriteReg
- * Ğ´SCCBÉè±¸¼Ä´æÆ÷
+ * å†™SCCBè®¾å¤‡å¯„å­˜å™¨
  * 
- * ²ÎÊı:
- *    reg_addr--¼Ä´æÆ÷µØÖ·,8Î»
- *    data--´ıĞ´Êı¾İ,16Î» 
+ * å‚æ•°:
+ *    reg_addr--å¯„å­˜å™¨åœ°å€,8ä½
+ *    data--å¾…å†™æ•°æ®,16ä½ 
  *
- * Êä³ö:
- *    1-³É¹¦
- *    0-Ê§°Ü
+ * è¾“å‡º:
+ *    1-æˆåŠŸ
+ *    0-å¤±è´¥
  */
 uint8 LPLD_SCCB_WriteReg(uint8 reg_addr, uint16 data)
 {		
@@ -247,9 +247,9 @@ uint8 LPLD_SCCB_WriteReg(uint8 reg_addr, uint16 data)
   }
   LPLD_SCCB_SendByte(reg_addr);   
   LPLD_SCCB_WaitAck();	
-  LPLD_SCCB_SendByte((uint8)(data>>8));                        //¸ß°ËÎ»Êı¾İ
+  LPLD_SCCB_SendByte((uint8)(data>>8));                        //é«˜å…«ä½æ•°æ®
   LPLD_SCCB_WaitAck();   
-  LPLD_SCCB_SendByte((uint8)(data&0x00ff));           //µÍ°ËÎ»Êı¾İ
+  LPLD_SCCB_SendByte((uint8)(data&0x00ff));           //ä½å…«ä½æ•°æ®
   LPLD_SCCB_WaitAck();  
   LPLD_SCCB_Stop(); 
   return 1;
@@ -257,15 +257,15 @@ uint8 LPLD_SCCB_WriteReg(uint8 reg_addr, uint16 data)
 
 /*
  * LPLD_SCCB_ReadReg
- * ¶ÁSCCBÉè±¸¼Ä´æÆ÷
+ * è¯»SCCBè®¾å¤‡å¯„å­˜å™¨
  * 
- * ²ÎÊı:
- *    reg_addr--¼Ä´æÆ÷µØÖ·
- *    *data--´ı´æ¶Á³öÊı¾İµØÖ·
+ * å‚æ•°:
+ *    reg_addr--å¯„å­˜å™¨åœ°å€
+ *    *data--å¾…å­˜è¯»å‡ºæ•°æ®åœ°å€
  *
- * Êä³ö:
- *    1-³É¹¦
- *    0-Ê§°Ü
+ * è¾“å‡º:
+ *    1-æˆåŠŸ
+ *    0-å¤±è´¥
  */          
 uint8 LPLD_SCCB_ReadReg(uint8 reg_addr, uint16* data)
 {
@@ -294,27 +294,27 @@ uint8 LPLD_SCCB_ReadReg(uint8 reg_addr, uint16* data)
     LPLD_SCCB_Stop(); 
     return 0;
   }
-  *data = LPLD_SCCB_ReceiveByte();                //¸ß°ËÎ»Êı¾İ
+  *data = LPLD_SCCB_ReceiveByte();                //é«˜å…«ä½æ•°æ®
   LPLD_SCCB_Ack(); 
-  data_l = LPLD_SCCB_ReceiveByte();               //µÍ°ËÎ»Êı¾İ
-  *data = (*data<<8)|data_l;                      //½ÓÊÜµ½µÄ16Î»Êı¾İ
+  data_l = LPLD_SCCB_ReceiveByte();               //ä½å…«ä½æ•°æ®
+  *data = (*data<<8)|data_l;                      //æ¥å—åˆ°çš„16ä½æ•°æ®
   LPLD_SCCB_NoAck();
   
   LPLD_SCCB_Stop();
   return 1;
 }
 /*-----------------------------------------------------------------------
-* MT9V034_Init: ÉãÏñÍ·³õÊ¼»¯
+* MT9V034_Init: æ‘„åƒå¤´åˆå§‹åŒ–
 *
-* ÊäÈë£ºÎŞ
+* è¾“å…¥ï¼šæ— 
 *
-* Êä³ö£ºÎŞ
+* è¾“å‡ºï¼šæ— 
 -----------------------------------------------------------------------*/
 void MT9V034_Init()
 {
   LPLD_SCCB_Init();
   Delayms(20);
-  LPLD_SCCB_WriteReg(MTV_READ_MODE_REG_A,0x033a);       //ĞŞ¸ÄÎª4·ÖÆµ£¬Êä³ö·½Ê½Îªµ¹Ïñ
-  LPLD_SCCB_WriteReg(MTV_VREF_ADC_REG,0x0007);          //ĞŞ¸ÄADC×ª»¯µÄ²Î¿¼µçÑ¹
+  LPLD_SCCB_WriteReg(MTV_READ_MODE_REG_A,0x033a);       //ä¿®æ”¹ä¸º4åˆ†é¢‘ï¼Œè¾“å‡ºæ–¹å¼ä¸ºå€’åƒ
+  LPLD_SCCB_WriteReg(MTV_VREF_ADC_REG,0x0007);          //ä¿®æ”¹ADCè½¬åŒ–çš„å‚è€ƒç”µå‹
 //LPLD_SCCB_WriteReg(MTV_MAX_GAIN_REG,0x0032);
 }

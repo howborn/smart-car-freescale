@@ -265,7 +265,7 @@ static void USB_App_Callback (
         }
         tUSB_Rev_Data.len = index;
         
-        if(usb_rev_data_isr != NULL)//回调接收函数
+        if(usb_rev_data_isr != NULL)//鍥炶皟鎺ユ敹鍑芥暟
           usb_rev_data_isr();
     }
     else if((event_type == USB_APP_SEND_COMPLETE) && (start_transactions == TRUE))

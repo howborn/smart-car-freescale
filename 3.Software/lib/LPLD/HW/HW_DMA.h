@@ -2,33 +2,33 @@
 * @file HW_DMA.h
 * @version 3.0[By LPLD]
 * @date 2013-06-18
-* @brief DMAµ×²ãÄ£¿éÏà¹Øº¯Êý
+* @brief DMAåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
 *
-* ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+* æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
 *
-* °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+* ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
 * http://www.lpld.cn
 * mail:support@lpld.cn
 *
 * @par
-* ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
-* ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
-* ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
-* µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
-* À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
-* À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
-* ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+* æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+* å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+* ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+* ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+* æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+* æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+* é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
 */
 #ifndef __HW_DMA_H__
 #define __HW_DMA_H__
 
-//ÉùÃ÷eDMAÖÐ¶Ï»Øµôº¯Êý
+//å£°æ˜ŽeDMAä¸­æ–­å›žæŽ‰å‡½æ•°
 typedef void (*DMA_ISR_CALLBACK)(void);
 
 #if defined(CPU_MK60DZ10)
 //=====================================
 //  DMA request sources Number--MUX0
-//      ÍâÉèµÄDMAÇëÇóºÅ
+//      å¤–è®¾çš„DMAè¯·æ±‚å·
 //=====================================
 #define UART0_REV_DMAREQ  2
 #define UART0_TRAN_DMAREQ 3
@@ -94,7 +94,7 @@ typedef void (*DMA_ISR_CALLBACK)(void);
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
 //==========================================================
 //  DMA request sources Number--MUX0 channel00 -- channel15
-//      ÍâÉèµÄDMAÇëÇóºÅ
+//      å¤–è®¾çš„DMAè¯·æ±‚å·
 //===========================================================
 #define UART0_REV_DMAREQ  2
 #define UART0_TRAN_DMAREQ 3
@@ -160,7 +160,7 @@ typedef void (*DMA_ISR_CALLBACK)(void);
 #define DMA_MUX_63        63
 //==========================================================
 //  DMA request sources Number--MUX1 channel16 -- channel31
-//      ÍâÉèµÄDMAÇëÇóºÅ
+//      å¤–è®¾çš„DMAè¯·æ±‚å·
 //==========================================================
 #define UART0_REV_DMAREQ  2
 #define UART0_TRAN_DMAREQ 3
@@ -218,7 +218,7 @@ typedef void (*DMA_ISR_CALLBACK)(void);
 #endif
 
 //==========================================
-//      ¶¨ÒåDMAÍ¨µÀºÅ
+//      å®šä¹‰DMAé€šé“å·
 //==========================================
 #define  DMA_CH0 0
 #define  DMA_CH1 1
@@ -255,9 +255,9 @@ typedef void (*DMA_ISR_CALLBACK)(void);
 #define  DMA_CH31 31
 #endif
 //===========================================
-//      DMA ´«ÊäµÄÊý¾Ý³¤¶È
-//      Ô´µØÖ·Êý¾Ý³¤¶È·ÖÎª£º  8bit¡¢16bit¡¢32bit
-//      Ä¿µÄµØÖ·Êý¾Ý³¤¶È·ÖÎª£º8bit¡¢16bit¡¢32bit
+//      DMA ä¼ è¾“çš„æ•°æ®é•¿åº¦
+//      æºåœ°å€æ•°æ®é•¿åº¦åˆ†ä¸ºï¼š  8bitã€16bitã€32bit
+//      ç›®çš„åœ°å€æ•°æ®é•¿åº¦åˆ†ä¸ºï¼š8bitã€16bitã€32bit
 //===========================================
 #define DMA_SRC_8BIT    0
 #define DMA_SRC_16BIT   1
@@ -273,204 +273,204 @@ typedef void (*DMA_ISR_CALLBACK)(void);
 typedef struct 
 {
   /*
-    ÃèÊö£º
-      Ñ¡ÔñDMAÍ¨µÀ
-    È¡Öµ£º
+    æè¿°ï¼š
+      é€‰æ‹©DMAé€šé“
+    å–å€¼ï¼š
       DMA_CH0~DMA_CH15
-    <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐDMA_CH16~DMA_CH31>
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰DMA_CH16~DMA_CH31>
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint8  DMA_CHx;  
   
   /*
-    ÃèÊö£º
-      Ñ¡ÔñDMAÍ¨µÀ¶ÔÓ¦µÄÇëÇóÔ´
-    È¡Öµ£º
-      ¼û±¾Ò³"DMA request sources Number"ºê¶¨Òå
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é€‰æ‹©DMAé€šé“å¯¹åº”çš„è¯·æ±‚æº
+    å–å€¼ï¼š
+      è§æœ¬é¡µ"DMA request sources Number"å®å®šä¹‰
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint8  DMA_Req; 
   
   /*
-    ÃèÊö£º
-      ÊÇ·ñÊ¹ÄÜDMAµÄÖÜÆÚ´¥·¢¹¦ÄÜ
-    È¡Öµ£º
-      TRUE-Ê¹ÄÜÖÜÆÚ´¥·¢
-      FALSE-½ûÓÃÖÜÆÚ´¥·¢
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏFALSE
+    æè¿°ï¼š
+      æ˜¯å¦ä½¿èƒ½DMAçš„å‘¨æœŸè§¦å‘åŠŸèƒ½
+    å–å€¼ï¼š
+      TRUE-ä½¿èƒ½å‘¨æœŸè§¦å‘
+      FALSE-ç¦ç”¨å‘¨æœŸè§¦å‘
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤FALSE
   */
   boolean DMA_PeriodicTriggerEnable;
   
   /*
-    ÃèÊö£º
-      ÅäÖÃÖ÷Ñ­»·¼ÆÊý
-    È¡Öµ£º
-      15Î»ÎÞ·ûºÅÕûÐÍ£¨0~0x7FFF£©
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é…ç½®ä¸»å¾ªçŽ¯è®¡æ•°
+    å–å€¼ï¼š
+      15ä½æ— ç¬¦å·æ•´åž‹ï¼ˆ0~0x7FFFï¼‰
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint16 DMA_MajorLoopCnt;
   
   /*
-    ÃèÊö£º
-      ÅäÖÃ´ÎÑ­»·´«Êä×Ö½ÚÊý
-    È¡Öµ£º
-      0~0xFFFFFFFF-32Î»ÎÞ·ûºÅÕûÐÍ
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é…ç½®æ¬¡å¾ªçŽ¯ä¼ è¾“å­—èŠ‚æ•°
+    å–å€¼ï¼š
+      0~0xFFFFFFFF-32ä½æ— ç¬¦å·æ•´åž‹
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   uint32 DMA_MinorByteCnt;   
     
   /*
-    ÃèÊö£º
-      ÅäÖÃÔ´Êý¾ÝµØÖ·
-    È¡Öµ£º
-      32Î»µØÖ·£¨0~0xFFFFFFFF£©
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é…ç½®æºæ•°æ®åœ°å€
+    å–å€¼ï¼š
+      32ä½åœ°å€ï¼ˆ0~0xFFFFFFFFï¼‰
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */  
   uint32 DMA_SourceAddr;
     
   /*
-    ÃèÊö£º
-      ÅäÖÃÔ´Êý¾Ý´óÐ¡
-    È¡Öµ£º
-      DMA_SRC_8BIT-8Î»Êý¾Ý
-      DMA_SRC_16BIT-16Î»Êý¾Ý
-      DMA_SRC_32BIT-32Î»Êý¾Ý
-      DMA_SRC_16BYTE-16×Ö½ÚÊý¾Ý
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏDMA_SRC_8BIT
+    æè¿°ï¼š
+      é…ç½®æºæ•°æ®å¤§å°
+    å–å€¼ï¼š
+      DMA_SRC_8BIT-8ä½æ•°æ®
+      DMA_SRC_16BIT-16ä½æ•°æ®
+      DMA_SRC_32BIT-32ä½æ•°æ®
+      DMA_SRC_16BYTE-16å­—èŠ‚æ•°æ®
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤DMA_SRC_8BIT
   */
   uint8 DMA_SourceDataSize;
   
   /*
-    ÃèÊö£º
-      ÅäÖÃÔ´Êý¾ÝµØÖ·Æ«ÒÆ£¬¼´ÔÚÉÏ´Î¶ÁÈ¡ºóÔ´µØÖ·µÄÆ«ÒÆÁ¿
-    È¡Öµ£º
-      16Î»ÓÐ·ûºÅÕûÐÍ£¨-32768~32767£©
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏ0
+    æè¿°ï¼š
+      é…ç½®æºæ•°æ®åœ°å€åç§»ï¼Œå³åœ¨ä¸Šæ¬¡è¯»å–åŽæºåœ°å€çš„åç§»é‡
+    å–å€¼ï¼š
+      16ä½æœ‰ç¬¦å·æ•´åž‹ï¼ˆ-32768~32767ï¼‰
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤0
   */ 
   int16 DMA_SourceAddrOffset;
   
   /*
-    ÃèÊö£º
-      ÅäÖÃÔ´Êý¾ÝµØÖ·ÔÚÖ÷Ñ­»·Íê³ÉºóµÄµ÷ÕûÁ¿
-    È¡Öµ£º
-      32Î»ÓÐ·ûºÅÕûÐÍ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏ0
+    æè¿°ï¼š
+      é…ç½®æºæ•°æ®åœ°å€åœ¨ä¸»å¾ªçŽ¯å®ŒæˆåŽçš„è°ƒæ•´é‡
+    å–å€¼ï¼š
+      32ä½æœ‰ç¬¦å·æ•´åž‹
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤0
   */ 
   int32 DMA_LastSourceAddrAdj;  
     
   /*
-    ÃèÊö£º
-      ÅäÖÃÄ¿µÄÊý¾ÝµØÖ·
-    È¡Öµ£º
-      32Î»µØÖ·£¨0~0xFFFFFFFF£©
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é…ç½®ç›®çš„æ•°æ®åœ°å€
+    å–å€¼ï¼š
+      32ä½åœ°å€ï¼ˆ0~0xFFFFFFFFï¼‰
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */  
   uint32 DMA_DestAddr;
     
   /*
-    ÃèÊö£º
-      ÅäÖÃÄ¿µÄÊý¾Ý´óÐ¡
-    È¡Öµ£º
-      DMA_DST_8BIT-8Î»Êý¾Ý
-      DMA_DST_16BIT-16Î»Êý¾Ý
-      DMA_DST_32BIT-32Î»Êý¾Ý
-      DMA_DST_16BYTE-16×Ö½ÚÊý¾Ý
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏDMA_DST_8BIT
+    æè¿°ï¼š
+      é…ç½®ç›®çš„æ•°æ®å¤§å°
+    å–å€¼ï¼š
+      DMA_DST_8BIT-8ä½æ•°æ®
+      DMA_DST_16BIT-16ä½æ•°æ®
+      DMA_DST_32BIT-32ä½æ•°æ®
+      DMA_DST_16BYTE-16å­—èŠ‚æ•°æ®
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤DMA_DST_8BIT
   */
   uint8 DMA_DestDataSize;
   
   /*
-    ÃèÊö£º
-      ÅäÖÃÄ¿µÄÊý¾ÝµØÖ·Æ«ÒÆ£¬¼´ÔÚÉÏ´ÎÐ´ÈëºóÄ¿µÄµØÖ·µÄÆ«ÒÆÁ¿
-    È¡Öµ£º
-      16Î»ÓÐ·ûºÅÕûÐÍ£¨-32768~32767£©
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏ0
+    æè¿°ï¼š
+      é…ç½®ç›®çš„æ•°æ®åœ°å€åç§»ï¼Œå³åœ¨ä¸Šæ¬¡å†™å…¥åŽç›®çš„åœ°å€çš„åç§»é‡
+    å–å€¼ï¼š
+      16ä½æœ‰ç¬¦å·æ•´åž‹ï¼ˆ-32768~32767ï¼‰
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤0
   */ 
   int16 DMA_DestAddrOffset;
   
   /*
-    ÃèÊö£º
-      ÅäÖÃÄ¿µÄÊý¾ÝµØÖ·ÔÚÖ÷Ñ­»·Íê³ÉºóµÄµ÷ÕûÁ¿
-    È¡Öµ£º
-      32Î»ÓÐ·ûºÅÕûÐÍ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏ0
+    æè¿°ï¼š
+      é…ç½®ç›®çš„æ•°æ®åœ°å€åœ¨ä¸»å¾ªçŽ¯å®ŒæˆåŽçš„è°ƒæ•´é‡
+    å–å€¼ï¼š
+      32ä½æœ‰ç¬¦å·æ•´åž‹
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤0
   */ 
   int32 DMA_LastDestAddrAdj;
   
   /*
-    ÃèÊö£º
-      Ê¹ÄÜ×Ô¶¯½ûÓÃÇëÇó£¬Ê¹ÄÜºóÍ¨µÀÇëÇó½«ÔÚÖ÷Ñ­»·½áÊøºó½ûÓÃ
-    È¡Öµ£º
-      TRUE-Ê¹ÄÜ×Ô¶¯½ûÓÃÇëÇó
-      FALSE-½ûÓÃ×Ô¶¯½ûÓÃÇëÇó
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏFALSE
+    æè¿°ï¼š
+      ä½¿èƒ½è‡ªåŠ¨ç¦ç”¨è¯·æ±‚ï¼Œä½¿èƒ½åŽé€šé“è¯·æ±‚å°†åœ¨ä¸»å¾ªçŽ¯ç»“æŸåŽç¦ç”¨
+    å–å€¼ï¼š
+      TRUE-ä½¿èƒ½è‡ªåŠ¨ç¦ç”¨è¯·æ±‚
+      FALSE-ç¦ç”¨è‡ªåŠ¨ç¦ç”¨è¯·æ±‚
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤FALSE
   */
   boolean DMA_AutoDisableReq;
   
   /*
-    ÃèÊö£º
-      Ê¹ÄÜDMAÖ÷Ñ­»·Íê³ÉÖÐ¶Ï
-    È¡Öµ£º
-      TRUE-Ê¹ÄÜ
-      FALSE-½ûÓÃ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏFALSE
+    æè¿°ï¼š
+      ä½¿èƒ½DMAä¸»å¾ªçŽ¯å®Œæˆä¸­æ–­
+    å–å€¼ï¼š
+      TRUE-ä½¿èƒ½
+      FALSE-ç¦ç”¨
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤FALSE
   */
   boolean DMA_MajorCompleteIntEnable;
   
   /*
-    ÃèÊö£º
-      Ê¹ÄÜDMAÖ÷Ñ­»·Íê³Éµ½Ò»°ëÖÐ¶Ï
-    È¡Öµ£º
-      TRUE-Ê¹ÄÜ
-      FALSE-½ûÓÃ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏFALSE
+    æè¿°ï¼š
+      ä½¿èƒ½DMAä¸»å¾ªçŽ¯å®Œæˆåˆ°ä¸€åŠä¸­æ–­
+    å–å€¼ï¼š
+      TRUE-ä½¿èƒ½
+      FALSE-ç¦ç”¨
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤FALSE
   */
   boolean DMA_MajorHalfCompleteIntEnable;
     
   /*
-    ÃèÊö£º
-      DMAÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢ÈçÎ´³õÊ¼»¯Ôò²»»á´¥·¢ÖÐ¶Ï
+    æè¿°ï¼š
+      DMAä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€å¦‚æœªåˆå§‹åŒ–åˆ™ä¸ä¼šè§¦å‘ä¸­æ–­
   */
   DMA_ISR_CALLBACK DMA_Isr; 
    
 }DMA_InitTypeDef;
 
-//Ê¹ÄÜÍ¨µÀxµÄDMAÇëÇó
+//ä½¿èƒ½é€šé“xçš„DMAè¯·æ±‚
 #define LPLD_DMA_EnableReq(CHX)  (DMA0->ERQ|=(1<<CHX))
-//½ûÓÃÍ¨µÀxµÄDMAÇëÇó
+//ç¦ç”¨é€šé“xçš„DMAè¯·æ±‚
 #define LPLD_DMA_DisableReq(CHX) (DMA0->ERQ&=~(1<<CHX))
-//¼ÓÔØÔ´µØÖ·
+//åŠ è½½æºåœ°å€
 #define LPLD_DMA_LoadSrcAddr(CHX, ADDR)   (DMA0->TCD[CHX].SADDR=DMA_SADDR_SADDR(ADDR))
-//¼ÓÔØÄ¿µÄµØÖ·
+//åŠ è½½ç›®çš„åœ°å€
 #define LPLD_DMA_LoadDstAddr(CHX, ADDR)   (DMA0->TCD[CHX].DADDR=DMA_DADDR_DADDR(ADDR))
 
-//³õÊ¼»¯eDMAÄ£¿é
+//åˆå§‹åŒ–eDMAæ¨¡å—
 uint8 LPLD_DMA_Init(DMA_InitTypeDef);
-//Ê¹ÄÜeDMAÖÐ¶Ï
+//ä½¿èƒ½eDMAä¸­æ–­
 uint8 LPLD_DMA_EnableIrq(DMA_InitTypeDef);
-//½ûÓÃeDMAÖÐ¶Ï
+//ç¦ç”¨eDMAä¸­æ–­
 uint8 LPLD_DMA_DisableIrq(DMA_InitTypeDef);
-//DMA·þÎñÇëÇóÈí¼þ¿ªÊ¼
+//DMAæœåŠ¡è¯·æ±‚è½¯ä»¶å¼€å§‹
 void LPLD_DMA_SoftwareStartService(DMA_InitTypeDef);
 
 #endif /* __HW_DMA_H__ */

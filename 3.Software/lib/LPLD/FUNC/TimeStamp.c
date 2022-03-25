@@ -2,44 +2,44 @@
  * @file TimeStamp.c
  * @version 3.01[By LPLD]
  * @date 2013-10-29
- * @brief TIMESTAMPÊ±¼ä´Á¹¦ÄÜ¶¨Òå
+ * @brief TIMESTAMPæ—¶é—´æˆ³åŠŸèƒ½å®šä¹‰
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "TimeStamp.h"
-//¶¨ÒåÃ¿ÔÂÌìÊı³£Á¿
+//å®šä¹‰æ¯æœˆå¤©æ•°å¸¸é‡
 const uint8 month_table[12]={31,28,31,30,31,30,31,31,30,31,30,31};
-//¶¨ÒåĞÇÆÚ²¹³¥³£Á¿
+//å®šä¹‰æ˜ŸæœŸè¡¥å¿å¸¸é‡
 const uint8 week_table[12]={0,3,3,6,1,4,6,2,5,0,3,5}; 
 
 const uint8 month_list[12][3]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 
 /*
  * LPLD_DateTimeToTimeStamp
- * ½«Ê±¼ä½á¹¹Ìå×ª»»ÎªÃë
- * ÒÔIBMÊ±¼ä±ê×¼Îª»ù´¡
+ * å°†æ—¶é—´ç»“æ„ä½“è½¬æ¢ä¸ºç§’
+ * ä»¥IBMæ—¶é—´æ ‡å‡†ä¸ºåŸºç¡€
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    TimeStamp_FormatTypeDef* realtime_init_struct
- *                        ¾ßÌå¶¨Òå¼ûTimeStamp_FormatTypeDef
+ *                        å…·ä½“å®šä¹‰è§TimeStamp_FormatTypeDef
  *
- * Êä³ö:
- *    ·µ»ØÖµÎªÃë£¬¿ÉÒÔ×öÎªRTCÃë¼ÆÊıÆ÷µÄÖµ
- *    ·µ»ØÁã±íÊ¾´íÎó
+ * è¾“å‡º:
+ *    è¿”å›å€¼ä¸ºç§’ï¼Œå¯ä»¥åšä¸ºRTCç§’è®¡æ•°å™¨çš„å€¼
+ *    è¿”å›é›¶è¡¨ç¤ºé”™è¯¯
  *
  */
 uint32 LPLD_DateTimeToTimeStamp(TimeStamp_FormatTypeDef *realtime_init_struct)
@@ -51,12 +51,12 @@ uint32 LPLD_DateTimeToTimeStamp(TimeStamp_FormatTypeDef *realtime_init_struct)
   uint8 current_day = realtime_init_struct->day;
   uint8 current_hour = realtime_init_struct->hour;
   uint8 current_minute = realtime_init_struct->minute;
-  //ÅĞ¶ÏÊ±¼äÆğµãÖÕ¶ËÊÇ·ñÔ½½ç
+  //åˆ¤æ–­æ—¶é—´èµ·ç‚¹ç»ˆç«¯æ˜¯å¦è¶Šç•Œ
   if(current_year < IBM_YEAR_START || current_year > IBM_YEAR_END)
   {
     return 0;
   }
-  //½«Äê×ª»¯ÎªÃë
+  //å°†å¹´è½¬åŒ–ä¸ºç§’
   for (i = IBM_YEAR_START; i < current_year; i++)
   {
     if(IS_LEAPYEAR(i))
@@ -68,7 +68,7 @@ uint32 LPLD_DateTimeToTimeStamp(TimeStamp_FormatTypeDef *realtime_init_struct)
         current_second += AVERAGEYEAR_CONVERTTO_SECONEDS;
     }
   }
-  //½«ÔÂ×ª»¯ÎªÃë
+  //å°†æœˆè½¬åŒ–ä¸ºç§’
   for ( i = 0; i < (current_month - 1); i++)
   {
     current_second += (uint32)month_table[i] * DAY_CONVERTTO_SECONEDS;
@@ -77,7 +77,7 @@ uint32 LPLD_DateTimeToTimeStamp(TimeStamp_FormatTypeDef *realtime_init_struct)
         current_second += DAY_CONVERTTO_SECONEDS;
     }
   }
-  //½«Ìì£¬Ğ¡Ê±£¬·Ö×ª»¯ÎªÃë
+  //å°†å¤©ï¼Œå°æ—¶ï¼Œåˆ†è½¬åŒ–ä¸ºç§’
   current_second += (uint32)(current_day - 1) * DAY_CONVERTTO_SECONEDS;
   current_second += (uint32)current_hour * HOUR_CONVERTTO_SECONEDS;
   current_second += (uint32)current_minute * MINUTE_CONVERTTO_SECONEDS;
@@ -86,17 +86,17 @@ uint32 LPLD_DateTimeToTimeStamp(TimeStamp_FormatTypeDef *realtime_init_struct)
 }
 /*
  * LPLD_TimeStampToDateTime
- * ½«Ãë×ª»»ÎªÊ±¼ä½á¹¹Ìå
- * ÒÔIBMÊ±¼ä±ê×¼Îª»ù´¡
+ * å°†ç§’è½¬æ¢ä¸ºæ—¶é—´ç»“æ„ä½“
+ * ä»¥IBMæ—¶é—´æ ‡å‡†ä¸ºåŸºç¡€
  * 
- * ²ÎÊı:
- *    uint32 -- rtc_second  RTCÃë¼ÆÊıÆ÷µÄÖµ
+ * å‚æ•°:
+ *    uint32 -- rtc_second  RTCç§’è®¡æ•°å™¨çš„å€¼
  *    TimeStamp_FormatTypeDef* realtime_init_struct
- *                        ¾ßÌå¶¨Òå¼ûTimeStamp_FormatTypeDef
+ *                        å…·ä½“å®šä¹‰è§TimeStamp_FormatTypeDef
  *
- * Êä³ö:
- *    ·µ»ØÖµÎªÃë£¬¿ÉÒÔ×öÎªRTCÃë¼ÆÊıÆ÷µÄÖµ
- *    ·µ»Ø1±íÊ¾ÕıÈ·
+ * è¾“å‡º:
+ *    è¿”å›å€¼ä¸ºç§’ï¼Œå¯ä»¥åšä¸ºRTCç§’è®¡æ•°å™¨çš„å€¼
+ *    è¿”å›1è¡¨ç¤ºæ­£ç¡®
  *
  */
 uint8 LPLD_TimeStampToDateTime(uint32 rtc_second, TimeStamp_FormatTypeDef *realtime_init_struct)
@@ -165,14 +165,14 @@ uint8 LPLD_TimeStampToDateTime(uint32 rtc_second, TimeStamp_FormatTypeDef *realt
 }
 /*
  * LPLD_GetWeek
- * ´ÓÊ±¼ä½á¹¹Ìå»ñµÃÖÜÊı
+ * ä»æ—¶é—´ç»“æ„ä½“è·å¾—å‘¨æ•°
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    TimeStamp_FormatTypeDef* realtime_init_struct
- *                        ¾ßÌå¶¨Òå¼ûTimeStamp_FormatTypeDef
+ *                        å…·ä½“å®šä¹‰è§TimeStamp_FormatTypeDef
  *
- * Êä³ö:
- *    ·µ»ØÖµÎªÖÜÊı
+ * è¾“å‡º:
+ *    è¿”å›å€¼ä¸ºå‘¨æ•°
  *
  */
 uint8 LPLD_GetWeek(TimeStamp_FormatTypeDef *realtime_init_struct)
@@ -198,13 +198,13 @@ uint8 LPLD_GetWeek(TimeStamp_FormatTypeDef *realtime_init_struct)
 
 /*
  * LPLD_AutoInitTimeStamp
- * ¸ù¾İ±àÒëÆ÷Ê±ÖÓ×Ô¶¯³õÊ¼»¯TimeStamp_FormatTypeDef½á¹¹Ìå
+ * æ ¹æ®ç¼–è¯‘å™¨æ—¶é’Ÿè‡ªåŠ¨åˆå§‹åŒ–TimeStamp_FormatTypeDefç»“æ„ä½“
  * 
- * ²ÎÊı:
+ * å‚æ•°:
  *    TimeStamp_FormatTypeDef* realtime_init_struct
- *                        ¾ßÌå¶¨Òå¼ûTimeStamp_FormatTypeDef
+ *                        å…·ä½“å®šä¹‰è§TimeStamp_FormatTypeDef
  *
- * Êä³ö:
+ * è¾“å‡º:
  */
 void LPLD_AutoInitTimeStamp(TimeStamp_FormatTypeDef *realtime_init_struct)
 {

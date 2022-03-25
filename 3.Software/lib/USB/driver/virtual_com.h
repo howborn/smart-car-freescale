@@ -41,8 +41,8 @@
    supported is 16 Bytes
 */
 /*
-*   ���ܺͷ������ݻ������ĳ��ȱ�����ڵ���USB�˵�ĳ��ȣ�����ᶪʧ���ݡ�
-*   USB_Config.h�����ö˵�ĳ��ȡ�����USB2.0��׼�����ݶ˵㳤�����64�ֽڡ�
+*   接受和发送数据缓冲区的长度必须大于等于USB端点的长度，否则会丢失数据。
+*   USB_Config.h中设置端点的长度。根据USB2.0标准，数据端点长度最大64字节。
 */
 #ifndef _MC9S08JS16_H
 #define  DATA_BUFF_SIZE     (64)    //define the length of send/receive buffer
@@ -50,16 +50,16 @@
 #define  DATA_BUFF_SIZE     (16)
 #endif
 
-//����USB���սṹ��
+//声明USB接收结构体
 typedef struct _USB_REV
 {
-  uint8_t buffer[DATA_BUFF_SIZE]; //����DATA_BUFF_SIZE�ֽڵĻ�����
-  uint8_t len;                    //�������ճ���
+  uint8_t buffer[DATA_BUFF_SIZE]; //声明DATA_BUFF_SIZE字节的缓冲区
+  uint8_t len;                    //声明接收长度
 }tUSB_Rev;
 
-extern tUSB_Rev tUSB_Rev_Data;    //����ṹ�����
+extern tUSB_Rev tUSB_Rev_Data;    //定义结构体对象
 
-typedef void(*USB_REV_CALLBACK)(void); //��������ջص�����
+typedef void(*USB_REV_CALLBACK)(void); //声明结接收回调函数
 /*****************************************************************************
  * Global variables
  *****************************************************************************/

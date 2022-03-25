@@ -2,22 +2,22 @@
  * @file HW_SPI.c
  * @version 3.03[By LPLD]
  * @date 2014-2-10
- * @brief SPIµ×²ãÄ£¿éÏà¹Øº¯Êı
+ * @brief SPIåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"
 #include "HW_SPI.h"
@@ -28,17 +28,17 @@ SPI_ISR_CALLBACK SPI2_ISR[6];
 
 /*
  * LPLD_SPI_Init
- * SPI³õÊ¼»¯º¯Êı,ÔÚ¸Ãº¯ÊıÖĞÑ¡ÔñSPIÍ¨µÀ£¬³õÊ¼»¯SPI SCK×ÜÏßÊ±ÖÓ
- * Ñ¡ÔñÊ¹ÄÜTx£¬Rx FIFO£¬Ñ¡Ôñ¿ªÆôSPIÍâÉèµÄ·¢ËÍÍê³É£¬·¢ËÍ¶ÓÁĞ½áÊø£¬
- * Tx FIFO¶ÓÁĞÎª¿Õ£¬Rx FIFO¶ÓÁĞÒç³ö£¬Ñ¡ÔñFIFOµÄÖĞ¶Ï·½Ê½ºÍDMAÇëÇóµÈ
+ * SPIåˆå§‹åŒ–å‡½æ•°,åœ¨è¯¥å‡½æ•°ä¸­é€‰æ‹©SPIé€šé“ï¼Œåˆå§‹åŒ–SPI SCKæ€»çº¿æ—¶é’Ÿ
+ * é€‰æ‹©ä½¿èƒ½Txï¼ŒRx FIFOï¼Œé€‰æ‹©å¼€å¯SPIå¤–è®¾çš„å‘é€å®Œæˆï¼Œå‘é€é˜Ÿåˆ—ç»“æŸï¼Œ
+ * Tx FIFOé˜Ÿåˆ—ä¸ºç©ºï¼ŒRx FIFOé˜Ÿåˆ—æº¢å‡ºï¼Œé€‰æ‹©FIFOçš„ä¸­æ–­æ–¹å¼å’ŒDMAè¯·æ±‚ç­‰
  * 
- * ²ÎÊı:
- *    spi_init_structure--SPI³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûSPI_InitTypeDef
+ * å‚æ•°:
+ *    spi_init_structure--SPIåˆå§‹åŒ–ç»“æ„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§SPI_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
 {
@@ -47,7 +47,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   uint8 sck_div = spi_init_structure.SPI_SckDivider; 
   boolean txFIFO_enable = spi_init_structure.SPI_EnableTxFIFO;
   boolean rxFIFO_enable = spi_init_structure.SPI_EnableRxFIFO;
-  //¶¨ÒåSPIÍâÉèÖĞ¶Ï±äÁ¿
+  //å®šä¹‰SPIå¤–è®¾ä¸­æ–­å˜é‡
   boolean tx_complete_int = spi_init_structure.SPI_TxCompleteIntEnable;
   boolean QueueEnd_Request_int = spi_init_structure.SPI_QueueEndIntEnable; 
   boolean txFIFO_underflow_int = spi_init_structure.SPI_TxFIFO_UnderflowIntEnable;
@@ -56,7 +56,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   boolean rxFIFO_Drain_int = spi_init_structure.SPI_RxFIFO_DrainIntEnable; 
   boolean txFIFO_req = spi_init_structure.SPI_TxFIFO_RequestSelect;
   boolean rxFIFO_req = spi_init_structure.SPI_RxFIFO_RequestSelect;
-  //Ñ¡ÔñSPIÒı½Å
+  //é€‰æ‹©SPIå¼•è„š
   PortPinsEnum_Type miso_pin = spi_init_structure.SPI_MisoPin;//MISO 
   PortPinsEnum_Type mosi_pin = spi_init_structure.SPI_MosiPin;//MOSI
   PortPinsEnum_Type sck_pin = spi_init_structure.SPI_SckPin;  //SCK
@@ -66,14 +66,14 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   PortPinsEnum_Type pcs3_pin = spi_init_structure.SPI_Pcs3Pin;//PCS3
   PortPinsEnum_Type pcs4_pin = spi_init_structure.SPI_Pcs4Pin;//PCS4
   PortPinsEnum_Type pcs5_pin = spi_init_structure.SPI_Pcs5Pin;//PCS5
-  //¶¨ÒåÖĞ¶Ï»Øµôº¯Êı
+  //å®šä¹‰ä¸­æ–­å›æ‰å‡½æ•°
   SPI_ISR_CALLBACK TxComplete_isr = spi_init_structure.SPI_TxCompleteIntIsr;
   SPI_ISR_CALLBACK QueueEndReq_isr = spi_init_structure.SPI_QueueEndIntIsr;
   SPI_ISR_CALLBACK UnderflowInt_isr = spi_init_structure.SPI_TxFIFO_UnderflowIntIsr;
   SPI_ISR_CALLBACK OverflowInt_isr = spi_init_structure.SPI_RxFIFO_OverflowIntIsr;
   SPI_ISR_CALLBACK FillInt_isr = spi_init_structure.SPI_TxFIFO_FillIntIsr;
   SPI_ISR_CALLBACK DrainInt_isr = spi_init_structure.SPI_RxFIFO_DrainIntIsr;
-  //¼ì²â²ÎÊı
+  //æ£€æµ‹å‚æ•°
   ASSERT(spi_mode <= SPI_MODE_MASTER);
   ASSERT(sck_div <= SPI_SCK_DIV_32768);
 
@@ -81,7 +81,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   {
     SIM->SCGC6 |= SIM_SCGC6_DSPI0_MASK;  
 
-    //Ñ¡ÔñPCS0
+    //é€‰æ‹©PCS0
     if(pcs0_pin == PTA14)
     {
       PORTA->PCR[14] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -90,7 +90,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTC->PCR[4] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS1
+    //é€‰æ‹©PCS1
     if(pcs1_pin == PTC3)
     {
       PORTC->PCR[3]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -99,7 +99,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTD->PCR[4] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS2
+    //é€‰æ‹©PCS2
     if(pcs2_pin == PTC2)
     {
       PORTC->PCR[2]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -108,7 +108,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTD->PCR[5]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS3
+    //é€‰æ‹©PCS3
     if(pcs3_pin == PTC1)
     {
       PORTC->PCR[1]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -117,18 +117,18 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTD->PCR[6]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS4
+    //é€‰æ‹©PCS4
     if(pcs4_pin == PTC0)
     {
       PORTC->PCR[0]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS5
+    //é€‰æ‹©PCS5
     if(pcs5_pin == PTB23)
     {
       PORTB->PCR[23] = 0 | PORT_PCR_MUX(3) | PORT_PCR_DSE_MASK;
     }
 
-    //Ñ¡ÔñSCK
+    //é€‰æ‹©SCK
     if(sck_pin == PTA15)
     {
       PORTA->PCR[15] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SCK
@@ -137,7 +137,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTC->PCR[5] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SCK
     }
-    //Ñ¡ÔñMOSI
+    //é€‰æ‹©MOSI
     if(mosi_pin == PTA16)
     {
       PORTA->PCR[16] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SOUT
@@ -146,7 +146,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTC->PCR[6] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SOUT
     }
-    //Ñ¡ÔñMISO
+    //é€‰æ‹©MISO
     if(miso_pin == PTA17)
     {
       PORTA->PCR[17] = 0 | PORT_PCR_MUX(2); //SIN
@@ -164,7 +164,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
     SIM->SCGC6 |= SIM_SCGC6_DSPI1_MASK; 
 #endif
-    //Ñ¡ÔñPCS0
+    //é€‰æ‹©PCS0
     if(pcs0_pin == PTB10)
     {
       PORTB->PCR[10] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -173,7 +173,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTE->PCR[4] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS1
+    //é€‰æ‹©PCS1
     if(pcs1_pin == PTB9)
     {
       PORTB->PCR[9]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -182,19 +182,19 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTE->PCR[0] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS2
+    //é€‰æ‹©PCS2
     if(pcs2_pin == PTE5)
     {
       PORTE->PCR[5]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
 
-    //Ñ¡ÔñPCS3
+    //é€‰æ‹©PCS3
     if(pcs3_pin == PTE6)
     {
       PORTE->PCR[6]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
 
-    //Ñ¡ÔñSCK
+    //é€‰æ‹©SCK
     if(sck_pin == PTB11)
     {
       PORTB->PCR[11] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -203,7 +203,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTE->PCR[2] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SCK
     }
-    //Ñ¡ÔñMOSI
+    //é€‰æ‹©MOSI
     if(mosi_pin == PTB16)
     {
       PORTB->PCR[16] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SOUT
@@ -212,7 +212,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTE->PCR[1] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SOUT
     }
-    //Ñ¡ÔñMISO
+    //é€‰æ‹©MISO
     if(miso_pin == PTB17)
     {
       PORTB->PCR[17] = 0 | PORT_PCR_MUX(2); //SIN
@@ -229,7 +229,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
     SIM->SCGC3 |= SIM_SCGC3_DSPI2_MASK; 
 #endif
-    //Ñ¡ÔñPCS0
+    //é€‰æ‹©PCS0
     if(pcs0_pin == PTD11)
     {
       PORTD->PCR[11] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -238,13 +238,13 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTB->PCR[20] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
-    //Ñ¡ÔñPCS1
+    //é€‰æ‹©PCS1
     if(pcs1_pin == PTD15)
     {
       PORTD->PCR[15]  = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
     }
 
-    //Ñ¡ÔñSCK
+    //é€‰æ‹©SCK
     if(sck_pin == PTD12)
     {
       PORTD->PCR[12] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;
@@ -253,7 +253,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTB->PCR[21] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SCK
     }
-    //Ñ¡ÔñMOSI
+    //é€‰æ‹©MOSI
     if(mosi_pin == PTD13)
     {
       PORTD->PCR[13] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SOUT
@@ -262,7 +262,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     {
       PORTB->PCR[22] = 0 | PORT_PCR_MUX(2) | PORT_PCR_DSE_MASK;//SOUT
     }
-    //Ñ¡ÔñMISO
+    //é€‰æ‹©MISO
     if(miso_pin == PTD14)
     {
       PORTD->PCR[14] = 0 | PORT_PCR_MUX(2); //SIN
@@ -274,40 +274,40 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   }
   else
     return 0;
-  //ÅäÖÃSPI MCR¼Ä´æÆ÷
+  //é…ç½®SPI MCRå¯„å­˜å™¨
   spix->MCR = 0 & (~SPI_MCR_MDIS_MASK)        
                 |SPI_MCR_HALT_MASK        
                 |SPI_MCR_PCSIS_MASK       
                 |SPI_MCR_CLR_TXF_MASK    
                 |SPI_MCR_CLR_RXF_MASK;  
-  //Ñ¡ÔñSPI ¹¤×÷Ä£Ê½
+  //é€‰æ‹©SPI å·¥ä½œæ¨¡å¼
   if(spi_mode == SPI_MODE_SLAVE)
   {
-    spix->MCR &= ~SPI_MCR_MSTR_MASK;//´Ó»úÄ£Ê½  
+    spix->MCR &= ~SPI_MCR_MSTR_MASK;//ä»æœºæ¨¡å¼  
   }
   else
   {
-    spix->MCR |= SPI_MCR_MSTR_MASK; //Ö÷»úÄ£Ê½ 
+    spix->MCR |= SPI_MCR_MSTR_MASK; //ä¸»æœºæ¨¡å¼ 
   }
-  //Ñ¡ÔñÊ¹ÄÜtx FIFO
+  //é€‰æ‹©ä½¿èƒ½tx FIFO
   if(txFIFO_enable == TRUE)
   {
     spix->MCR &= ~SPI_MCR_DIS_TXF_MASK; 
   }
   else
   {
-    spix->MCR |= SPI_MCR_DIS_TXF_MASK;//Ñ¡Ôñ´«Í³·½Ê½
+    spix->MCR |= SPI_MCR_DIS_TXF_MASK;//é€‰æ‹©ä¼ ç»Ÿæ–¹å¼
   }
-  //Ñ¡ÔñÊ¹ÄÜRx FIFO
+  //é€‰æ‹©ä½¿èƒ½Rx FIFO
   if(rxFIFO_enable == TRUE)
   {
     spix->MCR &= ~SPI_MCR_DIS_RXF_MASK;
   }
   else
   {
-    spix->MCR |= SPI_MCR_DIS_RXF_MASK; //Ñ¡Ôñ´«Í³·½Ê½
+    spix->MCR |= SPI_MCR_DIS_RXF_MASK; //é€‰æ‹©ä¼ ç»Ÿæ–¹å¼
   }
-  //Ñ¡ÔñÊ¹ÄÜ·¢ËÍÍê³ÉÖĞ¶Ï
+  //é€‰æ‹©ä½¿èƒ½å‘é€å®Œæˆä¸­æ–­
   if(tx_complete_int == TRUE)
   {
     spix->RSER |= SPI_RSER_TCF_RE_MASK; 
@@ -316,21 +316,21 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   { 
     spix->RSER &= ~SPI_RSER_TCF_RE_MASK;
   }
-  //Ñ¡ÔñÊ¹ÄÜ·¢ËÍ¶ÓÁĞ½áÊøÖĞ¶Ï
+  //é€‰æ‹©ä½¿èƒ½å‘é€é˜Ÿåˆ—ç»“æŸä¸­æ–­
   if(QueueEnd_Request_int == TRUE)
   {
     spix->RSER |=SPI_RSER_EOQF_RE_MASK;
   }
   else
     spix->RSER &= ~SPI_RSER_EOQF_RE_MASK;
-  //Ñ¡ÔñÊ¹ÄÜtxFIFOÎª¿ÕÖĞ¶Ï
+  //é€‰æ‹©ä½¿èƒ½txFIFOä¸ºç©ºä¸­æ–­
   if(txFIFO_underflow_int== TRUE)
   {
     spix->RSER |=SPI_RSER_TFUF_RE_MASK;
   }
   else
     spix->RSER &= ~SPI_RSER_TFUF_RE_MASK;
-  //Ñ¡ÔñÊ¹ÄÜrxFIFOÒç³öÖĞ¶Ï
+  //é€‰æ‹©ä½¿èƒ½rxFIFOæº¢å‡ºä¸­æ–­
   if(rxFIFO_overflow_int== TRUE)
   {
     spix->RSER |=SPI_RSER_RFOF_RE_MASK;
@@ -339,7 +339,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   {
     spix->RSER &= ~SPI_RSER_RFOF_RE_MASK;
   }
-  //Ñ¡ÔñÊ¹ÄÜtxFIFOÓĞÊı¾İ½øÈë¶ÓÁĞÖĞ¶Ï»òÕßDMAÇëÇó
+  //é€‰æ‹©ä½¿èƒ½txFIFOæœ‰æ•°æ®è¿›å…¥é˜Ÿåˆ—ä¸­æ–­æˆ–è€…DMAè¯·æ±‚
   if(txFIFO_Fill_int== TRUE)
   {
     spix->RSER |=SPI_RSER_TFFF_RE_MASK;
@@ -348,7 +348,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   {
     spix->RSER &= ~SPI_RSER_TFFF_RE_MASK;
   }
-  //Ñ¡ÔñÊ¹ÄÜrxFIFO·Ç¿ÕÖĞ¶Ï»òÕßDMAÇëÇó
+  //é€‰æ‹©ä½¿èƒ½rxFIFOéç©ºä¸­æ–­æˆ–è€…DMAè¯·æ±‚
   if(rxFIFO_Drain_int== TRUE)
   {
     spix->RSER |=SPI_RSER_RFDF_RE_MASK;
@@ -357,7 +357,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   {
     spix->RSER &= ~SPI_RSER_RFDF_RE_MASK;
   }
-  //Ñ¡ÔñÊ¹ÄÜtxFIFOÖĞ¶Ï»òÕßDMAÇëÇó
+  //é€‰æ‹©ä½¿èƒ½txFIFOä¸­æ–­æˆ–è€…DMAè¯·æ±‚
   if(txFIFO_req == SPI_FIFO_DMAREQUEST)
   {
     spix->RSER |=SPI_RSER_TFFF_DIRS_MASK;
@@ -366,7 +366,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   {
     spix->RSER &= ~SPI_RSER_TFFF_DIRS_MASK;
   }
-  //Ñ¡ÔñÊ¹ÄÜrxFIFOÖĞ¶Ï»òÕßDMAÇëÇó
+  //é€‰æ‹©ä½¿èƒ½rxFIFOä¸­æ–­æˆ–è€…DMAè¯·æ±‚
   if(rxFIFO_req == SPI_FIFO_DMAREQUEST)
   {
     spix->RSER |= SPI_RSER_RFDF_DIRS_MASK;
@@ -375,7 +375,7 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   {
     spix->RSER &= ~SPI_RSER_RFDF_DIRS_MASK;
   }
-  //Ìí¼ÓÖĞ¶Ï»Øµ÷º¯Êı
+  //æ·»åŠ ä¸­æ–­å›è°ƒå‡½æ•°
 
   if(spix == SPI0)
   {
@@ -422,14 +422,14 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
     if(rxFIFO_Drain_int == TRUE && rxFIFO_req == SPI_FIFO_INTREQUEST)
     { SPI2_ISR[SPI_RxFIFO_DrainInt] = DrainInt_isr; }
   }
-  //ÅäÖÃSPI CTAR¼Ä´æÆ÷£¬ÉèÖÃSPIµÄ×ÜÏßÊ±Ğò
+  //é…ç½®SPI CTARå¯„å­˜å™¨ï¼Œè®¾ç½®SPIçš„æ€»çº¿æ—¶åº
   spix->CTAR[0] = 0 & (~SPI_CTAR_LSBFE_MASK)
                       |SPI_CTAR_DBR_MASK  
                       |SPI_CTAR_PBR(0)           
                       |SPI_CTAR_FMSZ(7);        
                        
-  //ÉèÖÃSPI×ÜÏßÆµÂÊ
-  //SCK×ÜÏßÆµÂÊ = g_bus_clock/ SCK_DIV_x                                             
+  //è®¾ç½®SPIæ€»çº¿é¢‘ç‡
+  //SCKæ€»çº¿é¢‘ç‡ = g_bus_clock/ SCK_DIV_x                                             
   spix->CTAR[0] |=SPI_CTAR_BR(sck_div);
 
   //tCSC = (1/g_bus_clock) x PCSSCK x CSSCK
@@ -445,14 +445,14 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
   //tASC = (1/g_bus_clock) x PASC x ASC
   spix->CTAR[0] |=SPI_CTAR_PASC(1);
   spix->CTAR[0] |=SPI_CTAR_ASC(1);
-  //Çå³ı±êÖ¾Î»
+  //æ¸…é™¤æ ‡å¿—ä½
   spix->SR =  SPI_SR_RFDF_MASK   
               |SPI_SR_RFOF_MASK
               |SPI_SR_TFFF_MASK
               |SPI_SR_TFUF_MASK
               |SPI_SR_TCF_MASK
               |SPI_SR_EOQF_MASK;
-  //Ê¹ÄÜSPIx
+  //ä½¿èƒ½SPIx
   spix->MCR &=~SPI_MCR_HALT_MASK; 
   
   return 1;
@@ -460,16 +460,16 @@ uint8 LPLD_SPI_Init(SPI_InitTypeDef spi_init_structure)
 
 /*
  * LPLD_SPI_Deinit
- * SPI·´³õÊ¼»¯º¯Êı,ÔÚ¸Ãº¯ÊıÖĞ½«SPIÉèÖÃ³ÉÎªÔİÍ£Ä£Ê½£¬¹Ø±ÕSPI×ÜÏßÊ±ÖÓ£¬
- * ¹Ø±ÕSPIÍâÉèÖĞ¶Ï
+ * SPIååˆå§‹åŒ–å‡½æ•°,åœ¨è¯¥å‡½æ•°ä¸­å°†SPIè®¾ç½®æˆä¸ºæš‚åœæ¨¡å¼ï¼Œå…³é—­SPIæ€»çº¿æ—¶é’Ÿï¼Œ
+ * å…³é—­SPIå¤–è®¾ä¸­æ–­
  * 
- * ²ÎÊı:
- *    spi_init_structure--SPI³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûSPI_InitTypeDef
+ * å‚æ•°:
+ *    spi_init_structure--SPIåˆå§‹åŒ–ç»“æ„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§SPI_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_SPI_Deinit(SPI_InitTypeDef spi_init_structure)
 {
@@ -505,15 +505,15 @@ uint8 LPLD_SPI_Deinit(SPI_InitTypeDef spi_init_structure)
 
 /*
  * LPLD_SPI_EnableIrq
- * Ê¹ÄÜSPIÍâÉèÖĞ¶Ï
+ * ä½¿èƒ½SPIå¤–è®¾ä¸­æ–­
  * 
- * ²ÎÊı:
- *    spi_init_structure--SPI³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûSPI_InitTypeDef
+ * å‚æ•°:
+ *    spi_init_structure--SPIåˆå§‹åŒ–ç»“æ„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§SPI_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_SPI_EnableIrq(SPI_InitTypeDef spi_init_structure)
 {
@@ -538,15 +538,15 @@ uint8 LPLD_SPI_EnableIrq(SPI_InitTypeDef spi_init_structure)
 
 /*
  * LPLD_SPI_EnableIrq
- * ½ûÖ¹SPIÍâÉèÖĞ¶Ï
+ * ç¦æ­¢SPIå¤–è®¾ä¸­æ–­
  * 
- * ²ÎÊı:
- *    spi_init_structure--SPI³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûSPI_InitTypeDef
+ * å‚æ•°:
+ *    spi_init_structure--SPIåˆå§‹åŒ–ç»“æ„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§SPI_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_SPI_DisableIrq(SPI_InitTypeDef spi_init_structure)
 {
@@ -570,27 +570,27 @@ uint8 LPLD_SPI_DisableIrq(SPI_InitTypeDef spi_init_structure)
 
 /*
  * LPLD_SPI_Master_WriteRead
- * K60Ö÷»úSPIÏò´Ó»úĞ´Êı¾İ£¬²¢¶ÁÈ¡´Ó»úÊı¾İ
+ * K60ä¸»æœºSPIå‘ä»æœºå†™æ•°æ®ï¼Œå¹¶è¯»å–ä»æœºæ•°æ®
  * 
- * ²ÎÊı:
- *    spix--SPIÑ¡Ôñ
- *      |__SPI0 -Ñ¡ÔñSPI0Ä£¿é
- *      |__SPI1 -Ñ¡ÔñSPI1Ä£¿é
- *      |__SPI2 -Ñ¡ÔñSPI2Ä£¿é
- *    data--Òª·¢ËÍÊı¾İ
- *      |__µ¥Î»ÎªÒ»¸ö×Ö½Ú£¬8Î»
- *    pcsx--CSÆ¬Ñ¡¶Ë¿ÚºÅ
- *      |__SPI_PCS0 -0ºÅÆ¬Ñ¡(SPI0¡¢SPI1¡¢SPI2º¬ÓĞ)
- *      |__SPI_PCS1 -1ºÅÆ¬Ñ¡(SPI0¡¢SPI1¡¢SPI2º¬ÓĞ)
- *      |__SPI_PCS2 -2ºÅÆ¬Ñ¡(SPI0¡¢SPI1º¬ÓĞ)
- *      |__SPI_PCS3 -3ºÅÆ¬Ñ¡(SPI0¡¢SPI1º¬ÓĞ)
- *      |__SPI_PCS4 -4ºÅÆ¬Ñ¡(SPI0º¬ÓĞ)
- *      |__SPI_PCS5 -5ºÅÆ¬Ñ¡(SPI0º¬ÓĞ)
- *    pcs_state--Ò»Ö¡Êı¾İ´«ÊäÍê³ÉºóCSµÄ×´Ì¬
- *      |__SPI_PCS_ASSERTED -±£³ÖÆ¬Ñ¡ÓĞĞ§,PCSĞÅºÅ±£³ÖÎªµÍµçÆ½
- *      |__SPI_PCS_INACTIVE -Æ¬Ñ¡ÎŞĞ§,PCSĞÅºÅ±äÎª¸ßµçÆ½
- * Êä³ö:
- *    ¶ÁÈ¡´Ó»ú8Î»µÄÊı¾İ
+ * å‚æ•°:
+ *    spix--SPIé€‰æ‹©
+ *      |__SPI0 -é€‰æ‹©SPI0æ¨¡å—
+ *      |__SPI1 -é€‰æ‹©SPI1æ¨¡å—
+ *      |__SPI2 -é€‰æ‹©SPI2æ¨¡å—
+ *    data--è¦å‘é€æ•°æ®
+ *      |__å•ä½ä¸ºä¸€ä¸ªå­—èŠ‚ï¼Œ8ä½
+ *    pcsx--CSç‰‡é€‰ç«¯å£å·
+ *      |__SPI_PCS0 -0å·ç‰‡é€‰(SPI0ã€SPI1ã€SPI2å«æœ‰)
+ *      |__SPI_PCS1 -1å·ç‰‡é€‰(SPI0ã€SPI1ã€SPI2å«æœ‰)
+ *      |__SPI_PCS2 -2å·ç‰‡é€‰(SPI0ã€SPI1å«æœ‰)
+ *      |__SPI_PCS3 -3å·ç‰‡é€‰(SPI0ã€SPI1å«æœ‰)
+ *      |__SPI_PCS4 -4å·ç‰‡é€‰(SPI0å«æœ‰)
+ *      |__SPI_PCS5 -5å·ç‰‡é€‰(SPI0å«æœ‰)
+ *    pcs_state--ä¸€å¸§æ•°æ®ä¼ è¾“å®ŒæˆåCSçš„çŠ¶æ€
+ *      |__SPI_PCS_ASSERTED -ä¿æŒç‰‡é€‰æœ‰æ•ˆ,PCSä¿¡å·ä¿æŒä¸ºä½ç”µå¹³
+ *      |__SPI_PCS_INACTIVE -ç‰‡é€‰æ— æ•ˆ,PCSä¿¡å·å˜ä¸ºé«˜ç”µå¹³
+ * è¾“å‡º:
+ *    è¯»å–ä»æœº8ä½çš„æ•°æ®
  */
 uint8 LPLD_SPI_Master_WriteRead(SPI_Type *spix,uint8 data,uint8 pcsx,uint8 pcs_state)
 {
@@ -613,15 +613,15 @@ uint8 LPLD_SPI_Master_WriteRead(SPI_Type *spix,uint8 data,uint8 pcsx,uint8 pcs_s
 
 /*
  * LPLD_SPI_Master_Read
- * K60Ö÷»ú¶ÁÈ¡´Ó»úÊı¾İ
+ * K60ä¸»æœºè¯»å–ä»æœºæ•°æ®
  * 
- * ²ÎÊı:
- *    spix--SPIÑ¡Ôñ
- *      |__SPI0 -Ñ¡ÔñSPI0Ä£¿é
- *      |__SPI1 -Ñ¡ÔñSPI1Ä£¿é
- *      |__SPI2 -Ñ¡ÔñSPI2Ä£¿é
- * Êä³ö:
- *    ¶ÁÈ¡´Ó»ú8Î»µÄÊı¾İ
+ * å‚æ•°:
+ *    spix--SPIé€‰æ‹©
+ *      |__SPI0 -é€‰æ‹©SPI0æ¨¡å—
+ *      |__SPI1 -é€‰æ‹©SPI1æ¨¡å—
+ *      |__SPI2 -é€‰æ‹©SPI2æ¨¡å—
+ * è¾“å‡º:
+ *    è¯»å–ä»æœº8ä½çš„æ•°æ®
  */
 uint8 LPLD_SPI_Master_Read(SPI_Type *spix)
 {
@@ -635,25 +635,25 @@ uint8 LPLD_SPI_Master_Read(SPI_Type *spix)
 }
 /*
  * LPLD_SPI_Master_Write
- * K60Ö÷»úSPIÏò´Ó»úĞ´Êı¾İ
+ * K60ä¸»æœºSPIå‘ä»æœºå†™æ•°æ®
  * 
- * ²ÎÊı:
- *    spix--SPIÑ¡Ôñ
- *      |__SPI0 -Ñ¡ÔñSPI0Ä£¿é
- *      |__SPI1 -Ñ¡ÔñSPI1Ä£¿é
- *      |__SPI2 -Ñ¡ÔñSPI2Ä£¿é
- *    data--Òª·¢ËÍÊı¾İ
- *      |__µ¥Î»ÎªÒ»¸ö×Ö½Ú£¬8Î»
- *    pcsx--CSÆ¬Ñ¡¶Ë¿ÚºÅ
- *      |__SPI_PCS0  -0ºÅÆ¬Ñ¡(SPI0¡¢SPI1¡¢SPI2º¬ÓĞ)
- *      |__SPI_PCS1  -1ºÅÆ¬Ñ¡(SPI0¡¢SPI1¡¢SPI2º¬ÓĞ)
- *      |__SPI_PCS2  -2ºÅÆ¬Ñ¡(SPI0¡¢SPI1º¬ÓĞ)
- *      |__SPI_PCS3  -3ºÅÆ¬Ñ¡(SPI0¡¢SPI1º¬ÓĞ)
- *      |__SPI_PCS4  -4ºÅÆ¬Ñ¡(SPI0º¬ÓĞ)
- *      |__SPI_PCS5  -5ºÅÆ¬Ñ¡(SPI0º¬ÓĞ)
- *    pcs_state--Ò»Ö¡Êı¾İ´«ÊäÍê³ÉºóCSµÄ×´Ì¬
- *      |__SPI_PCS_ASSERTED -±£³ÖÆ¬Ñ¡ÓĞĞ§,PCSĞÅºÅ±£³ÖÎªµÍµçÆ½
- *      |__SPI_PCS_INACTIVE -Æ¬Ñ¡ÎŞĞ§,PCSĞÅºÅ±äÎª¸ßµçÆ½
+ * å‚æ•°:
+ *    spix--SPIé€‰æ‹©
+ *      |__SPI0 -é€‰æ‹©SPI0æ¨¡å—
+ *      |__SPI1 -é€‰æ‹©SPI1æ¨¡å—
+ *      |__SPI2 -é€‰æ‹©SPI2æ¨¡å—
+ *    data--è¦å‘é€æ•°æ®
+ *      |__å•ä½ä¸ºä¸€ä¸ªå­—èŠ‚ï¼Œ8ä½
+ *    pcsx--CSç‰‡é€‰ç«¯å£å·
+ *      |__SPI_PCS0  -0å·ç‰‡é€‰(SPI0ã€SPI1ã€SPI2å«æœ‰)
+ *      |__SPI_PCS1  -1å·ç‰‡é€‰(SPI0ã€SPI1ã€SPI2å«æœ‰)
+ *      |__SPI_PCS2  -2å·ç‰‡é€‰(SPI0ã€SPI1å«æœ‰)
+ *      |__SPI_PCS3  -3å·ç‰‡é€‰(SPI0ã€SPI1å«æœ‰)
+ *      |__SPI_PCS4  -4å·ç‰‡é€‰(SPI0å«æœ‰)
+ *      |__SPI_PCS5  -5å·ç‰‡é€‰(SPI0å«æœ‰)
+ *    pcs_state--ä¸€å¸§æ•°æ®ä¼ è¾“å®ŒæˆåCSçš„çŠ¶æ€
+ *      |__SPI_PCS_ASSERTED -ä¿æŒç‰‡é€‰æœ‰æ•ˆ,PCSä¿¡å·ä¿æŒä¸ºä½ç”µå¹³
+ *      |__SPI_PCS_INACTIVE -ç‰‡é€‰æ— æ•ˆ,PCSä¿¡å·å˜ä¸ºé«˜ç”µå¹³
  */
 void LPLD_SPI_Master_Write(SPI_Type *spix,uint8 data,uint8 pcsx,uint8 pcs_state)
 {  

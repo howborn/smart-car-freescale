@@ -2,70 +2,70 @@
  * @file HW_USB.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief UARTµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief UARTåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #include "common.h"     /* Common definitions */
 #include "HW_USB.h"
 #include "usb_driver.h"
 
-//ÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñº¯ÊýÊý×é
+//ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡å‡½æ•°æ•°ç»„
 USB_ISR_CALLBACK USB_ISR[1];
 
 /*
 * LPLD_USB_Init
-* K60 USBÍâÉè³õÊ¼»¯º¯Êý
-* ÔÚ¸Ãº¯ÊýÖÐ,³õÊ¼»¯USBÍâÉèÊ±ÖÓ,ÉèÖÃUSBÍâÉèµÄÖÐ¶Ï·þÎñº¯Êý,
-* ²¢ÇÒµ÷ÓÃUSBÉè±¸³õÊ¼»¯º¯Êý
+* K60 USBå¤–è®¾åˆå§‹åŒ–å‡½æ•°
+* åœ¨è¯¥å‡½æ•°ä¸­,åˆå§‹åŒ–USBå¤–è®¾æ—¶é’Ÿ,è®¾ç½®USBå¤–è®¾çš„ä¸­æ–­æœåŠ¡å‡½æ•°,
+* å¹¶ä¸”è°ƒç”¨USBè®¾å¤‡åˆå§‹åŒ–å‡½æ•°
 */
 
 void LPLD_USB_Init(void)
 { 
-  MPU->CESR=0; //MPU ÅäÖÃ
+  MPU->CESR=0; //MPU é…ç½®
 #if (defined(CPU_MK60DZ10))  
-  SIM->SOPT2 |= SIM_SOPT2_USBSRC_MASK |   //Ñ¡ÔñPLL/FLL×÷ÎªÊ±ÖÓÔ´
-               SIM_SOPT2_PLLFLLSEL_MASK; //ÓÃPLL×÷ÎªUSBµÄÊ±ÖÓÔ´£¬´ËÊ±µÄPLLµÄÆµÂÊÎª96Mhz 
+  SIM->SOPT2 |= SIM_SOPT2_USBSRC_MASK |   //é€‰æ‹©PLL/FLLä½œä¸ºæ—¶é’Ÿæº
+               SIM_SOPT2_PLLFLLSEL_MASK; //ç”¨PLLä½œä¸ºUSBçš„æ—¶é’Ÿæºï¼Œæ­¤æ—¶çš„PLLçš„é¢‘çŽ‡ä¸º96Mhz 
 #if(CORE_CLK_MHZ == PLL_96)
-  SIM->CLKDIV2 = 0x02;                    //ÉèÖÃ·ÖÆµÏµÊýUSBÊ±ÖÓ = 96Mhz/2 =48Mhz
+  SIM->CLKDIV2 = 0x02;                    //è®¾ç½®åˆ†é¢‘ç³»æ•°USBæ—¶é’Ÿ = 96Mhz/2 =48Mhz
 #endif 
-  SIM->SCGC4 |= SIM_SCGC4_USBOTG_MASK;  //Ê¹ÄÜUSBÍâÉèÊ±ÖÓ
+  SIM->SCGC4 |= SIM_SCGC4_USBOTG_MASK;  //ä½¿èƒ½USBå¤–è®¾æ—¶é’Ÿ
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
-  SIM->SOPT2 |= SIM_SOPT2_PLLFLLSEL(1)      // Ñ¡Ôñ PLL0 ×÷Îª²Î¿¼   
-            |  SIM_SOPT2_USBFSRC(0)         // Ñ¡Ôñ MCGPLLCLK ×÷Îª CLKC ²Î¿¼Ô´ 
-            |  SIM_SOPT2_USBF_CLKSEL_MASK;  // Ñ¡Ôñ USB fractional divider ×ùÎ» USB reference clock ²Î¿¼Ô´ 
+  SIM->SOPT2 |= SIM_SOPT2_PLLFLLSEL(1)      // é€‰æ‹© PLL0 ä½œä¸ºå‚è€ƒ   
+            |  SIM_SOPT2_USBFSRC(0)         // é€‰æ‹© MCGPLLCLK ä½œä¸º CLKC å‚è€ƒæº 
+            |  SIM_SOPT2_USBF_CLKSEL_MASK;  // é€‰æ‹© USB fractional divider åº§ä½ USB reference clock å‚è€ƒæº 
 #if(CORE_CLK_MHZ == PLL_120)
 // MCGPLLCLK =  120MHz 
 // USB Clock = PLL0 x (FRAC +1) / (DIV+1)    
 // USB Clock = 120MHz x (1+1) / (4+1) = 48 MHz   
   SIM->CLKDIV2 = SIM_CLKDIV2_USBFSFRAC_MASK | SIM_CLKDIV2_USBFSDIV(4);
 #endif
-  SIM->SCGC4 |= SIM_SCGC4_USBFS_MASK;   //Ê¹ÄÜUSBÍâÉèÊ±ÖÓ 
+  SIM->SCGC4 |= SIM_SCGC4_USBFS_MASK;   //ä½¿èƒ½USBå¤–è®¾æ—¶é’Ÿ 
 #endif 
-  USB0->USBTRC0 = 0x40;                   //°´ÕÕÎÄµµËùÊö£¬´ËÎ»±ØÐëÉèÖÃÎª1
-  SIM->SOPT1 |= SIM_SOPT1_USBREGEN_MASK;  //ÅäÖÃUSBÉè±¸ÎÈÑ¹Ô´
+  USB0->USBTRC0 = 0x40;                   //æŒ‰ç…§æ–‡æ¡£æ‰€è¿°ï¼Œæ­¤ä½å¿…é¡»è®¾ç½®ä¸º1
+  SIM->SOPT1 |= SIM_SOPT1_USBREGEN_MASK;  //é…ç½®USBè®¾å¤‡ç¨³åŽ‹æº
   
-  /* NVICÄ£¿éÅäÖÃ */
-  enable_irq(USB0_IRQn);                 //Ê¹ÄÜNVICÖÐµÄUSB OTGÖÐ¶Ï
-  USB_ISR[0] = USB_DEVICE_ISR;           //½«USBÐ­Òé´¦Àíº¯ÊýÌí¼Óµ½ÖÐ¶Ï´¦Àíº¯ÊýÊý×éÖÐ
+  /* NVICæ¨¡å—é…ç½® */
+  enable_irq(USB0_IRQn);                 //ä½¿èƒ½NVICä¸­çš„USB OTGä¸­æ–­
+  USB_ISR[0] = USB_DEVICE_ISR;           //å°†USBåè®®å¤„ç†å‡½æ•°æ·»åŠ åˆ°ä¸­æ–­å¤„ç†å‡½æ•°æ•°ç»„ä¸­
   
 #if(USB_DEVICE_CLASS == USB_DEVICE_CLASS_CDC)
-  USB_CDC_Init();                        //³õÊ¼»¯CDCÀà
+  USB_CDC_Init();                        //åˆå§‹åŒ–CDCç±»
 #elif(USB_DEVICE_CLASS == USB_DEVICE_CLASS_HID)
-  USB_HID_Mouse_Init();                  //³õÊ¼»¯HIDÀà
+  USB_HID_Mouse_Init();                  //åˆå§‹åŒ–HIDç±»
 #endif
   
   
@@ -73,26 +73,26 @@ void LPLD_USB_Init(void)
 
 /*
 * LPLD_USB_DeInit
-* K60 USBÄ£¿é×¢Ïúº¯Êý
-* ×¢ÏúËùÑ¡ÔñµÄUSBÉè±¸
+* K60 USBæ¨¡å—æ³¨é”€å‡½æ•°
+* æ³¨é”€æ‰€é€‰æ‹©çš„USBè®¾å¤‡
 */
 
 void LPLD_USB_DeInit(void)
 { 
 #if(USB_DEVICE_CLASS == USB_DEVICE_CLASS_CDC)
-  USB_Class_CDC_DeInit(CONTROLLER_ID);                        //×¢ÏúCDCÀà
+  USB_Class_CDC_DeInit(CONTROLLER_ID);                        //æ³¨é”€CDCç±»
 #elif(USB_DEVICE_CLASS == USB_DEVICE_CLASS_HID)
-  USB_Class_HID_DeInit(CONTROLLER_ID);                        //×¢ÏúHIDÀà
+  USB_Class_HID_DeInit(CONTROLLER_ID);                        //æ³¨é”€HIDç±»
 #endif
 }
 
 #if(USB_DEVICE_CLASS == USB_DEVICE_CLASS_CDC)
 /*
 *  LPLD_USB_VirtualCom_Rx
-*  ½«USB CDCÀàÄ£Ê½ÐéÄâ³É´®¿ÚÄ£Ê½£¬¸Ãº¯ÊýÊÇ´®¿Ú½ÓÊÕº¯Êý
-*  ²ÎÊý£º
-*      *rx_buf--Ö¸ÏòÓÃ»§Êý¾Ý´æ´¢Çø£¬ÓÃÓÚ´¢´æ½ÓÊÕµ½µÄÊý¾Ý
-*  Êä³ö£º½ÓÊÕÊý¾ÝµÄ³¤¶È£¬ÒÔ×Ö½ÚÎªµ¥Î»
+*  å°†USB CDCç±»æ¨¡å¼è™šæ‹Ÿæˆä¸²å£æ¨¡å¼ï¼Œè¯¥å‡½æ•°æ˜¯ä¸²å£æŽ¥æ”¶å‡½æ•°
+*  å‚æ•°ï¼š
+*      *rx_buf--æŒ‡å‘ç”¨æˆ·æ•°æ®å­˜å‚¨åŒºï¼Œç”¨äºŽå‚¨å­˜æŽ¥æ”¶åˆ°çš„æ•°æ®
+*  è¾“å‡ºï¼šæŽ¥æ”¶æ•°æ®çš„é•¿åº¦ï¼Œä»¥å­—èŠ‚ä¸ºå•ä½
 */
 uint8 LPLD_USB_VirtualCom_Rx(uint8 *rx_buf)
 {
@@ -102,12 +102,12 @@ uint8 LPLD_USB_VirtualCom_Rx(uint8 *rx_buf)
 
 /*
 *  LPLD_USB_VirtualCom_Tx
-*  ½«USB CDCÀàÄ£Ê½ÐéÄâ³É´®¿ÚÄ£Ê½£¬¸Ãº¯ÊýÊÇ´®¿Ú·¢ËÍº¯Êý
-*  ²ÎÊý£º
-*      *tx_buf -- Ö¸ÏòÓÃ»§Êý¾Ý´æ´¢Çø£¬ÓÃÓÚ´¢´æÒª·¢ËÍµÄÊý¾Ý
-*      len -- Òª·¢ËÍµÄÊý¾Ý³¤¶È
-*  Êä³ö£º0x00   ·¢ËÍ³É¹¦
-*        ·Ç0x00 ·¢ËÍÊ§°Ü
+*  å°†USB CDCç±»æ¨¡å¼è™šæ‹Ÿæˆä¸²å£æ¨¡å¼ï¼Œè¯¥å‡½æ•°æ˜¯ä¸²å£å‘é€å‡½æ•°
+*  å‚æ•°ï¼š
+*      *tx_buf -- æŒ‡å‘ç”¨æˆ·æ•°æ®å­˜å‚¨åŒºï¼Œç”¨äºŽå‚¨å­˜è¦å‘é€çš„æ•°æ®
+*      len -- è¦å‘é€çš„æ•°æ®é•¿åº¦
+*  è¾“å‡ºï¼š0x00   å‘é€æˆåŠŸ
+*        éž0x00 å‘é€å¤±è´¥
 */
 uint8 LPLD_USB_VirtualCom_Tx(uint8 *tx_buf,uint8 len)
 {
@@ -118,9 +118,9 @@ uint8 LPLD_USB_VirtualCom_Tx(uint8 *tx_buf,uint8 len)
 
 /*
 *  LPLD_USB_SetRevIsr
-*  Ìí¼ÓUSB ÐéÄâ´®¿Ú½ÓÊÕÊý¾ÝÖÐ¶Ï·þÎñº¯Êý
-*  ÎÞ
-*  ÎÞ
+*  æ·»åŠ USB è™šæ‹Ÿä¸²å£æŽ¥æ”¶æ•°æ®ä¸­æ–­æœåŠ¡å‡½æ•°
+*  æ— 
+*  æ— 
 */
 void LPLD_USB_SetRevIsr(USB_REV_ISR_CALLBACK isr)
 {
@@ -129,10 +129,10 @@ void LPLD_USB_SetRevIsr(USB_REV_ISR_CALLBACK isr)
 
 /*
 *  LPLD_USB_QueueData
-*  ´ÓUSBµÄÄÚ´æÖÐ»Ö¸´½ÓÊÕµ½µÄÊý¾Ýµ½ÓÃ»§ÄÚ´æÖÐ
-*  ½ÓÊÕ³É¹¦ºóµ÷ÓÃ´Ëº¯Êý
-*  ÎÞ
-*  ÎÞ
+*  ä»ŽUSBçš„å†…å­˜ä¸­æ¢å¤æŽ¥æ”¶åˆ°çš„æ•°æ®åˆ°ç”¨æˆ·å†…å­˜ä¸­
+*  æŽ¥æ”¶æˆåŠŸåŽè°ƒç”¨æ­¤å‡½æ•°
+*  æ— 
+*  æ— 
 */
 void LPLD_USB_QueueData(void)
 {
@@ -143,20 +143,20 @@ void LPLD_USB_QueueData(void)
 #if(USB_DEVICE_CLASS == USB_DEVICE_CLASS_HID)
 /*
 *  LPLD_USB_HID_MouseControl
-*  HIDÊó±ê¿ØÖÆº¯Êý
-*  ²ÎÊý
-*    uint8 *buf -- Êý×é°üº¬4¸ö×Ö½Ú¿ØÖÆÃüÁî
-*      µÚÒ»¸ö×Ö½Ú¿ØÖÆÊó±ê×óÓÒ¼ü
-*        È¡Öµ£ºMOUSE_LEFT_CLICK  ×ó¼ü
-*              MOUSE_RIGHT_CLICK ÓÒ¼ü
-*      µÚ¶þ¸ö×Ö½Ú¿ØÖÆXÖáÒÆ¶¯
-*        È¡Öµ£ºMOUSE_LEFT_MOVE   ×óÒÆ
-*              MOUSE_RIGHT_MOVE  ÓÒÒÆ
-*      µÚÈý¸ö×Ö½Ú¿ØÖÆYÖáÒÆ¶¯
-*        È¡Öµ£ºMOUSE_UP_MOVE    ÉÏÒÆ
-*              MOUSE_DOWN_MOVE  ÏÂÒÆ
-*  Êä³ö£º
-*    ÎÞ
+*  HIDé¼ æ ‡æŽ§åˆ¶å‡½æ•°
+*  å‚æ•°
+*    uint8 *buf -- æ•°ç»„åŒ…å«4ä¸ªå­—èŠ‚æŽ§åˆ¶å‘½ä»¤
+*      ç¬¬ä¸€ä¸ªå­—èŠ‚æŽ§åˆ¶é¼ æ ‡å·¦å³é”®
+*        å–å€¼ï¼šMOUSE_LEFT_CLICK  å·¦é”®
+*              MOUSE_RIGHT_CLICK å³é”®
+*      ç¬¬äºŒä¸ªå­—èŠ‚æŽ§åˆ¶Xè½´ç§»åŠ¨
+*        å–å€¼ï¼šMOUSE_LEFT_MOVE   å·¦ç§»
+*              MOUSE_RIGHT_MOVE  å³ç§»
+*      ç¬¬ä¸‰ä¸ªå­—èŠ‚æŽ§åˆ¶Yè½´ç§»åŠ¨
+*        å–å€¼ï¼šMOUSE_UP_MOVE    ä¸Šç§»
+*              MOUSE_DOWN_MOVE  ä¸‹ç§»
+*  è¾“å‡ºï¼š
+*    æ— 
 */
 void LPLD_USB_HID_MouseControl(uint8 *buf)
 {
@@ -165,20 +165,20 @@ void LPLD_USB_HID_MouseControl(uint8 *buf)
 
 /*
 *  LPLD_USB_HID_LoopTask
-*  ÔÚmain loopÖÐÑ­»·µ÷¶ÈÊó±ê¼ì²â
-*  ²ÎÊý
-*    uint8 *buf -- Êý×é°üº¬4¸ö×Ö½Ú¿ØÖÆÃüÁî
-*      µÚÒ»¸ö×Ö½Ú¿ØÖÆÊó±ê×óÓÒ¼ü
-*        È¡Öµ£ºMOUSE_LEFT_CLICK  ×ó¼ü
-*              MOUSE_RIGHT_CLICK ÓÒ¼ü
-*      µÚ¶þ¸ö×Ö½Ú¿ØÖÆXÖáÒÆ¶¯
-*        È¡Öµ£ºMOUSE_LEFT_MOVE   ×óÒÆ
-*              MOUSE_RIGHT_MOVE  ÓÒÒÆ
-*      µÚÈý¸ö×Ö½Ú¿ØÖÆYÖáÒÆ¶¯
-*        È¡Öµ£ºMOUSE_UP_MOVE    ÉÏÒÆ
-*              MOUSE_DOWN_MOVE  ÏÂÒÆ
-*  Êä³ö£º
-*    ÎÞ
+*  åœ¨main loopä¸­å¾ªçŽ¯è°ƒåº¦é¼ æ ‡æ£€æµ‹
+*  å‚æ•°
+*    uint8 *buf -- æ•°ç»„åŒ…å«4ä¸ªå­—èŠ‚æŽ§åˆ¶å‘½ä»¤
+*      ç¬¬ä¸€ä¸ªå­—èŠ‚æŽ§åˆ¶é¼ æ ‡å·¦å³é”®
+*        å–å€¼ï¼šMOUSE_LEFT_CLICK  å·¦é”®
+*              MOUSE_RIGHT_CLICK å³é”®
+*      ç¬¬äºŒä¸ªå­—èŠ‚æŽ§åˆ¶Xè½´ç§»åŠ¨
+*        å–å€¼ï¼šMOUSE_LEFT_MOVE   å·¦ç§»
+*              MOUSE_RIGHT_MOVE  å³ç§»
+*      ç¬¬ä¸‰ä¸ªå­—èŠ‚æŽ§åˆ¶Yè½´ç§»åŠ¨
+*        å–å€¼ï¼šMOUSE_UP_MOVE    ä¸Šç§»
+*              MOUSE_DOWN_MOVE  ä¸‹ç§»
+*  è¾“å‡ºï¼š
+*    æ— 
 */
 void LPLD_USB_HID_LoopTask(uint8 *buf)
 {
@@ -190,10 +190,10 @@ void LPLD_USB_HID_LoopTask(uint8 *buf)
 #endif
 /*
 *  LPLD_USB_Isr
-*  USBÖÐ¶Ï´¦Àíº¯Êý
+*  USBä¸­æ–­å¤„ç†å‡½æ•°
 */
 void USB_OTG_IRQHandler(void)
 {
-  //µ÷ÓÃÓÃ»§×Ô¶¨ÒåÖÐ¶Ï·þÎñ
+  //è°ƒç”¨ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡
   USB_ISR[0]();  
 }

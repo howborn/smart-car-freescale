@@ -77,36 +77,36 @@ extern "C" {
     /* File system object structure (FATFS) */
     typedef struct
     {
-        uint8   fs_type;        /* FAT×ÓÀàĞÍ£¬Ò»°ãÔÚmountÊ±ÓÃ£¬ÖÃ0±íÊ¾Î´¹ÒÔØ*/
-        uint8   drv;            /* ÎïÀíÇı¶¯ºÅ£¬Ò»°ãÎª0*/
-        uint8   csize;          /* Ã¿¸ö´ØµÄÉÈÇøÊıÄ¿(1,2,4...128) */
-        uint8   n_fats;         /* ÎÄ¼ş·ÖÅä±íµÄÊıÄ¿(1,2) */
-        /*FATÎÄ¼şÏµÍ³ÒÀ´ÎÎª£ºÒıµ¼ÉÈÇø¡¢Á½¸öÎÄ¼ş·ÖÅä±í¡¢¸ùÄ¿Â¼ÇøºÍÊı¾İÇø*/
-        uint8   wflag;          /* ±ê¼ÇÎÄ¼şÊÇ·ñ±»¸Ä¶¯¹ı£¬Îª1Ê±Òª»ØĞ´*/
-        uint8   fsi_flag;       /* ±ê¼ÇÎÄ¼şÏµÍ³ĞÅÏ¢ÊÇ·ñ±»¸Ä¶¯¹ı£¬Îª1Ê±Òª»ØĞ´*/
-        uint16  id;             /* ÎÄ¼şÏµÍ³¹ÒÔØID */
-        uint16  n_rootdir;      /* ¸ùÄ¿Â¼ÇøÈë¿Ú(Ä¿Â¼Ïî)µÄ¸öÊı(ÓÃÓÚFAT12/16)*/
+        uint8   fs_type;        /* FATå­ç±»å‹ï¼Œä¸€èˆ¬åœ¨mountæ—¶ç”¨ï¼Œç½®0è¡¨ç¤ºæœªæŒ‚è½½*/
+        uint8   drv;            /* ç‰©ç†é©±åŠ¨å·ï¼Œä¸€èˆ¬ä¸º0*/
+        uint8   csize;          /* æ¯ä¸ªç°‡çš„æ‰‡åŒºæ•°ç›®(1,2,4...128) */
+        uint8   n_fats;         /* æ–‡ä»¶åˆ†é…è¡¨çš„æ•°ç›®(1,2) */
+        /*FATæ–‡ä»¶ç³»ç»Ÿä¾æ¬¡ä¸ºï¼šå¼•å¯¼æ‰‡åŒºã€ä¸¤ä¸ªæ–‡ä»¶åˆ†é…è¡¨ã€æ ¹ç›®å½•åŒºå’Œæ•°æ®åŒº*/
+        uint8   wflag;          /* æ ‡è®°æ–‡ä»¶æ˜¯å¦è¢«æ”¹åŠ¨è¿‡ï¼Œä¸º1æ—¶è¦å›å†™*/
+        uint8   fsi_flag;       /* æ ‡è®°æ–‡ä»¶ç³»ç»Ÿä¿¡æ¯æ˜¯å¦è¢«æ”¹åŠ¨è¿‡ï¼Œä¸º1æ—¶è¦å›å†™*/
+        uint16  id;             /* æ–‡ä»¶ç³»ç»ŸæŒ‚è½½ID */
+        uint16  n_rootdir;      /* æ ¹ç›®å½•åŒºå…¥å£(ç›®å½•é¡¹)çš„ä¸ªæ•°(ç”¨äºFAT12/16)*/
 #if _MAX_SS != 512
-        uint16  ssize;          /* Ã¿ÉÈÇøµÄ×Ö½ÚÊı(ÓÃÓÚÉÈÇø´óÓÚ512ByteµÄflash) */
+        uint16  ssize;          /* æ¯æ‰‡åŒºçš„å­—èŠ‚æ•°(ç”¨äºæ‰‡åŒºå¤§äº512Byteçš„flash) */
 #endif
 #if _FS_REENTRANT
-        _SYNC_t sobj;           /* ÔÊĞíÖØÈë£¬¼´¶¨ÒåÍ¬²½¶ÔÏó£¬ÓÃÔÚtinyÖĞ*/
+        _SYNC_t sobj;           /* å…è®¸é‡å…¥ï¼Œå³å®šä¹‰åŒæ­¥å¯¹è±¡ï¼Œç”¨åœ¨tinyä¸­*/
 #endif
 #if !_FS_READONLY
-        uint32  last_clust;     /* ×îºóÒ»¸ö±»·ÖÅäµÄ´Ø*/
-        uint32  free_clust;     /* ¿ÕÏĞ´ØµÄ¸öÊı*/
-        uint32  fsi_sector;     /* ´æ·ÅfsinfoµÄÉÈÇø(ÓÃÓÚFAT32) */
+        uint32  last_clust;     /* æœ€åä¸€ä¸ªè¢«åˆ†é…çš„ç°‡*/
+        uint32  free_clust;     /* ç©ºé—²ç°‡çš„ä¸ªæ•°*/
+        uint32  fsi_sector;     /* å­˜æ”¾fsinfoçš„æ‰‡åŒº(ç”¨äºFAT32) */
 #endif
 #if _FS_RPATH
-        uint32  cdir;           /* ÔÊĞíÏà¶ÔÂ·¾¶Ê±ÓÃ£¬´æ´¢µ±Ç°Ä¿Â¼ÆğÊ¼´Ø(0:root)*/
+        uint32  cdir;           /* å…è®¸ç›¸å¯¹è·¯å¾„æ—¶ç”¨ï¼Œå­˜å‚¨å½“å‰ç›®å½•èµ·å§‹ç°‡(0:root)*/
 #endif
-        uint32  n_fatent;       /* FATÈë¿ÚÊı(´ØµÄÊıÄ¿ + 2)*/
-        uint32  fsize;          /* Ã¿¸öFATËùÕ¼ÉÈÇø*/
-        uint32  fatbase;        /* FATÆğÊ¼ÉÈÇø*/
-        uint32  dirbase;        /* ¸ùÄ¿Â¼ÆğÊ¼ÉÈÇø(FAT32:Cluster#) */
-        uint32  database;       /* Êı¾İÄ¿Â¼ÆğÊ¼ÉÈÇø*/
-        uint32  winsect;        /* µ±Ç°»º³åÇøÖĞ´æ´¢µÄÉÈÇøºÅ*/
-        uint8   win[_MAX_SS];   /* µ¥¸öÉÈÇø»º´æ*/
+        uint32  n_fatent;       /* FATå…¥å£æ•°(ç°‡çš„æ•°ç›® + 2)*/
+        uint32  fsize;          /* æ¯ä¸ªFATæ‰€å æ‰‡åŒº*/
+        uint32  fatbase;        /* FATèµ·å§‹æ‰‡åŒº*/
+        uint32  dirbase;        /* æ ¹ç›®å½•èµ·å§‹æ‰‡åŒº(FAT32:Cluster#) */
+        uint32  database;       /* æ•°æ®ç›®å½•èµ·å§‹æ‰‡åŒº*/
+        uint32  winsect;        /* å½“å‰ç¼“å†²åŒºä¸­å­˜å‚¨çš„æ‰‡åŒºå·*/
+        uint8   win[_MAX_SS];   /* å•ä¸ªæ‰‡åŒºç¼“å­˜*/
     } FATFS;
 
 
@@ -116,21 +116,21 @@ extern "C" {
 
     typedef struct
     {
-        FATFS   *fs;                /* ËùÔÚµÄfsÖ¸Õë*/
-        uint16  id;             /* ËùÔÚµÄfs¹ÒÔØ±àºÅ*/
-        uint8   flag;           /* ÎÄ¼ş×´Ì¬*/
-        uint8   pad1;           /* ²»ÖªµÀº¬Òå£¬Ò²Î´¼û³ÌĞòÊ¹ÓÃ*/
-        uint32  fptr;           /* ÎÄ¼ş¶ÁĞ´Ö¸Õë*/
-        uint32  fsize;          /* ´óĞ¡*/
-        uint32  sclust;         /* ÎÄ¼şÆğÊ¼´Ø(fsize=0Ê±Îª0) */
-        uint32  clust;          /* µ±Ç°´Ø*/
-        uint32  dsect;          /* µ±Ç°Êı¾İÉÈÇø*/
+        FATFS   *fs;                /* æ‰€åœ¨çš„fsæŒ‡é’ˆ*/
+        uint16  id;             /* æ‰€åœ¨çš„fsæŒ‚è½½ç¼–å·*/
+        uint8   flag;           /* æ–‡ä»¶çŠ¶æ€*/
+        uint8   pad1;           /* ä¸çŸ¥é“å«ä¹‰ï¼Œä¹Ÿæœªè§ç¨‹åºä½¿ç”¨*/
+        uint32  fptr;           /* æ–‡ä»¶è¯»å†™æŒ‡é’ˆ*/
+        uint32  fsize;          /* å¤§å°*/
+        uint32  sclust;         /* æ–‡ä»¶èµ·å§‹ç°‡(fsize=0æ—¶ä¸º0) */
+        uint32  clust;          /* å½“å‰ç°‡*/
+        uint32  dsect;          /* å½“å‰æ•°æ®æ‰‡åŒº*/
 #if !_FS_READONLY
-        uint32  dir_sect;       /* °üº¬Ä¿Â¼ÏîµÄÉÈÇø */
+        uint32  dir_sect;       /* åŒ…å«ç›®å½•é¡¹çš„æ‰‡åŒº */
         uint8   *dir_ptr;       /* Ponter to the directory entry in the window */
 #endif
 #if _USE_FASTSEEK
-        uint32  *cltbl;         /*Ö¸Ïò´ØÁ´½ÓÓ³Éä±íµÄÖ¸Õë*/
+        uint32  *cltbl;         /*æŒ‡å‘ç°‡é“¾æ¥æ˜ å°„è¡¨çš„æŒ‡é’ˆ*/
 #endif
 #if _FS_SHARE
         uint32  lockid;         /* File lock ID (index of file semaphore table) */
@@ -146,13 +146,13 @@ extern "C" {
 
     typedef struct
     {
-        FATFS   *fs;                /* Í¬ÉÏ*/
+        FATFS   *fs;                /* åŒä¸Š*/
         uint16  id;
-        uint16  index;          /* µ±Ç°¶ÁĞ´Ë÷ÒıºÅ */
-        uint32  sclust;         /* ÎÄ¼şÊı¾İÇø¿ªÊ¼´Ø*/
-        uint32  clust;          /* µ±Ç°´Ø*/
-        uint32  sect;           /* µ±Ç°ÉÈÇø*/
-        uint8   *dir;           /* ÉÈÇø»º´æÖĞµ±Ç°SFNÈë¿ÚÖ¸Õë£¬SFNº¬ÒåÎ´Öª£¬²Â²âºÍLFNÀàËÆ£¬ÓëÎÄ¼şÃûÏà¹Ø*/
+        uint16  index;          /* å½“å‰è¯»å†™ç´¢å¼•å· */
+        uint32  sclust;         /* æ–‡ä»¶æ•°æ®åŒºå¼€å§‹ç°‡*/
+        uint32  clust;          /* å½“å‰ç°‡*/
+        uint32  sect;           /* å½“å‰æ‰‡åŒº*/
+        uint8   *dir;           /* æ‰‡åŒºç¼“å­˜ä¸­å½“å‰SFNå…¥å£æŒ‡é’ˆï¼ŒSFNå«ä¹‰æœªçŸ¥ï¼ŒçŒœæµ‹å’ŒLFNç±»ä¼¼ï¼Œä¸æ–‡ä»¶åç›¸å…³*/
         uint8   *fn;                /* Pointer to the SFN (in/out) {file[8],ext[3],status[1]} */
 #if _USE_LFN
         uint16  *lfn;           /* Pointer to the LFN working buffer */

@@ -2,32 +2,32 @@
  * @file HW_TSI.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief TSIµ×²ãÄ£¿éÏà¹Øº¯Êı
+ * @brief TSIåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéĞŞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓĞ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓĞÏŞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓĞÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâĞŞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ıÔ­°æÈ¨ËùÓĞÕßĞÕÃû£¬¶ş´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶ş´Î°æÈ¨ËùÓĞÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËĞ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔğÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔğÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎŞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ı·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜æœ¬ä»£ç çš„å…·ä½“åŸç†ã€åŠŸèƒ½ã€å®ç°æ–¹æ³•ã€‚
+ * é™¤éæ‹‰æ™®å…°å¾·[LPLD]æˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºå•†ä¸šäº§å“ã€‚
  */
 
 #include "common.h"
 #include "HW_TSI.h"
 
 
-//ÓÃ»§×Ô¶¨ÒåÖĞ¶Ï·şÎñº¯ÊıÊı×é
+//ç”¨æˆ·è‡ªå®šä¹‰ä¸­æ–­æœåŠ¡å‡½æ•°æ•°ç»„
 TSI_ISR_CALLBACK TSI_ISR[2];
 
-//Í¨µÀ»ù×¼Öµ
+//é€šé“åŸºå‡†å€¼
 uint16 TSI_ChxBaseVal[16];
 
 const uint16* TSI_CNTR[16]={(uint16*)&TSI0->CNTR1, (uint16*)(&TSI0->CNTR1)+1,
@@ -46,15 +46,15 @@ const uint32* TSI_PORT[32]={(uint32*)&PORTB->PCR[0], (uint32*)&PORTA->PCR[0], (u
 
 /*
  * LPLD_TSI_Init
- * TSIÍ¨ÓÃ³õÊ¼»¯º¯Êı
+ * TSIé€šç”¨åˆå§‹åŒ–å‡½æ•°
  * 
- * ²ÎÊı:
- *    tsi_init_struct--TSI³õÊ¼»¯½á¹¹Ìå£¬
- *                        ¾ßÌå¶¨Òå¼ûTSI_InitTypeDef
+ * å‚æ•°:
+ *    tsi_init_struct--TSIåˆå§‹åŒ–ç»“æ„ä½“ï¼Œ
+ *                        å…·ä½“å®šä¹‰è§TSI_InitTypeDef
  *
- * Êä³ö:
- *    0--ÅäÖÃ´íÎó
- *    1--ÅäÖÃ³É¹¦
+ * è¾“å‡º:
+ *    0--é…ç½®é”™è¯¯
+ *    1--é…ç½®æˆåŠŸ
  */
 uint8 LPLD_TSI_Init(TSI_InitTypeDef tsi_init_struct)
 {
@@ -63,15 +63,15 @@ uint8 LPLD_TSI_Init(TSI_InitTypeDef tsi_init_struct)
   uint8 esor = tsi_init_struct.TSI_EndScanOrOutRangeInt;
   boolean err = tsi_init_struct.TIS_ErrIntEnable;
    
-  //²ÎÊı¼ì²é
-  ASSERT( chs != 0);                  //ÅĞ¶ÏÍ¨µÀ
-  ASSERT( mode <= TSI_SCAN_PERIOD);   //ÅĞ¶ÏÖĞ¶ÏÄ£Ê½
-  ASSERT( esor <= TSI_ENDOFDCAN_INT);//ÅĞ¶ÏÖĞ¶ÏÄ£Ê½
+  //å‚æ•°æ£€æŸ¥
+  ASSERT( chs != 0);                  //åˆ¤æ–­é€šé“
+  ASSERT( mode <= TSI_SCAN_PERIOD);   //åˆ¤æ–­ä¸­æ–­æ¨¡å¼
+  ASSERT( esor <= TSI_ENDOFDCAN_INT);//åˆ¤æ–­ä¸­æ–­æ¨¡å¼
   
-  //¿ªÆôTSIÄ£¿éÊ±ÖÓ
+  //å¼€å¯TSIæ¨¡å—æ—¶é’Ÿ
   SIM->SCGC5 |= (SIM_SCGC5_TSI_MASK); 
   
-  //ÕâÀïÊ¹ÄÜÏà¹ØÍ¨µÀµÄÒı½Å¸´ÓÃ¹¦ÄÜ
+  //è¿™é‡Œä½¿èƒ½ç›¸å…³é€šé“çš„å¼•è„šå¤ç”¨åŠŸèƒ½
   for(uint8 i=0; i<16; i++)
   {
     if((chs>>i)&0x1L)
@@ -80,22 +80,22 @@ uint8 LPLD_TSI_Init(TSI_InitTypeDef tsi_init_struct)
     }
   }
   
-  //ÅäÖÃÍ¨ÓÃ¿ØÖÆ¼Ä´æÆ÷
-  TSI0->GENCS = ((TSI_GENCS_NSCN(10))  //Ã¿¸öµç¼«Ã¿´ÎÉ¨Ãè(10)´Î¡¢
-                  |(TSI_GENCS_PS(3)));  //µç¼«¾§Õñ(2^3)·ÖÆµ
-  //ÅäÖÃÉ¨Ãè¼Ä´æÆ÷
-  TSI0->SCANC = ((TSI_SCANC_EXTCHRG(3))        //0.8pFÄÚ²¿²Î¿¼µçÈİ
-                  |(TSI_SCANC_REFCHRG(31))      //32uA³äµçµçÁ÷
+  //é…ç½®é€šç”¨æ§åˆ¶å¯„å­˜å™¨
+  TSI0->GENCS = ((TSI_GENCS_NSCN(10))  //æ¯ä¸ªç”µææ¯æ¬¡æ‰«æ(10)æ¬¡ã€
+                  |(TSI_GENCS_PS(3)));  //ç”µææ™¶æŒ¯(2^3)åˆ†é¢‘
+  //é…ç½®æ‰«æå¯„å­˜å™¨
+  TSI0->SCANC = ((TSI_SCANC_EXTCHRG(3))        //0.8pFå†…éƒ¨å‚è€ƒç”µå®¹
+                  |(TSI_SCANC_REFCHRG(31))      //32uAå……ç”µç”µæµ
 #if defined(CPU_MK60DZ10)
-                  |(TSI_SCANC_DELVOL(7))        //600mV¼ä¸ôµçÑ¹
+                  |(TSI_SCANC_DELVOL(7))        //600mVé—´éš”ç”µå‹
 #endif
-                  |(TSI_SCANC_SMOD(0))          //É¨ÃèÖÜÆÚmod
-                  |(TSI_SCANC_AMPSC(0)));       //ÊäÈëÊ±ÖÓ(2^0)·ÖÆµ
-  //Ê¹ÄÜÍ¨µÀ
+                  |(TSI_SCANC_SMOD(0))          //æ‰«æå‘¨æœŸmod
+                  |(TSI_SCANC_AMPSC(0)));       //è¾“å…¥æ—¶é’Ÿ(2^0)åˆ†é¢‘
+  //ä½¿èƒ½é€šé“
   TSI0->PEN = chs;
   
-  //Ê¹ÄÜÏà¹ØÖĞ¶Ï
-  //TSI_ENDOFDCAN_INTºÍTSI_OUTOFRANGE_INTÖ»ÄÜÑ¡ÔñÆäÒ»
+  //ä½¿èƒ½ç›¸å…³ä¸­æ–­
+  //TSI_ENDOFDCAN_INTå’ŒTSI_OUTOFRANGE_INTåªèƒ½é€‰æ‹©å…¶ä¸€
   if(tsi_init_struct.TSI_EndScanIsr!=NULL && esor==TSI_ENDOFDCAN_INT)
   {
     TSI0->GENCS |= TSI_GENCS_ESOR_MASK;
@@ -115,15 +115,15 @@ uint8 LPLD_TSI_Init(TSI_InitTypeDef tsi_init_struct)
     TSI0->GENCS |= TSI_GENCS_TSIIE_MASK;  
   }
     
-  //Ê¹ÄÜTSIÄ£¿é  
+  //ä½¿èƒ½TSIæ¨¡å—  
   TSI0->GENCS |= (TSI_GENCS_TSIEN_MASK); 
  
-  //ÊÇ·ñ½øĞĞ»ù×¼ÖµĞ£Ñé
+  //æ˜¯å¦è¿›è¡ŒåŸºå‡†å€¼æ ¡éªŒ
   if(tsi_init_struct.TSI_IsInitSelfCal == TRUE)
   {
-    //Ê¹ÄÜÈí¼ş´¥·¢
+    //ä½¿èƒ½è½¯ä»¶è§¦å‘
     TSI0->GENCS |= TSI_GENCS_SWTS_MASK;
-    //µÈ´ıÉ¨Ãè½áÊø
+    //ç­‰å¾…æ‰«æç»“æŸ
     while(!(TSI0->GENCS&TSI_GENCS_EOSF_MASK)){};
     for(uint16 i=0; i<5000; i++)
     {
@@ -132,7 +132,7 @@ uint8 LPLD_TSI_Init(TSI_InitTypeDef tsi_init_struct)
         asm("NOP");
       }
     }
-    //Ìî³ä»ù×¼ÖµÊı×é¡¢ãĞÖµ¼Ä´æÆ÷
+    //å¡«å……åŸºå‡†å€¼æ•°ç»„ã€é˜ˆå€¼å¯„å­˜å™¨
     for(uint8 i=0; i<16; i++)
     {
       if((chs>>i)&0x1L)
@@ -154,7 +154,7 @@ uint8 LPLD_TSI_Init(TSI_InitTypeDef tsi_init_struct)
     }
   }
   
-  //ÖÜÆÚÉ¨ÃèÄ£Ê½orÈí¼ş´¥·¢Ä£Ê½
+  //å‘¨æœŸæ‰«ææ¨¡å¼orè½¯ä»¶è§¦å‘æ¨¡å¼
   if(mode == TSI_SCAN_PERIOD)
   {
     TSI0->GENCS |= TSI_GENCS_STM_MASK;
@@ -169,13 +169,13 @@ uint8 LPLD_TSI_Init(TSI_InitTypeDef tsi_init_struct)
 
 /*
  * LPLD_TSI_Deinit
- * TSI·´³õÊ¼»¯º¯Êı
+ * TSIååˆå§‹åŒ–å‡½æ•°
  * 
- * ²ÎÊı:
- *    ÎŞ
+ * å‚æ•°:
+ *    æ— 
  *
- * Êä³ö:
- *    ÎŞ
+ * è¾“å‡º:
+ *    æ— 
  */
 void LPLD_TSI_Deinit(void)
 {
@@ -186,21 +186,21 @@ void LPLD_TSI_Deinit(void)
   TSI0->PEN = 0;
   TSI0->SCANC = 0;
   TSI0->GENCS = 0;
-  //¹Ø±ÕTSIÄ£¿éÊ±ÖÓ
+  //å…³é—­TSIæ¨¡å—æ—¶é’Ÿ
   SIM->SCGC5 &= ~(SIM_SCGC5_TSI_MASK); 
 }
 
 /*
  * LPLD_TSI_IsChxTouched
- * Í¨µÀxµÄµç¼«ÊÇ·ñ±»´¥Ãş
+ * é€šé“xçš„ç”µææ˜¯å¦è¢«è§¦æ‘¸
  * 
- * ²ÎÊı:
- *    ch_num--Í¨µÀxµÄÊı×Ö
+ * å‚æ•°:
+ *    ch_num--é€šé“xçš„æ•°å­—
  *      |_0~15
  *
- * Êä³ö:
- *    TRUE-ÓĞ´¥Ãş
- *    FALSE-Î´´¥Ãş
+ * è¾“å‡º:
+ *    TRUE-æœ‰è§¦æ‘¸
+ *    FALSE-æœªè§¦æ‘¸
  */
 boolean LPLD_TSI_IsChxTouched(uint8 ch_num)
 { 
@@ -210,15 +210,15 @@ boolean LPLD_TSI_IsChxTouched(uint8 ch_num)
 }
 
 /*
- * TSIÖĞ¶Ï´¦Àíº¯Êı
- * ÓëÆô¶¯ÎÄ¼şstartup_K60.sÖĞµÄÖĞ¶ÏÏòÁ¿±í¹ØÁª
- * ÓÃ»§ÎŞĞèĞŞ¸Ä£¬³ÌĞò×Ô¶¯½øÈë¶ÔÓ¦Í¨µÀÖĞ¶Ïº¯Êı
+ * TSIä¸­æ–­å¤„ç†å‡½æ•°
+ * ä¸å¯åŠ¨æ–‡ä»¶startup_K60.sä¸­çš„ä¸­æ–­å‘é‡è¡¨å…³è”
+ * ç”¨æˆ·æ— éœ€ä¿®æ”¹ï¼Œç¨‹åºè‡ªåŠ¨è¿›å…¥å¯¹åº”é€šé“ä¸­æ–­å‡½æ•°
  */
 void TSI_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //¸æÖªÏµÍ³´ËÊ±ÒÑ¾­½øÈëÁËÖĞ¶Ï·şÎñ×Óº¯Êı
+  OS_ENTER_CRITICAL(); //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å·²ç»è¿›å…¥äº†ä¸­æ–­æœåŠ¡å­å‡½æ•°
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
@@ -241,6 +241,6 @@ void TSI_IRQHandler(void)
   }
 #endif   
 #if (UCOS_II > 0u)
-  OSIntExit();          //¸æÖªÏµÍ³´ËÊ±¼´½«Àë¿ªÖĞ¶Ï·şÎñ×Óº¯Êı
+  OSIntExit();          //å‘ŠçŸ¥ç³»ç»Ÿæ­¤æ—¶å³å°†ç¦»å¼€ä¸­æ–­æœåŠ¡å­å‡½æ•°
 #endif
 }

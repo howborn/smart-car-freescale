@@ -2,28 +2,28 @@
  * @file HW_ADC.h
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief ADCµ×²ãÄ£¿éÏà¹Øº¯Êý
+ * @brief ADCåº•å±‚æ¨¡å—ç›¸å…³å‡½æ•°
  *
- * ¸ü¸Ä½¨Òé:²»½¨ÒéÐÞ¸Ä
+ * æ›´æ”¹å»ºè®®:ä¸å»ºè®®ä¿®æ”¹
  *
- * °æÈ¨ËùÓÐ:±±¾©À­ÆÕÀ¼µÂµç×Ó¼¼ÊõÓÐÏÞ¹«Ë¾
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—äº¬æ‹‰æ™®å…°å¾·ç”µå­æŠ€æœ¯æœ‰é™å…¬å¸
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ±¾´úÂëÓÉÀ­ÆÕÀ¼µÂ[LPLD]¿ª·¢²¢Î¬»¤£¬²¢ÏòËùÓÐÊ¹ÓÃÕß¿ª·ÅÔ´´úÂë¡£
- * ¿ª·¢Õß¿ÉÒÔËæÒâÐÞÊ¹ÓÃ»ò¸ÄÔ´´úÂë¡£µ«±¾¶Î¼°ÒÔÉÏ×¢ÊÍÓ¦ÓèÒÔ±£Áô¡£
- * ²»µÃ¸ü¸Ä»òÉ¾³ýÔ­°æÈ¨ËùÓÐÕßÐÕÃû£¬¶þ´Î¿ª·¢Õß¿ÉÒÔ¼Ó×¢¶þ´Î°æÈ¨ËùÓÐÕß¡£
- * µ«Ó¦ÔÚ×ñÊØ´ËÐ­ÒéµÄ»ù´¡ÉÏ£¬¿ª·ÅÔ´´úÂë¡¢²»µÃ³öÊÛ´úÂë±¾Éí¡£
- * À­ÆÕÀ¼µÂ²»¸ºÔðÓÉÓÚÊ¹ÓÃ±¾´úÂëËù´øÀ´µÄÈÎºÎÊÂ¹Ê¡¢·¨ÂÉÔðÈÎ»òÏà¹Ø²»Á¼Ó°Ïì¡£
- * À­ÆÕÀ¼µÂÎÞÒåÎñ½âÊÍ¡¢ËµÃ÷±¾´úÂëµÄ¾ßÌåÔ­Àí¡¢¹¦ÄÜ¡¢ÊµÏÖ·½·¨¡£
- * ³ý·ÇÀ­ÆÕÀ¼µÂ[LPLD]ÊÚÈ¨£¬¿ª·¢Õß²»µÃ½«±¾´úÂëÓÃÓÚÉÌÒµ²úÆ·¡£
+ * æœ¬ä»£ç ç”±æ‹‰æ™®å…°å¾·[LPLD]å¼€å‘å¹¶ç»´æŠ¤ï¼Œå¹¶å‘æ‰€æœ‰ä½¿ç”¨è€…å¼€æ”¾æºä»£ç ã€‚
+ * å¼€å‘è€…å¯ä»¥éšæ„ä¿®ä½¿ç”¨æˆ–æ”¹æºä»£ç ã€‚ä½†æœ¬æ®µåŠä»¥ä¸Šæ³¨é‡Šåº”äºˆä»¥ä¿ç•™ã€‚
+ * ä¸å¾—æ›´æ”¹æˆ–åˆ é™¤åŽŸç‰ˆæƒæ‰€æœ‰è€…å§“åï¼ŒäºŒæ¬¡å¼€å‘è€…å¯ä»¥åŠ æ³¨äºŒæ¬¡ç‰ˆæƒæ‰€æœ‰è€…ã€‚
+ * ä½†åº”åœ¨éµå®ˆæ­¤åè®®çš„åŸºç¡€ä¸Šï¼Œå¼€æ”¾æºä»£ç ã€ä¸å¾—å‡ºå”®ä»£ç æœ¬èº«ã€‚
+ * æ‹‰æ™®å…°å¾·ä¸è´Ÿè´£ç”±äºŽä½¿ç”¨æœ¬ä»£ç æ‰€å¸¦æ¥çš„ä»»ä½•äº‹æ•…ã€æ³•å¾‹è´£ä»»æˆ–ç›¸å…³ä¸è‰¯å½±å“ã€‚
+ * æ‹‰æ™®å…°å¾·æ— ä¹‰åŠ¡è§£é‡Šã€è¯´æ˜Žæœ¬ä»£ç çš„å…·ä½“åŽŸç†ã€åŠŸèƒ½ã€å®žçŽ°æ–¹æ³•ã€‚
+ * é™¤éžæ‹‰æ™®å…°å¾·[LPLD]æŽˆæƒï¼Œå¼€å‘è€…ä¸å¾—å°†æœ¬ä»£ç ç”¨äºŽå•†ä¸šäº§å“ã€‚
  */
 #ifndef __HW_ADC_H__
 #define __HW_ADC_H__
 /********************************************************************/
 
-//ADCÍ¨µÀÃ¶¾Ù¶¨Òå
+//ADCé€šé“æžšä¸¾å®šä¹‰
 typedef enum AdcChnEnum
 {
   DAD0       =0,
@@ -60,47 +60,47 @@ typedef enum AdcChnEnum
   AD31       =31
 } AdcChnEnum_Type;
 
-//µ¥¶ËºÍ²î·ÖÄ£Ê½ºê¶¨Òå
-#define ADC_SE            0x00          //µ¥¶Ë²É¼¯
-#define ADC_DIFF          ADC_SC1_DIFF_MASK       //²î·Ö²É¼¯
+//å•ç«¯å’Œå·®åˆ†æ¨¡å¼å®å®šä¹‰
+#define ADC_SE            0x00          //å•ç«¯é‡‡é›†
+#define ADC_DIFF          ADC_SC1_DIFF_MASK       //å·®åˆ†é‡‡é›†
 
-//²É¼¯Ê±¼äÅäÖÃ
-#define SAMTIME_SHORT     0x00          //¶Ì²ÉÑùÊ±¼ä
-#define SAMTIME_LONG      ADC_CFG1_ADLSMP_MASK    //³¤²ÉÑùÊ±¼ä
+//é‡‡é›†æ—¶é—´é…ç½®
+#define SAMTIME_SHORT     0x00          //çŸ­é‡‡æ ·æ—¶é—´
+#define SAMTIME_LONG      ADC_CFG1_ADLSMP_MASK    //é•¿é‡‡æ ·æ—¶é—´
 
-//³¤²ÉÑùÊ±¼äºê¶¨Òå
-#define LSAMTIME_20EX     0x00          //³¤²ÉÑùÊ±¼äÔö¼Ó20¸ö¶îÍâADÊ±ÖÓ
-#define LSAMTIME_12EX     0x01          //³¤²ÉÑùÊ±¼äÔö¼Ó12¸ö¶îÍâADÊ±ÖÓ
-#define LSAMTIME_6EX      0x02          //³¤²ÉÑùÊ±¼äÔö¼Ó6¸ö¶îÍâADÊ±ÖÓ
-#define LSAMTIME_2EX      0x03          //³¤²ÉÑùÊ±¼äÔö¼Ó2¸ö¶îÍâADÊ±ÖÓ        
+//é•¿é‡‡æ ·æ—¶é—´å®å®šä¹‰
+#define LSAMTIME_20EX     0x00          //é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 20ä¸ªé¢å¤–ADæ—¶é’Ÿ
+#define LSAMTIME_12EX     0x01          //é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 12ä¸ªé¢å¤–ADæ—¶é’Ÿ
+#define LSAMTIME_6EX      0x02          //é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 6ä¸ªé¢å¤–ADæ—¶é’Ÿ
+#define LSAMTIME_2EX      0x03          //é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 2ä¸ªé¢å¤–ADæ—¶é’Ÿ        
 
-//×ª»»¾«¶Èºê¶¨Òå
-#define SE_8BIT           0x00          //µ¥¶Ë8Î»¾«¶È
-#define SE_10BIT          0x02          //µ¥¶Ë10Î»¾«¶È
-#define SE_12BIT          0x01          //µ¥¶Ë12Î»¾«¶È
-#define SE_16BIT          0x03          //µ¥¶Ë16Î»¾«¶È
-#define DIFF_9BIT         SE_8BIT       //²î·Ö9Î»¾«¶È
-#define DIFF_11BIT        SE_10BIT      //²î·Ö11Î»¾«¶È
-#define DIFF_13BIT        SE_12BIT      //²î·Ö13Î»¾«¶È
-#define DIFF_16BIT        SE_16BIT      //²î·Ö16Î»¾«¶È
+//è½¬æ¢ç²¾åº¦å®å®šä¹‰
+#define SE_8BIT           0x00          //å•ç«¯8ä½ç²¾åº¦
+#define SE_10BIT          0x02          //å•ç«¯10ä½ç²¾åº¦
+#define SE_12BIT          0x01          //å•ç«¯12ä½ç²¾åº¦
+#define SE_16BIT          0x03          //å•ç«¯16ä½ç²¾åº¦
+#define DIFF_9BIT         SE_8BIT       //å·®åˆ†9ä½ç²¾åº¦
+#define DIFF_11BIT        SE_10BIT      //å·®åˆ†11ä½ç²¾åº¦
+#define DIFF_13BIT        SE_12BIT      //å·®åˆ†13ä½ç²¾åº¦
+#define DIFF_16BIT        SE_16BIT      //å·®åˆ†16ä½ç²¾åº¦
 
-//²ÉÑùÓ²¼þÆ½¾ùºê¶¨Òå
-#define HW_DISAVG         0x00                         //½ûÓÃÓ²¼þÆ½¾ù
-#define HW_4AVG           (0x00|ADC_SC3_AVGE_MASK)     //4´ÎÓ²¼þÆ½¾ù
-#define HW_8AVG           (0x01|ADC_SC3_AVGE_MASK)     //8´ÎÓ²¼þÆ½¾ù
-#define HW_16AVG          (0x02|ADC_SC3_AVGE_MASK)     //16´ÎÓ²¼þÆ½¾ù
-#define HW_32AVG          (0x03|ADC_SC3_AVGE_MASK)     //32´ÎÓ²¼þÆ½¾ù
+//é‡‡æ ·ç¡¬ä»¶å¹³å‡å®å®šä¹‰
+#define HW_DISAVG         0x00                         //ç¦ç”¨ç¡¬ä»¶å¹³å‡
+#define HW_4AVG           (0x00|ADC_SC3_AVGE_MASK)     //4æ¬¡ç¡¬ä»¶å¹³å‡
+#define HW_8AVG           (0x01|ADC_SC3_AVGE_MASK)     //8æ¬¡ç¡¬ä»¶å¹³å‡
+#define HW_16AVG          (0x02|ADC_SC3_AVGE_MASK)     //16æ¬¡ç¡¬ä»¶å¹³å‡
+#define HW_32AVG          (0x03|ADC_SC3_AVGE_MASK)     //32æ¬¡ç¡¬ä»¶å¹³å‡
 
-//ADC¸´ÓÃÒý½ÅÑ¡Ôñ
-#define MUX_ADXXA         0x00          //Ñ¡ÔñADxxaÍ¨µÀ               
-#define MUX_ADXXB         ADC_CFG2_MUXSEL_MASK          //Ñ¡ÔñADxxbÍ¨µÀ  
+//ADCå¤ç”¨å¼•è„šé€‰æ‹©
+#define MUX_ADXXA         0x00          //é€‰æ‹©ADxxaé€šé“               
+#define MUX_ADXXB         ADC_CFG2_MUXSEL_MASK          //é€‰æ‹©ADxxbé€šé“  
 
-//Ó²¼þ´¥·¢ÅäÖÃ
-#define HW_TRGDSABLE      0  //½ûÓÃÓ²¼þ´¥·¢
-#define HW_TRGA           (ADC_SC2_ADTRG_MASK)  //SC1AÓ²¼þ´¥·¢
-#define HW_TRGB           (ADC_SC2_ADTRG_MASK|0x01)  //SC1BÓ²¼þ´¥·¢
+//ç¡¬ä»¶è§¦å‘é…ç½®
+#define HW_TRGDSABLE      0  //ç¦ç”¨ç¡¬ä»¶è§¦å‘
+#define HW_TRGA           (ADC_SC2_ADTRG_MASK)  //SC1Aç¡¬ä»¶è§¦å‘
+#define HW_TRGB           (ADC_SC2_ADTRG_MASK|0x01)  //SC1Bç¡¬ä»¶è§¦å‘
 
-//PGAÔöÒæºê¶¨Òå
+//PGAå¢žç›Šå®å®šä¹‰
 #define PGA_1GAIN         (0x00|0x80)
 #define PGA_2GAIN         (0x01|0x80)
 #define PGA_4GAIN         (0x02|0x80)
@@ -109,198 +109,198 @@ typedef enum AdcChnEnum
 #define PGA_32GAIN        (0x05|0x80)
 #define PGA_64GAIN        (0x06|0x80)
 
-//ADCÊ±ÖÓ·ÖÆµºê¶¨Òå
+//ADCæ—¶é’Ÿåˆ†é¢‘å®å®šä¹‰
 #define ADIV_1            0x00
 #define ADIV_2            0x01
 #define ADIV_4            0x02
 #define ADIV_8            0x03
 
-//×ÜÏß·ÖÆµºê¶¨Òå
+//æ€»çº¿åˆ†é¢‘å®å®šä¹‰
 #define ADICLK_BUS        0x00
 #define ADICLK_BUS_2      0x01
 #define ADICLK_ALTCLK     0x02
 #define ADICLK_ADACK      0x03
 
-//ADC²Î¿¼Ô´ºê¶¨Òå
+//ADCå‚è€ƒæºå®å®šä¹‰
 #define REFSEL_EXT        0x00
 #define REFSEL_ALT        0x01
 #define REFSEL_RES        0x02     
 #define REFSEL_RES_EXT    0x03   
 
-//ADCÄ£¿éÖÐ¶Ï»Øµ÷º¯ÊýÀàÐÍ
+//ADCæ¨¡å—ä¸­æ–­å›žè°ƒå‡½æ•°ç±»åž‹
 typedef void (*ADC_ISR_CALLBACK)(void);
 
-//ADCÄ£¿é³õÊ¼»¯½á¹¹Ìå£¬ÓÃÓÚÅäÖÃADC¸÷Ïî²ÎÊý
+//ADCæ¨¡å—åˆå§‹åŒ–ç»“æž„ä½“ï¼Œç”¨äºŽé…ç½®ADCå„é¡¹å‚æ•°
 typedef struct
 {    
   /*
-    ÃèÊö£º
-      Ñ¡ÔñADCx
-    È¡Öµ£º
-      ADC0¡¢ADC1
-      <×¢:Ö»ÓÐMK60FÏµÁÐº¬ÓÐADC2,ADC3>
-      ADC2¡¢ADC3
-    ³õÊ¼»¯£º
-      ±ØÐë³õÊ¼»¯
+    æè¿°ï¼š
+      é€‰æ‹©ADCx
+    å–å€¼ï¼š
+      ADC0ã€ADC1
+      <æ³¨:åªæœ‰MK60Fç³»åˆ—å«æœ‰ADC2,ADC3>
+      ADC2ã€ADC3
+    åˆå§‹åŒ–ï¼š
+      å¿…é¡»åˆå§‹åŒ–
   */
   ADC_Type *ADC_Adcx;
   
   /*
-    ÃèÊö£º
-      ×ª»»Ä£Ê½Ñ¡Ôñ
-    È¡Öµ£º
-      ADC_SE-µ¥¶Ë²É¼¯
-      ADC_DIFF-²î·Ö·Ö¼¶
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏADC_SE
+    æè¿°ï¼š
+      è½¬æ¢æ¨¡å¼é€‰æ‹©
+    å–å€¼ï¼š
+      ADC_SE-å•ç«¯é‡‡é›†
+      ADC_DIFF-å·®åˆ†åˆ†çº§
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤ADC_SE
   */
   uint8 ADC_DiffMode;
     
   /*
-    ÃèÊö£º
-      ×ª»»¾«¶ÈÑ¡Ôñ
-    È¡Öµ£º
-      SE_8BIT-µ¥¶Ë8Î»¾«¶È
-      SE_10BIT-µ¥¶Ë10Î»¾«¶È
-      SE_12BIT-µ¥¶Ë12Î»¾«¶È
-      SE_16BIT-µ¥¶Ë16Î»¾«¶È
-      DIFF_9BIT-²î·Ö9Î»¾«¶È
-      DIFF_11BIT-²î·Ö11Î»¾«¶È
-      DIFF_13BIT-²î·Ö13Î»¾«¶È
-      DIFF_16BIT-²î·Ö16Î»¾«¶È
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏSE_8BIT
+    æè¿°ï¼š
+      è½¬æ¢ç²¾åº¦é€‰æ‹©
+    å–å€¼ï¼š
+      SE_8BIT-å•ç«¯8ä½ç²¾åº¦
+      SE_10BIT-å•ç«¯10ä½ç²¾åº¦
+      SE_12BIT-å•ç«¯12ä½ç²¾åº¦
+      SE_16BIT-å•ç«¯16ä½ç²¾åº¦
+      DIFF_9BIT-å·®åˆ†9ä½ç²¾åº¦
+      DIFF_11BIT-å·®åˆ†11ä½ç²¾åº¦
+      DIFF_13BIT-å·®åˆ†13ä½ç²¾åº¦
+      DIFF_16BIT-å·®åˆ†16ä½ç²¾åº¦
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤SE_8BIT
   */
   uint8 ADC_BitMode;
     
   /*
-    ÃèÊö£º
-      ²ÉÑùÊ±¼äÑ¡Ôñ
-    È¡Öµ£º
-      SAMTIME_SHORT-¶Ì²ÉÑùÊ±¼ä
-      SAMTIME_LONG-³¤²ÉÑùÊ±¼ä
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏSAMTIME_SHORT
+    æè¿°ï¼š
+      é‡‡æ ·æ—¶é—´é€‰æ‹©
+    å–å€¼ï¼š
+      SAMTIME_SHORT-çŸ­é‡‡æ ·æ—¶é—´
+      SAMTIME_LONG-é•¿é‡‡æ ·æ—¶é—´
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤SAMTIME_SHORT
   */
   uint8 ADC_SampleTimeCfg;
     
   /*
-    ÃèÊö£º
-      ³¤²ÉÑùÊ±¼ä¶îÍâADÊ±ÖÓÑ¡Ôñ
-    È¡Öµ£º
-      LSAMTIME_20EX-³¤²ÉÑùÊ±¼äÔö¼Ó20¸ö¶îÍâADÊ±ÖÓ
-      LSAMTIME_12EX-³¤²ÉÑùÊ±¼äÔö¼Ó12¸ö¶îÍâADÊ±ÖÓ
-      LSAMTIME_6EX-³¤²ÉÑùÊ±¼äÔö¼Ó6¸ö¶îÍâADÊ±ÖÓ
-      LSAMTIME_2EX-³¤²ÉÑùÊ±¼äÔö¼Ó2¸ö¶îÍâADÊ±ÖÓ 
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏLSAMTIME_20EX
+    æè¿°ï¼š
+      é•¿é‡‡æ ·æ—¶é—´é¢å¤–ADæ—¶é’Ÿé€‰æ‹©
+    å–å€¼ï¼š
+      LSAMTIME_20EX-é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 20ä¸ªé¢å¤–ADæ—¶é’Ÿ
+      LSAMTIME_12EX-é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 12ä¸ªé¢å¤–ADæ—¶é’Ÿ
+      LSAMTIME_6EX-é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 6ä¸ªé¢å¤–ADæ—¶é’Ÿ
+      LSAMTIME_2EX-é•¿é‡‡æ ·æ—¶é—´å¢žåŠ 2ä¸ªé¢å¤–ADæ—¶é’Ÿ 
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤LSAMTIME_20EX
   */
   uint8 ADC_LongSampleTimeSel;
     
   /*
-    ÃèÊö£º
-      Ó²¼þÆ½¾ù´ÎÊýÑ¡Ôñ
-    È¡Öµ£º
-      HW_DISAVG-½ûÓÃÓ²¼þÆ½¾ù
-      HW_4AVG-4´ÎÓ²¼þÆ½¾ù
-      HW_8AVG-8´ÎÓ²¼þÆ½¾ù
-      HW_16AVG-16´ÎÓ²¼þÆ½¾ù
-      HW_32AVG-32´ÎÓ²¼þÆ½¾ù
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏHW_DISAVG
+    æè¿°ï¼š
+      ç¡¬ä»¶å¹³å‡æ¬¡æ•°é€‰æ‹©
+    å–å€¼ï¼š
+      HW_DISAVG-ç¦ç”¨ç¡¬ä»¶å¹³å‡
+      HW_4AVG-4æ¬¡ç¡¬ä»¶å¹³å‡
+      HW_8AVG-8æ¬¡ç¡¬ä»¶å¹³å‡
+      HW_16AVG-16æ¬¡ç¡¬ä»¶å¹³å‡
+      HW_32AVG-32æ¬¡ç¡¬ä»¶å¹³å‡
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤HW_DISAVG
   */
   uint8 ADC_HwAvgSel;
     
   /*
-    ÃèÊö£º
-      ¿É±à³ÌÔöÒæÑ¡Ôñ£¬Ê¹ÓÃÏàÓ¦PGAÊäÈëÍ¨µÀ²ÅÓÐÐ§
-    È¡Öµ£º
-      PGA_1GAIN-1±¶ÔöÒæ
-      PGA_2GAIN-2±¶ÔöÒæ
-      PGA_4GAIN-4±¶ÔöÒæ
-      PGA_8GAIN-8±¶ÔöÒæ
-      PGA_16GAIN-16±¶ÔöÒæ
-      PGA_32GAIN-32±¶ÔöÒæ
-      PGA_64GAIN-64±¶ÔöÒæ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏPGA_1GAIN
+    æè¿°ï¼š
+      å¯ç¼–ç¨‹å¢žç›Šé€‰æ‹©ï¼Œä½¿ç”¨ç›¸åº”PGAè¾“å…¥é€šé“æ‰æœ‰æ•ˆ
+    å–å€¼ï¼š
+      PGA_1GAIN-1å€å¢žç›Š
+      PGA_2GAIN-2å€å¢žç›Š
+      PGA_4GAIN-4å€å¢žç›Š
+      PGA_8GAIN-8å€å¢žç›Š
+      PGA_16GAIN-16å€å¢žç›Š
+      PGA_32GAIN-32å€å¢žç›Š
+      PGA_64GAIN-64å€å¢žç›Š
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤PGA_1GAIN
   */
   uint8 ADC_PgaGain;
     
   /*
-    ÃèÊö£º
-      ADCÊäÈëÍ¨µÀa\b¸´ÓÃÒý½ÅÑ¡Ôñ
-    È¡Öµ£º
-      MUX_ADXXA-AÊäÈëÍ¨µÀ
-      MUX_ADXXB-BÊäÈëÍ¨µÀ
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏMUX_ADXXA
+    æè¿°ï¼š
+      ADCè¾“å…¥é€šé“a\bå¤ç”¨å¼•è„šé€‰æ‹©
+    å–å€¼ï¼š
+      MUX_ADXXA-Aè¾“å…¥é€šé“
+      MUX_ADXXB-Bè¾“å…¥é€šé“
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤MUX_ADXXA
   */
   uint8 ADC_MuxSel;
     
   /*
-    ÃèÊö£º
-      ADC³õÊ¼»¯×Ô¶¯Ð£×¼¹¦ÄÜÊ¹ÄÜ
-    È¡Öµ£º
-      TRUE-Ê¹ÄÜ×Ô¶¯Ð£×¼
-      FALSE-½ûÓÃ×Ô¶¯Ð£×¼
-    ³õÊ¼»¯£º
-      ½¨Òé³õÊ¼»¯ÎªTRUE
+    æè¿°ï¼š
+      ADCåˆå§‹åŒ–è‡ªåŠ¨æ ¡å‡†åŠŸèƒ½ä½¿èƒ½
+    å–å€¼ï¼š
+      TRUE-ä½¿èƒ½è‡ªåŠ¨æ ¡å‡†
+      FALSE-ç¦ç”¨è‡ªåŠ¨æ ¡å‡†
+    åˆå§‹åŒ–ï¼š
+      å»ºè®®åˆå§‹åŒ–ä¸ºTRUE
   */
   boolean ADC_CalEnable;
     
   /*
-    ÃèÊö£º
-      ADCÓ²¼þ´¥·¢ÅäÖÃ
-    È¡Öµ£º
-      HW_TRGDSABLE-½ûÓÃÓ²¼þ´¥·¢
-      HW_TRGA-A×ª»»Í¨µÀÓ²¼þ´¥·¢
-      HW_TRGB-B×ª»»Í¨µÀÓ²¼þ´¥·¢
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏHW_TRGDSABLE
+    æè¿°ï¼š
+      ADCç¡¬ä»¶è§¦å‘é…ç½®
+    å–å€¼ï¼š
+      HW_TRGDSABLE-ç¦ç”¨ç¡¬ä»¶è§¦å‘
+      HW_TRGA-Aè½¬æ¢é€šé“ç¡¬ä»¶è§¦å‘
+      HW_TRGB-Bè½¬æ¢é€šé“ç¡¬ä»¶è§¦å‘
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤HW_TRGDSABLE
   */
   uint8 ADC_HwTrgCfg;
     
   /*
-    ÃèÊö£º
-      Ê¹ÄÜADC×¼»»Íê³É´¥·¢DMAÇëÇó
-    È¡Öµ£º
-      TRUE-Ê¹ÄÜDMA
-      FALSE-½ûÓÃDMA
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯£¬Ä¬ÈÏFALSE
+    æè¿°ï¼š
+      ä½¿èƒ½ADCå‡†æ¢å®Œæˆè§¦å‘DMAè¯·æ±‚
+    å–å€¼ï¼š
+      TRUE-ä½¿èƒ½DMA
+      FALSE-ç¦ç”¨DMA
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ï¼Œé»˜è®¤FALSE
   */ 
   boolean ADC_DmaEnable;
 
   /*
-    ÃèÊö£º
-      ADCxÖÐ¶Ï»Øµ÷º¯Êý
-    È¡Öµ£º
-      º¯Êý±ØÐëÎªÎÞ·µ»ØÖµ,ÎÞ²ÎÊý(eg. void isr(void);)
-    ³õÊ¼»¯£º
-      ²»±ØÐë³õÊ¼»¯¡¢ÈçÎ´³õÊ¼»¯Ôò²»»á´¥·¢ÖÐ¶Ï
+    æè¿°ï¼š
+      ADCxä¸­æ–­å›žè°ƒå‡½æ•°
+    å–å€¼ï¼š
+      å‡½æ•°å¿…é¡»ä¸ºæ— è¿”å›žå€¼,æ— å‚æ•°(eg. void isr(void);)
+    åˆå§‹åŒ–ï¼š
+      ä¸å¿…é¡»åˆå§‹åŒ–ã€å¦‚æœªåˆå§‹åŒ–åˆ™ä¸ä¼šè§¦å‘ä¸­æ–­
   */
   ADC_ISR_CALLBACK ADC_Isr; 
   
 } ADC_InitTypeDef;
 
-//ADCÍ¨ÓÃ³õÊ¼»¯º¯Êý£¬Ñ¡ÔñADCx¡¢²É¼¯Ä£Ê½¡¢¾«¶ÈµÈ²ÎÊý
+//ADCé€šç”¨åˆå§‹åŒ–å‡½æ•°ï¼Œé€‰æ‹©ADCxã€é‡‡é›†æ¨¡å¼ã€ç²¾åº¦ç­‰å‚æ•°
 uint8 LPLD_ADC_Init(ADC_InitTypeDef);
-//ADC·´³õÊ¼»¯º¯Êý£¬½ûÓÃADCÄ£¿é
+//ADCååˆå§‹åŒ–å‡½æ•°ï¼Œç¦ç”¨ADCæ¨¡å—
 uint8 LPLD_ADC_Deinit(ADC_InitTypeDef);
-//Ê¹ÄÜADCxÏàÓ¦×ª»»Í¨µÀµÄAD²É¼¯¹¦ÄÜ
+//ä½¿èƒ½ADCxç›¸åº”è½¬æ¢é€šé“çš„ADé‡‡é›†åŠŸèƒ½
 uint8 LPLD_ADC_Chn_Enable(ADC_Type *, AdcChnEnum_Type);
-//Èí¼þ´¥·¢Ä£Ê½»ñÈ¡AD×ª»»½á¹û
+//è½¯ä»¶è§¦å‘æ¨¡å¼èŽ·å–ADè½¬æ¢ç»“æžœ
 uint16 LPLD_ADC_Get(ADC_Type *, AdcChnEnum_Type);
-//Ê¹ÄÜADCxÖÐ¶Ï
+//ä½¿èƒ½ADCxä¸­æ–­
 uint8 LPLD_ADC_EnableIrq(ADC_InitTypeDef);
-//½ûÓÃADCxÖÐ¶Ï
+//ç¦ç”¨ADCxä¸­æ–­
 uint8 LPLD_ADC_DisableIrq(ADC_InitTypeDef);
-//Ê¹ÄÜADCx×ª»»Í¨µÀ£¬ÓÃÓÚÈí¼þÖÐ¶Ï¡¢Ó²¼þ´¥·¢µÈÄ£Ê½
+//ä½¿èƒ½ADCxè½¬æ¢é€šé“ï¼Œç”¨äºŽè½¯ä»¶ä¸­æ–­ã€ç¡¬ä»¶è§¦å‘ç­‰æ¨¡å¼
 void LPLD_ADC_EnableConversion(ADC_Type *, AdcChnEnum_Type, uint8, boolean);
-//»ñÈ¡AD×ª»»½á¹û
+//èŽ·å–ADè½¬æ¢ç»“æžœ
 uint16 LPLD_ADC_GetResult(ADC_Type *, uint8);
-//»ñÈ¡SC1¼Ä´æÆ÷ÖÐCOCOÎ»ÖÃ1µÄ±àºÅ
+//èŽ·å–SC1å¯„å­˜å™¨ä¸­COCOä½ç½®1çš„ç¼–å·
 uint8 LPLD_ADC_GetSC1nCOCO(ADC_Type *);
 
 #endif /* __HW_ADC_H__ */

@@ -2,42 +2,42 @@
  * @file HW_UART.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief UART�ײ�ģ����غ���
+ * @brief UART底层模块相关函数
  *
- * ���Ľ���:�������޸�
+ * 更改建议:不建议修改
  *
- * ��Ȩ����:�����������µ��Ӽ������޹�˾
+ * 版权所有:北京拉普兰德电子技术有限公司
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ����������������[LPLD]������ά������������ʹ���߿���Դ���롣
- * �����߿���������ʹ�û��Դ���롣�����μ�����ע��Ӧ���Ա�����
- * ���ø��Ļ�ɾ��ԭ��Ȩ���������������ο����߿��Լ�ע���ΰ�Ȩ�����ߡ�
- * ��Ӧ�����ش�Э��Ļ����ϣ�����Դ���롢���ó��۴��뱾����
- * �������²���������ʹ�ñ��������������κ��¹ʡ��������λ���ز���Ӱ�졣
- * ����������������͡�˵��������ľ���ԭ�������ܡ�ʵ�ַ�����
- * ������������[LPLD]��Ȩ�������߲��ý�������������ҵ��Ʒ��
+ * 本代码由拉普兰德[LPLD]开发并维护，并向所有使用者开放源代码。
+ * 开发者可以随意修使用或改源代码。但本段及以上注释应予以保留。
+ * 不得更改或删除原版权所有者姓名，二次开发者可以加注二次版权所有者。
+ * 但应在遵守此协议的基础上，开放源代码、不得出售代码本身。
+ * 拉普兰德不负责由于使用本代码所带来的任何事故、法律责任或相关不良影响。
+ * 拉普兰德无义务解释、说明本代码的具体原理、功能、实现方法。
+ * 除非拉普兰德[LPLD]授权，开发者不得将本代码用于商业产品。
  */
 #include "common.h"
 #include "HW_UART.h"
 
-//�û������жϺ�����ڵ�ַ����
+//用户接收中断函数入口地址数组
 UART_ISR_CALLBACK UART_R_ISR[6];
-//�û������жϺ�����ڵ�ַ����
+//用户发送中断函数入口地址数组
 UART_ISR_CALLBACK UART_T_ISR[6];  
 
 
 /*
  * LPLD_UART_Init
- * ��ʼ��UARTͨ���������ʡ����ͽ�������
+ * 初始化UART通道、波特率、发送接收引脚
  * 
- * ����:
- *    uart_init_structure--UART��ʼ���ṹ�壬
- *                        ���嶨���UART_InitTypeDef
+ * 参数:
+ *    uart_init_structure--UART初始化结构体，
+ *                        具体定义见UART_InitTypeDef
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 void LPLD_UART_Init(UART_InitTypeDef uart_init_structure)
@@ -57,7 +57,7 @@ void LPLD_UART_Init(UART_InitTypeDef uart_init_structure)
     baud = 9600;
   }
   
-  //ʹ��ѡ�е�UART����ͨ��ʱ�ӣ���ӦGPIO��UART���ù���   
+  //使能选中的UART串口通道时钟，相应GPIO的UART复用功能   
   if(uartx == UART0)
   {
     x = 0;
@@ -166,30 +166,30 @@ void LPLD_UART_Init(UART_InitTypeDef uart_init_structure)
     }
   }
   
-  //�����ú������Ĵ���ǰ���ȹرշ������ͽ�����
+  //在配置好其他寄存器前，先关闭发送器和接收器
   uartx->C2 &= ~(UART_C2_TE_MASK | UART_C2_RE_MASK );
   
-  //����UARTΪ 8λ, ����żУ�� */
+  //配置UART为 8位, 无奇偶校验 */
   uartx->C1 = 0;	
   
-  //���㲨����
+  //计算波特率
   sbr = (uint16)((sysclk)/(baud * 16));
   
-  //����UARTx_BDH�Ĵ����г���SBR��ֵ
+  //保存UARTx_BDH寄存器中除了SBR的值
   temp = uartx->BDH & ~(UART_BDH_SBR(0x1F));
   
   uartx->BDH = temp |  UART_BDH_SBR(((sbr & 0x1F00) >> 8));
   uartx->BDL = (uint8)(sbr & UART_BDL_SBR_MASK);
   
-  //���ò����ʵ�΢������
+  //配置波特率的微调分数
   brfa = (((sysclk*32)/(baud * 16)) - (sbr * 32));
   
-  //����UARTx_C4�Ĵ����г���BRFA��ֵ
+  //保存UARTx_C4寄存器中除了BRFA的值
   temp = uartx->C4 & ~(UART_C4_BRFA(0x1F));
   
   uartx->C4 = temp |  UART_C4_BRFA(brfa);    
   
-  //���÷��ͽ����ж�
+  //配置发送接收中断
   if(uart_init_structure.UART_RxIntEnable == TRUE && rx_isr != NULL)
   {
     uartx->C2 |= UART_C2_RIE_MASK; 
@@ -209,16 +209,16 @@ void LPLD_UART_Init(UART_InitTypeDef uart_init_structure)
     uartx->C2 &= ~(UART_C2_TIE_MASK); 
   }
   
-  //ʹ�ܷ������ͽ�����
+  //使能发送器和接收器
   uartx->C2 |= (UART_C2_TE_MASK | UART_C2_RE_MASK );    
 }
 
 /*
  * LPLD_UART_GetChar
- * ���ڲ�ѯ��ʽ��ȡһ���ֽ�
+ * 串口查询方式读取一个字节
  * 
- * ����:
- *    uartx--UARTģ���
+ * 参数:
+ *    uartx--UART模块号
  *      |__UART0          --UART0
  *      |__UART1          --UART1
  *      |__UART2          --UART2
@@ -226,26 +226,26 @@ void LPLD_UART_Init(UART_InitTypeDef uart_init_structure)
  *      |__UART4          --UART4
  *      |__UART5          --UART5
  *
- * ���:
- *    ���ڽ��յ�1���ֽ�
+ * 输出:
+ *    串口接收的1个字节
  *
  */
 int8 LPLD_UART_GetChar(UART_Type *uartx)
 {
-  //�ȴ����ݽ���
+  //等待数据接收
   while (!(uartx->S1 & UART_S1_RDRF_MASK));
   
-  //���ؽ��յ�1���ֽ�����
+  //返回接收的1个字节数据
   return uartx->D;
 }
 
 /********************************************************************/
 /*
  * LPLD_UART_GetChar_Present
- * ����Ƿ���յ��ַ�
+ * 检查是否接收到字符
  * 
- * ����:
- *    uartx--UARTģ���
+ * 参数:
+ *    uartx--UART模块号
  *      |__UART0          --UART0
  *      |__UART1          --UART1
  *      |__UART2          --UART2
@@ -253,9 +253,9 @@ int8 LPLD_UART_GetChar(UART_Type *uartx)
  *      |__UART4          --UART4
  *      |__UART5          --UART5
  *
- * ���:
- *  0       û�н��յ��ַ�
- *  1       �Ѿ����յ��ַ�
+ * 输出:
+ *  0       没有接收到字符
+ *  1       已经接收到字符
  */
 int32 LPLD_UART_GetChar_Present(UART_Type *uartx)
 {
@@ -264,49 +264,49 @@ int32 LPLD_UART_GetChar_Present(UART_Type *uartx)
 
 /*
  * LPLD_UART_PutChar
- * ���ڲ�ѯ��ʽ����һ���ֽ�
+ * 串口查询方式发送一个字节
  * 
- * ����:
- *    uartx--UARTģ���
+ * 参数:
+ *    uartx--UART模块号
  *      |__UART0          --UART0
  *      |__UART1          --UART1
  *      |__UART2          --UART2
  *      |__UART3          --UART3
  *      |__UART4          --UART4
  *      |__UART5          --UART5
- *    ch--�����͵�1���ֽ�
+ *    ch--待发送的1个字节
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 void LPLD_UART_PutChar(UART_Type *uartx, int8 ch)
 {
-  //�ȴ�FIFO׼������
+  //等待FIFO准备就绪
   while(!(uartx->S1 & UART_S1_TDRE_MASK));
   
-  //��Ҫ���͵�1���ֽڷ���UART���ݼĴ���
+  //将要发送的1个字节发给UART数据寄存器
   uartx->D = (uint8)ch;
 }
 
 
 /*
  * LPLD_UART_PutCharArr
- * ���ڲ�ѯ��ʽ�����ֽ�������
+ * 串口查询方式发送字节型数组
  * 
- * ����:
- *    uartx--UARTģ���
+ * 参数:
+ *    uartx--UART模块号
  *      |__UART0          --UART0
  *      |__UART1          --UART1
  *      |__UART2          --UART2
  *      |__UART3          --UART3
  *      |__UART4          --UART4
  *      |__UART5          --UART5
- *    *ch--�����͵��ֽ�����ͷ��ַ
- *    len--�ֽ����鳤��
+ *    *ch--待发送的字节数组头地址
+ *    len--字节数组长度
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 void LPLD_UART_PutCharArr(UART_Type *uartx, int8 *ch, int32 len)
@@ -319,14 +319,14 @@ void LPLD_UART_PutCharArr(UART_Type *uartx, int8 *ch, int32 len)
 
 /*
  * LPLD_UART_EnableIrq
- * ʹ�ܴ������ݽ����ж�
+ * 使能串口数据接收中断
  * 
- * ����:
- *    uart_init_structure--UART��ʼ���ṹ�壬
- *                        ���嶨���UART_InitTypeDef
+ * 参数:
+ *    uart_init_structure--UART初始化结构体，
+ *                        具体定义见UART_InitTypeDef
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 void LPLD_UART_EnableIrq(UART_InitTypeDef uart_init_structure)
@@ -359,19 +359,19 @@ void LPLD_UART_EnableIrq(UART_InitTypeDef uart_init_structure)
 
 /*
  * LPLD_UART_DisableIrq
- * ���ô������ݽ����ж�
+ * 禁用串口数据接收中断
  * 
- * ����:
- *    uart_init_structure--UART��ʼ���ṹ�壬
- *                        ���嶨���UART_InitTypeDef
+ * 参数:
+ *    uart_init_structure--UART初始化结构体，
+ *                        具体定义见UART_InitTypeDef
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 void LPLD_UART_DisableIrq(UART_InitTypeDef uart_init_structure)
 {
-  //�����ж������ʹ����Ӧ�ж�
+  //根据中断请求号使能相应中断
   if(uart_init_structure.UART_Uartx == UART0)
     disable_irq(UART0_RX_TX_IRQn);
   else if(uart_init_structure.UART_Uartx == UART1)
@@ -386,158 +386,158 @@ void LPLD_UART_DisableIrq(UART_InitTypeDef uart_init_structure)
     disable_irq(UART5_RX_TX_IRQn);
 }
 
-//HW���жϺ������û��������
+//HW层中断函数，用户无需调用
 void UART0_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //��������жϺ���
+  //进入接收中断函数
   if((UART0->S1 & UART_S1_RDRF_MASK) && (UART0->C2 & UART_C2_RIE_MASK))
   {
     UART_R_ISR[0]();
   }
-  //���뷢���жϺ���
+  //进入发送中断函数
   if((UART0->S1 & UART_S1_TDRE_MASK) && (UART0->C2 & UART_C2_TIE_MASK))
   {
     UART_T_ISR[0]();
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
-//HW���жϺ������û��������
+//HW层中断函数，用户无需调用
 void UART1_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //��������жϺ���
+  //进入接收中断函数
   if((UART1->S1 & UART_S1_RDRF_MASK) && (UART1->C2 & UART_C2_RIE_MASK))
   {
     UART_R_ISR[1]();
   }
-  //���뷢���жϺ���
+  //进入发送中断函数
   if((UART1->S1 & UART_S1_TDRE_MASK) && (UART1->C2 & UART_C2_TIE_MASK))
   {
     UART_T_ISR[1]();
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
-//HW���жϺ������û��������
+//HW层中断函数，用户无需调用
 void UART2_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //��������жϺ���
+  //进入接收中断函数
   if((UART2->S1 & UART_S1_RDRF_MASK) && (UART2->C2 & UART_C2_RIE_MASK))
   {
     UART_R_ISR[2]();
   }
-  //���뷢���жϺ���
+  //进入发送中断函数
   if((UART2->S1 & UART_S1_TDRE_MASK) && (UART2->C2 & UART_C2_TIE_MASK))
   {
     UART_T_ISR[2]();
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
-//HW���жϺ������û��������
+//HW层中断函数，用户无需调用
 void UART3_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //��������жϺ���
+  //进入接收中断函数
   if((UART3->S1 & UART_S1_RDRF_MASK) && (UART3->C2 & UART_C2_RIE_MASK))
   {
     UART_R_ISR[3]();
   }
-  //���뷢���жϺ���
+  //进入发送中断函数
   if((UART3->S1 & UART_S1_TDRE_MASK) && (UART3->C2 & UART_C2_TIE_MASK))
   {
     UART_T_ISR[3]();
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
-//HW���жϺ������û��������
+//HW层中断函数，用户无需调用
 void UART4_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //��������жϺ���
+  //进入接收中断函数
   if((UART4->S1 & UART_S1_RDRF_MASK) && (UART4->C2 & UART_C2_RIE_MASK))
   {
     UART_R_ISR[4]();
   }
-  //���뷢���жϺ���
+  //进入发送中断函数
   if((UART4->S1 & UART_S1_TDRE_MASK) && (UART4->C2 & UART_C2_TIE_MASK))
   {
     UART_T_ISR[4]();
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
-//HW���жϺ������û��������
+//HW层中断函数，用户无需调用
 void UART5_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
   
-  //��������жϺ���
+  //进入接收中断函数
   if((UART5->S1 & UART_S1_RDRF_MASK) && (UART5->C2 & UART_C2_RIE_MASK))
   {
     UART_R_ISR[5]();
   }
-  //���뷢���жϺ���
+  //进入发送中断函数
   if((UART5->S1 & UART_S1_TDRE_MASK) && (UART5->C2 & UART_C2_TIE_MASK))
   {
     UART_T_ISR[5]();
   }
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }

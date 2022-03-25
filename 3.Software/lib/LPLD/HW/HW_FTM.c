@@ -2,27 +2,27 @@
  * @file HW_FTM.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief FTM�ײ�ģ����غ���
+ * @brief FTM底层模块相关函数
  *
- * ���Ľ���:�������޸�
+ * 更改建议:不建议修改
  *
- * ��Ȩ����:�����������µ��Ӽ������޹�˾
+ * 版权所有:北京拉普兰德电子技术有限公司
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ����������������[LPLD]������ά������������ʹ���߿���Դ���롣
- * �����߿���������ʹ�û��Դ���롣�����μ�����ע��Ӧ���Ա�����
- * ���ø��Ļ�ɾ��ԭ��Ȩ���������������ο����߿��Լ�ע���ΰ�Ȩ�����ߡ�
- * ��Ӧ�����ش�Э��Ļ����ϣ�����Դ���롢���ó��۴��뱾����
- * �������²���������ʹ�ñ��������������κ��¹ʡ��������λ���ز���Ӱ�졣
- * ����������������͡�˵��������ľ���ԭ�������ܡ�ʵ�ַ�����
- * ������������[LPLD]��Ȩ�������߲��ý�������������ҵ��Ʒ��
+ * 本代码由拉普兰德[LPLD]开发并维护，并向所有使用者开放源代码。
+ * 开发者可以随意修使用或改源代码。但本段及以上注释应予以保留。
+ * 不得更改或删除原版权所有者姓名，二次开发者可以加注二次版权所有者。
+ * 但应在遵守此协议的基础上，开放源代码、不得出售代码本身。
+ * 拉普兰德不负责由于使用本代码所带来的任何事故、法律责任或相关不良影响。
+ * 拉普兰德无义务解释、说明本代码的具体原理、功能、实现方法。
+ * 除非拉普兰德[LPLD]授权，开发者不得将本代码用于商业产品。
  */
 #include "common.h"
 #include "HW_FTM.h"
 
-//�û��Զ����жϷ���������
+//用户自定义中断服务函数数组
 #if (defined(CPU_MK60DZ10))
 FTM_ISR_CALLBACK FTM_ISR[3];
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
@@ -39,24 +39,24 @@ static uint8 LPLD_FTM_PinDeinit(FTM_Type *, FtmChnEnum_Type);
 
 /*
  * LPLD_FTM_Init
- * FTMģ��ͨ�ó�ʼ�����ɳ�ʼ��ΪPWM�����벶���������롢˫�߲���ģʽ
+ * FTM模块通用初始化，可初始化为PWM、输入捕获、正交解码、双边捕获模式
  *
- * ����:
- *    ftm_init_structure--FTM��ʼ���ṹ�壬
- *                        ���嶨���FTM_InitTypeDef
+ * 参数:
+ *    ftm_init_structure--FTM初始化结构体，
+ *                        具体定义见FTM_InitTypeDef
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_Init(FTM_InitTypeDef ftm_init_structure)
 {
   uint8 result, i;
-  //�������
+  //参数检查
   ASSERT( ftm_init_structure.FTM_Mode & 
-         (FTM_MODE_PWM|FTM_MODE_IC|FTM_MODE_QD|FTM_MODE_DEC));  //�ж�ģʽѡ��
+         (FTM_MODE_PWM|FTM_MODE_IC|FTM_MODE_QD|FTM_MODE_DEC));  //判断模式选择
   
-  // ʹ��FTMʱ��ģ��
+  // 使能FTM时钟模块
   if(ftm_init_structure.FTM_Ftmx == FTM0)
   {
     i=0; 
@@ -103,7 +103,7 @@ uint8 LPLD_FTM_Init(FTM_InitTypeDef ftm_init_structure)
   
   if(result == 1)
   {    
-    //�ж��Ƿ�������ж�
+    //判断是否开启溢出中断
     if(ftm_init_structure.FTM_Isr!=NULL)
     {      
       FTM_ISR[i] = ftm_init_structure.FTM_Isr;
@@ -119,15 +119,15 @@ uint8 LPLD_FTM_Init(FTM_InitTypeDef ftm_init_structure)
 
 /*
  * LPLD_FTM_Deinit
- * FTMģ��ͨ�÷���ʼ��
+ * FTM模块通用反初始化
  *
- * ����:
- *    ftm_init_structure--FTM��ʼ���ṹ�壬
- *                        ���嶨���FTM_InitTypeDef
+ * 参数:
+ *    ftm_init_structure--FTM初始化结构体，
+ *                        具体定义见FTM_InitTypeDef
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_Deinit(FTM_InitTypeDef ftm_init_structure)
 {
@@ -159,28 +159,28 @@ uint8 LPLD_FTM_Deinit(FTM_InitTypeDef ftm_init_structure)
 
 /*
  * LPLD_FTM_PWM_Enable
- * FTMģ��PWMģʽ���ʹ�ܣ��������ͨ����ռ�ձȡ�ָ����Ӧ�����š����뷽ʽ
+ * FTM模块PWM模式输出使能，配置输出通道、占空比、指定对应的引脚、对齐方式
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
- *    chn--PWM���ͨ��
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
- *      |__FTM_Ch0          --FTMxͨ��0(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch1          --FTMxͨ��1(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch2          --FTMxͨ��2(FTM0\FTM3)
- *      |__FTM_Ch3          --FTMxͨ��3(FTM0\FTM3)
- *      |__FTM_Ch4          --FTMxͨ��4(FTM0\FTM3)
- *      |__FTM_Ch5          --FTMxͨ��5(FTM0\FTM3)
- *      |__FTM_Ch6          --FTMxͨ��6(FTM0\FTM3)
- *      |__FTM_Ch7          --FTMxͨ��7(FTM0\FTM3)
- *    duty--PWM���ռ�ձ�
- *      |__0~10000--ռ�ձ�0.00%~100.00%
- *    pin--FTMxͨ����Ӧ������
+ *    chn--PWM输出通道
+ *      <注:只有MK60F系列含有FTM3>
+ *      |__FTM_Ch0          --FTMx通道0(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch1          --FTMx通道1(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch2          --FTMx通道2(FTM0\FTM3)
+ *      |__FTM_Ch3          --FTMx通道3(FTM0\FTM3)
+ *      |__FTM_Ch4          --FTMx通道4(FTM0\FTM3)
+ *      |__FTM_Ch5          --FTMx通道5(FTM0\FTM3)
+ *      |__FTM_Ch6          --FTMx通道6(FTM0\FTM3)
+ *      |__FTM_Ch7          --FTMx通道7(FTM0\FTM3)
+ *    duty--PWM输出占空比
+ *      |__0~10000--占空比0.00%~100.00%
+ *    pin--FTMx通道对应的引脚
  *      FTM0
  *       FTM_Ch0-PTA3\PTC1
  *       FTM_Ch1-PTA4\PTC2
@@ -196,7 +196,7 @@ uint8 LPLD_FTM_Deinit(FTM_InitTypeDef ftm_init_structure)
  *      FTM2
  *       FTM_Ch0-PTA10\PTB18
  *       FTM_Ch1-PTA11\PTB19
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      FTM3
  *       FTM_Ch0-PTE5\PTD0
  *       FTM_Ch1-PTE6\PTD1
@@ -206,40 +206,40 @@ uint8 LPLD_FTM_Deinit(FTM_InitTypeDef ftm_init_structure)
  *       FTM_Ch5-PTE10\PTC9
  *       FTM_Ch6-PTE11\PTC10
  *       FTM_Ch7-PTE12\PTC11
- *    align--������뷽ʽ
- *      |__ALIGN_LEFT    --�����
- *      |__ALIGN_RIGHT   --�Ҷ���
+ *    align--脉冲对齐方式
+ *      |__ALIGN_LEFT    --左对齐
+ *      |__ALIGN_RIGHT   --右对齐
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_PWM_Enable(FTM_Type *ftmx, FtmChnEnum_Type chn, uint32 duty, PortPinsEnum_Type pin, uint8 align)
 {
   uint32 cv;
   vuint32 mod;
   
-  //�������
-  ASSERT( duty <= 10000 );                  //�ж�ռ�ձ�
+  //参数检查
+  ASSERT( duty <= 10000 );                  //判断占空比
   
   if(!LPLD_FTM_PinInit(ftmx, chn, pin))
     return 0;
   
-  //������Ҷ��룬100%-ռ�ձ�
+  //如果是右对齐，100%-占空比
   if(align == ALIGN_RIGHT)
   {
     duty = 10000 - duty;
   }
   
-  //ռ�ձ� = (CnV-CNTIN)/(MOD-CNTIN+1)
+  //占空比 = (CnV-CNTIN)/(MOD-CNTIN+1)
   mod = ftmx->MOD;
   cv = (duty*(mod-0+1)+0)/10000;
   
-  // ����FTMͨ�����ƼĴ��� 
-  // ͨ��ģʽ MSB:MSA-1X, ͨ����Եѡ�� ����� ELSB:ELSA-10
-  // ͨ��ģʽ MSB:MSA-1X, ͨ����Եѡ�� �Ҷ��� ELSB:ELSA-X1
+  // 配置FTM通道控制寄存器 
+  // 通道模式 MSB:MSA-1X, 通道边缘选择 左对齐 ELSB:ELSA-10
+  // 通道模式 MSB:MSA-1X, 通道边缘选择 右对齐 ELSB:ELSA-X1
   ftmx->CONTROLS[chn].CnSC = align;
-  // ����FTMͨ��ֵ
+  // 配置FTM通道值
   ftmx->CONTROLS[chn].CnV  = cv;
   
   return 1;
@@ -247,51 +247,51 @@ uint8 LPLD_FTM_PWM_Enable(FTM_Type *ftmx, FtmChnEnum_Type chn, uint32 duty, Port
 
 /*
  * LPLD_FTM_PWM_ChangeDuty
- * ���FTMģ��PWMģʽָ��ͨ�������ռ�ձ�
+ * 变更FTM模块PWM模式指定通道的输出占空比
  *
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
- *    chn--PWM���ͨ��
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
- *      |__FTM_Ch0          --FTMxͨ��0(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch1          --FTMxͨ��1(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch2          --FTMxͨ��2(FTM0\FTM3)
- *      |__FTM_Ch3          --FTMxͨ��3(FTM0\FTM3)
- *      |__FTM_Ch4          --FTMxͨ��4(FTM0\FTM3)
- *      |__FTM_Ch5          --FTMxͨ��5(FTM0\FTM3)
- *      |__FTM_Ch6          --FTMxͨ��6(FTM0\FTM3)
- *      |__FTM_Ch7          --FTMxͨ��7(FTM0\FTM3)
- *    duty--PWM���ռ�ձ�
- *      |__0~10000--ռ�ձ�0.00%~100.00%
+ *    chn--PWM输出通道
+ *      <注:只有MK60F系列含有FTM3>
+ *      |__FTM_Ch0          --FTMx通道0(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch1          --FTMx通道1(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch2          --FTMx通道2(FTM0\FTM3)
+ *      |__FTM_Ch3          --FTMx通道3(FTM0\FTM3)
+ *      |__FTM_Ch4          --FTMx通道4(FTM0\FTM3)
+ *      |__FTM_Ch5          --FTMx通道5(FTM0\FTM3)
+ *      |__FTM_Ch6          --FTMx通道6(FTM0\FTM3)
+ *      |__FTM_Ch7          --FTMx通道7(FTM0\FTM3)
+ *    duty--PWM输出占空比
+ *      |__0~10000--占空比0.00%~100.00%
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_PWM_ChangeDuty(FTM_Type *ftmx, FtmChnEnum_Type chn, uint32 duty)
 {
   uint32 cv;
   vuint32 mod;
   
-  //�������
-  ASSERT( duty <= 10000 );                  //�ж�ռ�ձ�
+  //参数检查
+  ASSERT( duty <= 10000 );                  //判断占空比
     
-  //������Ҷ��룬100%-ռ�ձ�
+  //如果是右对齐，100%-占空比
   if(ftmx->CONTROLS[chn].CnSC & FTM_CnSC_ELSA_MASK)
   {
     duty = 10000 - duty;
   }
   
-  //ռ�ձ� = (CnV-CNTIN)/(MOD-CNTIN+1)
+  //占空比 = (CnV-CNTIN)/(MOD-CNTIN+1)
   mod = ftmx->MOD;
   cv = (duty*(mod-0+1)+0)/10000;
  
-  // ����FTMͨ��ֵ
+  // 配置FTM通道值
   ftmx->CONTROLS[chn].CnV = cv;
   
   return 1;
@@ -299,29 +299,29 @@ uint8 LPLD_FTM_PWM_ChangeDuty(FTM_Type *ftmx, FtmChnEnum_Type chn, uint32 duty)
 
 /*
  * LPLD_FTM_DisableChn
- * ����FTMģ��ָ��ͨ�������������
+ * 禁用FTM模块指定通道的输出、输入
  *
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
- *    chn--PWM���ͨ��
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
- *      |__FTM_Ch0          --FTMxͨ��0(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch1          --FTMxͨ��1(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch2          --FTMxͨ��2(FTM0\FTM3)
- *      |__FTM_Ch3          --FTMxͨ��3(FTM0\FTM3)
- *      |__FTM_Ch4          --FTMxͨ��4(FTM0\FTM3)
- *      |__FTM_Ch5          --FTMxͨ��5(FTM0\FTM3)
- *      |__FTM_Ch6          --FTMxͨ��6(FTM0\FTM3)
- *      |__FTM_Ch7          --FTMxͨ��7(FTM0\FTM3)
+ *    chn--PWM输出通道
+ *      <注:只有MK60F系列含有FTM3>
+ *      |__FTM_Ch0          --FTMx通道0(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch1          --FTMx通道1(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch2          --FTMx通道2(FTM0\FTM3)
+ *      |__FTM_Ch3          --FTMx通道3(FTM0\FTM3)
+ *      |__FTM_Ch4          --FTMx通道4(FTM0\FTM3)
+ *      |__FTM_Ch5          --FTMx通道5(FTM0\FTM3)
+ *      |__FTM_Ch6          --FTMx通道6(FTM0\FTM3)
+ *      |__FTM_Ch7          --FTMx通道7(FTM0\FTM3)
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_DisableChn(FTM_Type *ftmx, FtmChnEnum_Type chn)
 {
@@ -336,28 +336,28 @@ uint8 LPLD_FTM_DisableChn(FTM_Type *ftmx, FtmChnEnum_Type chn)
 
 /*
  * LPLD_FTM_IC_Enable
- * FTMģ�����벶��ģʽ���ʹ�ܣ���������ͨ����ָ����Ӧ�����š������Ե
+ * FTM模块输入捕获模式输出使能，配置输入通道、指定对应的引脚、捕获边缘
  *
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
- *    chn--PWM���ͨ��
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
- *      |__FTM_Ch0          --FTMxͨ��0(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch1          --FTMxͨ��1(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch2          --FTMxͨ��2(FTM0\FTM3)
- *      |__FTM_Ch3          --FTMxͨ��3(FTM0\FTM3)
- *      |__FTM_Ch4          --FTMxͨ��4(FTM0\FTM3)
- *      |__FTM_Ch5          --FTMxͨ��5(FTM0\FTM3)
- *      |__FTM_Ch6          --FTMxͨ��6(FTM0\FTM3)
- *      |__FTM_Ch7          --FTMxͨ��7(FTM0\FTM3)
- *    duty--PWM���ռ�ձ�
- *      |__0~10000--ռ�ձ�0.00%~100.00%
- *    pin--FTMxͨ����Ӧ������
+ *    chn--PWM输出通道
+ *      <注:只有MK60F系列含有FTM3>
+ *      |__FTM_Ch0          --FTMx通道0(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch1          --FTMx通道1(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch2          --FTMx通道2(FTM0\FTM3)
+ *      |__FTM_Ch3          --FTMx通道3(FTM0\FTM3)
+ *      |__FTM_Ch4          --FTMx通道4(FTM0\FTM3)
+ *      |__FTM_Ch5          --FTMx通道5(FTM0\FTM3)
+ *      |__FTM_Ch6          --FTMx通道6(FTM0\FTM3)
+ *      |__FTM_Ch7          --FTMx通道7(FTM0\FTM3)
+ *    duty--PWM输出占空比
+ *      |__0~10000--占空比0.00%~100.00%
+ *    pin--FTMx通道对应的引脚
  *      FTM0
  *       FTM_Ch0-PTA3\PTC1
  *       FTM_Ch1-PTA4\PTC2
@@ -373,7 +373,7 @@ uint8 LPLD_FTM_DisableChn(FTM_Type *ftmx, FtmChnEnum_Type chn)
  *      FTM2
  *       FTM_Ch0-PTA10\PTB18
  *       FTM_Ch1-PTA11\PTB19
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      FTM3
  *       FTM_Ch0-PTE5\PTD0
  *       FTM_Ch1-PTE6\PTD1
@@ -383,14 +383,14 @@ uint8 LPLD_FTM_DisableChn(FTM_Type *ftmx, FtmChnEnum_Type chn)
  *       FTM_Ch5-PTE10\PTC9
  *       FTM_Ch6-PTE11\PTC10
  *       FTM_Ch7-PTE12\PTC11
- *    capture_edge--�����Ե����
- *      |__CAPTURE_RI    --�����ز���
- *      |__CAPTURE_FA    --�½��ز���
- *      |__CAPTURE_RIFA  --�����½��ز���
+ *    capture_edge--捕获边缘设置
+ *      |__CAPTURE_RI    --上升沿捕获
+ *      |__CAPTURE_FA    --下降沿捕获
+ *      |__CAPTURE_RIFA  --上升下降沿捕获
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_IC_Enable(FTM_Type *ftmx, FtmChnEnum_Type chn, PortPinsEnum_Type pin, uint8 capture_edge)
 {
@@ -402,30 +402,30 @@ uint8 LPLD_FTM_IC_Enable(FTM_Type *ftmx, FtmChnEnum_Type chn, PortPinsEnum_Type 
   ftmx->CONTROLS[chn].CnSC |= capture_edge;        
   
   ftmx->CONTROLS[chn].CnSC &= (~FTM_CnSC_CHF_MASK);
-  ftmx->CONTROLS[chn].CnSC |= FTM_CnSC_CHIE_MASK;         //ʹ��ͨ�����������ж�
+  ftmx->CONTROLS[chn].CnSC |= FTM_CnSC_CHIE_MASK;         //使能通道捕获输入中断
   
   ftmx->CONTROLS[chn].CnSC &= (~FTM_CnSC_MSB_MASK);
-  ftmx->CONTROLS[chn].CnSC &= (~FTM_CnSC_MSA_MASK);       //���ó�Input captureģʽ
+  ftmx->CONTROLS[chn].CnSC &= (~FTM_CnSC_MSA_MASK);       //配置成Input capture模式
   
-  ftmx->CONTROLS[chn].CnSC &= (~FTM_CnSC_DMA_MASK);       //�ر�DMA
+  ftmx->CONTROLS[chn].CnSC &= (~FTM_CnSC_DMA_MASK);       //关闭DMA
   
   return 1;
 }
 
 /*
  * LPLD_FTM_IsTOF
- * �ж�FTMx�Ƿ������������жϱ�־
+ * 判断FTMx是否产生计数溢出中断标志
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
  *
- * ���:
- *    TRUE��FALSE
+ * 输出:
+ *    TRUE、FALSE
  *
  */
 __INLINE boolean LPLD_FTM_IsTOF(FTM_Type *ftmx)
@@ -435,18 +435,18 @@ __INLINE boolean LPLD_FTM_IsTOF(FTM_Type *ftmx)
 
 /*
  * LPLD_FTM_ClearTOF
- * ���FTMx����������жϱ�־
+ * 清除FTMx计数器溢出中断标志
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 __INLINE void LPLD_FTM_ClearTOF(FTM_Type *ftmx)
@@ -456,28 +456,28 @@ __INLINE void LPLD_FTM_ClearTOF(FTM_Type *ftmx)
 
 /*
  * LPLD_FTM_IsCHnF
- * �ж�ͨ��n�Ƿ�����жϱ�־
+ * 判断通道n是否产生中断标志
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
- *    chn--PWM���ͨ��
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
- *      |__FTM_Ch0          --FTMxͨ��0(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch1          --FTMxͨ��1(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch2          --FTMxͨ��2(FTM0\FTM3)
- *      |__FTM_Ch3          --FTMxͨ��3(FTM0\FTM3)
- *      |__FTM_Ch4          --FTMxͨ��4(FTM0\FTM3)
- *      |__FTM_Ch5          --FTMxͨ��5(FTM0\FTM3)
- *      |__FTM_Ch6          --FTMxͨ��6(FTM0\FTM3)
- *      |__FTM_Ch7          --FTMxͨ��7(FTM0\FTM3)
+ *    chn--PWM输出通道
+ *      <注:只有MK60F系列含有FTM3>
+ *      |__FTM_Ch0          --FTMx通道0(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch1          --FTMx通道1(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch2          --FTMx通道2(FTM0\FTM3)
+ *      |__FTM_Ch3          --FTMx通道3(FTM0\FTM3)
+ *      |__FTM_Ch4          --FTMx通道4(FTM0\FTM3)
+ *      |__FTM_Ch5          --FTMx通道5(FTM0\FTM3)
+ *      |__FTM_Ch6          --FTMx通道6(FTM0\FTM3)
+ *      |__FTM_Ch7          --FTMx通道7(FTM0\FTM3)
  *
- * ���:
- *    TRUE��FALSE
+ * 输出:
+ *    TRUE、FALSE
  *
  */
 __INLINE boolean LPLD_FTM_IsCHnF(FTM_Type *ftmx, FtmChnEnum_Type chn)
@@ -487,28 +487,28 @@ __INLINE boolean LPLD_FTM_IsCHnF(FTM_Type *ftmx, FtmChnEnum_Type chn)
 
 /*
  * LPLD_FTM_ClearCHnF
- * ���ͨ��n�жϱ�־
+ * 清除通道n中断标志
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
- *    chn--PWM���ͨ��
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
- *      |__FTM_Ch0          --FTMxͨ��0(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch1          --FTMxͨ��1(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch2          --FTMxͨ��2(FTM0\FTM3)
- *      |__FTM_Ch3          --FTMxͨ��3(FTM0\FTM3)
- *      |__FTM_Ch4          --FTMxͨ��4(FTM0\FTM3)
- *      |__FTM_Ch5          --FTMxͨ��5(FTM0\FTM3)
- *      |__FTM_Ch6          --FTMxͨ��6(FTM0\FTM3)
- *      |__FTM_Ch7          --FTMxͨ��7(FTM0\FTM3)
+ *    chn--PWM输出通道
+ *      <注:只有MK60F系列含有FTM3>
+ *      |__FTM_Ch0          --FTMx通道0(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch1          --FTMx通道1(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch2          --FTMx通道2(FTM0\FTM3)
+ *      |__FTM_Ch3          --FTMx通道3(FTM0\FTM3)
+ *      |__FTM_Ch4          --FTMx通道4(FTM0\FTM3)
+ *      |__FTM_Ch5          --FTMx通道5(FTM0\FTM3)
+ *      |__FTM_Ch6          --FTMx通道6(FTM0\FTM3)
+ *      |__FTM_Ch7          --FTMx通道7(FTM0\FTM3)
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 __INLINE void LPLD_FTM_ClearCHnF(FTM_Type *ftmx, FtmChnEnum_Type chn)
@@ -518,109 +518,109 @@ __INLINE void LPLD_FTM_ClearCHnF(FTM_Type *ftmx, FtmChnEnum_Type chn)
 
 /*
  * LPLD_FTM_GetChVal
- * ��ȡFTMxͨ��n�����FTMx����ֵ
+ * 获取FTMx通道n捕获的FTMx计数值
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
- *    chn--PWM���ͨ��
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
- *      |__FTM_Ch0          --FTMxͨ��0(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch1          --FTMxͨ��1(FTM0\FTM1\FTM2\FTM3)
- *      |__FTM_Ch2          --FTMxͨ��2(FTM0\FTM3)
- *      |__FTM_Ch3          --FTMxͨ��3(FTM0\FTM3)
- *      |__FTM_Ch4          --FTMxͨ��4(FTM0\FTM3)
- *      |__FTM_Ch5          --FTMxͨ��5(FTM0\FTM3)
- *      |__FTM_Ch6          --FTMxͨ��6(FTM0\FTM3)
- *      |__FTM_Ch7          --FTMxͨ��7(FTM0\FTM3)
+ *    chn--PWM输出通道
+ *      <注:只有MK60F系列含有FTM3>
+ *      |__FTM_Ch0          --FTMx通道0(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch1          --FTMx通道1(FTM0\FTM1\FTM2\FTM3)
+ *      |__FTM_Ch2          --FTMx通道2(FTM0\FTM3)
+ *      |__FTM_Ch3          --FTMx通道3(FTM0\FTM3)
+ *      |__FTM_Ch4          --FTMx通道4(FTM0\FTM3)
+ *      |__FTM_Ch5          --FTMx通道5(FTM0\FTM3)
+ *      |__FTM_Ch6          --FTMx通道6(FTM0\FTM3)
+ *      |__FTM_Ch7          --FTMx通道7(FTM0\FTM3)
  *
- * ���:
+ * 输出:
  *    0x1~0xFFFF
  *
  */
 __INLINE uint16 LPLD_FTM_GetChVal(FTM_Type *ftmx, FtmChnEnum_Type chn)
 {
-  return ftmx->CONTROLS[chn].CnV;    //��ȡ��Ӧͨ�����񵽵�FTM������ֵ
+  return ftmx->CONTROLS[chn].CnV;    //获取相应通道捕获到的FTM计数器值
 }
 
 /*
  * LPLD_FTM_GetClkDiv
- * ��ȡFTMxʱ�ӷ�Ƶϵ��
+ * 获取FTMx时钟分频系数
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
  *
- * ���:
- *    1��2��4��8��16��32��64��128
+ * 输出:
+ *    1、2、4、8、16、32、64、128
  *
  */
 __INLINE uint8 LPLD_FTM_GetClkDiv(FTM_Type *ftmx)
 {
-  return 1u<<((ftmx->SC & FTM_SC_PS_MASK)>>FTM_SC_PS_SHIFT);    //���ʱ�ӷ�Ƶϵ��
+  return 1u<<((ftmx->SC & FTM_SC_PS_MASK)>>FTM_SC_PS_SHIFT);    //获得时钟分频系数
 }
 
 /*
  * LPLD_FTM_GetCounter
- * ��ȡFTMx������ֵ
+ * 获取FTMx计数器值
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 __INLINE uint16 LPLD_FTM_GetCounter(FTM_Type *ftmx)
 {
-  return ftmx->CNT;        //��ȡFTMx������ֵ
+  return ftmx->CNT;        //获取FTMx计数器值
 }
 
 /*
  * LPLD_FTM_ClearCounter
- * ���FTMx������
+ * 清空FTMx计数器
  * 
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM0          --FTM0
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *      <ע:ֻ��MK60Fϵ�к���FTM3>
+ *      <注:只有MK60F系列含有FTM3>
  *      |__FTM3          --FTM3
  *
- * ���:
- *    ��
+ * 输出:
+ *    无
  *
  */
 __INLINE void LPLD_FTM_ClearCounter(FTM_Type *ftmx)
 {
-  ftmx->CNT = 0;        //���FTMx������ֵ
+  ftmx->CNT = 0;        //清空FTMx计数器值
 }
 
 /*
  * LPLD_FTM_EnableIrq
- * ʹ��FTMx�ж�
+ * 使能FTMx中断
  * 
- * ����:
- *    ftm_init_structure--FTM��ʼ���ṹ�壬
- *                        ���嶨���FTM_InitTypeDef
+ * 参数:
+ *    ftm_init_structure--FTM初始化结构体，
+ *                        具体定义见FTM_InitTypeDef
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  *
  */
 uint8 LPLD_FTM_EnableIrq(FTM_InitTypeDef ftm_init_structure)
@@ -648,15 +648,15 @@ uint8 LPLD_FTM_EnableIrq(FTM_InitTypeDef ftm_init_structure)
 
 /*
  * LPLD_FTM_DisableIrq
- * ����FTMx�ж�
+ * 禁用FTMx中断
  * 
- * ����:
- *    ftm_init_structure--FTM��ʼ���ṹ�壬
- *                        ���嶨���FTM_InitTypeDef
+ * 参数:
+ *    ftm_init_structure--FTM初始化结构体，
+ *                        具体定义见FTM_InitTypeDef
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  *
  */
 uint8 LPLD_FTM_DisableIrq(FTM_InitTypeDef ftm_init_structure)
@@ -684,26 +684,26 @@ uint8 LPLD_FTM_DisableIrq(FTM_InitTypeDef ftm_init_structure)
 
 /*
  * LPLD_FTM_QD_Enable
- * FTMģ����������ģʽ����ʹ�ܣ���������ͨ��PHA��PHB
+ * FTM模块正交解码模式输入使能，配置输入通道PHA和PHB
  *
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
- *    pha--PHA����ͨ������
+ *    pha--PHA输入通道引脚
  *      FTM1
  *        PTA8\PTA12\PTB0
  *      FTM2
  *        PTA10\PTB18
- *    phb--PHB����ͨ������
+ *    phb--PHB输入通道引脚
  *      FTM1
  *        PTA9\PTA13\PTB1
  *      FTM2
  *        PTA11\PTB19
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_QD_Enable(FTM_Type *ftmx, PortPinsEnum_Type pha, PortPinsEnum_Type phb)
 {
@@ -717,16 +717,16 @@ uint8 LPLD_FTM_QD_Enable(FTM_Type *ftmx, PortPinsEnum_Type pha, PortPinsEnum_Typ
 
 /*
  * LPLD_FTM_QD_Disable
- * FTMģ����������ģʽ�������
+ * FTM模块正交解码模式输入禁用
  *
- * ����:
- *    ftmx--FTMxģ���
+ * 参数:
+ *    ftmx--FTMx模块号
  *      |__FTM1          --FTM1
  *      |__FTM2          --FTM2
  *
- * ���:
- *    0--���ô���
- *    1--���óɹ�
+ * 输出:
+ *    0--配置错误
+ *    1--配置成功
  */
 uint8 LPLD_FTM_QD_Disable(FTM_Type *ftmx)
 {
@@ -740,7 +740,7 @@ uint8 LPLD_FTM_QD_Disable(FTM_Type *ftmx)
 
 /*
  * LPLD_FTM_PWM_Init
- * FTMģ��PWMģʽ��ʼ�����ڲ�����
+ * FTM模块PWM模式初始化，内部调用
  */
 static uint8 LPLD_FTM_PWM_Init(FTM_InitTypeDef ftm_init_structure)
 {
@@ -753,9 +753,9 @@ static uint8 LPLD_FTM_PWM_Init(FTM_InitTypeDef ftm_init_structure)
   uint8 dt_val = ftm_init_structure.FTM_PwmDeadtimeVal;
   FTM_Type *ftmx = ftm_init_structure.FTM_Ftmx;
   
-  //�������
-  ASSERT( freq );                  //�ж�Ƶ��
-  ASSERT( dt_val<=63 );            //�ж���������ֵ
+  //参数检查
+  ASSERT( freq );                  //判断频率
+  ASSERT( dt_val<=63 );            //判断死区插入值
   
   bus_clk_hz = g_bus_clock;
   
@@ -808,20 +808,20 @@ static uint8 LPLD_FTM_PWM_Init(FTM_InitTypeDef ftm_init_structure)
   
   ftmx->SC = 0;
   
-  // ����PWM���ڼ�ռ�ձ�
-  //    PWM���� = (MOD-CNTIN+1)*FTMʱ������ :
-  // ����FTM������ʼֵ
+  // 设置PWM周期及占空比
+  //    PWM周期 = (MOD-CNTIN+1)*FTM时钟周期 :
+  // 配置FTM计数初始值
   ftmx->CNT = 0;
   ftmx->CNTIN = 0;
-  // ����FTM����MODֵ
+  // 配置FTM计数MOD值
   ftmx->MOD = mod2;
   
   ftmx->DEADTIME = FTM_DEADTIME_DTPS(dt_div) | FTM_DEADTIME_DTVAL(dt_val);
-  ftmx->COMBINE = dt_en;        //ʹ������
+  ftmx->COMBINE = dt_en;        //使能死区
   
-  // ����FTM���ƼĴ���
-  // �����ж�, �Ӽ���ģʽ, ʱ��Դ:System clock��Bus Clk��, ��Ƶϵ��:8
-  // ����SysClk = 50MHz, SC_PS=3, FTM Clk = 50MHz/2^3 = 6.25MHz
+  // 配置FTM控制寄存器
+  // 禁用中断, 加计数模式, 时钟源:System clock（Bus Clk）, 分频系数:8
+  // 假设SysClk = 50MHz, SC_PS=3, FTM Clk = 50MHz/2^3 = 6.25MHz
   ftmx->SC = FTM_SC_CLKS(1)|FTM_SC_PS(ps);
   
   return 1;
@@ -829,7 +829,7 @@ static uint8 LPLD_FTM_PWM_Init(FTM_InitTypeDef ftm_init_structure)
 
 /*
  * LPLD_FTM_IC_Init
- * FTMģ�����벶��ģʽ��ʼ�����ڲ�����
+ * FTM模块输入捕获模式初始化，内部调用
  */
 static uint8 LPLD_FTM_IC_Init(FTM_InitTypeDef ftm_init_structure)
 {
@@ -838,8 +838,8 @@ static uint8 LPLD_FTM_IC_Init(FTM_InitTypeDef ftm_init_structure)
   FTM_ISR_CALLBACK isr_func = ftm_init_structure.FTM_Isr;
   FTM_Type *ftmx = ftm_init_structure.FTM_Ftmx;
   
-  //�������
-  ASSERT( ps <= 7);             //ʱ�ӷ�Ƶϵ��
+  //参数检查
+  ASSERT( ps <= 7);             //时钟分频系数
   
   ftmx->CONF=FTM_CONF_BDMMODE(0x3);
   
@@ -848,18 +848,18 @@ static uint8 LPLD_FTM_IC_Init(FTM_InitTypeDef ftm_init_structure)
   ftmx->CNT = 0;
   ftmx->CNTIN = 0;
   ftmx->MOD = 0;                           
-  ftmx->QDCTRL = (~FTM_QDCTRL_QUADEN_MASK); //�ر���������
-  ftmx->FILTER = 0x00;                      //�ع�����
+  ftmx->QDCTRL = (~FTM_QDCTRL_QUADEN_MASK); //关闭正交解码
+  ftmx->FILTER = 0x00;                      //关过虑器
   
-  // ����FTM���ƼĴ���
-  // ��FTM Counter���ó�Free Counter
-  // �����ж�, �Ӽ���ģʽ, ʱ��Դ:System clock��Bus Clk��, ��Ƶϵ��:PS
-  // ����SysClk = 50MHz, SC_PS=3, FTM Clk = 50MHz/2^3 = 6.25MHz
+  // 配置FTM控制寄存器
+  // 将FTM Counter配置成Free Counter
+  // 禁用中断, 加计数模式, 时钟源:System clock（Bus Clk）, 分频系数:PS
+  // 假设SysClk = 50MHz, SC_PS=3, FTM Clk = 50MHz/2^3 = 6.25MHz
   ftmx->SC |= FTM_SC_CLKS(1)|FTM_SC_PS(ps);
-  //ftmx->SC |= FTM_SC_TOIE_MASK;             //ʹ�ܼ�������ж�
-  ftmx->SC &= (~FTM_SC_CPWMS_MASK);         //FTM�Ӽ���
+  //ftmx->SC |= FTM_SC_TOIE_MASK;             //使能计数溢出中断
+  ftmx->SC &= (~FTM_SC_CPWMS_MASK);         //FTM加计数
 
-  //�����жϺ�����ڵ�ַ�������ж�
+  //设置中断函数入口地址并开启中断
   if(isr_func!=NULL)
   {
     if(ftmx == FTM0)
@@ -882,11 +882,11 @@ static uint8 LPLD_FTM_IC_Init(FTM_InitTypeDef ftm_init_structure)
 
 /*
  * LPLD_FTM_PinInit
- * ��ʼ��ͨ��nָ�����ŵ�FTM���ù��ܣ��ڲ�����
+ * 初始化通道n指定引脚的FTM复用功能，内部调用
  */
 static uint8 LPLD_FTM_PinInit(FTM_Type *ftmx, FtmChnEnum_Type chn, PortPinsEnum_Type pin)
 { 
-  //����ftmxʹ����Ӧpin��ftm����
+  //根据ftmx使能相应pin的ftm功能
   if(ftmx == FTM0)
   {
     switch(chn)
@@ -1130,11 +1130,11 @@ static uint8 LPLD_FTM_PinInit(FTM_Type *ftmx, FtmChnEnum_Type chn, PortPinsEnum_
 
 /*
  * LPLD_FTM_PinInit
- * ����ʼ��ͨ��nָ�����ŵ�FTM���ù��ܣ��ڲ�����
+ * 反初始化通道n指定引脚的FTM复用功能，内部调用
  */
 static uint8 LPLD_FTM_PinDeinit(FTM_Type *ftmx, FtmChnEnum_Type chn)
 {
-  //����ftmx������Ӧpin��ftm���ܣ��ظ���Ĭ�Ϲ���
+  //根据ftmx禁用相应pin的ftm功能，回复到默认功能
   if(ftmx == FTM0)
   {
     switch(chn)
@@ -1330,7 +1330,7 @@ static uint8 LPLD_FTM_PinDeinit(FTM_Type *ftmx, FtmChnEnum_Type chn)
 
 /*
  * LPLD_FTM_QD_Init
- * FTMģ����������ģʽ��ʼ�����ڲ�����
+ * FTM模块正交解码模式初始化，内部调用
  */
 static uint8 LPLD_FTM_QD_Init(FTM_InitTypeDef ftm_init_structure)
 {
@@ -1339,12 +1339,12 @@ static uint8 LPLD_FTM_QD_Init(FTM_InitTypeDef ftm_init_structure)
  
   ftmx->MODE |= FTM_MODE_FTMEN_MASK;    //FTM2EN=1   
   
-  ftmx->CNTIN = 0;//FTM0��������ʼֵΪ0  
+  ftmx->CNTIN = 0;//FTM0计数器初始值为0  
   ftmx->CNT=0;  
-  ftmx->MOD = 0xFFFF;//����ֵ  
+  ftmx->MOD = 0xFFFF;//结束值  
   
-  ftmx->QDCTRL |= mode;     //����ģʽѡ��
-  ftmx->QDCTRL |= FTM_QDCTRL_QUADEN_MASK;       //ʹ����������ģʽ 
+  ftmx->QDCTRL |= mode;     //解码模式选择
+  ftmx->QDCTRL |= FTM_QDCTRL_QUADEN_MASK;       //使能正交解码模式 
 
   return 1;
 }
@@ -1356,15 +1356,15 @@ static uint8 LPLD_FTM_DEC_Init(FTM_InitTypeDef ftm_init_structure)
 }
 
 /*
- * FTM0--FTM1�жϴ�������
- * �������ļ�startup_K60.s�е��ж�����������
- * �û������޸ģ������Զ������Ӧͨ���жϺ���
+ * FTM0--FTM1中断处理函数
+ * 与启动文件startup_K60.s中的中断向量表关联
+ * 用户无需修改，程序自动进入对应通道中断函数
  */
 void FTM0_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
@@ -1372,7 +1372,7 @@ void FTM0_IRQHandler(void)
   FTM_ISR[0]();
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
@@ -1380,7 +1380,7 @@ void FTM1_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
@@ -1388,7 +1388,7 @@ void FTM1_IRQHandler(void)
   FTM_ISR[1]();
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
@@ -1396,7 +1396,7 @@ void FTM2_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
@@ -1404,7 +1404,7 @@ void FTM2_IRQHandler(void)
   FTM_ISR[2]();
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 
@@ -1413,7 +1413,7 @@ void FTM3_IRQHandler(void)
 {
 #if (UCOS_II > 0u)
   OS_CPU_SR  cpu_sr = 0u;
-  OS_ENTER_CRITICAL(); //��֪ϵͳ��ʱ�Ѿ��������жϷ����Ӻ���
+  OS_ENTER_CRITICAL(); //告知系统此时已经进入了中断服务子函数
   OSIntEnter();
   OS_EXIT_CRITICAL();
 #endif
@@ -1421,7 +1421,7 @@ void FTM3_IRQHandler(void)
   FTM_ISR[3]();
   
 #if (UCOS_II > 0u)
-  OSIntExit();          //��֪ϵͳ��ʱ�����뿪�жϷ����Ӻ���
+  OSIntExit();          //告知系统此时即将离开中断服务子函数
 #endif
 }
 #endif

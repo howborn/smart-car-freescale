@@ -1,22 +1,22 @@
 /**
- * --------------»ùÓÚ"À­ÆÕÀ¼µÂK60µ×²ã¿â"µÄ¹¤³Ì£¨Smart_Car£©-----------------
+ * --------------åŸºäº"æ‹‰æ™®å…°å¾·K60åº•å±‚åº“"çš„å·¥ç¨‹ï¼ˆSmart_Carï¼‰-----------------
  * @file Analyze.c
  * @version 0.0
  * @date 2015-2-7
- * @brief ¹ØÓÚ¸Ã¹¤³ÌµÄÃèÊö
+ * @brief å…³äºè¯¥å·¥ç¨‹çš„æè¿°
  *
- * °æÈ¨ËùÓĞ:±±»ªº½Ìì¹¤ÒµÑ§Ôº µÚÊ®½ì·ÉË¼¿¨¶û  ÉãÏñÍ·2¶Ó 
- * Ó²¼şÆ½Ì¨:  MK60FX512
+ * ç‰ˆæƒæ‰€æœ‰:åŒ—åèˆªå¤©å·¥ä¸šå­¦é™¢ ç¬¬åå±Šé£æ€å¡å°”  æ‘„åƒå¤´2é˜Ÿ 
+ * ç¡¬ä»¶å¹³å°:  MK60FX512
  * 
  */
 #include "common.h"
 #include "global.h"
 
-float32 w1 = 1.0,w2 = 1.5,w3 = 1.0;                                 //ÖĞÏß¼ÓÈ¨Òò×Ó
-int8 Adjust[30]={2,15,27,36,44,50,55,61,65,68,71,74,76,78,80,       //»û±äĞ£Õı
+float32 w1 = 1.0,w2 = 1.5,w3 = 1.0;                                 //ä¸­çº¿åŠ æƒå› å­
+int8 Adjust[30]={2,15,27,36,44,50,55,61,65,68,71,74,76,78,80,       //ç•¸å˜æ ¡æ­£
                  82,84,86,88,90,91,92,93,94,95,96,97,98,99,100};
 
-/***************************Á½Êı²îµÄ¾ø¶ÔÖµ**************************/
+/***************************ä¸¤æ•°å·®çš„ç»å¯¹å€¼**************************/
 int16 ABS(int16 x, int16 y)
 {
   if((x-y)>0)
@@ -24,11 +24,11 @@ int16 ABS(int16 x, int16 y)
   else
     return (y-x);
 }
-/************************ÈüµÀºÚÉ«Òıµ¼ÏßÌáÈ¡***************************/
+/************************èµ›é“é»‘è‰²å¼•å¯¼çº¿æå–***************************/
 void Find_Line(uint8 image[][H])
 {
     int16 l_line = Start_Row,l_line_old = Start_Row,r_line_old=End_Row,r_line=End_Row,center_line = 90,center_line_old=90;
-    int16 track_width = 110,track_width_old = 110;                              //ÈüµÀ¿í¶È
+    int16 track_width = 110,track_width_old = 110;                              //èµ›é“å®½åº¦
     int16 llbound = Start_Row, lrbound = center_line, rlbound = center_line, rrbound = End_Row;
     int16 i,j,Cur_Flag;
     uint8 r_line_flag = 0,l_line_flag = 0;
@@ -36,7 +36,7 @@ void Find_Line(uint8 image[][H])
     Left_Flag = 0;
     Right_Flag = 0;
     Str_Flag = 0;
-    for(i=End_Column-20;i>=Start_Column;i--)                                      //ÖğĞĞÉ¨Ãè£¬¹²É¨Ãè100ĞĞ
+    for(i=End_Column-20;i>=Start_Column;i--)                                      //é€è¡Œæ‰«æï¼Œå…±æ‰«æ100è¡Œ
     {
       r_line = End_Row;
       l_line = Start_Row;
@@ -46,11 +46,11 @@ void Find_Line(uint8 image[][H])
       {
         if((image[i][j]==0x00) && (image[i][j-1]!=0x00) && (image[i][j-2]!=0x00))
         {
-          r_line_flag = 1;                           //ËÑË÷µ½±ßÏßÖÃ1
+          r_line_flag = 1;                           //æœç´¢åˆ°è¾¹çº¿ç½®1
           r_line = j;             
           break;
         }
-       //±ßÏßÏŞ·ùºÍÎ´ËÑµ½ÏßµÄÇé¿ö
+       //è¾¹çº¿é™å¹…å’Œæœªæœåˆ°çº¿çš„æƒ…å†µ
        if((r_line_old != 0) && (ABS(r_line,r_line_old)>6) && (r_line_flag == 1))   
           r_line = r_line_old;
       }
@@ -58,11 +58,11 @@ void Find_Line(uint8 image[][H])
       {
         if((image[i][j]==0x00) && (image[i][j+1]!=0x00) && (image[i][j+2]!=0x00))
         {
-          l_line_flag = 1;                          //ËÑË÷µ½±ßÏßÖÃ1
+          l_line_flag = 1;                          //æœç´¢åˆ°è¾¹çº¿ç½®1
           l_line = j;         
           break;
         }
-       //±ßÏßÏŞ·ùºÍÎ´ËÑµ½ÏßµÄÇé¿ö
+       //è¾¹çº¿é™å¹…å’Œæœªæœåˆ°çº¿çš„æƒ…å†µ
        if((l_line_old != 0) && (ABS(l_line,l_line_old)>6) && (l_line_flag == 1))
           l_line = l_line_old;
       }
@@ -71,7 +71,7 @@ void Find_Line(uint8 image[][H])
         if(i>2)
         {
            if(((r_line-l_line)<(Line_Array[i-1][2]- Line_Array[i-1][0])) && ((Line_Array[i-1][2]- Line_Array[i-1][0])<(Line_Array[i-2][2]- Line_Array[i-2][0])) && (Line_Array[i-1][2] == End_Row))
-             lose_line_flag = 1;                              //ÓÒ±ß¶ªÏß
+             lose_line_flag = 1;                              //å³è¾¹ä¸¢çº¿
         } 
         center_line = l_line + track_width_old/2;
       } 
@@ -80,19 +80,19 @@ void Find_Line(uint8 image[][H])
         if(i>2) 
         {
            if(((r_line-l_line)<(Line_Array[i-1][2]- Line_Array[i-1][0])) && ((Line_Array[i-1][2]- Line_Array[i-1][0])<(Line_Array[i-2][2]- Line_Array[i-2][0])) && (Line_Array[i-1][0] == Start_Row))
-             lose_line_flag = 2;                              //×ó±ß¶ªÏß
+             lose_line_flag = 2;                              //å·¦è¾¹ä¸¢çº¿
         }
         center_line = r_line - track_width_old/2;
       }
       else if(r_line_flag == 1 && l_line_flag == 1) 
       {
-        center_line = (l_line+r_line) >>1;                   //¼ÆËãÖĞÏß
-        track_width = r_line-l_line;                         //¼ÇÂ¼ÈüµÀ¿í¶È
+        center_line = (l_line+r_line) >>1;                   //è®¡ç®—ä¸­çº¿
+        track_width = r_line-l_line;                         //è®°å½•èµ›é“å®½åº¦
       }
       if((lose_line_flag == 1 && (r_line_flag == 1 || center_line > 160)) || (lose_line_flag == 2 && (l_line_flag == 1 || center_line < 27)))
-        break;                                             //±¾Ö¡½áÊøÕÒÏß
-      //±ßÔµ¸ú×Ù·¶Î§È·¶¨
-      if(l_line < Start_Row + 8)                            //×óÏßµÄ×óÓÒ±ß½ç,×ó±ß½ç²»ÄÜ³¬¹ıÍ¼Ïñ×î×ó±ß
+        break;                                             //æœ¬å¸§ç»“æŸæ‰¾çº¿
+      //è¾¹ç¼˜è·Ÿè¸ªèŒƒå›´ç¡®å®š
+      if(l_line < Start_Row + 8)                            //å·¦çº¿çš„å·¦å³è¾¹ç•Œ,å·¦è¾¹ç•Œä¸èƒ½è¶…è¿‡å›¾åƒæœ€å·¦è¾¹
       {
         lrbound = center_line;
         llbound = Start_Row;
@@ -102,7 +102,7 @@ void Find_Line(uint8 image[][H])
         lrbound = l_line + 8;
         llbound = l_line - 8;
       }
-      if(r_line > End_Row - 8)                            //ÓÒÏßµÄ×óÓÒ±ß½ç£¬ÓÒ±ß½ç²»ÄÜ³¬¹ıÍ¼Ïñ×îÓÒ±ß
+      if(r_line > End_Row - 8)                            //å³çº¿çš„å·¦å³è¾¹ç•Œï¼Œå³è¾¹ç•Œä¸èƒ½è¶…è¿‡å›¾åƒæœ€å³è¾¹
       {
         rrbound = End_Row;
         rlbound = center_line;
@@ -112,26 +112,26 @@ void Find_Line(uint8 image[][H])
         rrbound = r_line + 8;
         rlbound = r_line - 8;
       }
-      //ÈüµÀÀàĞÍÊ¶±ğ
-      if((center_line-center_line_old) > 1)                //×óÍä
+      //èµ›é“ç±»å‹è¯†åˆ«
+      if((center_line-center_line_old) > 1)                //å·¦å¼¯
         Left_Flag++;
-      else if((center_line-center_line_old) < -1)         //ÓÒÍä
+      else if((center_line-center_line_old) < -1)         //å³å¼¯
         Right_Flag++;
-      else                                                //Ö±µÀ
+      else                                                //ç›´é“
         Str_Flag++;
-      //°áÒÆÊı¾İ
+      //æ¬ç§»æ•°æ®
       r_line_old = r_line;
       l_line_old = l_line; 
       center_line_old = center_line; 
       track_width_old = track_width;
-      //´æ´¢±¾ĞĞ×ó¡¢ÖĞ¡¢ÓÒÏß
+      //å­˜å‚¨æœ¬è¡Œå·¦ã€ä¸­ã€å³çº¿
       Line_Array[i][0] = l_line;
       Line_Array[i][1] = center_line;
       Line_Array[i][2] = r_line; 
-      Image[i][r_line] = 0x11;                            //±ê¼Ç±ßÏß£¬TFTÏÔÊ¾ÖĞÏß  
+      Image[i][r_line] = 0x11;                            //æ ‡è®°è¾¹çº¿ï¼ŒTFTæ˜¾ç¤ºä¸­çº¿  
       Image[i][l_line] = 0x11;          
-      Image[i][center_line] = 0x12;                       //±ê¼ÇÖĞÏß£¬TFTÏÔÊ¾ÖĞÏß   
-      if(PTC1_I==0)                                       //±ê¼Ç±ßÔµ¸ú×Ù·¶Î§
+      Image[i][center_line] = 0x12;                       //æ ‡è®°ä¸­çº¿ï¼ŒTFTæ˜¾ç¤ºä¸­çº¿   
+      if(PTC1_I==0)                                       //æ ‡è®°è¾¹ç¼˜è·Ÿè¸ªèŒƒå›´
       {
         Image_show[i][llbound] = 0x13; 
         Image_show[i][lrbound] = 0x13;
@@ -139,21 +139,21 @@ void Find_Line(uint8 image[][H])
         Image_show[i][rlbound] = 0x13;
       }
     }
-    //ÈüµÀÀàĞÍ
-    Cur_Flag = Left_Flag + Right_Flag;                     //ÍäµÀÁ¿
-    Active_Lines = Cur_Flag + Str_Flag;                    //ÓĞĞ§ĞĞ
-    Str_Cur_Offset = Str_Flag - Cur_Flag;                  //Ö±µÀ-ÍäµÀ
+    //èµ›é“ç±»å‹
+    Cur_Flag = Left_Flag + Right_Flag;                     //å¼¯é“é‡
+    Active_Lines = Cur_Flag + Str_Flag;                    //æœ‰æ•ˆè¡Œ
+    Str_Cur_Offset = Str_Flag - Cur_Flag;                  //ç›´é“-å¼¯é“
 }
-/************************ÈüµÀÖĞĞÄÏß¼ÆËã***************************/
+/************************èµ›é“ä¸­å¿ƒçº¿è®¡ç®—***************************/
 void Get_Center_Line()
 {
   int32 sum = 0;
   int8 number1 = 0,number2 = 0,number3 = 0;
   for(uint8 i=0;i>30;i++)
   {
-    if(Adjust[i]<Active_Lines)                                   //Ğ¡ÓÚÓĞĞ§ĞĞ²ÅÓĞĞ§
+    if(Adjust[i]<Active_Lines)                                   //å°äºæœ‰æ•ˆè¡Œæ‰æœ‰æ•ˆ
     {
-      if(Adjust[i]<50)                                           //¼ÓÈ¨
+      if(Adjust[i]<50)                                           //åŠ æƒ
       {
         sum += w1*Line_Array[End_Column-20-Adjust[i]][1];
         number1++; 
@@ -170,17 +170,17 @@ void Get_Center_Line()
       }
     }
   }
-  Center_Line = (int16)(sum/(w1*number1+w2*number2+w3*number3));  //ÇóÆ½¾ù
+  Center_Line = (int16)(sum/(w1*number1+w2*number2+w3*number3));  //æ±‚å¹³å‡
 }
-/*************************ÈüµÀÀàĞÍÊ¶±ğ***************************/
+/*************************èµ›é“ç±»å‹è¯†åˆ«***************************/
 void Recognition_Type()
 {
-  if(Active_Lines>85 && Str_Cur_Offset>30)                       //Ö±µÀ
+  if(Active_Lines>85 && Str_Cur_Offset>30)                       //ç›´é“
     Track_Type = 1;                                         
   else if (Active_Lines<60 && Str_Cur_Offset<-15)
-    Track_Type = 2;                                              //Ö±µÀÈëÍä
+    Track_Type = 2;                                              //ç›´é“å…¥å¼¯
   else if(Active_Lines<60 && (Str_Cur_Offset>-15 && Str_Cur_Offset<20))
-    Track_Type = 3;                                              //ÍäµÀ
+    Track_Type = 3;                                              //å¼¯é“
   else 
-    Track_Type = 0;                                              //ÆäËû
+    Track_Type = 0;                                              //å…¶ä»–
 }

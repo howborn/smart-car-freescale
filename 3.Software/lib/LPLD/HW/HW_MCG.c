@@ -2,22 +2,22 @@
  * @file HW_MCG.c
  * @version 3.0[By LPLD]
  * @date 2013-06-18
- * @brief MCG�ײ�ģ����غ���
+ * @brief MCG底层模块相关函数
  *
- * ���Ľ���:�������޸�
+ * 更改建议:不建议修改
  *
- * ��Ȩ����:�����������µ��Ӽ������޹�˾
+ * 版权所有:北京拉普兰德电子技术有限公司
  * http://www.lpld.cn
  * mail:support@lpld.cn
  *
  * @par
- * ����������������[LPLD]������ά������������ʹ���߿���Դ���롣
- * �����߿���������ʹ�û��Դ���롣�����μ�����ע��Ӧ���Ա�����
- * ���ø��Ļ�ɾ��ԭ��Ȩ���������������ο����߿��Լ�ע���ΰ�Ȩ�����ߡ�
- * ��Ӧ�����ش�Э��Ļ����ϣ�����Դ���롢���ó��۴��뱾����
- * �������²���������ʹ�ñ��������������κ��¹ʡ��������λ���ز���Ӱ�졣
- * ����������������͡�˵��������ľ���ԭ�������ܡ�ʵ�ַ�����
- * ������������[LPLD]��Ȩ�������߲��ý�������������ҵ��Ʒ��
+ * 本代码由拉普兰德[LPLD]开发并维护，并向所有使用者开放源代码。
+ * 开发者可以随意修使用或改源代码。但本段及以上注释应予以保留。
+ * 不得更改或删除原版权所有者姓名，二次开发者可以加注二次版权所有者。
+ * 但应在遵守此协议的基础上，开放源代码、不得出售代码本身。
+ * 拉普兰德不负责由于使用本代码所带来的任何事故、法律责任或相关不良影响。
+ * 拉普兰德无义务解释、说明本代码的具体原理、功能、实现方法。
+ * 除非拉普兰德[LPLD]授权，开发者不得将本代码用于商业产品。
  */
 #include "common.h"
 #include "HW_MCG.h"
@@ -30,14 +30,14 @@ uint32 g_flexbus_clock = -1ul;
 
 /*
  * LPLD_PLL_Setup
- * ��ʼ���ں�ʱ�Ӽ�����ϵͳʱ��
+ * 初始化内核时钟及其他系统时钟
  * 
- * ����:
- *    core_clk_mhz--�����ں�ʱ��Ƶ��
- *      |__PLLx--�μ�HAL_MCG.h�е�PLL_option����
+ * 参数:
+ *    core_clk_mhz--期望内核时钟频率
+ *      |__PLLx--参见HAL_MCG.h中的PLL_option定义
  *
- * ���:
- *    �ں�Ƶ�ʣ���λMHz
+ * 输出:
+ *    内核频率，单位MHz
  */
 uint8 LPLD_PLL_Setup(PllOptionEnum_Type core_clk_mhz)
 {
@@ -47,19 +47,19 @@ uint8 LPLD_PLL_Setup(PllOptionEnum_Type core_clk_mhz)
 #if (defined(CPU_MK60DZ10))
 /*
  *************************************************
-  ��LPLDע�⡿MCG�ؼ�ϵ��
-  prdiv(PLL��Ƶϵ��): 0~31(1~32)
-  vdiv(PLL��Ƶϵ��): 0~31(24~55)
-  PLL�ο�ʱ�ӷ�Χ: 2MHz~4MHz
-  PLL�ο�ʱ�� = �ⲿ�ο�ʱ��(CPU_XTAL_CLK_HZ)/prdiv
-  CoreClk = PLL�ο�ʱ�� x PLL��Ƶϵ�� /OUTDIV1
+  【LPLD注解】MCG关键系数
+  prdiv(PLL分频系数): 0~31(1~32)
+  vdiv(PLL倍频系数): 0~31(24~55)
+  PLL参考时钟范围: 2MHz~4MHz
+  PLL参考时钟 = 外部参考时钟(CPU_XTAL_CLK_HZ)/prdiv
+  CoreClk = PLL参考时钟 x PLL倍频系数 /OUTDIV1
  *************************************************
  */
  
-  // ����MK60DZ10��˵��core_clk_mhz���鲻Ҫ����100����������Ϊ���200
+  // 对于MK60DZ10来说，core_clk_mhz建议不要超过100，这里限制为最高200
   core_clk_mhz = (PllOptionEnum_Type)(core_clk_mhz>200u?200u:core_clk_mhz);
   
-  // ����������Ƶѡ���Ƶ�ͱ�Ƶϵ��
+  // 根据期望主频选择分频和倍频系数
   switch(core_clk_mhz)
   {
   case PLL_48:
@@ -103,21 +103,21 @@ uint8 LPLD_PLL_Setup(PllOptionEnum_Type core_clk_mhz)
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
  /*
  *************************************************
-  ��LPLDע�⡿MCG�ؼ�ϵ��
-  prdiv(PLL��Ƶϵ��): 0~7(1~8)
-  vdiv(PLL��Ƶϵ��): 0~31(16~47)
-  PLL�ο�ʱ�ӷ�Χ: 8MHz~16MHz
-  PLL�ο�ʱ�� = �ⲿ�ο�ʱ��(CPU_XTAL_CLK_HZ)/prdiv
-  PLL���ʱ�ӷ�Χ: 90MHz~180MHz
-  PLL���ʱ�� = PLL�ο�ʱ�� x vdiv��PLL��Ƶϵ����/2
-  CoreClk = PLL���ʱ�� /OUTDIV1
+  【LPLD注解】MCG关键系数
+  prdiv(PLL分频系数): 0~7(1~8)
+  vdiv(PLL倍频系数): 0~31(16~47)
+  PLL参考时钟范围: 8MHz~16MHz
+  PLL参考时钟 = 外部参考时钟(CPU_XTAL_CLK_HZ)/prdiv
+  PLL输出时钟范围: 90MHz~180MHz
+  PLL输出时钟 = PLL参考时钟 x vdiv（PLL倍频系数）/2
+  CoreClk = PLL输出时钟 /OUTDIV1
  *************************************************
 */
   
-  // ����MK60F12��˵��core_clk_mhz���鲻Ҫ����120����������Ϊ���200
-  // ����MK60F15��˵��core_clk_mhz���鲻Ҫ����150����������Ϊ���200
+  // 对于MK60F12来说，core_clk_mhz建议不要超过120，这里限制为最高200
+  // 对于MK60F15来说，core_clk_mhz建议不要超过150，这里限制为最高200
   core_clk_mhz = (PllOptionEnum_Type)(core_clk_mhz>200u?200u:core_clk_mhz);
-  // ����������Ƶѡ���Ƶ�ͱ�Ƶϵ��
+  // 根据期望主频选择分频和倍频系数
   switch(core_clk_mhz)
   {
   case PLL_100:
@@ -173,108 +173,108 @@ uint8 LPLD_PLL_Setup(PllOptionEnum_Type core_clk_mhz)
   }
  
 #if (defined(CPU_MK60DZ10)) 
-  // ������踴λ�� MCG ģ��Ĭ��Ϊ FEI ģʽ
-  // �����ƶ��� FBE ģʽ
+  // 这里假设复位后 MCG 模块默认为 FEI 模式
+  // 首先移动到 FBE 模式
   MCG->C2 = 0;
-  // ������ʼ����ɺ�,�ͷ�����״̬�µ� oscillator �� GPIO 
+  // 振荡器初始化完成后,释放锁存状态下的 oscillator 和 GPIO 
   SIM->SCGC4 |= SIM_SCGC4_LLWU_MASK;
   LLWU->CS |= LLWU_CS_ACKISO_MASK;
-  // ѡ���ⲿ oscilator ���ο���Ƶ�� and ���� IREFS �����ⲿosc
+  // 选择外部 oscilator 、参考分频器 and 清零 IREFS 启动外部osc
   // CLKS=2, FRDIV=3, IREFS=0, IRCLKEN=0, IREFSTEN=0
   MCG->C1 = MCG_C1_CLKS(2) | MCG_C1_FRDIV(3);  
-  while (MCG->S & MCG_S_IREFST_MASK){}; // �ȴ��ο�ʱ������
-  while (((MCG->S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x2){}; // �ȴ�ʱ��״̬��ʾΪ�ⲿ�ο�ʱ��(ext ref clk)
-  // ����FBEģʽ
-  // ���� PLL �ο���Ƶ��, PLLCLKEN=0, PLLSTEN=0, PRDIV=5
-  // �þ���Ƶ����ѡ�� PRDIV ֵ. ������Ƶ�ʾ����ʱ��֧��
-  // ���� 2MHz �Ĳο�ʱ�Ӹ� PLL.
-  MCG->C5 = MCG_C5_PRDIV(prdiv); // ���� PLL ƥ�侧��Ĳο���Ƶ�� 
-  // ȷ��MCG_C6���ڸ�λ״̬,��ֹLOLIE��PLL����ʱ�ӿ�����,��PLL VCO��Ƶ��
+  while (MCG->S & MCG_S_IREFST_MASK){}; // 等待参考时钟清零
+  while (((MCG->S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x2){}; // 等待时钟状态显示为外部参考时钟(ext ref clk)
+  // 进入FBE模式
+  // 配置 PLL 参考分频器, PLLCLKEN=0, PLLSTEN=0, PRDIV=5
+  // 用晶振频率来选择 PRDIV 值. 仅在有频率晶振的时候支持
+  // 产生 2MHz 的参考时钟给 PLL.
+  MCG->C5 = MCG_C5_PRDIV(prdiv); // 设置 PLL 匹配晶振的参考分频数 
+  // 确保MCG_C6处于复位状态,禁止LOLIE、PLL、和时钟控制器,清PLL VCO分频器
   MCG->C6 = 0x0;
-  //����ϵͳʱ�ӷ�Ƶϵ��
+  //设置系统时钟分频系数
   LPLD_Set_SYS_DIV(core_div, bus_div, flexbus_div, flash_div);  
-  //���ñ�Ƶϵ��
+  //设置倍频系数
   MCG->C6 = MCG_C6_PLLS_MASK | MCG_C6_VDIV(vdiv); 
   while (!(MCG->S & MCG_S_PLLST_MASK)){}; // wait for PLL status bit to set
   while (!(MCG->S & MCG_S_LOCK_MASK)){}; // Wait for LOCK bit to set
-  // �Ѿ�����PBEģʽ
-  // ����CLKS ����PEEģʽ
+  // 已经进入PBE模式
+  // 清零CLKS 进入PEE模式
   MCG->C1 &= ~MCG_C1_CLKS_MASK;
   // Wait for clock status bits to update
   while (((MCG->S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x3){};
-  // �Ѿ�����PEEģʽ
+  // 已经进入PEE模式
 #elif defined(CPU_MK60F12) || defined(CPU_MK60F15)
   if (PMC->REGSC &  PMC_REGSC_ACKISO_MASK)
         PMC->REGSC |= PMC_REGSC_ACKISO_MASK;
-  /*ע�⣺PLL��ʼ����������ϵͳʱ�ӷ�Ƶ��
-    ����ϵͳʱ�ӷ�Ƶ������PLL֮ǰ����*/ 
+  /*注意：PLL初始化不会配置系统时钟分频，
+    所以系统时钟分频必须在PLL之前调用*/ 
   SIM->CLKDIV1 = ( 0
-                  | SIM_CLKDIV1_OUTDIV1(core_div)   //�����ں˷�Ƶ
-                  | SIM_CLKDIV1_OUTDIV2(bus_div)   //���������Ƶ
-                  | SIM_CLKDIV1_OUTDIV3(flexbus_div)   //����FlexBus��Ƶ
-                  | SIM_CLKDIV1_OUTDIV4(flash_div) );//����FLASH��Ƶ
-  //��ʼ��������ʱ�ӣ�ϵͳ�ں���Ƶ������ʱ�ӡ�FlexBusʱ�ӡ�Flashʱ��
-  // ������踴λ�� MCG ģ��Ĭ��Ϊ FEI ģʽ
-  // �����ƶ��� FBE ģʽ
+                  | SIM_CLKDIV1_OUTDIV1(core_div)   //设置内核分频
+                  | SIM_CLKDIV1_OUTDIV2(bus_div)   //设置外设分频
+                  | SIM_CLKDIV1_OUTDIV3(flexbus_div)   //设置FlexBus分频
+                  | SIM_CLKDIV1_OUTDIV4(flash_div) );//设置FLASH分频
+  //初始化各部分时钟：系统内核主频、总线时钟、FlexBus时钟、Flash时钟
+  // 这里假设复位后 MCG 模块默认为 FEI 模式
+  // 首先移动到 FBE 模式
   MCG->C2 = MCG_C2_RANGE0(1);
-  // ѡ���ⲿ oscilator ���ο���Ƶ�� and ���� IREFS �����ⲿosc
+  // 选择外部 oscilator 、参考分频器 and 清零 IREFS 启动外部osc
   // CLKS=2, FRDIV=5, IREFS=0, IRCLKEN=0, IREFSTEN=0
   MCG->C1 = MCG_C1_CLKS(2) | MCG_C1_FRDIV(5);
-  while (MCG->S & MCG_S_IREFST_MASK){}; // �ȴ��ο�ʱ������
-  while (((MCG->S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x2){}; // �ȴ�ʱ��״̬��ʾΪ�ⲿ�ο�ʱ��(ext ref clk)
-  // ����FBEģʽ
-  // ���� PLL �ο���Ƶ��, PLLCLKEN=0, PLLSTEN=0, PRDIV
-  // �þ���Ƶ����ѡ�� PRDIV ֵ. ������Ƶ�ʾ����ʱ��֧��
-  // ���� 10MHz �Ĳο�ʱ�Ӹ� PLL.
+  while (MCG->S & MCG_S_IREFST_MASK){}; // 等待参考时钟清零
+  while (((MCG->S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x2){}; // 等待时钟状态显示为外部参考时钟(ext ref clk)
+  // 进入FBE模式
+  // 配置 PLL 参考分频器, PLLCLKEN=0, PLLSTEN=0, PRDIV
+  // 用晶振频率来选择 PRDIV 值. 仅在有频率晶振的时候支持
+  // 产生 10MHz 的参考时钟给 PLL.
   MCG->C6 |= MCG_C6_CME0_MASK;
-  MCG->C5 = MCG_C5_PRDIV0(prdiv); // ���� PLL ƥ�侧��Ĳο���Ƶ��
+  MCG->C5 = MCG_C5_PRDIV0(prdiv); // 设置 PLL 匹配晶振的参考分频数
   MCG->C6 = MCG_C6_PLLS_MASK | MCG_C6_VDIV0(vdiv); 
   while (!(MCG->S & MCG_S_PLLST_MASK)){}; // wait for PLL status bit to set
   while (!(MCG->S & MCG_S_LOCK0_MASK)){}; // Wait for LOCK bit to set
-  // �Ѿ�����PBEģʽ
-  // ����CLKS ����PEEģʽ
+  // 已经进入PBE模式
+  // 清零CLKS 进入PEE模式
   MCG->C1 &= ~MCG_C1_CLKS_MASK;
   // Wait for clock status bits to update
   while (((MCG->S & MCG_S_CLKST_MASK) >> MCG_S_CLKST_SHIFT) != 0x3){};
-  // �Ѿ�����PEEģʽ
+  // 已经进入PEE模式
 #endif  
   return pll_freq;
 } 
 
 /*
  * LPLD_Set_SYS_DIV
- * ����ϵͳʼ�շ�Ƶ
+ * 设置系统始终分频
  *
- * ˵��:
- * ��δ�����������RAM�У�Ŀ���Ƿ�ֹ�����ܷɣ�����ٷ��ĵ�errata e2448.
- * ��Flashʱ�ӷ�Ƶ�ı��ʱ��FlashԤ��ȡ�������.
- * ��ֹ��Flash���������´���.
- * ��Ԥ��ȡ������ʹ��֮ǰ������ʱ�ӷ�Ƶ�ı����һ��С����ʱ.
+ * 说明:
+ * 这段代码必须放置在RAM中，目的是防止程序跑飞，详见官方文档errata e2448.
+ * 当Flash时钟分频改变的时候，Flash预读取必须禁用.
+ * 禁止从Flash中运行以下代码.
+ * 在预读取被重新使能之前必须在时钟分频改变后有一段小的延时.
  *
- * ����:
- *    outdiv1~outdiv4--�ֱ�Ϊcore, bus, FlexBus, Flashʱ�ӷ�Ƶϵ��
+ * 参数:
+ *    outdiv1~outdiv4--分别为core, bus, FlexBus, Flash时钟分频系数
  */
 RAMFUNC void LPLD_Set_SYS_DIV(uint32 outdiv1, uint32 outdiv2, uint32 outdiv3, uint32 outdiv4)
 {
   uint32 temp_reg;
   uint8 i;
   
-  temp_reg = FMC->PFAPR; // ���� FMC_PFAPR �Ĵ���
+  temp_reg = FMC->PFAPR; // 备份 FMC_PFAPR 寄存器
   
-  // ���� M0PFD �� M7PFD Ϊ 1 ����Ԥ�ȶ�ȡ
+  // 设置 M0PFD 到 M7PFD 为 1 禁用预先读取
   FMC->PFAPR |= FMC_PFAPR_M7PFD_MASK | FMC_PFAPR_M6PFD_MASK | FMC_PFAPR_M5PFD_MASK
              | FMC_PFAPR_M4PFD_MASK | FMC_PFAPR_M3PFD_MASK | FMC_PFAPR_M2PFD_MASK
              | FMC_PFAPR_M1PFD_MASK | FMC_PFAPR_M0PFD_MASK;
   
-  // ����ʱ�ӷ�ƵΪ����ֵ  
+  // 设置时钟分频为期望值  
   SIM->CLKDIV1 = SIM_CLKDIV1_OUTDIV1(outdiv1) | SIM_CLKDIV1_OUTDIV2(outdiv2) 
               | SIM_CLKDIV1_OUTDIV3(outdiv3) | SIM_CLKDIV1_OUTDIV4(outdiv4);
 
-  // ��ʱһС��ʱ��ȴ��ı�
+  // 延时一小段时间等待改变
   for (i = 0 ; i < outdiv4 ; i++)
   {}
   
-  FMC->PFAPR = temp_reg; // �ظ�ԭ�ȵ� FMC_PFAPR �Ĵ���ֵ
+  FMC->PFAPR = temp_reg; // 回复原先的 FMC_PFAPR 寄存器值
   
   return;
 } // set_sys_dividers
