@@ -1,6 +1,6 @@
 # [第九届飞思卡尔智能车](https://www.fanhaobai.com)
 
-此为第九届飞思卡尔智能车摄像头组参赛作品，为了该作品我和团队泡了 1 年半的实验室（第八届华北二等奖）。该作品我早已在 [智能车制作](http://www.znczz.com) 论坛开源过，现整理于 Github。
+此为第九届飞思卡尔智能车摄像头组参赛作品，为了该作品我和团队泡了 1 年半的实验室。该作品我早已在 [智能车制作](http://www.znczz.com) 论坛开源过，现整理于 Github。
 
 ![预览图](https://github.com/fan-haobai/smart-car-freescale/blob/master/三维模型.png)
 
